@@ -1,0 +1,8 @@
+{
+  "ticket_id": "TKT-20240526-001",
+  "subject": "Cannot access my account - urgent!",
+  "body": "I have been locked out of my account for 2 days now and I cannot access any of my data. I have tried resetting my password multiple times but the reset email never arrives. This is completely unacceptable - I am paying for this service and I cannot use it at all. I need this resolved immediately or I will have to cancel my subscription.",
+  "customer_name": "Sarah Johnson",
+  "customer_email": "sarah.johnson@example.com",
+  "product": "Core Platform"
+}
