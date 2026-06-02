@@ -554,7 +554,7 @@ def assemble_sba(bk: Book):
     stress_tab(bk)
     # order: put summary tabs right after Inputs
     _reorder(bk, ["Inputs", "Sources & Uses", "Lender Summary", "Stress Tests",
-                  "Revenue Model", "Staffing & Payroll", "Operating Budget",
+                  "Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                   "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
 
@@ -566,7 +566,7 @@ def assemble_investor(bk: Book):
     unit_econ_tab(bk)
     sensitivity_tab(bk)
     _reorder(bk, ["Inputs", "Returns", "Unit Economics", "Sensitivity",
-                  "Revenue Model", "Staffing & Payroll", "Operating Budget",
+                  "Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                   "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
 
@@ -580,7 +580,7 @@ def assemble_ops(bk: Book):
     cap_payroll_tab(bk)
     _reorder(bk, ["Inputs", "Dashboard", "Actuals vs Budget", "Staffing Tracker",
                   "Cap & Payroll", "Revenue Model", "Staffing & Payroll",
-                  "Operating Budget", "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
+                  "Operating Budget", "Detailed P&L", "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
 
 

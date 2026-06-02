@@ -22,7 +22,7 @@ TARGETS = [
 ]
 
 
-ENGINE_TABS = {"Revenue Model", "Staffing & Payroll", "Operating Budget",
+ENGINE_TABS = {"Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"}
 
 

@@ -901,5 +901,172 @@ def build_engine(bk: Book):
     debt_tab(bk)
     cashflow_tab(bk)
     patch_pl_interest(bk)
+    pl_detail_tab(bk)
     actuals_tab(bk)
     return bk
+
+
+# =========================================================================
+# DETAILED P&L  (QuickBooks-style, cash-basis layout — matches client template
+# row-for-row; cash-basis "Net Income" = operating result, ties to EBITDA)
+# Columns: B..M = M1..M12, N = Year 2, O = Year 3, P = TOTAL (3-yr)
+# =========================================================================
+FMT_ACCT = '#,##0.00;(#,##0.00);""'
+FMT_TOT = '#,##0.00;(#,##0.00)'
+
+def pl_detail_tab(bk: Book):
+    ws = bk.wb.create_sheet("Detailed P&L")
+    ws.sheet_view.showGridLines = False
+    ws.column_dimensions["A"].width = 40
+    for c in range(2, 17):
+        ws.column_dimensions[get_column_letter(c)].width = 12.5
+    MCOL = lambda i: 2 + i          # B..M
+    Y2C, Y3C, TOT = 14, 15, 16      # N, O, P
+    rev, stf = bk.rows["Revenue Model"], bk.rows["Staffing & Payroll"]
+    RG, PD = rev["gross"], rev["pd"]
+
+    # title
+    ws["A1"] = "Azalea Hospice & Palliative Care — Tyler, TX"
+    ws["A1"].font = S.Font(name=S.BASE_FONT, size=13, bold=True, color=S.NAVY)
+    ws["A2"] = "Profit and Loss"
+    ws["A2"].font = S.Font(name=S.BASE_FONT, size=11, bold=True, color=S.BLACK)
+    ws["A3"] = "Year 1 (monthly)  ·  Years 2–3 (annual)  ·  model data, cash basis"
+    ws["A3"].font = S.f_note()
+
+    # column header (row 5)
+    hdr = 5
+    labels = [PERIODS[i]["label"] for i in range(12)] + ["Year 2", "Year 3", "TOTAL"]
+    for k, lab in enumerate(labels):
+        c = ws.cell(hdr, 2 + k, lab)
+        c.font = S.f_label(bold=True); c.alignment = S.CENTER
+        c.border = S.Border(bottom=S.Side(style="thin", color=S.BLACK))
+    ws.freeze_panes = "B6"
+
+    # ---- engine reference builders (bare refs; '=' added by writers) ----
+    def g_m(i):  return f"'Revenue Model'!{plet(i)}{RG}"
+    def g_y(a, b): return f"SUM('Revenue Model'!{plet(a)}{RG}:{plet(b)}{RG})"
+    def pd_m(i): return f"'Revenue Model'!{plet(i)}{PD}"
+    def pd_y(a, b): return f"SUM('Revenue Model'!{plet(a)}{PD}:{plet(b)}{PD})"
+    def s_m(key, i): return f"'Staffing & Payroll'!{plet(i)}{stf[key]}"
+    def s_y(key, a, b): return f"SUM('Staffing & Payroll'!{plet(a)}{stf[key]}:{plet(b)}{stf[key]})"
+
+    def label(R, text, indent, bold=False):
+        cc = ws.cell(R, 1, text)
+        cc.font = S.Font(name=S.BASE_FONT, size=10, bold=bold, color=S.BLACK)
+        cc.alignment = S.Alignment(horizontal="left", vertical="center", indent=indent)
+
+    def account(R, text, indent, m_fn, y_fn):
+        """m_fn(i)->expr ; y_fn(a,b)->expr ; expr bare (no '=')."""
+        label(R, text, indent)
+        for i in range(12):
+            c = ws.cell(R, MCOL(i), "=" + m_fn(i)); c.number_format = FMT_ACCT
+            c.font = S.f_formula(); c.alignment = S.RIGHT
+        for col, (a, b) in ((Y2C, (12, 15)), (Y3C, (16, 19))):
+            c = ws.cell(R, col, "=" + y_fn(a, b)); c.number_format = FMT_ACCT
+            c.font = S.f_link(); c.alignment = S.RIGHT
+        c = ws.cell(R, TOT, f"=SUM(B{R}:M{R})+N{R}+O{R}"); c.number_format = FMT_ACCT
+        c.font = S.f_total(); c.alignment = S.RIGHT
+
+    def blank_account(R, text, indent):
+        account(R, text, indent, lambda i: "0", lambda a, b: "0")
+
+    def total(R, text, indent, sf, top=True, dbl=False, pct=False):
+        label(R, text, indent, bold=True)
+        for col in range(2, 17):
+            cl = get_column_letter(col)
+            c = ws.cell(R, col, "=" + sf(cl))
+            c.number_format = S.FMT_PCT if pct else FMT_TOT
+            c.font = S.f_total(); c.alignment = S.RIGHT
+            bd = {}
+            if top: bd["top"] = S.Side(style="thin", color=S.BLACK)
+            if dbl: bd["bottom"] = S.Side(style="double", color=S.BLACK)
+            if bd: c.border = S.Border(**bd)
+
+    def header(R, text):
+        label(R, text, 0, bold=True)
+
+    # ===== INCOME =====
+    header(6, "Income")
+    account(7, "Gross Billed Revenue", 1, lambda i: g_m(i), lambda a, b: g_y(a, b))
+    blank_account(8, "Less: CDAs Adjustment", 1)
+    account(9, "Less: Net Due Zero (Write-offs)", 1,
+            lambda i: f"{g_m(i)}*{bk.addr['writeoff_pct']}", lambda a, b: f"{g_y(a,b)}*{bk.addr['writeoff_pct']}")
+    account(10, "Less: Sequestration", 1,
+            lambda i: f"{g_m(i)}*{bk.addr['seq']}", lambda a, b: f"{g_y(a,b)}*{bk.addr['seq']}")
+    blank_account(11, "Less: Medication Adjustments", 1)
+    total(12, "Total Income", 1, lambda c: f"{c}7-{c}8-{c}9-{c}10-{c}11")
+
+    # ===== COST OF SERVICES =====
+    header(14, "Cost of Services")
+    account(15, "Pharmacy", 1, lambda i: f"{pd_m(i)}*{bk.addr['pharmacy_pd']}", lambda a, b: f"{pd_y(a,b)}*{bk.addr['pharmacy_pd']}")
+    account(16, "Medical Supplies", 1, lambda i: f"{pd_m(i)}*{bk.addr['supplies_pd']}", lambda a, b: f"{pd_y(a,b)}*{bk.addr['supplies_pd']}")
+    account(17, "Durable Medical Equipment (DME)", 1, lambda i: f"{pd_m(i)}*{bk.addr['dme_pd']}", lambda a, b: f"{pd_y(a,b)}*{bk.addr['dme_pd']}")
+    blank_account(18, "Respite Care", 1)
+    blank_account(19, "Transportation", 1)
+    blank_account(20, "Infusion / Labs", 1)
+    blank_account(21, "PT / OT / ST", 1)
+    total(22, "Total Cost of Services", 1, lambda c: f"SUM({c}15:{c}21)")
+
+    # ===== GROSS PROFIT =====
+    total(24, "Gross Profit", 0, lambda c: f"{c}12-{c}22")
+
+    # ===== OPERATING EXPENSES =====
+    header(26, "Operating Expenses")
+    label(27, "Payroll & Related", 1, bold=True)
+    account(28, "Payroll — 1st Half", 2,
+            lambda i: f"({s_m('ft_direct',i)}+{s_m('ft_indirect',i)}+{s_m('prn',i)}+{s_m('rhonda',i)})/2",
+            lambda a, b: f"({s_y('ft_direct',a,b)}+{s_y('ft_indirect',a,b)}+{s_y('prn',a,b)}+{s_y('rhonda',a,b)})/2")
+    account(29, "Payroll — 2nd Half", 2,
+            lambda i: f"({s_m('ft_direct',i)}+{s_m('ft_indirect',i)}+{s_m('prn',i)}+{s_m('rhonda',i)})/2",
+            lambda a, b: f"({s_y('ft_direct',a,b)}+{s_y('ft_indirect',a,b)}+{s_y('prn',a,b)}+{s_y('rhonda',a,b)})/2")
+    blank_account(30, "Payroll YTD Adjustments", 2)
+    account(31, "Employer Taxes (FUTA/SUI/FICA/WC)", 2,
+            lambda i: f"{s_m('burden_d',i)}+{s_m('burden_i',i)}", lambda a, b: f"{s_y('burden_d',a,b)}+{s_y('burden_i',a,b)}")
+    blank_account(32, "Contract Labor", 2)
+    account(33, "Medical Director", 2, lambda i: s_m("med_dir", i), lambda a, b: s_y("med_dir", a, b))
+    blank_account(34, "Medical Director 2", 2)
+    blank_account(35, "Intercompany Transfer", 2)
+    account(36, "Staff Other (health insurance)", 2,
+            lambda i: f"{s_m('health_d',i)}+{s_m('health_i',i)}", lambda a, b: f"{s_y('health_d',a,b)}+{s_y('health_i',a,b)}")
+    total(37, "Total Payroll & Related", 1, lambda c: f"SUM({c}28:{c}36)")
+
+    # G&A
+    label(39, "General & Administrative", 1, bold=True)
+    def ga(R, text, key):
+        account(R, text, 2, lambda i: bk.addr[key], lambda a, b: f"{bk.addr[key]}*{(b-a+1)*3}")
+    ga(40, "Bank / Payroll Fees", "ga_bankfees")
+    ga(41, "Triple Net Rent", "ga_rent")
+    ga(42, "Utilities", "ga_utilities")
+    ga(43, "Internet", "ga_internet")
+    ga(44, "Telephone / Fax", "ga_telephone")
+    ga(45, "After Hours Messaging (BVTM)", "ga_bvtm")
+    blank_account(46, "CFO / AP Support", 2)
+    blank_account(47, "Support Services", 2)
+    blank_account(48, "Messaging / CRG Signer", 2)
+    blank_account(49, "NM Room & Board", 2)
+    blank_account(50, "Corporate Labor", 2)
+    ga(51, "Marketing", "ga_marketing")
+    ga(52, "BCBP Billing Fee", "ga_billing")
+    ga(53, "EMR System", "ga_emr")
+    blank_account(54, "Other EMR", 2)
+    ga(55, "PCR (CPM)", "ga_pcr")
+    blank_account(56, "Ancillary", 2)
+    ga(57, "Liability Insurance (D&O)", "ga_liability")
+    account(58, "QR Payment Fee (0.75%)", 2,
+            lambda i: f"{g_m(i)}*{bk.addr['qr_fee_pct']}", lambda a, b: f"{g_y(a,b)}*{bk.addr['qr_fee_pct']}")
+    ga(59, "Training / CEUs", "ga_training")
+    ga(60, "Credit Card Fees", "ga_cc")
+    blank_account(61, "Other (QPf)", 2)
+    ga(62, "Other (Client)", "ga_other")
+    total(63, "Total General & Administrative", 1, lambda c: f"SUM({c}40:{c}62)")
+
+    total(65, "Total Operating Expenses", 0, lambda c: f"{c}37+{c}63")
+    total(67, "Net Income", 0, lambda c: f"{c}24-{c}65", dbl=True)
+    total(69, "Net Margin %", 1, lambda c: f"IF({c}12=0,0,{c}67/{c}12)", top=False, pct=True)
+
+    ws.merge_cells(start_row=71, start_column=1, end_row=72, end_column=8)
+    ws.cell(71, 1, "Cash-basis operating P&L (QuickBooks layout): all payroll is in Operating Expenses, "
+            "Cost of Services holds patient supplies only. \"Net Income\" here = operating result and ties to "
+            "the engine's EBITDA; interest, D&A and tax are below EBITDA on the Operating Budget / 3-statement tabs.").font = S.f_note()
+    ws.cell(71, 1).alignment = S.LEFT_WRAP
+    return ws
