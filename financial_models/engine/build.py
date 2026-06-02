@@ -14,7 +14,8 @@ from . import styles as S
 from .model import (
     PERIODS, NP, pcol, plet, FIRST_COL, LAST_LET, Y1_IDX, Y2_IDX, Y3_IDX,
     RATES, CENSUS_SCALARS, ADC_BASE, ADC_UPSIDE, ROSTER, PRN_VISIT, RHONDA_ANNUAL,
-    RATIOS, BENEFITS, COGS_PD, GA_FIXED, GA_VAR, MED_DIRECTOR_PM, CAPITAL,
+    RATIOS, BENEFITS, COGS_PD, GA_FIXED, GA_VAR, MED_DIRECTOR_PM,
+    MED_DIRECTOR2_PM, MED_DIRECTOR2_START_M, CAPITAL,
     STARTUP, WORKING_CAP, ACTUALS, AVG_DAYS_MONTH,
 )
 
@@ -229,11 +230,13 @@ def inputs_tab(bk: Book):
 
     scalar_block("E.  STAFFING RATIOS (Y2-Y3 capacity reference)", RATIOS)
     scalar_block("F.  BENEFITS & EMPLOYER BURDEN", BENEFITS)
-    # med director scalar
-    bk.section(ws, r, "F2.  MEDICAL DIRECTOR (1099 — no benefits)", 22); r += 1
-    key, label, value, fmt, note = MED_DIRECTOR_PM
-    bk.lbl(ws, r, label, indent=1); bk.inp(ws, r, 2, value, fmt, note)
-    bk.addr[key] = f"Inputs!$B${r}"; bk.name(key, f"Inputs!$B${r}"); r += 2
+    # med director scalars (1099 contracts — no benefits)
+    bk.section(ws, r, "F2.  MEDICAL DIRECTORS (1099 — no benefits)", 22); r += 1
+    for scalar_def in (MED_DIRECTOR_PM, MED_DIRECTOR2_PM, MED_DIRECTOR2_START_M):
+        key, label, value, fmt, note = scalar_def
+        bk.lbl(ws, r, label, indent=1); bk.inp(ws, r, 2, value, fmt, note)
+        bk.addr[key] = f"Inputs!$B${r}"; bk.name(key, f"Inputs!$B${r}"); r += 1
+    r += 1
 
     scalar_block("G.  PATIENT-RELATED COGS (per patient-day, trued to actuals)", COGS_PD)
     scalar_block("G2.  FIXED MONTHLY G&A (trued to actuals)", GA_FIXED)
@@ -403,9 +406,12 @@ def staffing_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=" + "+".join(f"{plet(i)}{rr}" for rr in prn_rows), S.FMT_CUR, bold=True)
     rm["prn"] = r; r += 1
-    bk.lbl(ws, r, "Medical Director (1099)", indent=1)
+    bk.lbl(ws, r, "Medical Director 1 + 2 (1099, MD2 conditional)", indent=1)
     for i in range(NP):
-        bk.fml(ws, r, pcol(i), f"={bk.addr['med_director']}*{bk.months_mult(i)}", S.FMT_CUR)
+        mi = PERIODS[i]["month_index"]; mm = bk.months_mult(i)
+        f = (f"={bk.addr['med_director']}*{mm}"
+             f"+IF({mi}>={bk.addr['med_director2_start']},{bk.addr['med_director2']}*{mm},0)")
+        bk.fml(ws, r, pcol(i), f, S.FMT_CUR)
     rm["med_dir"] = r; r += 2
 
     bk.section(ws, r, "INDIRECT LABOR (SG&A overhead)", 22); r += 1

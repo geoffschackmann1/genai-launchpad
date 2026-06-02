@@ -101,9 +101,15 @@ ROSTER = [
     ("Director of Business Development", "Sales / referrals (growth driver)", 95000, 6, "indirect", False),
     # Capacity-driven FT hires triggered by census growth (thresholds editable on Inputs)
     ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 13, "direct", False),
+    # Back-office build-out as the agency scales — required at higher census volumes
+    ("Quality / Compliance Manager", "QAPI program · CoP compliance · surveys",            80000, 16, "indirect", False),
     ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, triggers ADC≥32)",    76256, 19, "direct", False),
+    ("Billing / AR Specialist",      "Claims, AR follow-up, payer relations",              60000, 19, "indirect", False),
     ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥38)", 46511, 22, "direct", False),
+    ("Intake / Admissions Coordinator", "Referral intake · IDG admit coordination",        55000, 22, "indirect", False),
+    ("Director of Patient Care",     "Clinical quality leadership at scale",              100000, 25, "indirect", False),
     ("Capacity hire — 4th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥42)", 46511, 28, "direct", False),
+    ("Volunteer Coordinator",        "Medicare CoP requirement · volunteer hours",         50000, 28, "indirect", False),
     ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, triggers ADC≥45)",    76256, 31, "direct", False),
     ("Capacity hire — 5th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥50)", 46511, 34, "direct", False),
 ]
@@ -162,8 +168,12 @@ GA_FIXED = [
 GA_VAR = [
     ("qr_fee_pct", "QR payment fee (% of gross)", 0.0075, S.FMT_PCT2, SRC_PL),
 ]
-MED_DIRECTOR_PM = ("med_director", "Medical Director (1099, $/mo)", 4000, S.FMT_CUR,
+MED_DIRECTOR_PM = ("med_director", "Medical Director 1 (1099, $/mo)", 4000, S.FMT_CUR,
                    "1099 contract, flat, NO benefits. Paloma actual ran $1,000/mo; spec models $4,000/mo go-forward. " + FLAG)
+MED_DIRECTOR2_PM = ("med_director2", "Medical Director 2 (1099, $/mo, conditional)", 5000, S.FMT_CUR,
+                    "Second MD relationship needed at higher census volumes (e.g., palliative-care specialist or rotating consultant). 1099, no benefits.")
+MED_DIRECTOR2_START_M = ("med_director2_start", "Medical Director 2 start month", 22, S.FMT_INT,
+                          "Defaults to M22 (start of Y2Q4) when census approaches ADC ~38. Editable.")
 
 # -- Block H: capital structure (NO acquisition) --
 CAPITAL = [
@@ -233,6 +243,8 @@ def assumptions_dict():
         for r in grp:
             d[r[0]] = r[2]
     d["med_director"] = MED_DIRECTOR_PM[2]
+    d["med_director2"] = MED_DIRECTOR2_PM[2]
+    d["med_director2_start"] = MED_DIRECTOR2_START_M[2]
     return d
 
 
@@ -311,6 +323,8 @@ def compute(capture_rate=None, scenario=None):
         R["prn"][i] = prn
         R["rhonda"][i] = RHONDA_ANNUAL / 12 * m * esc
         R["med_dir"][i] = a["med_director"] * m
+        if p["month_index"] >= a["med_director2_start"]:
+            R["med_dir"][i] += a["med_director2"] * m
 
         # Benefits (W-2). direct W2 = ft_direct + prn ; indirect W2 = ft_indirect + rhonda
         w2_d = ftd + prn; w2_i = fti + R["rhonda"][i]
