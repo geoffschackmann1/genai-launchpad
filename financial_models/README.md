@@ -10,12 +10,20 @@ engine**, all reconciled to Paloma Tyler's real 2025 actuals.
 | **C — Operations Dashboard** | `output/Azalea_Operations_Dashboard.xlsx` | Owner-operator / clinical leadership |
 
 ## Deal framing
-Azalea is a **new Medicare hospice startup** in Tyler, TX — **not an acquisition**
-(no CHOW, no purchase price, no seller note). Paloma's clinicians join Azalea and
-Paloma's patients migrate onto Azalea's own provider number over months 1–2.
-Revenue ramps with that migration (M1 ADC 12 → M2 19.8 → M3 22 steady), and labor
-ramps via a staggered-hire schedule. Paloma's proven ~$118K/mo, ~22 ADC book is the
-benchmark the model reconciles to.
+Azalea is a **CHOW relaunch** of **Hickory Hospice** — Azalea acquires Hickory's
+existing Medicare-certified provider number for **$300K, seller-financed at 6% over
+36 months**. This lets Azalea bill from day 1 (no fresh 855A enrollment delay) in
+**San Antonio** (Hickory's existing market) and operate an **alternative-delivery
+site for Tyler / East Texas**. Paloma's clinicians join Azalea and Paloma's
+patients migrate onto Azalea's provider number over months 1–2. Revenue ramps with
+that migration (M1 ADC 12 → M2 19.8 → M3 22 steady), and labor ramps via a
+staggered-hire schedule. Paloma's proven ~$118K/mo, ~22 ADC book is the benchmark
+the model reconciles to.
+
+CHAP/ACHC accreditation transfers with the CHOW. Capital stack:
+- **$500K SBA 7(a)** @ 11.5%, 10-yr amortization
+- **$300K Hickory seller note** @ 6%, 36-month amortization (retires at end of Year 3)
+- **$250K owner equity**
 
 ## How to regenerate
 ```bash
@@ -71,15 +79,21 @@ each in the same spreadsheet column across every tab so cross-sheet links line u
 - **Census scenario** (1 = Base flat / conservative; 2 = Upside referral growth → ADC ~60 by Y3).
 
 ## Flagged assumptions to confirm (blue `CONFIRM` cells on `Inputs`)
-These were set to sensible defaults (the four open items the owner did not specify) and
-are flagged for override:
-1. **Capital:** $500K SBA 7(a) @ 11.5%, 10-yr; $250K equity; no acquisition.
-2. **Startup one-time costs:** placeholder estimates for 855A enrollment, CHAP/ACHC
-   accreditation, TX licensure, EMR setup, supply stock, legal/formation.
+1. **Capital:** $500K SBA @ 11.5% / 10-yr + $300K Hickory seller note @ 6% / 36-mo +
+   $250K owner equity. Combined Y1/Y2/Y3 DSCR = **1.68× / 1.56× / 1.45×** (seller
+   note retires end of Y3 → coverage jumps in Y4+).
+2. **Startup one-time costs:** CHOW filing, TX licensure, EMR setup, supply stock,
+   legal/formation, contingency. (Accreditation removed — transfers with CHOW.)
 3. **Owner comp:** Brad/Silas salaries = full comp (no separate draw).
 4. **Rent & marketing:** $3,000/mo each (Paloma actuals were $0 — embedded/rent-free).
 
-Other carried-forward notes: **Medical Director** modeled at $4,000/mo (Paloma actual
-ran $1,000/mo — flagged). **New-provider 855A cash gap** is modeled on accrual per owner
-direction; the SBA workbook notes how to switch it on. **Medicare cap** monitor is built
-on inherited mid-episode day-counts.
+Other carried-forward notes: **Medical Director** modeled at $4,000/mo (Paloma
+actual ran $1,000/mo — flagged). **855A cash gap is eliminated** by the CHOW —
+Hickory's existing provider number transfers; Azalea bills from day 1. The
+**Medicare cap** monitor uses inherited mid-episode day-counts.
+
+## Hickory license amortization
+- **License intangible** ($300K) amortized **15 years** straight-line → ~$20K/yr
+  non-cash, sits below EBITDA (no DSCR impact).
+- **Seller note** principal + interest are real cash outflows; included in combined
+  debt service and DSCR.

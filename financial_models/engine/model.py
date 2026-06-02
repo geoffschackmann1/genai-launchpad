@@ -163,12 +163,15 @@ CAPITAL = [
     ("capex",         "Startup capex - equipment ($)", 15000, S.FMT_CUR, "Computers, office furniture; depreciated straight-line. " + FLAG),
     ("deprec_yrs",    "Depreciation / amortization life (yrs)", 5, S.FMT_INT, FLAG),
     ("tx_tax",        "TX franchise/margin tax (eff.)", 0.00375, S.FMT_PCT2, "Applied to revenue when pre-tax income positive."),
+    ("license_cost",  "Hickory Medicare license — acquisition cost ($)", 300000, S.FMT_CUR, "CHOW: acquire Hickory Hospice's existing Medicare-certified provider number (San Antonio + Tyler alternative-delivery site). Eliminates 855A enrollment gap — Azalea bills from day 1."),
+    ("license_rate",  "License note interest rate (APR)", 0.06, S.FMT_PCT, "Seller financing on the license acquisition."),
+    ("license_term",  "License note term (months)", 36, S.FMT_INT, "Monthly P+I amortization."),
+    ("license_amort_yrs", "License intangible amortization life (yrs)", 15, S.FMT_INT, "GAAP intangible amortization — non-cash, below EBITDA. No effect on DSCR."),
 ]
 
 # -- Block H2: startup one-time uses (Sources & Uses) --
 STARTUP = [
-    ("su_enroll",   "Medicare 855A enrollment",          3000,  S.FMT_CUR, FLAG),
-    ("su_accred",   "Accreditation (CHAP / ACHC)",        8000,  S.FMT_CUR, FLAG),
+    ("su_enroll",   "CHOW filing / 855A change-of-ownership", 3000, S.FMT_CUR, "Preserves Hickory's existing Medicare number; no fresh enrollment delay."),
     ("su_license",  "TX state licensure",                 5000,  S.FMT_CUR, FLAG),
     ("su_emr",      "EMR implementation / setup",        10000,  S.FMT_CUR, FLAG),
     ("su_supplies", "Initial medical-supply stock",      10000,  S.FMT_CUR, FLAG),
@@ -242,20 +245,32 @@ def compute(capture_rate=None, scenario=None):
         "cogs", "gp", "sga_labor", "ga_fixed", "qr", "sga", "ebitda", "da",
         "int_sba", "int_loc", "pretax", "tax", "ni", "ds", "ar", "ap",
         "cfo", "principal", "loc_draw", "loc_repay", "end_cash", "loc_bal",
-        "ppe_net", "intang_net", "ft_head_d", "ft_head_i", "sba_bal", "re")}
+        "ppe_net", "intang_net", "license_net", "ft_head_d", "ft_head_i",
+        "sba_bal", "lic_bal", "lic_int", "lic_prin", "re")}
 
     # ---- SBA amortization at PERIOD grain (mirrors workbook formulas) ----
     P = a["sba_principal"]; rm = a["sba_rate"] / 12; n = int(a["sba_term_mo"])
     pmt = P * rm / (1 - (1 + rm) ** -n) if rm else P / n  # monthly payment
     sba_bal = P
 
+    # ---- Hickory license note (seller financing) ----
+    lic_P = a["license_cost"]; lic_rm = a["license_rate"] / 12
+    lic_n = int(a["license_term"])
+    lic_pmt = lic_P * lic_rm / (1 - (1 + lic_rm) ** -lic_n) if lic_rm else lic_P / lic_n
+    lic_bal = lic_P
+
     startup_total = sum(_val(STARTUP, k[0]) for k in STARTUP)
     capex = a["capex"]
-    da_pm = (capex / a["deprec_yrs"] / 12) + (startup_total / a["deprec_yrs"] / 12)
+    # Three asset pools, three lives
+    da_capex_pm = capex / a["deprec_yrs"] / 12
+    da_startup_pm = startup_total / a["deprec_yrs"] / 12
+    da_license_pm = lic_P / a["license_amort_yrs"] / 12
+    da_pm = da_capex_pm + da_startup_pm + da_license_pm
 
+    # License is financed by the seller note → does not consume opening cash
     beg_cash = a["equity"] + a["sba_principal"] - startup_total - capex
     loc_bal = 0.0; re_cum = 0.0
-    accum_da = 0.0
+    accum_capex = 0.0; accum_startup = 0.0; accum_license = 0.0
     prev_ar = 0.0; prev_ap = 0.0
 
     for i, p in enumerate(PERIODS):
@@ -302,19 +317,37 @@ def compute(capture_rate=None, scenario=None):
         R["sga"][i] = R["sga_labor"][i] + R["ga_fixed"][i] + R["qr"][i]
         R["ebitda"][i] = R["gp"][i] - R["sga"][i]
 
-        # Below EBITDA — SBA at period grain (interest on beginning balance)
+        # Below EBITDA — SBA + license note, each on its own beginning balance
         R["da"][i] = da_pm * m
         ints = sba_bal * rm * m
         prins = pmt * m - ints
         sba_bal -= prins
         R["int_sba"][i] = ints
         R["sba_bal"][i] = sba_bal
+        # License note — closed-form amortization to ensure clean payoff at term
+        if lic_bal > 0 and lic_rm > 0:
+            factor = (1 + lic_rm) ** m
+            new_bal = lic_bal * factor - lic_pmt * (factor - 1) / lic_rm
+            new_bal = max(0.0, new_bal)
+        else:
+            new_bal = max(0.0, lic_bal - lic_pmt * m)
+        lic_prin = lic_bal - new_bal
+        lic_int = max(0.0, lic_pmt * m - lic_prin) if lic_bal > 0 else 0.0
+        # If we paid off mid-period, payment = principal + interest only
+        if new_bal == 0 and lic_bal > 0:
+            # interest accrued only on the months we actually owed
+            lic_int = lic_pmt * m - lic_prin
+            lic_int = max(0.0, lic_int)
+        lic_bal = new_bal
+        R["lic_int"][i] = lic_int
+        R["lic_prin"][i] = lic_prin
+        R["lic_bal"][i] = lic_bal
         R["int_loc"][i] = loc_bal * a["loc_rate"] * (m / 12)
-        R["pretax"][i] = R["ebitda"][i] - R["da"][i] - R["int_sba"][i] - R["int_loc"][i]
+        R["pretax"][i] = R["ebitda"][i] - R["da"][i] - R["int_sba"][i] - lic_int - R["int_loc"][i]
         R["tax"][i] = R["net"][i] * a["tx_tax"] if R["pretax"][i] > 0 else 0.0
         R["ni"][i] = R["pretax"][i] - R["tax"][i]
-        R["ds"][i] = ints + prins
-        R["principal"][i] = prins
+        R["ds"][i] = ints + prins + lic_int + lic_prin
+        R["principal"][i] = prins + lic_prin
 
         # Working capital
         R["ar"][i] = R["net"][i] * (a["ar_days"] / days)
@@ -325,7 +358,7 @@ def compute(capture_rate=None, scenario=None):
         R["cfo"][i] = R["ni"][i] + R["da"][i] - d_ar + d_ap
 
         # Cash + LOC sweep (LOC interest on prior balance -> no circularity)
-        end = beg_cash + R["cfo"][i] - prins
+        end = beg_cash + R["cfo"][i] - prins - lic_prin
         draw = repay = 0.0
         if end < a["min_cash"]:
             draw = a["min_cash"] - end
@@ -337,10 +370,13 @@ def compute(capture_rate=None, scenario=None):
         R["end_cash"][i] = end; R["loc_bal"][i] = loc_bal
         beg_cash = end
 
-        # Balance-sheet asset roll-forward
-        accum_da += R["da"][i]
-        R["ppe_net"][i] = max(0.0, capex - accum_da * (capex / (capex + startup_total)))
-        R["intang_net"][i] = max(0.0, startup_total - accum_da * (startup_total / (capex + startup_total)))
+        # Balance-sheet asset roll-forward (three pools, three lives)
+        accum_capex += da_capex_pm * m
+        accum_startup += da_startup_pm * m
+        accum_license += da_license_pm * m
+        R["ppe_net"][i] = max(0.0, capex - accum_capex)
+        R["intang_net"][i] = max(0.0, startup_total - accum_startup)
+        R["license_net"][i] = max(0.0, lic_P - accum_license)
         re_cum += R["ni"][i]
         R["re"][i] = re_cum
 

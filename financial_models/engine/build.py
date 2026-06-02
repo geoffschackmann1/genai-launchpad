@@ -120,8 +120,8 @@ class Book:
 def inputs_tab(bk: Book):
     ws = bk.wb.create_sheet("Inputs")
     bk.widths(ws, label_w=46, b_w=15, period_w=11)
-    bk.title_block(ws, "Assumptions Engine — single source of truth · blue = input · "
-                       "black = formula · green = cross-sheet link · cells noted to Paloma actuals",
+    bk.title_block(ws, "Assumptions Engine — CHOW relaunch of Hickory Hospice (San Antonio + Tyler alternative-delivery) · "
+                       "blue = input · black = formula · green = cross-sheet link",
                    span=22)
     r = 4
 
@@ -253,8 +253,10 @@ def inputs_tab(bk: Book):
     bk.fml(ws, r, 2, f"={bk.addr['equity']}+{bk.addr['sba_principal']}-{bk.addr['startup_total']}-{bk.addr['capex']}",
            S.FMT_CUR, bold=True)
     bk.addr["opening_cash"] = f"Inputs!$B${r}"; r += 1
-    bk.lbl(ws, r, "Monthly D&A (capex+startup) / life / 12", indent=1)
-    bk.fml(ws, r, 2, f"=({bk.addr['capex']}+{bk.addr['startup_total']})/{bk.addr['deprec_yrs']}/12", S.FMT_CUR)
+    bk.lbl(ws, r, "Monthly D&A (capex+startup over 5 yr, license over 15 yr)", indent=1)
+    bk.fml(ws, r, 2,
+           f"=({bk.addr['capex']}+{bk.addr['startup_total']})/{bk.addr['deprec_yrs']}/12"
+           f"+{bk.addr['license_cost']}/{bk.addr['license_amort_yrs']}/12", S.FMT_CUR)
     bk.addr["da_pm"] = f"Inputs!$B${r}"; r += 1
 
     ws.sheet_view.showGridLines = False
@@ -544,6 +546,10 @@ def opbudget_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Debt tab
     rm["int_sba"] = r; r += 1
+    bk.lbl(ws, r, "Interest — Hickory license note", indent=1)
+    for i in range(NP):
+        bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Debt tab
+    rm["int_license"] = r; r += 1
     bk.lbl(ws, r, "Interest — working-capital line", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Cash Flow tab
@@ -551,7 +557,9 @@ def opbudget_tab(bk: Book):
     bk.lbl(ws, r, "PRE-TAX INCOME", bold=True)
     for i in range(NP):
         c = plet(i)
-        bk.fml(ws, r, pcol(i), f"={c}{rm['ebitda']}-{c}{rm['da']}-{c}{rm['int_sba']}-{c}{rm['int_loc']}", S.FMT_CUR, bold=True)
+        bk.fml(ws, r, pcol(i),
+               f"={c}{rm['ebitda']}-{c}{rm['da']}-{c}{rm['int_sba']}-{c}{rm['int_license']}-{c}{rm['int_loc']}",
+               S.FMT_CUR, bold=True)
     rm["pretax"] = r; r += 1
     bk.lbl(ws, r, "TX franchise / margin tax", indent=1)
     for i in range(NP):
@@ -573,24 +581,30 @@ def opbudget_tab(bk: Book):
 def debt_tab(bk: Book):
     ws = bk.wb.create_sheet("Debt Schedule")
     bk.widths(ws, label_w=40); bk.title_block(ws,
-        "Debt Schedule — SBA 7(a) amortization · DSCR = EBITDA / debt service (target ≥ 1.25x)", 22)
+        "Debt Schedule — SBA 7(a) + Hickory license seller note · Combined DSCR shown (target ≥ 1.25x)", 22)
     bk.section(ws, 4, "LOAN TERMS (from Inputs)", 22)
-    bk.lbl(ws, 5, "Monthly payment (PMT)", indent=1)
+    bk.lbl(ws, 5, "SBA monthly payment (PMT)", indent=1)
     bk.fml(ws, 5, 2, f"=PMT({bk.addr['sba_rate']}/12,{bk.addr['sba_term_mo']},-{bk.addr['sba_principal']})", S.FMT_CUR)
-    pmt_ref = "Debt Schedule!$B$5"
-    dr = bk.period_header(ws, 7)
+    bk.lbl(ws, 6, "License note monthly payment (PMT)", indent=1)
+    bk.fml(ws, 6, 2, f"=PMT({bk.addr['license_rate']}/12,{bk.addr['license_term']},-{bk.addr['license_cost']})", S.FMT_CUR)
+    SBA_PMT = "'Debt Schedule'!$B$5"
+    LIC_PMT = "'Debt Schedule'!$B$6"
+    dr = bk.period_header(ws, 8)
     rm = _rowmap(bk, "Debt Schedule"); ob = bk.rows["Operating Budget"]
     r = dr
+
+    # ---------------- SBA 7(a) ----------------
+    bk.section(ws, r, "SBA 7(a) LOAN", 22); r += 1
     bk.lbl(ws, r, "Beginning balance")
     for i in range(NP):
         if i == 0:
             bk.fml(ws, r, pcol(i), f"={bk.addr['sba_principal']}", S.FMT_CUR, link=True)
         else:
-            bk.fml(ws, r, pcol(i), f"={plet(i-1)}{r+4}", S.FMT_CUR)  # prior ending balance
+            bk.fml(ws, r, pcol(i), f"={plet(i-1)}{r+4}", S.FMT_CUR)
     rm["beg"] = r; r += 1
     bk.lbl(ws, r, "Payment", indent=1)
     for i in range(NP):
-        bk.fml(ws, r, pcol(i), f"=$B$5*{bk.months_mult(i)}", S.FMT_CUR)
+        bk.fml(ws, r, pcol(i), f"={SBA_PMT}*{bk.months_mult(i)}", S.FMT_CUR)
     rm["pmt"] = r; r += 1
     bk.lbl(ws, r, "Interest", indent=1)
     for i in range(NP):
@@ -606,16 +620,65 @@ def debt_tab(bk: Book):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"={c}{rm['beg']}-{c}{rm['prin']}", S.FMT_CUR, bold=True)
     rm["end"] = r; r += 2
-    bk.lbl(ws, r, "Debt service (P+I)", bold=True)
+
+    # ---------------- Hickory license seller note (closed-form amort) -----
+    bk.section(ws, r, "HICKORY LICENSE SELLER NOTE  ($300K, 6%, 36 mo)", 22); r += 1
+    bk.lbl(ws, r, "Beginning balance")
+    for i in range(NP):
+        if i == 0:
+            bk.fml(ws, r, pcol(i), f"={bk.addr['license_cost']}", S.FMT_CUR, link=True)
+        else:
+            # prior ending balance — Ending row is r+4 below
+            bk.fml(ws, r, pcol(i), f"={plet(i-1)}{r+4}", S.FMT_CUR)
+    rm["lic_beg"] = r; r += 1
+    bk.lbl(ws, r, "Ending balance (closed-form)", indent=1)
+    # B*(1+r)^m − pmt*((1+r)^m − 1)/r, floored at 0
+    for i in range(NP):
+        c = plet(i); m = bk.months_mult(i)
+        f = (f"=MAX(0,{c}{r-1}*(1+{bk.addr['license_rate']}/12)^{m}"
+             f"-{LIC_PMT}*((1+{bk.addr['license_rate']}/12)^{m}-1)/({bk.addr['license_rate']}/12))")
+        bk.fml(ws, r, pcol(i), f, S.FMT_CUR)
+    rm["lic_end_calc"] = r; r += 1
+    bk.lbl(ws, r, "Principal", indent=1)
     for i in range(NP):
         c = plet(i)
-        bk.fml(ws, r, pcol(i), f"={c}{rm['int']}+{c}{rm['prin']}", S.FMT_CUR, bold=True)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['lic_beg']}-{c}{rm['lic_end_calc']}", S.FMT_CUR)
+    rm["lic_prin"] = r; r += 1
+    bk.lbl(ws, r, "Interest", indent=1)
+    # interest = pmt*m − principal (clamped, never negative; 0 once balance = 0)
+    for i in range(NP):
+        c = plet(i)
+        f = f"=MAX(0,IF({c}{rm['lic_beg']}=0,0,{LIC_PMT}*{bk.months_mult(i)}-{c}{rm['lic_prin']}))"
+        bk.fml(ws, r, pcol(i), f, S.FMT_CUR)
+    rm["lic_int"] = r; r += 1
+    bk.lbl(ws, r, "Ending balance", bold=True)
+    for i in range(NP):
+        c = plet(i)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['lic_end_calc']}", S.FMT_CUR, bold=True)
+    rm["lic_end"] = r; r += 2
+
+    # ---------------- Combined coverage ----------------
+    bk.section(ws, r, "COMBINED DEBT SERVICE & COVERAGE", 22); r += 1
+    bk.lbl(ws, r, "Total interest", italic=True)
+    for i in range(NP):
+        c = plet(i)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['int']}+{c}{rm['lic_int']}", S.FMT_CUR)
+    rm["total_int"] = r; r += 1
+    bk.lbl(ws, r, "Total principal", italic=True)
+    for i in range(NP):
+        c = plet(i)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['prin']}+{c}{rm['lic_prin']}", S.FMT_CUR)
+    rm["total_prin"] = r; r += 1
+    bk.lbl(ws, r, "TOTAL DEBT SERVICE (P+I, combined)", bold=True)
+    for i in range(NP):
+        c = plet(i)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['total_int']}+{c}{rm['total_prin']}", S.FMT_CUR, bold=True)
     rm["ds"] = r; r += 1
     bk.lbl(ws, r, "EBITDA (link)", italic=True)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=" + _link("Operating Budget", plet(i), ob["ebitda"]), S.FMT_CUR, link=True)
     rm["ebitda"] = r; r += 1
-    bk.lbl(ws, r, "DSCR (period)", bold=True)
+    bk.lbl(ws, r, "COMBINED DSCR (period)", bold=True)
     for i in range(NP):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"=IF({c}{rm['ds']}=0,0,{c}{rm['ebitda']}/{c}{rm['ds']})", S.FMT_MULT, bold=True,
@@ -682,26 +745,30 @@ def cashflow_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"=-{_link('Debt Schedule', plet(i), dbt['prin'])}", S.FMT_CUR, link=True)
     rm["prin"] = r; r += 1
+    bk.lbl(ws, r, "− Hickory license note principal", indent=1)
+    for i in range(NP):
+        bk.fml(ws, r, pcol(i), f"=-{_link('Debt Schedule', plet(i), dbt['lic_prin'])}", S.FMT_CUR, link=True)
+    rm["lic_prin"] = r; r += 1
 
     # LOC interest (prior balance) -- referenced by Operating Budget
     bk.lbl(ws, r, "Working-capital line interest", indent=1, italic=True)
     bk.fml(ws, r, 2, "=0", S.FMT_CUR)
     for i in range(NP):
         prev = OPEN if i == 0 else plet(i-1)
-        bk.fml(ws, r, pcol(i), f"={prev}{r+4}*{bk.addr['loc_rate']}*{bk.months_mult(i)}/12", S.FMT_CUR)  # prior LOC balance (locbal row = locint+4)
+        bk.fml(ws, r, pcol(i), f"={prev}{r+4}*{bk.addr['loc_rate']}*{bk.months_mult(i)}/12", S.FMT_CUR)  # prior LOC balance (locbal = locint + 4)
     rm["locint"] = r; LOCINT_ROW = r; r += 1
 
     # cash before LOC, draw/repay, ending cash, LOC balance
     bk.lbl(ws, r, "Beginning cash", indent=1)
     bk.fml(ws, r, 2, "=0", S.FMT_CUR)
     for i in range(NP):
-        prev = f"={bk.addr['opening_cash']}" if i == 0 else f"={plet(i-1)}{r+4}"  # prior endcash (begcash+4)
+        prev = f"={bk.addr['opening_cash']}" if i == 0 else f"={plet(i-1)}{r+4}"  # prior endcash (begcash + 4)
         bk.fml(ws, r, pcol(i), prev, S.FMT_CUR, link=(i == 0))
     rm["begcash"] = r; r += 1
     bk.lbl(ws, r, "Cash before LOC sweep", italic=True)
     for i in range(NP):
         c = plet(i)
-        bk.fml(ws, r, pcol(i), f"={c}{rm['begcash']}+{c}{rm['cfo']}+{c}{rm['prin']}", S.FMT_CUR)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['begcash']}+{c}{rm['cfo']}+{c}{rm['prin']}+{c}{rm['lic_prin']}", S.FMT_CUR)
     rm["precash"] = r; r += 1
     bk.lbl(ws, r, "LOC draw / (repay)", indent=1)
     for i in range(NP):
@@ -735,24 +802,35 @@ def cashflow_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['ar']}", S.FMT_CUR)
     rm["bs_ar"] = r; r += 1
+    # Three asset pools, each amortized over its own life
     bk.lbl(ws, r, "PP&E, net", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['capex']}", S.FMT_CUR, link=True)
     for i in range(NP):
         prev = OPEN if i == 0 else plet(i-1)
-        # depreciate the PP&E share of D&A
-        share = f"({bk.addr['capex']}/({bk.addr['capex']}+{bk.addr['startup_total']}))"
-        bk.fml(ws, r, pcol(i), f"=MAX(0,{prev}{r}-{plet(i)}{rm['da']}*{share})", S.FMT_CUR)
+        bk.fml(ws, r, pcol(i),
+               f"=MAX(0,{prev}{r}-{bk.addr['capex']}/{bk.addr['deprec_yrs']}/12*{bk.months_mult(i)})",
+               S.FMT_CUR)
     rm["bs_ppe"] = r; r += 1
     bk.lbl(ws, r, "Startup & organizational costs, net", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['startup_total']}", S.FMT_CUR, link=True)
     for i in range(NP):
         prev = OPEN if i == 0 else plet(i-1)
-        share = f"({bk.addr['startup_total']}/({bk.addr['capex']}+{bk.addr['startup_total']}))"
-        bk.fml(ws, r, pcol(i), f"=MAX(0,{prev}{r}-{plet(i)}{rm['da']}*{share})", S.FMT_CUR)
+        bk.fml(ws, r, pcol(i),
+               f"=MAX(0,{prev}{r}-{bk.addr['startup_total']}/{bk.addr['deprec_yrs']}/12*{bk.months_mult(i)})",
+               S.FMT_CUR)
     rm["bs_intang"] = r; r += 1
+    bk.lbl(ws, r, "Hickory Medicare license intangible, net", indent=1)
+    bk.fml(ws, r, 2, f"={bk.addr['license_cost']}", S.FMT_CUR, link=True)
+    for i in range(NP):
+        prev = OPEN if i == 0 else plet(i-1)
+        bk.fml(ws, r, pcol(i),
+               f"=MAX(0,{prev}{r}-{bk.addr['license_cost']}/{bk.addr['license_amort_yrs']}/12*{bk.months_mult(i)})",
+               S.FMT_CUR)
+    rm["bs_license"] = r; r += 1
     bk.lbl(ws, r, "TOTAL ASSETS", bold=True)
     for col in [OPEN] + [plet(i) for i in range(NP)]:
-        ws[f"{col}{r}"] = f"={col}{rm['bs_cash']}+{col}{rm['bs_ar']}+{col}{rm['bs_ppe']}+{col}{rm['bs_intang']}"
+        ws[f"{col}{r}"] = (f"={col}{rm['bs_cash']}+{col}{rm['bs_ar']}+{col}{rm['bs_ppe']}"
+                          f"+{col}{rm['bs_intang']}+{col}{rm['bs_license']}")
         ws[f"{col}{r}"].number_format = S.FMT_CUR; ws[f"{col}{r}"].font = S.f_total()
     rm["bs_assets"] = r; r += 2
 
@@ -771,6 +849,11 @@ def cashflow_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={_link('Debt Schedule', plet(i), dbt['end'])}", S.FMT_CUR, link=True)
     rm["bs_sba"] = r; r += 1
+    bk.lbl(ws, r, "Hickory license note balance", indent=1)
+    bk.fml(ws, r, 2, f"={bk.addr['license_cost']}", S.FMT_CUR, link=True)
+    for i in range(NP):
+        bk.fml(ws, r, pcol(i), f"={_link('Debt Schedule', plet(i), dbt['lic_end'])}", S.FMT_CUR, link=True)
+    rm["bs_lic"] = r; r += 1
     bk.lbl(ws, r, "Paid-in equity", indent=1)
     for col in [OPEN] + [plet(i) for i in range(NP)]:
         ws[f"{col}{r}"] = f"={bk.addr['equity']}"
@@ -785,7 +868,7 @@ def cashflow_tab(bk: Book):
     bk.lbl(ws, r, "TOTAL LIABILITIES & EQUITY", bold=True)
     for col in [OPEN] + [plet(i) for i in range(NP)]:
         ws[f"{col}{r}"] = (f"={col}{rm['bs_ap']}+{col}{rm['bs_loc']}+{col}{rm['bs_sba']}"
-                          f"+{col}{rm['bs_equity']}+{col}{rm['bs_re']}")
+                          f"+{col}{rm['bs_lic']}+{col}{rm['bs_equity']}+{col}{rm['bs_re']}")
         ws[f"{col}{r}"].number_format = S.FMT_CUR; ws[f"{col}{r}"].font = S.f_total()
     rm["bs_le"] = r; r += 1
     bk.lbl(ws, r, "CHECK: Assets − (L+E)  → 0", bold=True)
@@ -804,6 +887,7 @@ def patch_pl_interest(bk: Book):
     ob = bk.rows["Operating Budget"]; dbt = bk.rows["Debt Schedule"]; cf = bk.rows["Cash Flow & BS"]
     for i in range(NP):
         ws.cell(ob["int_sba"], pcol(i)).value = "=" + _link("Debt Schedule", plet(i), dbt["int"])
+        ws.cell(ob["int_license"], pcol(i)).value = "=" + _link("Debt Schedule", plet(i), dbt["lic_int"])
         ws.cell(ob["int_loc"], pcol(i)).value = "=" + _link("Cash Flow & BS", plet(i), cf["locint"])
 
 

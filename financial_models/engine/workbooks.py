@@ -41,13 +41,15 @@ def sources_uses_tab(bk: Book):
     ws.column_dimensions["B"].width = 16
     ws.column_dimensions["C"].width = 44
     ws.column_dimensions["D"].width = 16
-    bk.title_block(ws, "Sources & Uses of Financing — startup / working-capital (NOT an acquisition: no purchase price)", 4)
+    bk.title_block(ws, "Sources & Uses of Financing — Hickory CHOW acquisition + working capital · SBA + seller note + equity", 4)
     bk.section_range(ws, 4, "SOURCES", 1, 2)
     bk.section_range(ws, 4, "USES", 3, 4)
     # Sources
     r = 5
     bk.lbl(ws, r, "SBA 7(a) loan", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['sba_principal']}", S.FMT_CUR, link=True); r += 1
+    bk.lbl(ws, r, "Hickory license seller note", indent=1)
+    bk.fml(ws, r, 2, f"={bk.addr['license_cost']}", S.FMT_CUR, link=True); r += 1
     bk.lbl(ws, r, "Owner equity injection", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['equity']}", S.FMT_CUR, link=True); r += 1
     src_total = r
@@ -55,6 +57,8 @@ def sources_uses_tab(bk: Book):
     bk.fml(ws, r, 2, f"=SUM(B5:B{r-1})", S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
     # Uses (column C/D)
     ur = 5
+    bk.lbl(ws, ur, "Hickory Medicare license (CHOW)", c=3, indent=1)
+    bk.fml(ws, ur, 4, f"={bk.addr['license_cost']}", S.FMT_CUR, link=True); ur += 1
     for key, label, *_ in STARTUP:
         bk.lbl(ws, ur, label, c=3, indent=1)
         bk.fml(ws, ur, 4, f"={bk.addr[key]}", S.FMT_CUR, link=True); ur += 1
@@ -67,11 +71,13 @@ def sources_uses_tab(bk: Book):
     chk = max(src_total, ur) + 2
     bk.lbl(ws, chk, "CHECK: Sources − Uses  → 0", bold=True)
     bk.fml(ws, chk, 2, f"=B{src_total}-D{ur}", S.FMT_CUR, bold=True, fill=S.fill(S.GREENFILL))
-    ws.merge_cells(start_row=chk + 2, start_column=1, end_row=chk + 3, end_column=4)
+    ws.merge_cells(start_row=chk + 2, start_column=1, end_row=chk + 4, end_column=4)
     bk._set(ws, chk + 2, 1,
-            "This is a startup, not a purchase: proceeds fund ramp-period working capital, "
-            "initial payroll, licensure/accreditation, EMR and deposits — there is no purchase "
-            "price or seller note. Startup line items are flagged inputs; confirm actual quotes.",
+            "CHOW acquisition: Azalea acquires Hickory Hospice's existing Medicare-certified provider number "
+            "($300K, 36 months at 6% seller-financed) — gives Azalea immediate billing capability in San Antonio "
+            "and an alternative-delivery site serving the East Texas / Tyler market. CHAP/ACHC accreditation "
+            "transfers with the CHOW; 855A change-of-ownership preserves the provider number with no fresh "
+            "enrollment delay. The seller note self-finances the license — it shows on both sides above.",
             S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
     return ws
@@ -85,7 +91,7 @@ def lender_summary_tab(bk: Book):
     ws.column_dimensions["A"].width = 40
     for c in "BCDE":
         ws.column_dimensions[c].width = 16
-    bk.title_block(ws, "Lender Summary — debt-service coverage (SBA floor 1.25x) · conservative base case", 5)
+    bk.title_block(ws, "Lender Summary — COMBINED debt-service coverage (SBA + Hickory seller note) vs SBA floor 1.25x", 5)
     ob, dbt, cf = "Operating Budget", "Debt Schedule", "Cash Flow & BS"
     R = bk.rows
     r = 4
@@ -119,10 +125,12 @@ def lender_summary_tab(bk: Book):
     bk.fml(ws, r, 2, f"=MAX('Cash Flow & BS'!{c0}{R[cf]['locbal']}:{plet(NP-1)}{R[cf]['locbal']})", S.FMT_CUR); r += 2
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 3, end_column=5)
     bk._set(ws, r, 1,
-            "Azalea reaches a profitable, low-risk run-rate quickly because it onboards an experienced "
-            "clinical team and a pre-identified patient panel (Paloma's proven ~$118K/mo, ~22 ADC book). "
-            "Revenue is modeled on accrual; if the lender requires the new-provider 855A cash-timing gap, "
-            "toggle AR days / add the enrollment delay on the Inputs tab and re-size the reserve.",
+            "Azalea acquires Hickory Hospice's already-certified Medicare provider number via a $300K CHOW "
+            "(seller-financed at 6% over 36 months), eliminating the 855A enrollment cash gap a fresh startup "
+            "would face — Azalea bills from day 1 in San Antonio and operates an alternative-delivery site for "
+            "Tyler/East Texas. The migrated Paloma clinical team brings a proven ~$118K/mo, ~22 ADC book of "
+            "business. Coverage shown here is COMBINED (SBA + seller note); the seller note retires at month 36, "
+            "after which DSCR jumps as only the SBA service remains.",
             S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
     return ws
