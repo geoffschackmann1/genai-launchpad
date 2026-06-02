@@ -77,11 +77,12 @@ CENSUS_SCALARS = [
 # Base path (100% capture, flat after migration completes) and Upside path
 # (referral growth). Effective ADC = chosen path x capture_rate.
 # BASE = patient-migration ramp (M1–M2) then BACK-LOADED growth path. Y1 holds
-# near 22-24 (stabilize migrated panel + build referral pipeline), Y2 accelerates
-# 24→38 as BD Director's pipeline matures, Y3 keeps pushing to 50. Y3Q4 = 50 exactly.
+# near 22-24 (stabilize migrated Paloma panel + build referral pipeline), Y2
+# accelerates 24→50 as BD Director's pipeline matures, Y3 climbs to 56. The higher
+# census funds a full, realistic direct-care team while holding ~21/25/27% margins.
 ADC_BASE = [12.0, 19.8, 22.0, 22.2, 22.4, 22.7, 22.9, 23.1, 23.3, 23.6, 23.8, 24.0,
-            26.0, 30.0, 34.0, 38.0,
-            41.0, 44.0, 47.0, 50.0]
+            30.5, 37.0, 43.5, 50.0,
+            51.5, 53.0, 54.5, 56.0]
 # UPSIDE = aggressive growth to ADC 60 by Y3Q4 (existing investor-upside path).
 ADC_UPSIDE = [12.0, 19.8, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0,
               33.0, 35.0, 37.0, 39.0,
@@ -101,17 +102,24 @@ ROSTER = [
     ("Director of Business Development", "Sales / referrals (growth driver)", 95000, 6, "indirect", False),
     # Capacity-driven FT hires triggered by census growth (thresholds editable on Inputs)
     ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 13, "direct", False),
-    # Back-office build-out as the agency scales — required at higher census volumes
+    # Core IDG clinical team — convert PRN social work / chaplain / LVN to FT as census scales (direct labor)
+    ("FT Social Worker (MSW)",   "Core IDG MSW (converts PRN SW to salaried)",             58000, 14, "direct", False),
+    ("FT LVN — visits / on-call","Core IDG LVN (converts PRN LVN to salaried)",            52000, 16, "direct", False),
+    ("FT Chaplain",              "Core IDG spiritual care (converts PRN chaplain to FT)",  55000, 18, "direct", False),
+    # Capacity-driven RN/CNA hires (richer ratios: 1:12 RN, 1:10 CNA at scale)
+    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, ADC≥30)",             76256, 13, "direct", False),
+    ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥32)",          46511, 14, "direct", False),
+    ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, ADC≥38)",             76256, 20, "direct", False),
+    ("Capacity hire — 4th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥40)",          46511, 20, "direct", False),
+    ("Capacity hire — 5th RN",   "RN Case Manager (capacity-driven, ADC≥48)",             76256, 27, "direct", False),
+    ("Capacity hire — 5th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥50)",          46511, 27, "direct", False),
+    ("Capacity hire — 6th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥54)",          46511, 31, "direct", False),
+    ("Capacity hire — 6th RN",   "RN Case Manager (capacity-driven, ADC≥55)",             76256, 34, "direct", False),
+    # Back-office build-out as the agency scales — legitimate CoP / scale roles (indirect).
+    # NOTE: Billing/AR Specialist dropped — billing is outsourced at 1.5% of revenue.
     ("Quality / Compliance Manager", "QAPI program · CoP compliance · surveys",            80000, 16, "indirect", False),
-    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, triggers ADC≥32)",    76256, 19, "direct", False),
-    ("Billing / AR Specialist",      "Claims, AR follow-up, payer relations",              60000, 19, "indirect", False),
-    ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥38)", 46511, 22, "direct", False),
-    ("Intake / Admissions Coordinator", "Referral intake · IDG admit coordination",        55000, 22, "indirect", False),
-    ("Director of Patient Care",     "Clinical quality leadership at scale",              100000, 25, "indirect", False),
-    ("Capacity hire — 4th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥42)", 46511, 28, "direct", False),
-    ("Volunteer Coordinator",        "Medicare CoP requirement · volunteer hours",         50000, 28, "indirect", False),
-    ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, triggers ADC≥45)",    76256, 31, "direct", False),
-    ("Capacity hire — 5th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥50)", 46511, 34, "direct", False),
+    ("Intake / Admissions Coordinator", "Referral intake · IDG admit coordination",        55000, 20, "indirect", False),
+    ("Volunteer Coordinator",        "Medicare CoP requirement · volunteer hours",         50000, 26, "indirect", False),
 ]
 
 # -- PRN / per-visit roster (census-driven, all months) --
@@ -128,8 +136,8 @@ RHONDA_ANNUAL = 34000
 
 # -- Block E: ratios (Y2-Y3 capacity reference) --
 RATIOS = [
-    ("rn_caseload",  "RN case-manager caseload (1 : N ADC)", 15, S.FMT_INT, "Productivity benchmark for capacity planning."),
-    ("aide_caseload","CNA / aide caseload (1 : N ADC)",      12, S.FMT_INT, "Productivity benchmark for capacity planning."),
+    ("rn_caseload",  "RN case-manager caseload (1 : N ADC)", 12, S.FMT_INT, "Richer 1:12 caseload at scale (was 1:15). Capacity planning benchmark."),
+    ("aide_caseload","CNA / aide caseload (1 : N ADC)",      10, S.FMT_INT, "Richer 1:10 caseload at scale (was 1:12). Capacity planning benchmark."),
     ("visits_rn_day","Target visits / RN / day",            5.5, S.FMT_NUM1,"Ops KPI."),
     ("visits_aide_day","Target visits / aide / day",          6, S.FMT_NUM1,"Ops KPI."),
     ("merit",        "Annual merit / COL increase (Y2, Y3)", 0.03, S.FMT_PCT,"Applied to salaried wages from Y2."),
@@ -154,7 +162,6 @@ GA_FIXED = [
     ("ga_internet",  "Internet",                 779,  S.FMT_CUR, SRC_PL),
     ("ga_telephone", "Telephone / fax",          403,  S.FMT_CUR, SRC_PL),
     ("ga_bvtm",      "After-hours messaging (BVTM)", 48, S.FMT_CUR, SRC_PL),
-    ("ga_billing",   "BCBP billing fee",         1550, S.FMT_CUR, SRC_PL),
     ("ga_emr",       "EMR system",               1281, S.FMT_CUR, SRC_PL),
     ("ga_pcr",       "PCR (CPM)",                1001, S.FMT_CUR, SRC_PL),
     ("ga_cc",        "Credit-card fees",         1004, S.FMT_CUR, SRC_PL),
@@ -166,6 +173,7 @@ GA_FIXED = [
     ("ga_marketing", "Marketing / patient acquisition", 3000, S.FMT_CUR, "Paloma actual was $0. " + FLAG),
 ]
 GA_VAR = [
+    ("billing_fee_pct", "Outsourced billing fee (% of gross)", 0.015, S.FMT_PCT2, "Outsourced billing service at 1.5% of gross revenue (replaces Paloma's flat BCBP fee)."),
     ("qr_fee_pct", "QR payment fee (% of gross)", 0.0075, S.FMT_PCT2, SRC_PL),
 ]
 MED_DIRECTOR_PM = ("med_director", "Medical Director 1 (1099, $/mo)", 4000, S.FMT_CUR,
@@ -268,7 +276,7 @@ def compute(capture_rate=None, scenario=None):
     R = {k: [0.0] * NP for k in (
         "adc", "pd", "gross", "net", "ft_direct", "ft_indirect", "prn", "rhonda",
         "med_dir", "burden_d", "burden_i", "health_d", "health_i", "cogs_patient",
-        "cogs", "gp", "sga_labor", "ga_fixed", "qr", "sga", "ebitda", "da",
+        "cogs", "gp", "sga_labor", "ga_fixed", "qr", "billing", "sga", "ebitda", "da",
         "int_sba", "int_loc", "pretax", "tax", "ni", "ds", "ar", "ap",
         "cfo", "principal", "loc_draw", "loc_repay", "end_cash", "loc_bal",
         "ppe_net", "intang_net", "license_net", "ft_head_d", "ft_head_i",
@@ -343,7 +351,8 @@ def compute(capture_rate=None, scenario=None):
         R["sga_labor"][i] = fti + R["rhonda"][i] + R["burden_i"][i] + R["health_i"][i]
         R["ga_fixed"][i] = sum(_val(GA_FIXED, k[0]) for k in GA_FIXED) * m
         R["qr"][i] = R["gross"][i] * a["qr_fee_pct"]
-        R["sga"][i] = R["sga_labor"][i] + R["ga_fixed"][i] + R["qr"][i]
+        R["billing"][i] = R["gross"][i] * a["billing_fee_pct"]
+        R["sga"][i] = R["sga_labor"][i] + R["ga_fixed"][i] + R["qr"][i] + R["billing"][i]
         R["ebitda"][i] = R["gp"][i] - R["sga"][i]
 
         # Below EBITDA — SBA + license note, each on its own beginning balance

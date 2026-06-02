@@ -532,6 +532,10 @@ def opbudget_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), _ga_range(bk, bk.months_mult(i)), S.FMT_CUR, link=True)
     rm["ga_fixed"] = r; r += 1
+    bk.lbl(ws, r, "Outsourced billing fee (1.5% of gross)", indent=1)
+    for i in range(NP):
+        bk.fml(ws, r, pcol(i), f"={_link('Revenue Model', plet(i), rev['gross'])}*{bk.addr['billing_fee_pct']}", S.FMT_CUR, link=True)
+    rm["billing"] = r; r += 1
     bk.lbl(ws, r, "QR payment fee (% of gross)", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={_link('Revenue Model', plet(i), rev['gross'])}*{bk.addr['qr_fee_pct']}", S.FMT_CUR, link=True)
@@ -539,7 +543,7 @@ def opbudget_tab(bk: Book):
     bk.lbl(ws, r, "TOTAL SG&A", bold=True)
     for i in range(NP):
         c = plet(i)
-        bk.fml(ws, r, pcol(i), f"={c}{rm['sga_labor']}+{c}{rm['ga_fixed']}+{c}{rm['qr']}", S.FMT_CUR, bold=True)
+        bk.fml(ws, r, pcol(i), f"={c}{rm['sga_labor']}+{c}{rm['ga_fixed']}+{c}{rm['billing']}+{c}{rm['qr']}", S.FMT_CUR, bold=True)
     rm["sga"] = r; r += 1
     bk.lbl(ws, r, "EBITDA", bold=True)
     for i in range(NP):
@@ -1144,7 +1148,8 @@ def pl_detail_tab(bk: Book):
     blank_account(49, "NM Room & Board", 2)
     blank_account(50, "Corporate Labor", 2)
     ga(51, "Marketing", "ga_marketing")
-    ga(52, "BCBP Billing Fee", "ga_billing")
+    account(52, "Outsourced Billing Fee (1.5%)", 2,
+            lambda i: f"{g_m(i)}*{bk.addr['billing_fee_pct']}", lambda a, b: f"{g_y(a,b)}*{bk.addr['billing_fee_pct']}")
     ga(53, "EMR System", "ga_emr")
     blank_account(54, "Other EMR", 2)
     ga(55, "PCR (CPM)", "ga_pcr")
