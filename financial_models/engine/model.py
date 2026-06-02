@@ -1,4 +1,4 @@
-"""Azalea Hospice — shared financial engine.
+"""Azalea Hospice - shared financial engine.
 
 Single source of truth for assumptions, period structure, the Python
 reference calculation (used for QA), and the Inputs-tab writer.
@@ -66,7 +66,7 @@ RATES = [
     ("writeoff_pct","Write-offs (% of gross)",            0.0015, S.FMT_PCT2,"Net-due-zero / claim write-offs. " + SRC_PL),
     ("blended_actual","Blended NET rate per PD - ACTUAL ($/day)", 181.00, S.FMT_RATE, "Validated against Paloma actuals (~$118K net / ~22 ADC / 30.4 days). " + SRC_PL),
     ("medicare_cap", "Medicare aggregate cap / beneficiary ($/yr)", 35361.44, S.FMT_CUR, "CMS FY2026 hospice aggregate cap per beneficiary."),
-    ("rhc_escalation", "Medicare RHC rate escalation (annual)", 0.025, S.FMT_PCT, "CMS historical 2–3%/yr. Applied to gross rates in Y2 (×1.025) and Y3 (×1.025²)."),
+    ("rhc_escalation", "Medicare RHC rate escalation (annual)", 0.025, S.FMT_PCT, "CMS historical 2-3%/yr. Applied to gross rates in Y2 (x1.025) and Y3 (x1.025^2)."),
 ]
 
 # -- Block C: Census migration ramp (scenario scalars) --
@@ -101,25 +101,25 @@ ROSTER = [
     # Growth driver — needed Y1 H2 to build referral pipeline that fuels Y2-Y3 census
     ("Director of Business Development", "Sales / referrals (growth driver)", 95000, 6, "indirect", False),
     # Capacity-driven FT hires triggered by census growth (thresholds editable on Inputs)
-    ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 13, "direct", False),
+    ("Capacity hire - 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC>=25)", 46511, 13, "direct", False),
     # Core IDG clinical team — convert PRN social work / chaplain / LVN to FT as census scales (direct labor)
     ("FT Social Worker (MSW)",   "Core IDG MSW (converts PRN SW to salaried)",             58000, 14, "direct", False),
-    ("FT LVN — visits / on-call","Core IDG LVN (converts PRN LVN to salaried)",            52000, 16, "direct", False),
+    ("FT LVN - visits / on-call","Core IDG LVN (converts PRN LVN to salaried)",            52000, 16, "direct", False),
     ("FT Chaplain",              "Core IDG spiritual care (converts PRN chaplain to FT)",  55000, 18, "direct", False),
     # Capacity-driven RN/CNA hires (richer ratios: 1:12 RN, 1:10 CNA at scale)
-    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, ADC≥30)",             76256, 13, "direct", False),
-    ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥32)",          46511, 14, "direct", False),
-    ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, ADC≥38)",             76256, 20, "direct", False),
-    ("Capacity hire — 4th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥40)",          46511, 20, "direct", False),
-    ("Capacity hire — 5th RN",   "RN Case Manager (capacity-driven, ADC≥48)",             76256, 27, "direct", False),
-    ("Capacity hire — 5th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥50)",          46511, 27, "direct", False),
-    ("Capacity hire — 6th CNA",  "CNA / Hospice Aide (capacity-driven, ADC≥54)",          46511, 31, "direct", False),
-    ("Capacity hire — 6th RN",   "RN Case Manager (capacity-driven, ADC≥55)",             76256, 34, "direct", False),
+    ("Capacity hire - 3rd RN",   "RN Case Manager (capacity-driven, ADC>=30)",             76256, 13, "direct", False),
+    ("Capacity hire - 3rd CNA",  "CNA / Hospice Aide (capacity-driven, ADC>=32)",          46511, 14, "direct", False),
+    ("Capacity hire - 4th RN",   "RN Case Manager (capacity-driven, ADC>=38)",             76256, 20, "direct", False),
+    ("Capacity hire - 4th CNA",  "CNA / Hospice Aide (capacity-driven, ADC>=40)",          46511, 20, "direct", False),
+    ("Capacity hire - 5th RN",   "RN Case Manager (capacity-driven, ADC>=48)",             76256, 27, "direct", False),
+    ("Capacity hire - 5th CNA",  "CNA / Hospice Aide (capacity-driven, ADC>=50)",          46511, 27, "direct", False),
+    ("Capacity hire - 6th CNA",  "CNA / Hospice Aide (capacity-driven, ADC>=54)",          46511, 31, "direct", False),
+    ("Capacity hire - 6th RN",   "RN Case Manager (capacity-driven, ADC>=55)",             76256, 34, "direct", False),
     # Back-office build-out as the agency scales — legitimate CoP / scale roles (indirect).
     # NOTE: Billing/AR Specialist dropped — billing is outsourced at 1.5% of revenue.
-    ("Quality / Compliance Manager", "QAPI program · CoP compliance · surveys",            80000, 16, "indirect", False),
-    ("Intake / Admissions Coordinator", "Referral intake · IDG admit coordination",        55000, 20, "indirect", False),
-    ("Volunteer Coordinator",        "Medicare CoP requirement · volunteer hours",         50000, 26, "indirect", False),
+    ("Quality / Compliance Manager", "QAPI program | CoP compliance | surveys",            80000, 16, "indirect", False),
+    ("Intake / Admissions Coordinator", "Referral intake | IDG admit coordination",        55000, 20, "indirect", False),
+    ("Volunteer Coordinator",        "Medicare CoP requirement | volunteer hours",         50000, 26, "indirect", False),
 ]
 
 # -- PRN / per-visit roster (census-driven, all months) --
@@ -195,10 +195,10 @@ CAPITAL = [
     ("capex",         "Startup capex - equipment ($)", 15000, S.FMT_CUR, "Computers, office furniture; depreciated straight-line. " + FLAG),
     ("deprec_yrs",    "Depreciation / amortization life (yrs)", 5, S.FMT_INT, FLAG),
     ("tx_tax",        "TX franchise/margin tax (eff.)", 0.00375, S.FMT_PCT2, "Applied to revenue when pre-tax income positive."),
-    ("license_cost",  "Hickory Medicare license — acquisition cost ($)", 300000, S.FMT_CUR, "CHOW: acquire Hickory Hospice's existing Medicare-certified provider number (San Antonio + Tyler alternative-delivery site). Eliminates 855A enrollment gap — Azalea bills from day 1."),
+    ("license_cost",  "Hickory Medicare license - acquisition cost ($)", 300000, S.FMT_CUR, "CHOW: acquire Hickory Hospice's existing Medicare-certified provider number (San Antonio + Tyler alternative-delivery site). Eliminates 855A enrollment gap - Azalea bills from day 1."),
     ("license_rate",  "License note interest rate (APR)", 0.06, S.FMT_PCT, "Seller financing on the license acquisition."),
     ("license_term",  "License note term (months)", 36, S.FMT_INT, "Monthly P+I amortization."),
-    ("license_amort_yrs", "License intangible amortization life (yrs)", 15, S.FMT_INT, "GAAP intangible amortization — non-cash, below EBITDA. No effect on DSCR."),
+    ("license_amort_yrs", "License intangible amortization life (yrs)", 15, S.FMT_INT, "GAAP intangible amortization - non-cash, below EBITDA. No effect on DSCR."),
 ]
 
 # -- Block H2: startup one-time uses (Sources & Uses) --

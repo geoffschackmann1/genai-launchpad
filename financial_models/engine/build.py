@@ -73,7 +73,7 @@ class Book:
 
     def title_block(self, ws, subtitle, span):
         ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=span)
-        self._set(ws, 1, 1, "AZALEA HOSPICE & PALLIATIVE CARE — Tyler, TX",
+        self._set(ws, 1, 1, "AZALEA HOSPICE & PALLIATIVE CARE - Tyler, TX",
                   S.f_title(), fill=S.fill(S.NAVY), align=S.LEFT)
         ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=span)
         self._set(ws, 2, 1, subtitle, S.f_subtitle(), fill=S.fill(S.NAVY), align=S.LEFT)
@@ -92,8 +92,8 @@ class Book:
         """Year band on row r, period labels on row r+1 (cols C..V)."""
         self._set(ws, r, 1, label_text, S.f_sub(), align=S.LEFT)
         # year bands
-        bands = [("YEAR 1 — monthly", Y1_IDX), ("YEAR 2 — quarterly", Y2_IDX),
-                 ("YEAR 3 — quarterly", Y3_IDX)]
+        bands = [("YEAR 1 - monthly", Y1_IDX), ("YEAR 2 - quarterly", Y2_IDX),
+                 ("YEAR 3 - quarterly", Y3_IDX)]
         for name, idx in bands:
             c0, c1 = pcol(idx[0]), pcol(idx[-1])
             ws.merge_cells(start_row=r, start_column=c0, end_row=r, end_column=c1)
@@ -121,8 +121,8 @@ class Book:
 def inputs_tab(bk: Book):
     ws = bk.wb.create_sheet("Inputs")
     bk.widths(ws, label_w=46, b_w=15, period_w=11)
-    bk.title_block(ws, "Assumptions Engine — CHOW relaunch of Hickory Hospice (San Antonio + Tyler alternative-delivery) · "
-                       "blue = input · black = formula · green = cross-sheet link",
+    bk.title_block(ws, "Assumptions Engine - CHOW relaunch of Hickory Hospice (San Antonio + Tyler alternative-delivery) | "
+                       "blue = input | black = formula | green = cross-sheet link",
                    span=22)
     r = 4
 
@@ -137,10 +137,10 @@ def inputs_tab(bk: Book):
             r += 1
         r += 1
 
-    scalar_block("A.  GEOGRAPHY & MEDICARE RHC RATES (FY2026, 100% Medicare)", RATES)
+    scalar_block("A. GEOGRAPHY & MEDICARE RHC RATES (FY2026, 100% Medicare)", RATES)
 
     # derived rate build (formulas)
-    bk.section(ws, r, "A2.  DERIVED RATE BUILD (formulas)", 22); r += 1
+    bk.section(ws, r, "A2. DERIVED RATE BUILD (formulas)", 22); r += 1
     bk.lbl(ws, r, "Wage-index adjustment factor", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['labor_share']}*{bk.addr['wage_index']}+(1-{bk.addr['labor_share']})", S.FMT_NUM4)
     bk.addr["wiadj"] = f"Inputs!$B${r}"; r += 1
@@ -153,7 +153,7 @@ def inputs_tab(bk: Book):
     bk.lbl(ws, r, "Blended GROSS rate ($/PD)", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['tier1_pct']}*{bk.addr['rate_t1']}+(1-{bk.addr['tier1_pct']})*{bk.addr['rate_t2']}", S.FMT_RATE)
     bk.addr["blended_gross"] = f"Inputs!$B${r}"; r += 1
-    bk.lbl(ws, r, "Blended NET rate ($/PD)  [model]", indent=1, bold=True)
+    bk.lbl(ws, r, "Blended NET rate ($/PD) [model]", indent=1, bold=True)
     bk.fml(ws, r, 2, f"={bk.addr['blended_gross']}*(1-{bk.addr['seq']}-{bk.addr['writeoff_pct']})", S.FMT_RATE, bold=True)
     bk.addr["net_rate"] = f"Inputs!$B${r}"; r += 1
     bk.lbl(ws, r, "Validation: model net rate vs actual $181", indent=1, italic=True)
@@ -161,13 +161,13 @@ def inputs_tab(bk: Book):
     ws.cell(r, 3, "should be near $0").font = S.f_note(); r += 2
 
     # timing scalar
-    bk.section(ws, r, "B.  TIMING", 22); r += 1
+    bk.section(ws, r, "B. TIMING", 22); r += 1
     bk.lbl(ws, r, "Average days per month", indent=1)
     bk.inp(ws, r, 2, AVG_DAYS_MONTH, S.FMT_NUM1, "Used for patient-days; quarters = x3.")
     bk.addr["avg_days_month"] = f"Inputs!$B${r}"; bk.name("avg_days_month", f"Inputs!$B${r}"); r += 2
 
     # Census scenario scalars + paths
-    bk.section(ws, r, "C.  CENSUS — PATIENT-MIGRATION RAMP (front-loaded M1-M2)", 22); r += 1
+    bk.section(ws, r, "C. CENSUS - PATIENT-MIGRATION RAMP (front-loaded M1-M2)", 22); r += 1
     for key, label, value, fmt, note in CENSUS_SCALARS:
         bk.lbl(ws, r, label, indent=1)
         bk.inp(ws, r, 2, value, fmt, note)
@@ -175,17 +175,17 @@ def inputs_tab(bk: Book):
         r += 1
     r += 1
     base_row = r
-    bk.lbl(ws, r, "ADC path — BASE (100% capture, flat steady-state)", indent=1)
+    bk.lbl(ws, r, "ADC path - BASE (100% capture, flat steady-state)", indent=1)
     for i in range(NP):
         bk.inp(ws, r, pcol(i), ADC_BASE[i], S.FMT_NUM1,
                "Migrated panel. M1=12 (~75% migrated), M2=19.8, M3+=22 steady. " + ("Source: Paloma P&L 2025." if i>=2 else ""))
     r += 1
     up_row = r
-    bk.lbl(ws, r, "ADC path — UPSIDE (referral growth)", indent=1)
+    bk.lbl(ws, r, "ADC path - UPSIDE (referral growth)", indent=1)
     for i in range(NP):
         bk.inp(ws, r, pcol(i), ADC_UPSIDE[i], S.FMT_NUM1, "Growth from Azalea's own referral pipeline.")
     r += 1
-    bk.lbl(ws, r, "EFFECTIVE ADC  = chosen path x capture", indent=1, bold=True)
+    bk.lbl(ws, r, "EFFECTIVE ADC = chosen path x capture", indent=1, bold=True)
     for i in range(NP):
         c = plet(i)
         bk.fml(ws, r, pcol(i),
@@ -194,7 +194,7 @@ def inputs_tab(bk: Book):
     bk.adc_row = r; r += 2
 
     # Roster (Block D)
-    bk.section(ws, r, "D.  STAGGERED FT ROSTER (named hires)", 22); r += 1
+    bk.section(ws, r, "D. STAGGERED FT ROSTER (named hires)", 22); r += 1
     hdr = ["Name", "Role", "Annual salary", "Start month", "Cost group", "Status"]
     for j, h in enumerate(hdr):
         bk._set(ws, r, 1 + j, h, S.f_sub(), fill=S.fill(S.LIGHTBLUE), align=S.LEFT, border=S.BORDER_THIN)
@@ -210,13 +210,13 @@ def inputs_tab(bk: Book):
         bk.roster.append(dict(name=name, role=role, sal=f"Inputs!$C${r}",
                               start=f"Inputs!$D${r}", grp=grp, open=openreq))
         r += 1
-    bk.lbl(ws, r, "Rhonda Smith — Office Mgr (PRN, W-2)", indent=1)
+    bk.lbl(ws, r, "Rhonda Smith - Office Mgr (PRN, W-2)", indent=1)
     bk.lbl(ws, r, "Per-visit / part-time office support", c=2)
     bk.inp(ws, r, 3, RHONDA_ANNUAL, S.FMT_CUR, "PRN run-rate ($/yr). Source: Paloma payrolls.")
     bk.addr["rhonda_annual"] = f"Inputs!$C${r}"; r += 2
 
     # PRN visit roster
-    bk.section(ws, r, "D2.  PRN / PER-VISIT ROSTER (census-driven)", 22); r += 1
+    bk.section(ws, r, "D2. PRN / PER-VISIT ROSTER (census-driven)", 22); r += 1
     for j, h in enumerate(["Role", "", "Visits / pt / mo", "Rate / visit"]):
         bk._set(ws, r, 1 + j, h, S.f_sub(), fill=S.fill(S.LIGHTBLUE), align=S.LEFT, border=S.BORDER_THIN)
     r += 1
@@ -228,22 +228,22 @@ def inputs_tab(bk: Book):
         r += 1
     r += 1
 
-    scalar_block("E.  STAFFING RATIOS (Y2-Y3 capacity reference)", RATIOS)
-    scalar_block("F.  BENEFITS & EMPLOYER BURDEN", BENEFITS)
+    scalar_block("E. STAFFING RATIOS (Y2-Y3 capacity reference)", RATIOS)
+    scalar_block("F. BENEFITS & EMPLOYER BURDEN", BENEFITS)
     # med director scalars (1099 contracts — no benefits)
-    bk.section(ws, r, "F2.  MEDICAL DIRECTORS (1099 — no benefits)", 22); r += 1
+    bk.section(ws, r, "F2. MEDICAL DIRECTORS (1099 - no benefits)", 22); r += 1
     for scalar_def in (MED_DIRECTOR_PM, MED_DIRECTOR2_PM, MED_DIRECTOR2_START_M):
         key, label, value, fmt, note = scalar_def
         bk.lbl(ws, r, label, indent=1); bk.inp(ws, r, 2, value, fmt, note)
         bk.addr[key] = f"Inputs!$B${r}"; bk.name(key, f"Inputs!$B${r}"); r += 1
     r += 1
 
-    scalar_block("G.  PATIENT-RELATED COGS (per patient-day, trued to actuals)", COGS_PD)
-    scalar_block("G2.  FIXED MONTHLY G&A (trued to actuals)", GA_FIXED)
-    scalar_block("G3.  VARIABLE G&A", GA_VAR)
-    scalar_block("H.  CAPITAL STRUCTURE (startup — NO acquisition)", CAPITAL)
-    scalar_block("H2.  STARTUP ONE-TIME USES (Sources & Uses)", STARTUP)
-    scalar_block("I.  WORKING CAPITAL", WORKING_CAP)
+    scalar_block("G. PATIENT-RELATED COGS (per patient-day, trued to actuals)", COGS_PD)
+    scalar_block("G2. FIXED MONTHLY G&A (trued to actuals)", GA_FIXED)
+    scalar_block("G3. VARIABLE G&A", GA_VAR)
+    scalar_block("H. CAPITAL STRUCTURE (startup - NO acquisition)", CAPITAL)
+    scalar_block("H2. STARTUP ONE-TIME USES (Sources & Uses)", STARTUP)
+    scalar_block("I. WORKING CAPITAL", WORKING_CAP)
 
     # startup total + opening cash helpers
     bk.section(ws, r, "DERIVED CAPITAL HELPERS", 22); r += 1
@@ -302,8 +302,8 @@ def _ga_range(bk, mult):
 # =========================================================================
 def revenue_tab(bk: Book):
     ws = bk.wb.create_sheet("Revenue Model")
-    bk.widths(ws); bk.title_block(ws, "Revenue Model — 100% Medicare RHC · accrual basis", 22)
-    bk.section(ws, 4, "RHC RATE (per patient-day) — linked from Inputs", 22)
+    bk.widths(ws); bk.title_block(ws, "Revenue Model - 100% Medicare RHC | accrual basis", 22)
+    bk.section(ws, 4, "RHC RATE (per patient-day) - linked from Inputs", 22)
     bk.lbl(ws, 5, "Blended GROSS rate ($/PD)", indent=1)
     bk.fml(ws, 5, 2, f"={bk.addr['blended_gross']}", S.FMT_RATE, link=True)
     bk.lbl(ws, 6, "Blended NET rate ($/PD)", indent=1)
@@ -362,7 +362,7 @@ def revenue_tab(bk: Book):
 def staffing_tab(bk: Book):
     ws = bk.wb.create_sheet("Staffing & Payroll")
     bk.widths(ws, label_w=44); bk.title_block(ws,
-        "Staffing & Payroll — staggered hires + census-driven PRN · burden on W-2 only · Med Director 1099 (no benefits)", 22)
+        "Staffing & Payroll - staggered hires + census-driven PRN | burden on W-2 only | Med Director 1099 (no benefits)", 22)
     dr = bk.period_header(ws, 4)
     rm = _rowmap(bk, "Staffing & Payroll")
     r = dr
@@ -376,7 +376,7 @@ def staffing_tab(bk: Book):
     direct_ft_rows = []; indirect_ft_rows = []
     for h in bk.roster:
         flag = " [OPEN REQ]" if h["open"] else ""
-        bk.lbl(ws, r, f"{h['name']} — {h['role']}{flag}", indent=1, italic=h["open"])
+        bk.lbl(ws, r, f"{h['name']} - {h['role']}{flag}", indent=1, italic=h["open"])
         for i in range(NP):
             mi = PERIODS[i]["month_index"]; mult = bk.months_mult(i)
             bk.fml(ws, r, pcol(i),
@@ -388,7 +388,7 @@ def staffing_tab(bk: Book):
             indirect_ft_rows.append(r)
         h["row"] = r
         r += 1
-    bk.lbl(ws, r, "Subtotal — direct-care FT salaries", bold=True)
+    bk.lbl(ws, r, "Subtotal - direct-care FT salaries", bold=True)
     for i in range(NP):
         terms = "+".join(f"{plet(i)}{rr}" for rr in direct_ft_rows)
         bk.fml(ws, r, pcol(i), f"={terms}", S.FMT_CUR, bold=True)
@@ -402,7 +402,7 @@ def staffing_tab(bk: Book):
             mult = bk.months_mult(i)
             bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['adc']}*{p['vpm']}*{p['rate']}*{mult}", S.FMT_CUR)
         prn_rows.append(r); r += 1
-    bk.lbl(ws, r, "Subtotal — PRN visit wages", bold=True)
+    bk.lbl(ws, r, "Subtotal - PRN visit wages", bold=True)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=" + "+".join(f"{plet(i)}{rr}" for rr in prn_rows), S.FMT_CUR, bold=True)
     rm["prn"] = r; r += 1
@@ -415,12 +415,12 @@ def staffing_tab(bk: Book):
     rm["med_dir"] = r; r += 2
 
     bk.section(ws, r, "INDIRECT LABOR (SG&A overhead)", 22); r += 1
-    bk.lbl(ws, r, "Subtotal — indirect FT salaries", bold=True)
+    bk.lbl(ws, r, "Subtotal - indirect FT salaries", bold=True)
     for i in range(NP):
         terms = "+".join(f"{plet(i)}{rr}" for rr in indirect_ft_rows)
         bk.fml(ws, r, pcol(i), f"={terms}", S.FMT_CUR, bold=True)
     rm["ft_indirect"] = r; r += 1
-    bk.lbl(ws, r, "Rhonda Smith — Office Mgr (PRN, W-2)", indent=1)
+    bk.lbl(ws, r, "Rhonda Smith - Office Mgr (PRN, W-2)", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={bk.addr['rhonda_annual']}/12*{bk.months_mult(i)}*{_esc(bk,i)}", S.FMT_CUR)
     rm["rhonda"] = r; r += 2
@@ -435,24 +435,24 @@ def staffing_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['ft_indirect']}+{plet(i)}{rm['rhonda']}", S.FMT_CUR)
     rm["w2_i"] = r; r += 1
-    bk.lbl(ws, r, "Burden — direct (load %)", indent=1)
+    bk.lbl(ws, r, "Burden - direct (load %)", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['w2_d']}*{bk.addr['benefits_load']}", S.FMT_CUR)
     rm["burden_d"] = r; r += 1
-    bk.lbl(ws, r, "Burden — indirect (load %)", indent=1)
+    bk.lbl(ws, r, "Burden - indirect (load %)", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['w2_i']}*{bk.addr['benefits_load']}", S.FMT_CUR)
     rm["burden_i"] = r; r += 1
     # health: count active FT by group
     d_starts = [h["start"] for h in bk.roster if h["grp"] == "direct"]
     i_starts = [h["start"] for h in bk.roster if h["grp"] == "indirect"]
-    bk.lbl(ws, r, "Health insurance — direct FT", indent=1)
+    bk.lbl(ws, r, "Health insurance - direct FT", indent=1)
     for i in range(NP):
         mi = PERIODS[i]["month_index"]; mult = bk.months_mult(i)
         cnt = "+".join(f"IF({mi}>={s},1,0)" for s in d_starts)
         bk.fml(ws, r, pcol(i), f"={bk.addr['health_pm']}*({cnt})*{mult}", S.FMT_CUR)
     rm["health_d"] = r; r += 1
-    bk.lbl(ws, r, "Health insurance — indirect FT", indent=1)
+    bk.lbl(ws, r, "Health insurance - indirect FT", indent=1)
     for i in range(NP):
         mi = PERIODS[i]["month_index"]; mult = bk.months_mult(i)
         cnt = "+".join(f"IF({mi}>={s},1,0)" for s in i_starts)
@@ -484,7 +484,7 @@ def staffing_tab(bk: Book):
 def opbudget_tab(bk: Book):
     ws = bk.wb.create_sheet("Operating Budget")
     bk.widths(ws, label_w=44); bk.title_block(ws,
-        "Operating Budget — P&L · Net Rev − COGS = Gross Profit − SG&A = EBITDA − D&A − Interest = Net Income", 22)
+        "Operating Budget - P&L | Net Rev - COGS = Gross Profit - SG&A = EBITDA - D&A - Interest = Net Income", 22)
     dr = bk.period_header(ws, 4)
     rm = _rowmap(bk, "Operating Budget")
     rev = bk.rows["Revenue Model"]; stf = bk.rows["Staffing & Payroll"]
@@ -528,7 +528,7 @@ def opbudget_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=" + _link("Staffing & Payroll", plet(i), stf["sga_labor"]), S.FMT_CUR, link=True)
     rm["sga_labor"] = r; r += 1
-    bk.lbl(ws, r, "Fixed G&A (utilities, EMR, billing, rent, mktg…)", indent=1)
+    bk.lbl(ws, r, "Fixed G&A (utilities, EMR, billing, rent, mktg...)", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), _ga_range(bk, bk.months_mult(i)), S.FMT_CUR, link=True)
     rm["ga_fixed"] = r; r += 1
@@ -560,15 +560,15 @@ def opbudget_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={bk.addr['da_pm']}*{bk.months_mult(i)}", S.FMT_CUR, link=True)
     rm["da"] = r; r += 1
-    bk.lbl(ws, r, "Interest — SBA loan", indent=1)
+    bk.lbl(ws, r, "Interest - SBA loan", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Debt tab
     rm["int_sba"] = r; r += 1
-    bk.lbl(ws, r, "Interest — Hickory license note", indent=1)
+    bk.lbl(ws, r, "Interest - Hickory license note", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Debt tab
     rm["int_license"] = r; r += 1
-    bk.lbl(ws, r, "Interest — working-capital line", indent=1)
+    bk.lbl(ws, r, "Interest - working-capital line", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=0", S.FMT_CUR, link=True)   # patched after Cash Flow tab
     rm["int_loc"] = r; r += 1
@@ -599,7 +599,7 @@ def opbudget_tab(bk: Book):
 def debt_tab(bk: Book):
     ws = bk.wb.create_sheet("Debt Schedule")
     bk.widths(ws, label_w=40); bk.title_block(ws,
-        "Debt Schedule — SBA 7(a) + Hickory license seller note · Combined DSCR shown (target ≥ 1.25x)", 22)
+        "Debt Schedule - SBA 7(a) + Hickory license seller note | Combined DSCR shown (target >= 1.25x)", 22)
     bk.section(ws, 4, "LOAN TERMS (from Inputs)", 22)
     bk.lbl(ws, 5, "SBA monthly payment (PMT)", indent=1)
     bk.fml(ws, 5, 2, f"=PMT({bk.addr['sba_rate']}/12,{bk.addr['sba_term_mo']},-{bk.addr['sba_principal']})", S.FMT_CUR)
@@ -640,7 +640,7 @@ def debt_tab(bk: Book):
     rm["end"] = r; r += 2
 
     # ---------------- Hickory license seller note (closed-form amort) -----
-    bk.section(ws, r, "HICKORY LICENSE SELLER NOTE  ($300K, 6%, 36 mo)", 22); r += 1
+    bk.section(ws, r, "HICKORY LICENSE SELLER NOTE ($300K, 6%, 36 mo)", 22); r += 1
     bk.lbl(ws, r, "Beginning balance")
     for i in range(NP):
         if i == 0:
@@ -713,7 +713,7 @@ def debt_tab(bk: Book):
 def cashflow_tab(bk: Book):
     ws = bk.wb.create_sheet("Cash Flow & BS")
     bk.widths(ws, label_w=42, b_w=13); bk.title_block(ws,
-        "Cash Flow (indirect) & Balance Sheet — BS balances through real AR/AP/LOC, never a plug", 23)
+        "Cash Flow (indirect) & Balance Sheet - BS balances through real AR/AP/LOC, never a plug", 23)
     ob = bk.rows["Operating Budget"]; rev = bk.rows["Revenue Model"]; dbt = bk.rows["Debt Schedule"]
     # header with opening column
     self_r = 4
@@ -744,12 +744,12 @@ def cashflow_tab(bk: Book):
         opex = f"({_link('Operating Budget', c, ob['ga_fixed'])}+{_link('Operating Budget', c, ob['qr'])}+{_link('Operating Budget', c, ob['cogs_patient'])})"
         bk.fml(ws, r, pcol(i), f"={opex}*{bk.addr['ap_days']}/{_link('Revenue Model', c, rev['days'])}", S.FMT_CUR, link=True)
     rm["ap"] = r; r += 1
-    bk.lbl(ws, r, "− Δ Accounts receivable", indent=1)
+    bk.lbl(ws, r, "Less: change in accounts receivable", indent=1)
     for i in range(NP):
         prev = OPEN if i == 0 else plet(i-1)
         bk.fml(ws, r, pcol(i), f"=-({plet(i)}{rm['ar']}-{prev}{rm['ar']})", S.FMT_CUR)
     rm["dar"] = r; r += 1
-    bk.lbl(ws, r, "+ Δ Accounts payable", indent=1)
+    bk.lbl(ws, r, "Plus: change in accounts payable", indent=1)
     for i in range(NP):
         prev = OPEN if i == 0 else plet(i-1)
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['ap']}-{prev}{rm['ap']}", S.FMT_CUR)
@@ -759,11 +759,11 @@ def cashflow_tab(bk: Book):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"={c}{rm['ni']}+{c}{rm['da']}+{c}{rm['dar']}+{c}{rm['dap']}", S.FMT_CUR, bold=True)
     rm["cfo"] = r; r += 1
-    bk.lbl(ws, r, "− SBA principal repayment", indent=1)
+    bk.lbl(ws, r, "- SBA principal repayment", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"=-{_link('Debt Schedule', plet(i), dbt['prin'])}", S.FMT_CUR, link=True)
     rm["prin"] = r; r += 1
-    bk.lbl(ws, r, "− Hickory license note principal", indent=1)
+    bk.lbl(ws, r, "- Hickory license note principal", indent=1)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"=-{_link('Debt Schedule', plet(i), dbt['lic_prin'])}", S.FMT_CUR, link=True)
     rm["lic_prin"] = r; r += 1
@@ -889,7 +889,7 @@ def cashflow_tab(bk: Book):
                           f"+{col}{rm['bs_lic']}+{col}{rm['bs_equity']}+{col}{rm['bs_re']}")
         ws[f"{col}{r}"].number_format = S.FMT_CUR; ws[f"{col}{r}"].font = S.f_total()
     rm["bs_le"] = r; r += 1
-    bk.lbl(ws, r, "CHECK: Assets − (L+E)  → 0", bold=True)
+    bk.lbl(ws, r, "CHECK: Assets - (L+E) to 0", bold=True)
     for col in [OPEN] + [plet(i) for i in range(NP)]:
         cell = ws[f"{col}{r}"]
         cell.value = f"={col}{rm['bs_assets']}-{col}{rm['bs_le']}"
@@ -917,10 +917,10 @@ def actuals_tab(bk: Book):
     ws.column_dimensions["A"].width = 38
     for col in "BCDEFGH":
         ws.column_dimensions[col].width = 14
-    bk.title_block(ws, "Paloma Tyler actuals (Mar–Jun 2025) vs Azalea model steady-state — proof the migrated panel is a proven, EBITDA-positive book", 8)
+    bk.title_block(ws, "Paloma Tyler actuals (Mar-Jun 2025) vs Azalea model steady-state - proof the migrated panel is a proven, EBITDA-positive book", 8)
     A = ACTUALS
     hdr_row = 4
-    heads = ["Metric"] + A["months"] + ["Apr–Jun avg", "Model (M3)", "Var %"]
+    heads = ["Metric"] + A["months"] + ["Apr-Jun avg", "Model (M3)", "Var %"]
     for j, h in enumerate(heads):
         bk._set(ws, hdr_row, 1 + j, h, S.f_label(bold=True), fill=S.fill(S.GREYHDR),
                 align=S.CENTER if j else S.LEFT, border=S.BORDER_THIN)
@@ -972,8 +972,8 @@ def actuals_tab(bk: Book):
     r += 1
 
     bk.section(ws, r, "PAYROLL (semi-monthly actual)", 8); r += 1
-    p1 = actual_row("Payroll — 1st half", "pay1", note="Source: Paloma payrolls."); r += 1
-    p2 = actual_row("Payroll — 2nd half", "pay2", note="Source: Paloma payrolls."); r += 1
+    p1 = actual_row("Payroll - 1st half", "pay1", note="Source: Paloma payrolls."); r += 1
+    p2 = actual_row("Payroll - 2nd half", "pay2", note="Source: Paloma payrolls."); r += 1
     bk.lbl(ws, r, "Total monthly payroll (actual)", bold=True)
     for j in range(4):
         cl = get_column_letter(2 + j)
@@ -983,8 +983,8 @@ def actuals_tab(bk: Book):
                      f"+{_link('Staffing & Payroll', M3, bk.rows['Staffing & Payroll']['sga_labor'])}",
            S.FMT_CUR, link=True, bold=True)
     r += 2
-    note = ("Model steady-state (M3) reconciles to Paloma's proven Apr–Jun book: ~$118K net / ~22 ADC. "
-            "Payroll differs by design — Azalea's staggered W-2 roster + benefits vs Paloma's blended run.")
+    note = ("Model steady-state (M3) reconciles to Paloma's proven Apr-Jun book: ~$118K net / ~22 ADC. "
+            "Payroll differs by design - Azalea's staggered W-2 roster + benefits vs Paloma's blended run.")
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 2, end_column=8)
     bk._set(ws, r, 1, note, S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
@@ -1028,11 +1028,11 @@ def pl_detail_tab(bk: Book):
     RG, PD = rev["gross"], rev["pd"]
 
     # title
-    ws["A1"] = "Azalea Hospice & Palliative Care — Tyler, TX"
+    ws["A1"] = "Azalea Hospice & Palliative Care - Tyler, TX"
     ws["A1"].font = S.Font(name=S.BASE_FONT, size=13, bold=True, color=S.NAVY)
     ws["A2"] = "Profit and Loss"
     ws["A2"].font = S.Font(name=S.BASE_FONT, size=11, bold=True, color=S.BLACK)
-    ws["A3"] = "Year 1 (monthly)  ·  Years 2–3 (annual)  ·  model data, cash basis"
+    ws["A3"] = "Year 1 (monthly) | Years 2-3 (annual) | model data, cash basis"
     ws["A3"].font = S.f_note()
 
     # column header (row 5)
@@ -1115,10 +1115,10 @@ def pl_detail_tab(bk: Book):
     # ===== OPERATING EXPENSES =====
     header(26, "Operating Expenses")
     label(27, "Payroll & Related", 1, bold=True)
-    account(28, "Payroll — 1st Half", 2,
+    account(28, "Payroll - 1st Half", 2,
             lambda i: f"({s_m('ft_direct',i)}+{s_m('ft_indirect',i)}+{s_m('prn',i)}+{s_m('rhonda',i)})/2",
             lambda a, b: f"({s_y('ft_direct',a,b)}+{s_y('ft_indirect',a,b)}+{s_y('prn',a,b)}+{s_y('rhonda',a,b)})/2")
-    account(29, "Payroll — 2nd Half", 2,
+    account(29, "Payroll - 2nd Half", 2,
             lambda i: f"({s_m('ft_direct',i)}+{s_m('ft_indirect',i)}+{s_m('prn',i)}+{s_m('rhonda',i)})/2",
             lambda a, b: f"({s_y('ft_direct',a,b)}+{s_y('ft_indirect',a,b)}+{s_y('prn',a,b)}+{s_y('rhonda',a,b)})/2")
     blank_account(30, "Payroll YTD Adjustments", 2)

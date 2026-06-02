@@ -37,9 +37,9 @@ def get(cells, fname, sheet, coord):
 
 def main():
     files = {
-        "SBA": "Azalea_SBA_Loan_Package.xlsx",
-        "INV": "Azalea_Investor_Model.xlsx",
-        "OPS": "Azalea_Operations_Dashboard.xlsx",
+        "SBA": "Azalea_Hospice_SBA_Loan_Package.xlsx",
+        "INV": "Azalea_Hospice_Investor_Package.xlsx",
+        "OPS": "Azalea_Hospice_Operations_Dashboard.xlsx",
     }
     allok = True
     for tag, fn in files.items():

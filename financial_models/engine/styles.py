@@ -1,10 +1,10 @@
 """Shared visual language for all three Azalea workbooks.
 
 Color code (per build spec section 7):
-    blue   = hard input the user can change
-    black  = formula
-    green  = cross-sheet / cross-tab link
-    red    = external link (none used; reserved)
+ blue = hard input the user can change
+ black = formula
+ green = cross-sheet / cross-tab link
+ red = external link (none used; reserved)
 
 Number formats (spec rule 7): parentheses for negatives, '-' for zeros,
 $#,##0 currency, 0.0% percentages, 0.0x multiples.
@@ -96,7 +96,7 @@ LEFT_WRAP = Alignment(horizontal="left", vertical="top", wrap_text=True)
 
 def note(text):
     """Build a sized cell comment (source citation / flag)."""
-    c = Comment(text, "Azalea Model")
+    c = Comment(text, "Azalea Hospice")
     c.width = 320
     c.height = 120
     return c

@@ -1,5 +1,5 @@
 """Audience-specific tabs layered on top of the shared engine:
-  A = SBA loan package, B = investor/equity model, C = operations dashboard.
+ A = SBA loan package, B = investor/equity model, C = operations dashboard.
 All numbers link back to the engine tabs (green) or Inputs.
 """
 from openpyxl.utils import get_column_letter
@@ -41,7 +41,7 @@ def sources_uses_tab(bk: Book):
     ws.column_dimensions["B"].width = 16
     ws.column_dimensions["C"].width = 44
     ws.column_dimensions["D"].width = 16
-    bk.title_block(ws, "Sources & Uses of Financing — Hickory CHOW acquisition + working capital · SBA + seller note + equity", 4)
+    bk.title_block(ws, "Sources & Uses of Financing - Hickory CHOW acquisition + working capital | SBA + seller note + equity", 4)
     bk.section_range(ws, 4, "SOURCES", 1, 2)
     bk.section_range(ws, 4, "USES", 3, 4)
     # Sources
@@ -69,15 +69,15 @@ def sources_uses_tab(bk: Book):
     bk.lbl(ws, ur, "TOTAL USES", c=3, bold=True)
     bk.fml(ws, ur, 4, f"=SUM(D5:D{ur-1})", S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
     chk = max(src_total, ur) + 2
-    bk.lbl(ws, chk, "CHECK: Sources − Uses  → 0", bold=True)
+    bk.lbl(ws, chk, "CHECK: Sources - Uses to 0", bold=True)
     bk.fml(ws, chk, 2, f"=B{src_total}-D{ur}", S.FMT_CUR, bold=True, fill=S.fill(S.GREENFILL))
     ws.merge_cells(start_row=chk + 2, start_column=1, end_row=chk + 4, end_column=4)
     bk._set(ws, chk + 2, 1,
             "CHOW acquisition: Azalea acquires Hickory Hospice's existing Medicare-certified provider number "
-            "($300K, 36 months at 6% seller-financed) — gives Azalea immediate billing capability in San Antonio "
+            "($300K, 36 months at 6% seller-financed) - gives Azalea immediate billing capability in San Antonio "
             "and an alternative-delivery site serving the East Texas / Tyler market. CHAP/ACHC accreditation "
             "transfers with the CHOW; 855A change-of-ownership preserves the provider number with no fresh "
-            "enrollment delay. The seller note self-finances the license — it shows on both sides above.",
+            "enrollment delay. The seller note self-finances the license - it shows on both sides above.",
             S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
     return ws
@@ -91,7 +91,7 @@ def lender_summary_tab(bk: Book):
     ws.column_dimensions["A"].width = 40
     for c in "BCDE":
         ws.column_dimensions[c].width = 16
-    bk.title_block(ws, "Lender Summary — COMBINED debt-service coverage (SBA + Hickory seller note) vs SBA floor 1.25x", 5)
+    bk.title_block(ws, "Lender Summary - COMBINED debt-service coverage (SBA + Hickory seller note) vs SBA floor 1.25x", 5)
     ob, dbt, cf = "Operating Budget", "Debt Schedule", "Cash Flow & BS"
     R = bk.rows
     r = 4
@@ -104,14 +104,14 @@ def lender_summary_tab(bk: Book):
         rr = r; r += 1; return rr
     line("Net revenue", lambda y: ysum(ob, R[ob]["net"], y))
     line("EBITDA", lambda y: ysum(ob, R[ob]["ebitda"], y), bold=True)
-    line("  EBITDA margin %", lambda y: f"{ysum(ob, R[ob]['ebitda'], y)}/{ysum(ob, R[ob]['net'], y)}", S.FMT_PCT)
+    line(" EBITDA margin %", lambda y: f"{ysum(ob, R[ob]['ebitda'], y)}/{ysum(ob, R[ob]['net'], y)}", S.FMT_PCT)
     line("Debt service (P+I)", lambda y: ysum(dbt, R[dbt]["ds"], y))
     dscr = line("DSCR", lambda y: f"{ysum(ob, R[ob]['ebitda'], y)}/{ysum(dbt, R[dbt]['ds'], y)}", S.FMT_MULT, bold=True, fill=S.fill(S.LIGHTBLUE))
     line("Net income", lambda y: ysum(ob, R[ob]["ni"], y))
     line("Ending cash", lambda y: yend(cf, R[cf]["endcash"], y))
     r += 1
     bk.section(ws, r, "KEY LENDER METRICS", 5); r += 1
-    bk.lbl(ws, r, "Global 3-yr DSCR (target ≥ 1.25x)", bold=True)
+    bk.lbl(ws, r, "Global 3-yr DSCR (target >= 1.25x)", bold=True)
     bk.fml(ws, r, 2,
            f"=({ysum(ob,R[ob]['ebitda'],1)}+{ysum(ob,R[ob]['ebitda'],2)}+{ysum(ob,R[ob]['ebitda'],3)})/"
            f"({ysum(dbt,R[dbt]['ds'],1)}+{ysum(dbt,R[dbt]['ds'],2)}+{ysum(dbt,R[dbt]['ds'],3)})",
@@ -127,7 +127,7 @@ def lender_summary_tab(bk: Book):
     bk._set(ws, r, 1,
             "Azalea acquires Hickory Hospice's already-certified Medicare provider number via a $300K CHOW "
             "(seller-financed at 6% over 36 months), eliminating the 855A enrollment cash gap a fresh startup "
-            "would face — Azalea bills from day 1 in San Antonio and operates an alternative-delivery site for "
+            "would face - Azalea bills from day 1 in San Antonio and operates an alternative-delivery site for "
             "Tyler/East Texas. The migrated Paloma clinical team brings a proven ~$118K/mo, ~22 ADC book of "
             "business. Coverage shown here is COMBINED (SBA + seller note); the seller note retires at month 36, "
             "after which DSCR jumps as only the SBA service remains.",
@@ -144,7 +144,7 @@ def stress_tab(bk: Book):
     ws.column_dimensions["A"].width = 34
     for c in "BCDEF":
         ws.column_dimensions[c].width = 15
-    bk.title_block(ws, "Stress Tests — Year-2 steady-state · does the loan stay serviced under shocks?", 6)
+    bk.title_block(ws, "Stress Tests - Year-2 steady-state | does the loan stay serviced under shocks?", 6)
     ob, dbt = "Operating Budget", "Debt Schedule"
     R = bk.rows
     # base annual (Y2) anchors
@@ -162,7 +162,7 @@ def stress_tab(bk: Book):
     bk.inp(ws, r, 2, 0.10, S.FMT_PCT, "labor inflation on fixed costs."); wage_shock = f"$B${r}"; r += 2
 
     bk.section(ws, r, "SCENARIO RESULTS (Year-2 annualized)", 6); r += 1
-    heads = ["Metric", "Base", "Census −20%", "Census −35%", "Wage +10%", "Combined"]
+    heads = ["Metric", "Base", "Census -20%", "Census -35%", "Wage +10%", "Combined"]
     for j, h in enumerate(heads):
         bk._set(ws, r, 1 + j, h, S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
     r += 1
@@ -254,13 +254,13 @@ def returns_tab(bk: Book):
     ws.column_dimensions["A"].width = 40
     for c in "BCDE":
         ws.column_dimensions[c].width = 16
-    bk.title_block(ws, "Equity Returns — IRR · MOIC · cash-on-cash · 3-yr hold, exit at EBITDA multiple", 5)
+    bk.title_block(ws, "Equity Returns - IRR | MOIC | cash-on-cash | 3-yr hold, exit at EBITDA multiple", 5)
     ob, dbt, cf = "Operating Budget", "Debt Schedule", "Cash Flow & BS"
     R = bk.rows
     r = 4
     bk.section(ws, r, "ASSUMPTIONS", 5); r += 1
     bk.lbl(ws, r, "Exit EBITDA multiple", indent=1)
-    bk.inp(ws, r, 2, 5.0, S.FMT_MULT, "Exit enterprise value = multiple × Year-3 EBITDA."); exit_mult = f"$B${r}"; r += 1
+    bk.inp(ws, r, 2, 5.0, S.FMT_MULT, "Exit enterprise value = multiple x Year-3 EBITDA."); exit_mult = f"$B${r}"; r += 1
     bk.lbl(ws, r, "Equity invested", indent=1)
     bk.fml(ws, r, 2, f"={bk.addr['equity']}", S.FMT_CUR, link=True); equity = f"$B${r}"; r += 2
 
@@ -309,7 +309,7 @@ def unit_econ_tab(bk: Book):
     ws = bk.wb.create_sheet("Unit Economics")
     ws.column_dimensions["A"].width = 44
     ws.column_dimensions["B"].width = 16
-    bk.title_block(ws, "Unit Economics — contribution margin per patient-day", 4)
+    bk.title_block(ws, "Unit Economics - contribution margin per patient-day", 4)
     r = 4
     bk.lbl(ws, r, "Net revenue per patient-day", bold=True)
     bk.fml(ws, r, 2, f"={bk.addr['net_rate']}", S.FMT_CUR2, link=True); nr = r; r += 1
@@ -346,7 +346,7 @@ def sensitivity_tab(bk: Book):
     ws.column_dimensions["A"].width = 22
     for j in range(6):
         ws.column_dimensions[get_column_letter(2 + j)].width = 13
-    bk.title_block(ws, "Sensitivity — steady-state annual EBITDA by ADC × net rate/PD", 7)
+    bk.title_block(ws, "Sensitivity - steady-state annual EBITDA by ADC x net rate/PD", 7)
     adcs = [16, 18, 20, 22, 26, 30, 35]
     rates = [170, 176, 181, 186, 192]
     daysyr = f"({bk.addr['avg_days_month']}*12)"
@@ -354,7 +354,7 @@ def sensitivity_tab(bk: Book):
     varpd = _var_per_pd(bk)
     r = 5
     bk._set(ws, r - 1, 1, "EBITDA ($/yr)", S.f_sub())
-    bk._set(ws, r, 1, "ADC  ↓  /  net rate →", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
+    bk._set(ws, r, 1, "ADC (rows) / net rate (cols)", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
     for j, rt in enumerate(rates):
         bk._set(ws, r, 2 + j, rt, S.f_input(), S.FMT_RATE, S.fill(S.INPUTFILL), S.CENTER, S.BORDER_THIN)
     rate_row = r; r += 1
@@ -368,7 +368,7 @@ def sensitivity_tab(bk: Book):
         r += 1
     r += 1
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=7)
-    bk._set(ws, r, 1, "Steady-state annual approximation: contribution = ADC × 365 × (net rate − variable/PD) "
+    bk._set(ws, r, 1, "Steady-state annual approximation: contribution = ADC x 365 x (net rate - variable/PD) "
             "less annual fixed cost. Base case ≈ ADC 22 @ $181.", S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
     return ws
@@ -382,7 +382,7 @@ def dashboard_tab(bk: Book):
     ws.column_dimensions["A"].width = 30
     for c in "BCDEFG":
         ws.column_dimensions[c].width = 15
-    bk.title_block(ws, "Operations Dashboard — live KPIs (all formula-driven from the engine)", 7)
+    bk.title_block(ws, "Operations Dashboard - live KPIs (all formula-driven from the engine)", 7)
     ob, dbt, cf, rev = "Operating Budget", "Debt Schedule", "Cash Flow & BS", "Revenue Model"
     R = bk.rows
     cards = [
@@ -406,7 +406,7 @@ def dashboard_tab(bk: Book):
         ws[get_column_letter(col) + str(row + 1)].alignment = S.LEFT
     r = r + 6
     # ADC ramp line chart (data on Revenue Model)
-    chart = LineChart(); chart.title = "ADC ramp (M1 – Y3 Q4)"; chart.height = 6.5; chart.width = 18
+    chart = LineChart(); chart.title = "ADC ramp (M1 - Y3 Q4)"; chart.height = 6.5; chart.width = 18
     chart.y_axis.title = "ADC"; chart.legend = None
     data = Reference(bk.wb[rev], min_col=pcol(0), max_col=pcol(NP - 1), min_row=R[rev]["adc"])
     chart.add_data(data, from_rows=True, titles_from_data=False)
@@ -429,7 +429,7 @@ def variance_tab(bk: Book):
     ws.column_dimensions["A"].width = 30
     for c in "BCDE":
         ws.column_dimensions[c].width = 16
-    bk.title_block(ws, "Monthly Actuals vs Budget — enter month actuals (blue); variance auto-flags > 10%", 5)
+    bk.title_block(ws, "Monthly Actuals vs Budget - enter month actuals (blue); variance auto-flags > 10%", 5)
     ob = "Operating Budget"; R = bk.rows
     bk.lbl(ws, 4, "Reporting month (1-12)", bold=True)
     bk.inp(ws, 4, 2, 3, S.FMT_INT, "Which model month to compare against (uses INDEX into Operating Budget).")
@@ -465,7 +465,7 @@ def staffing_tracker_tab(bk: Book):
     ws.column_dimensions["B"].width = 26
     for c in "CDEF":
         ws.column_dimensions[c].width = 13
-    bk.title_block(ws, "Staffing Tracker — staggered-hire calendar · capacity vs demand · open requisitions", 7)
+    bk.title_block(ws, "Staffing Tracker - staggered-hire calendar | capacity vs demand | open requisitions", 7)
     R = bk.rows; stf = "Staffing & Payroll"
     r = 4
     bk.section(ws, r, "HIRE CALENDAR", 7); r += 1
@@ -492,7 +492,7 @@ def staffing_tracker_tab(bk: Book):
     bk.lbl(ws, r, "Target visits / aide / day", indent=1)
     bk.fml(ws, r, 3, f"={bk.addr['visits_aide_day']}", S.FMT_NUM1, link=True); r += 2
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=7)
-    bk._set(ws, r, 1, "Jodi McCollum's 2nd RN-CM seat is funded but vacant — modeled to start M4 as census "
+    bk._set(ws, r, 1, "Jodi McCollum's 2nd RN-CM seat is funded but vacant - modeled to start M4 as census "
             "coverage requires. Track real churn beyond this one open req.", S.f_note(), align=S.LEFT_WRAP)
     ws.sheet_view.showGridLines = False
     return ws
@@ -509,12 +509,12 @@ def cap_payroll_tab(bk: Book):
     bk.title_block(ws, "Medicare Cap Monitor (inherited day-counts) + Payroll Reconciliation", 6)
     R = bk.rows; ob = "Operating Budget"; rev = "Revenue Model"
     r = 4
-    bk.section(ws, r, "MEDICARE AGGREGATE CAP — by year", 6); r += 1
+    bk.section(ws, r, "MEDICARE AGGREGATE CAP - by year", 6); r += 1
     _year_header(bk, ws, r); r += 1
     bk.lbl(ws, r, "Unique beneficiaries (est.)", indent=1)
     bk.inp(ws, r, 3, 40, S.FMT_INT, "Migrated panel arrives mid-episode; estimate beneficiaries served / cap year.")
     bk.inp(ws, r, 4, 55, S.FMT_INT, ""); bk.inp(ws, r, 5, 60, S.FMT_INT, ""); ben = r; r += 1
-    bk.lbl(ws, r, "Cap allowable = beneficiaries × cap", indent=1)
+    bk.lbl(ws, r, "Cap allowable = beneficiaries x cap", indent=1)
     for j in range(3):
         cl = get_column_letter(3 + j)
         bk.fml(ws, r, 3 + j, f"={cl}{ben}*{bk.addr['medicare_cap']}", S.FMT_CUR, link=True)
@@ -523,7 +523,7 @@ def cap_payroll_tab(bk: Book):
     for j, y in enumerate((1, 2, 3)):
         bk.fml(ws, r, 3 + j, "=" + ysum(rev, R[rev]["gross"], y), S.FMT_CUR, link=True)
     grossr = r; r += 1
-    bk.lbl(ws, r, "Cap headroom (allowable − gross)", bold=True)
+    bk.lbl(ws, r, "Cap headroom (allowable - gross)", bold=True)
     for j in range(3):
         cl = get_column_letter(3 + j)
         bk.fml(ws, r, 3 + j, f"={cl}{capr}-{cl}{grossr}", S.FMT_CUR, bold=True, fill=S.fill(S.GREENFILL)); 
@@ -613,7 +613,7 @@ def investment_options_tab(bk: Book):
     ws.column_dimensions["A"].width = 40
     for col in "BCDEFGH":
         ws.column_dimensions[col].width = 16
-    bk.title_block(ws, "Investor Capital — Three Instruments · debt · convertible · preferred equity · choose by yield vs. upside", 8)
+    bk.title_block(ws, "Investor Capital - Three Instruments | debt | convertible | preferred equity | choose by yield vs. upside", 8)
 
     ob = "Operating Budget"
     R = bk.rows
@@ -632,16 +632,16 @@ def investment_options_tab(bk: Book):
     bk.lbl(ws, 8, "Y3 EBITDA (link)", indent=1, italic=True)
     bk.fml(ws, 8, 2, "=" + ysum(ob, R[ob]["ebitda"], 3), S.FMT_CUR, link=True)
     YEB = "$B$8"
-    bk.lbl(ws, 9, "Equity exit value (Y3 EBITDA × multiple − net debt)", indent=1)
+    bk.lbl(ws, 9, "Equity exit value (Y3 EBITDA x multiple - net debt)", indent=1)
     bk.fml(ws, 9, 2, f"={EXM}*{YEB}-{yend('Debt Schedule', R['Debt Schedule']['end'], 3)}-{yend('Cash Flow & BS', R['Cash Flow & BS']['locbal'], 3)}",
            S.FMT_CUR, link=True)
     EQV = "$B$9"
 
     # column heads (B-D are the three options)
     hdr_row = 11
-    headers = [("OPTION A — Promissory Note", "Pure DEBT"),
-               ("OPTION B — Convertible Note", "HYBRID"),
-               ("OPTION C — Preferred Equity", "EQUITY w/ floor")]
+    headers = [("OPTION A - Promissory Note", "Pure DEBT"),
+               ("OPTION B - Convertible Note", "HYBRID"),
+               ("OPTION C - Preferred Equity", "EQUITY w/ floor")]
     for k, (nm, tag) in enumerate(headers):
         col = 2 + k * 2  # B, D, F
         ws.merge_cells(start_row=hdr_row, start_column=col, end_row=hdr_row, end_column=col + 1)
@@ -652,11 +652,11 @@ def investment_options_tab(bk: Book):
 
     # ===================== TERMS ROW =====================
     r = hdr_row + 3
-    bk.section_range(ws, r, "TERMS  (blue = adjust per offer)", 1, 7); r += 1
+    bk.section_range(ws, r, "TERMS (blue = adjust per offer)", 1, 7); r += 1
 
     # --- Option A (Promissory Note) ---
     bk.lbl(ws, r, "Interest rate (APR)", indent=1)
-    bk.inp(ws, r, 2, 0.10, S.FMT_PCT, "Senior subordinated debt: 9–12% typical given subordination to SBA.")
+    bk.inp(ws, r, 2, 0.10, S.FMT_PCT, "Senior subordinated debt: 9-12% typical given subordination to SBA.")
     A_RATE = f"$B${r}"
     bk.inp(ws, r, 4, 0.07, S.FMT_PCT, "Convertible coupon (lower than straight debt; equity upside compensates).")
     B_CPN = f"$D${r}"
@@ -674,24 +674,24 @@ def investment_options_tab(bk: Book):
     bk.lbl(ws, r, "Payment style / conversion / preference", indent=1)
     bk.lbl(ws, r, "Monthly P+I", c=2, italic=True)
     bk.lbl(ws, r, "Discount + valuation cap", c=4, italic=True)
-    bk.lbl(ws, r, "1× liq preference, then participate", c=6, italic=True); r += 1
+    bk.lbl(ws, r, "1x liq preference, then participate", c=6, italic=True); r += 1
 
     # convertible-only: discount + cap
     bk.lbl(ws, r, "(Convertible) Discount on equity round", indent=1)
     bk.inp(ws, r, 4, 0.20, S.FMT_PCT, "Discount applied at conversion vs. exit/round price.")
     B_DISC = f"$D${r}"; r += 1
     bk.lbl(ws, r, "(Convertible) Valuation cap ($)", indent=1)
-    bk.inp(ws, r, 4, 3000000, S.FMT_CUR, "Implied pre-money cap; conversion uses MIN(cap, exit_val × (1−discount)).")
+    bk.inp(ws, r, 4, 3000000, S.FMT_CUR, "Implied pre-money cap; conversion uses MIN(cap, exit_val x (1-discount)).")
     B_CAP = f"$D${r}"; r += 1
 
     # preferred-only: participation
     bk.lbl(ws, r, "(Preferred) Participate after preference", indent=1)
-    bk.inp(ws, r, 6, 1, S.FMT_INT, "1 = participating (1× back, then pro-rata). 0 = non-participating (greater of preference or as-converted).")
+    bk.inp(ws, r, 6, 1, S.FMT_INT, "1 = participating (1x back, then pro-rata). 0 = non-participating (greater of preference or as-converted).")
     C_PART = f"$F${r}"; r += 1
 
     # ===================== CASH FLOW SCHEDULE (5 yrs) =====================
     r += 1
-    bk.section_range(ws, r, "INVESTOR CASH FLOW SCHEDULE  (annual, Year 0 = close)", 1, 7); r += 1
+    bk.section_range(ws, r, "INVESTOR CASH FLOW SCHEDULE (annual, Year 0 = close)", 1, 7); r += 1
     # row of year labels
     yhdr = r
     bk._set(ws, r, 1, "Year", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.LEFT, border=S.BORDER_THIN)
@@ -700,7 +700,7 @@ def investment_options_tab(bk: Book):
     r += 1
 
     # --- OPTION A: Promissory note. Monthly P+I; annual cash flow = pmt*12 within term, 0 after.
-    bk.lbl(ws, r, "OPTION A — Promissory Note", indent=1, bold=True)
+    bk.lbl(ws, r, "OPTION A - Promissory Note", indent=1, bold=True)
     # Annual payment = PMT × 12 if year ≤ term else 0; Y0 = −investment
     PMT_A = f"PMT({A_RATE}/12,{A_TERM}*12,-{INV})"
     bk.fml(ws, r, 2, f"=-{INV}", S.FMT_CUR, bold=True)
@@ -710,7 +710,7 @@ def investment_options_tab(bk: Book):
     A_ROW = r; r += 1
 
     # --- OPTION B: Convertible note. Annual coupon paid Y1..term; at maturity/exit pick GREATER of (P+remaining accrual) or equity-converted.
-    bk.lbl(ws, r, "OPTION B — Convertible Note", indent=1, bold=True)
+    bk.lbl(ws, r, "OPTION B - Convertible Note", indent=1, bold=True)
     # Conversion ownership %: investment / MIN(cap, exit_val × (1−discount))
     OWN_B = f"({INV}/MIN({B_CAP},{EQV}*(1-{B_DISC})))"
     # Equity-converted proceeds at exit
@@ -730,7 +730,7 @@ def investment_options_tab(bk: Book):
     B_ROW = r; r += 1
 
     # --- OPTION C: Preferred equity. Annual dividend; at exit year: 1× preference back + (if participating) pro-rata share of residual.
-    bk.lbl(ws, r, "OPTION C — Preferred Equity", indent=1, bold=True)
+    bk.lbl(ws, r, "OPTION C - Preferred Equity", indent=1, bold=True)
     OWN_C = f"({INV}/{EQV})"   # as-converted ownership % of exit value
     # Residual after preference returned to all preferreds (just this investor for simplicity)
     RESIDUAL = f"MAX(0,{EQV}-{INV})"
@@ -745,7 +745,7 @@ def investment_options_tab(bk: Book):
     C_ROW = r; r += 2
 
     # ===================== RETURNS COMPARISON =====================
-    bk.section_range(ws, r, "RETURNS COMPARISON  (Y0 = -investment; subsequent years per schedule above)", 1, 8); r += 1
+    bk.section_range(ws, r, "RETURNS COMPARISON (Y0 = -investment; subsequent years per schedule above)", 1, 8); r += 1
     # metric rows
     # Per-option headline rate (stated APR/coupon/dividend) for direct comparison.
     HEADLINE = {A_ROW: A_RATE, B_ROW: B_CPN, C_ROW: C_DIV}
@@ -758,11 +758,11 @@ def investment_options_tab(bk: Book):
                 C_ROW: lambda row: f"IRR(B{row}:G{row})"}
     metrics = [
         ("Headline rate (APR / coupon / pref div)", lambda row: HEADLINE[row], S.FMT_PCT, False),
-        ("Total cash to investor (Y1–Y5)", lambda row: f"SUM(C{row}:G{row})", S.FMT_CUR, False),
-        ("Total profit (cash − investment)", lambda row: f"SUM(C{row}:G{row})-{INV}", S.FMT_CUR, False),
+        ("Total cash to investor (Y1-Y5)", lambda row: f"SUM(C{row}:G{row})", S.FMT_CUR, False),
+        ("Total profit (cash - investment)", lambda row: f"SUM(C{row}:G{row})-{INV}", S.FMT_CUR, False),
         ("MOIC (gross multiple)", lambda row: f"SUM(C{row}:G{row})/{INV}", S.FMT_MULT, True),
         ("IRR / effective annual yield", lambda row: IRR_FORM[row](row), S.FMT_PCT, True),
-        ("Average annual cash yield (Y1–Y5)", lambda row: f"AVERAGE(C{row}:G{row})/{INV}", S.FMT_PCT, False),
+        ("Average annual cash yield (Y1-Y5)", lambda row: f"AVERAGE(C{row}:G{row})/{INV}", S.FMT_PCT, False),
     ]
     metric_total_row = None
     metric_irr_row = None
@@ -783,7 +783,7 @@ def investment_options_tab(bk: Book):
     # ===================== RISK / WHO IT'S FOR =====================
     bk.section_range(ws, r, "RISK & FIT", 1, 7); r += 1
     bk._set(ws, r, 1, "Profile", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.LEFT, border=S.BORDER_THIN)
-    for k, txt in enumerate(("Lowest risk · fixed yield", "Medium risk · upside option", "Highest risk · highest upside")):
+    for k, txt in enumerate(("Lowest risk | fixed yield", "Medium risk | upside option", "Highest risk | highest upside")):
         col = 2 + k * 2
         ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
         bk._set(ws, r, col, txt, S.f_label(bold=True), fill=S.fill(S.LIGHTBLUE), align=S.CENTER, border=S.BORDER_THIN)
@@ -822,7 +822,7 @@ def investment_options_tab(bk: Book):
     r += 2
 
     # ===================== TIER MENU (sample check sizes) =====================
-    bk.section_range(ws, r, "ILLUSTRATIVE TIERS  (recompute by changing 'Investment amount' above)", 1, 7); r += 1
+    bk.section_range(ws, r, "ILLUSTRATIVE TIERS (recompute by changing 'Investment amount' above)", 1, 7); r += 1
     for j, h in enumerate(["Check size", "Option A: 5-yr IRR", "Option A: total cash", "Option B: IRR @5x exit", "Option B: total cash", "Option C: IRR @5x exit", "Option C: total cash"]):
         bk._set(ws, r, 1 + j, h, S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
     r += 1
@@ -857,10 +857,10 @@ def investment_options_tab(bk: Book):
     r += 1
     note = ("Conventions: Year-0 cash flow is the investor's check (negative). Subsequent years are cash "
             "received. Option A IRR ≈ rate (slight compounding bump from monthly payments). Options B and C "
-            "IRR/cash scale linearly with check size when terms and exit value are fixed — use the tier menu "
+            "IRR/cash scale linearly with check size when terms and exit value are fixed - use the tier menu "
             "to size offers, then change 'Investment amount' to see the live cash-flow schedule update. "
             "Conversion math: Option B holder receives MAX(principal + final coupon, equity-as-converted) at "
-            "year = term, where conversion ownership = investment ÷ MIN(cap, exit × (1 − discount)).")
+            "year = term, where conversion ownership = investment ÷ MIN(cap, exit x (1 - discount)).")
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 4, end_column=8)
     bk._set(ws, r, 1, note, S.f_note(), align=S.LEFT_WRAP)
     return ws
