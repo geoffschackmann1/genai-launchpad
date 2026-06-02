@@ -320,9 +320,17 @@ def revenue_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['adc']}*{plet(i)}{rm['days']}", S.FMT_NUM, bold=True)
     rm["pd"] = r; r += 1
+    bk.lbl(ws, r, "Rate escalation factor (Y1 = 1.000, Y2+ compounded)", italic=True)
+    for i in range(NP):
+        yr = PERIODS[i]["year"]
+        f = "1" if yr == 1 else f"(1+{bk.addr['rhc_escalation']})^{yr-1}"
+        bk.fml(ws, r, pcol(i), f"={f}", S.FMT_NUM4)
+    rm["rate_factor"] = r; r += 1
     bk.lbl(ws, r, "Gross Medicare revenue")
     for i in range(NP):
-        bk.fml(ws, r, pcol(i), f"={plet(i)}{rm['pd']}*{bk.addr['blended_gross']}", S.FMT_CUR)
+        bk.fml(ws, r, pcol(i),
+               f"={plet(i)}{rm['pd']}*{bk.addr['blended_gross']}*{plet(i)}{rm['rate_factor']}",
+               S.FMT_CUR)
     rm["gross"] = r; r += 1
     bk.lbl(ws, r, "Less: sequestration", indent=1)
     for i in range(NP):

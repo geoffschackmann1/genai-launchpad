@@ -66,6 +66,7 @@ RATES = [
     ("writeoff_pct","Write-offs (% of gross)",            0.0015, S.FMT_PCT2,"Net-due-zero / claim write-offs. " + SRC_PL),
     ("blended_actual","Blended NET rate per PD - ACTUAL ($/day)", 181.00, S.FMT_RATE, "Validated against Paloma actuals (~$118K net / ~22 ADC / 30.4 days). " + SRC_PL),
     ("medicare_cap", "Medicare aggregate cap / beneficiary ($/yr)", 35361.44, S.FMT_CUR, "CMS FY2026 hospice aggregate cap per beneficiary."),
+    ("rhc_escalation", "Medicare RHC rate escalation (annual)", 0.025, S.FMT_PCT, "CMS historical 2–3%/yr. Applied to gross rates in Y2 (×1.025) and Y3 (×1.025²)."),
 ]
 
 # -- Block C: Census migration ramp (scenario scalars) --
@@ -75,9 +76,12 @@ CENSUS_SCALARS = [
 ]
 # Base path (100% capture, flat after migration completes) and Upside path
 # (referral growth). Effective ADC = chosen path x capture_rate.
-ADC_BASE = [12.0, 19.8, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0,
-            22.0, 22.0, 22.0, 22.0,
-            22.0, 22.0, 22.0, 22.0]
+# BASE = patient-migration ramp (M1–M2) then smooth linear growth M3 → Y3Q4
+# reaching ADC 50 (mid-quarter avg) by end of Year 3. Slope 28/32 ≈ 0.875/mo.
+ADC_BASE = [12.0, 19.8, 22.0, 22.9, 23.8, 24.6, 25.5, 26.4, 27.3, 28.1, 29.0, 29.9,
+            31.6, 34.3, 36.9, 39.5,
+            42.1, 44.8, 47.4, 50.0]
+# UPSIDE = aggressive growth to ADC 60 by Y3Q4 (existing investor-upside path).
 ADC_UPSIDE = [12.0, 19.8, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0,
               33.0, 35.0, 37.0, 39.0,
               44.0, 50.0, 55.0, 60.0]
@@ -92,6 +96,11 @@ ROSTER = [
     ("Dana Davenport",   "Director of Clinical Services",  110000, 2, "indirect", False),
     ("Silas Shelton",    "Administrator",                  130000, 3, "indirect", False),
     ("Jodi McCollum",    "RN Case Manager (2nd seat)",      75008, 4, "direct",   True),
+    # Capacity-driven FT hires triggered by census growth (ADC thresholds 25/32/38/45)
+    ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 7,  "direct", False),
+    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, triggers ADC≥32)",    76256, 13, "direct", False),
+    ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥38)", 46511, 22, "direct", False),
+    ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, triggers ADC≥45)",    76256, 31, "direct", False),
 ]
 
 # -- PRN / per-visit roster (census-driven, all months) --
@@ -275,10 +284,11 @@ def compute(capture_rate=None, scenario=None):
 
     for i, p in enumerate(PERIODS):
         m = p["months"]; days = p["days"]; esc = p["escal"]
+        rhc_esc = (1 + a["rhc_escalation"]) ** (p["year"] - 1)
         R["adc"][i] = adc[i]
         R["pd"][i] = adc[i] * days
-        R["gross"][i] = R["pd"][i] * blended_gross
-        R["net"][i] = R["pd"][i] * net_rate
+        R["gross"][i] = R["pd"][i] * blended_gross * rhc_esc
+        R["net"][i] = R["pd"][i] * net_rate * rhc_esc
 
         # FT salaried
         ftd = fti = 0.0; hd = hi = 0
