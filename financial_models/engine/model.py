@@ -76,11 +76,12 @@ CENSUS_SCALARS = [
 ]
 # Base path (100% capture, flat after migration completes) and Upside path
 # (referral growth). Effective ADC = chosen path x capture_rate.
-# BASE = patient-migration ramp (M1–M2) then smooth linear growth M3 → Y3Q4
-# reaching ADC 50 (mid-quarter avg) by end of Year 3. Slope 28/32 ≈ 0.875/mo.
-ADC_BASE = [12.0, 19.8, 22.0, 22.9, 23.8, 24.6, 25.5, 26.4, 27.3, 28.1, 29.0, 29.9,
-            31.6, 34.3, 36.9, 39.5,
-            42.1, 44.8, 47.4, 50.0]
+# BASE = patient-migration ramp (M1–M2) then BACK-LOADED growth path. Y1 holds
+# near 22-24 (stabilize migrated panel + build referral pipeline), Y2 accelerates
+# 24→38 as BD Director's pipeline matures, Y3 keeps pushing to 50. Y3Q4 = 50 exactly.
+ADC_BASE = [12.0, 19.8, 22.0, 22.2, 22.4, 22.7, 22.9, 23.1, 23.3, 23.6, 23.8, 24.0,
+            26.0, 30.0, 34.0, 38.0,
+            41.0, 44.0, 47.0, 50.0]
 # UPSIDE = aggressive growth to ADC 60 by Y3Q4 (existing investor-upside path).
 ADC_UPSIDE = [12.0, 19.8, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0,
               33.0, 35.0, 37.0, 39.0,
@@ -96,11 +97,15 @@ ROSTER = [
     ("Dana Davenport",   "Director of Clinical Services",  110000, 2, "indirect", False),
     ("Silas Shelton",    "Administrator",                  130000, 3, "indirect", False),
     ("Jodi McCollum",    "RN Case Manager (2nd seat)",      75008, 4, "direct",   True),
-    # Capacity-driven FT hires triggered by census growth (ADC thresholds 25/32/38/45)
-    ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 7,  "direct", False),
-    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, triggers ADC≥32)",    76256, 13, "direct", False),
+    # Growth driver — needed Y1 H2 to build referral pipeline that fuels Y2-Y3 census
+    ("Director of Business Development", "Sales / referrals (growth driver)", 95000, 6, "indirect", False),
+    # Capacity-driven FT hires triggered by census growth (thresholds editable on Inputs)
+    ("Capacity hire — 2nd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥25)", 46511, 13, "direct", False),
+    ("Capacity hire — 3rd RN",   "RN Case Manager (capacity-driven, triggers ADC≥32)",    76256, 19, "direct", False),
     ("Capacity hire — 3rd CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥38)", 46511, 22, "direct", False),
+    ("Capacity hire — 4th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥42)", 46511, 28, "direct", False),
     ("Capacity hire — 4th RN",   "RN Case Manager (capacity-driven, triggers ADC≥45)",    76256, 31, "direct", False),
+    ("Capacity hire — 5th CNA",  "CNA / Hospice Aide (capacity-driven, triggers ADC≥50)", 46511, 34, "direct", False),
 ]
 
 # -- PRN / per-visit roster (census-driven, all months) --
