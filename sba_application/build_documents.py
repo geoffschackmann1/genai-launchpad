@@ -103,11 +103,11 @@ def company_profile():
     h2(d, "Company Ownership (100% must be shown)")
     table(d,
           ["#", "Name and Address", "SSN / EIN", "Ownership %", "Company Title", "Email"],
-          [["1", "Adeline & Lilah, LLC (AZ) - Geoff Schackmann, sole member", TBD, "39.9%", "Managing Member", TBD],
+          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member", TBD, "39.9%", "Managing Member of Tyler Hospice Hold LLC", TBD],
            ["2", "James Bullard", TBD, "19.9%*", "Minority investor member (passive; no management or control role)", TBD],
-           ["3", "Silas R. Shelton", TBD, "13.3%", "Executive Director", TBD],
-           ["4", "Dana L. Davenport", TBD, "13.3%", "Director of Nursing", TBD],
-           ["5", "Bradley G. Woodard", TBD, "13.3%", "Director of Sales", TBD]],
+           ["3", "Silas R. Shelton", TBD, "13.3%**", "Executive Director", TBD],
+           ["4", "Dana L. Davenport", TBD, "13.3%**", "Director of Nursing", TBD],
+           ["5", "Bradley G. Woodard", TBD, "13.3%**", "Director of Sales", TBD]],
           widths=[0.3, 2.4, 1.0, 0.8, 1.4, 1.2])
     para(d, "*James Bullard holds a direct, fully funded minority equity interest of 19.9% - below the 20% "
             "threshold - as a passive investor. He has no management authority, no voting control, and no side "
@@ -115,7 +115,17 @@ def company_profile():
             "control. Consistent with SOP 50 10 8 and 13 CFR 120.160, an equity holder of less than 20% in a "
             "complete change of ownership is not required to provide a personal guaranty or Personal Financial "
             "Statement. Mr. Bullard's $250,000 cash capital contribution is the source of the equity injection "
-            "for this transaction (see Use of Proceeds). Unissued/reserved pool: 0.3%.", italic=True, size=9)
+            "for this transaction (see Use of Proceeds).", italic=True, size=9)
+    para(d, "**Operator-members (Shelton, Davenport, Woodard) hold their 13.3% interests subject to a 4-year "
+            "vesting schedule with a 1-year cliff, recorded in the Operating Agreement. Unvested interests are "
+            "subject to repurchase by the Company at $0 upon departure prior to the cliff.", italic=True, size=9)
+    para(d, "Indirect chain: Geoff Schackmann holds 50% of Adeline & Lilah, LLC and serves as its sole Managing "
+            "Member; he therefore controls the 39.9% A&L block in Tyler Hospice Hold LLC and is the sole 20%+ "
+            "owner of record for SBA personal-guaranty purposes. Mary Elizabeth Burcham (Geoff's spouse) holds "
+            "the other 50% of Adeline & Lilah, LLC as a passive member (no management role), giving her an "
+            "indirect economic interest of 19.95% in Tyler Hospice Hold LLC. As Geoff's spouse, she will sign "
+            "the customary spouse acknowledgement / consent on the personal guaranty at close. "
+            "Unissued/reserved pool: 0.3%.", italic=True, size=9)
     para(d, "")
     field(d, "Name to be used on business checking account", "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)")
     field(d, "Designated signers on checking account", "Geoff Schackmann (Managing Member, sole signer)")
@@ -386,11 +396,12 @@ def information_needed():
               "Insurance agent name / firm / phone",
               "Confirm business checking account name and signers"]:
         para(d, "  - " + x)
-    h2(d, "B. For each owner of 20% or more (Geoff Schackmann via Adeline & Lilah, LLC at 39.9%)")
-    para(d, "Note: only owners of 20% or more need the personal items below. James Bullard holds 19.9% as a "
-            "passive minority investor and is below the 20% threshold, so no personal guaranty, PFS, or Form 912 "
-            "is required of him. The lender will still verify the source of his $250,000 injection via his bank / "
-            "brokerage statements (item below), which is standard for any equity-injection source.", italic=True, size=9)
+    h2(d, "B. For Geoff Schackmann (sole 20%+ controlling owner via Adeline & Lilah, LLC at 39.9%)")
+    para(d, "Note: Geoff controls A&L's 39.9% block as its sole Manager and is the sole 20%+ owner for SBA "
+            "guaranty purposes. James Bullard (19.9% direct) and Mary Elizabeth Burcham (19.95% indirect via "
+            "her 50% of A&L) are each under 20% with no management role, so neither needs PFS, Form 912, or "
+            "tax returns. Bullard's source of funds is verified separately (Section B2); Mary Elizabeth signs a "
+            "spouse acknowledgement at close (Section B3).", italic=True, size=9)
     for x in ["SSN, date of birth, place of birth, home address (and prior address with dates)",
               "Personal Financial Statement (SBA Form 413) - assets, liabilities, income",
               "Personal cash flow statement (template 7a)",
@@ -413,9 +424,16 @@ def information_needed():
               "Final Mercury statement (or trailing-day balance) showing the full $250,000 has been received once Tranche 3 lands",
               "Save the screenshot/PDF of Mercury acct ****1275 showing the May 7 wire under 10_supporting_documents/equity_injection_evidence/"]:
         para(d, "  - " + x)
-    para(d, "Timing flag for John Hart: SBA disbursement should occur after the July tranche lands, OR a "
-            "disbursement holdback should cover the un-funded balance at closing, OR tranches 2 and 3 should be "
-            "accelerated. The injection is sound; only the schedule needs coordination.", italic=True, size=9)
+    para(d, "Timing: SBA closing/disbursement will occur AFTER the July 2026 tranche so the full $250,000 is on "
+            "deposit at disbursement (per SOP 50 10 8). No holdback or acceleration needed.", italic=True, size=9)
+    h2(d, "B3. Spouse acknowledgement (Mary Elizabeth Burcham)")
+    para(d, "Mary Elizabeth Burcham is Geoff's spouse and holds 50% of Adeline & Lilah, LLC (giving her a 19.95% "
+            "indirect interest in Tyler Hospice Hold LLC - under 20%, no management role). As the guarantor's "
+            "spouse she signs a customary spouse acknowledgement / consent, not a co-guaranty.", italic=True, size=9)
+    for x in ["Mary Elizabeth Burcham's full legal name (with middle name/initial), date of birth, address",
+              "Her signature on the Spouse Acknowledgement / Consent (lender provides form at close)",
+              "If the lender requires it (varies by lender, not by SBA): a brief PFS for the marital household. Confirm with John Hart whether his bank requires this for the spouse of the sole guarantor."]:
+        para(d, "  - " + x)
     h2(d, "C. Transaction documents")
     for x in ["Hickory CHOW purchase agreement (Asset/Membership Purchase Agreement)",
               "Executed Hickory seller note ($300,000, 36 months, 6%) and security documentation",
@@ -494,10 +512,10 @@ def equity_injection_memo():
             "May 7, 2026 incoming wire of $100,000 from JIM BULLARD with the $100,000 balance still held (only "
             "de-minimis Gusto payroll-test ACH activity since). Source-of-funds statements in Mr. Bullard's name "
             "covering the 30+ days prior to each wire will be retained for each tranche per SOP 50 10 8.", italic=True, size=9.5)
-    para(d, "Closing timing: SOP 50 10 8 requires the full equity injection to be on deposit at or before SBA "
-            "loan disbursement. Either (a) SBA closing/disbursement is scheduled after the July tranche lands, "
-            "or (b) a disbursement holdback is established equal to any un-funded balance at closing. The "
-            "borrower can also accelerate tranches 2 and 3 if a faster close is preferred.", italic=True, size=9.5)
+    para(d, "Closing timing: SBA closing and disbursement are scheduled to occur AFTER the July 2026 equity "
+            "tranche lands, so the full $250,000 will be on deposit at the time of SBA loan disbursement, in "
+            "compliance with SOP 50 10 8. No disbursement holdback is required, and no acceleration of "
+            "tranches 2 and 3 is sought.", italic=True, size=9.5)
     h2(d, "2. The seller note does not need to - and does not - count as equity")
     para(d, "Under SOP 50 10 8, seller debt counts toward the injection only if it is on full standby (no "
             "principal or interest) for the life of the SBA loan, and even then for no more than 50% of the "
@@ -518,15 +536,20 @@ def equity_injection_memo():
             "to 20% or more. Control of the business rests entirely with the Managing Member, Adeline & Lilah, LLC "
             "(Geoff Schackmann, 39.9%), who provides the unconditional personal guaranty as the sole 20%+ owner.")
     h2(d, "4. Guaranty and disclosure summary")
-    table(d, ["Owner", "Interest", "20%+?", "Personal guaranty / PFS / Form 912"],
-          [["Adeline & Lilah, LLC (Geoff Schackmann)", "39.9%", "Yes", "Required - provided"],
-           ["James Bullard (passive investor)", "19.9%", "No", "Not required (source-of-funds verification only)"],
-           ["Silas R. Shelton", "13.3%", "No", "Not required"],
-           ["Dana L. Davenport", "13.3%", "No", "Not required"],
-           ["Bradley G. Woodard", "13.3%", "No", "Not required"]],
-          widths=[2.8, 1.0, 0.8, 2.6])
+    table(d, ["Owner / interest holder", "Interest", "20%+?", "Personal guaranty / PFS / Form 912"],
+          [["Adeline & Lilah, LLC (entity holding 39.9%)", "39.9% direct", "Yes", "Entity disclosed"],
+           ["  - Geoff Schackmann (50% of A&L; sole Manager)", "19.95% indirect; controls A&L block", "Yes (by control)", "Required - provided as the sole 20%+ controlling owner"],
+           ["  - Mary Elizabeth Burcham (50% of A&L; passive)", "19.95% indirect", "No (under 20%; no control)", "Not required; signs spouse acknowledgement/consent at close"],
+           ["James Bullard (passive investor, direct)", "19.9%", "No", "Not required (source-of-funds verification only)"],
+           ["Silas R. Shelton", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"],
+           ["Dana L. Davenport", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"],
+           ["Bradley G. Woodard", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"]],
+          widths=[2.8, 1.6, 0.8, 2.0])
     para(d, "All equity owners are disclosed regardless of percentage, and all are U.S. citizens or lawful "
-            "permanent residents (to be verified by the lender per SOP 50 10 8).", italic=True, size=9)
+            "permanent residents (to be verified by the lender per SOP 50 10 8). The controlling owner (Geoff "
+            "Schackmann, via Adeline & Lilah, LLC) provides the personal guaranty. His spouse, Mary Elizabeth "
+            "Burcham, signs a spouse acknowledgement/consent rather than a co-guaranty, as her independent "
+            "indirect interest is under 20% and she holds no management role.", italic=True, size=9)
     footer_note(d)
     save(d, "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx")
 
@@ -834,7 +857,7 @@ def closing_checklist():
               "Three years personal tax returns + most recent year's W-2s and 1099s",
               "Credit report (lender pulls; have driver license ready)",
               "Life insurance on guarantor, collaterally assigned to lender (if required for loan size)",
-              "Spouse acknowledgement (if state requires) - signed"]:
+              "Spouse acknowledgement / consent - Mary Elizabeth Burcham, signed and dated"]:
         para(d, "  - " + x)
     h2(d, "G. Insurance (at close)")
     for x in ["Business / general liability - certificate naming SBA lender",

@@ -93,10 +93,18 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
 ## Decisions locked
 
 - **Personal Financial Statement + tax returns: Geoff Schackmann only.** Via Adeline & Lilah, LLC,
-  39.9% ownership - the sole 20%+ owner and guarantor. Bullard at 19.9% needs no personal disclosures.
+  39.9% ownership - the sole 20%+ controlling owner and guarantor.
+- **Adeline & Lilah, LLC ownership: Geoff 50%, Mary Elizabeth Burcham 50%.** Mary Elizabeth (Geoff's spouse)
+  has 19.95% indirect interest in Tyler Hospice Hold; under 20% and passive, so no PFS or guaranty - just a
+  customary spouse acknowledgement / consent at close.
 - **Equity injection: $250,000 cash from James Bullard for a 19.9% passive minority interest** -
   SOP 50 10 8-compliant, no guaranty triggered. Convertible-note / Form 155 framing dropped.
   Phased: **$100K wire confirmed May 7, 2026**; balance $150K committed for June and July 2026.
+- **Closing timing: SBA close/disbursement scheduled AFTER the July 2026 equity tranche lands**, so the full
+  $250K is on deposit at disbursement. No holdback or acceleration required.
+- **Operator-member vesting: 4-year vest with 1-year cliff** for Shelton, Davenport, Woodard (13.3% each).
+  Unvested interests subject to repurchase by the Company at $0 on departure prior to the cliff.
+- **Bradley Woodard has no non-compete** with his current East-Texas employer - clean transition to Azalea.
 - **Financials reconciled to the current operating model** (1.56x / 3.50x / 5.20x combined DSCR).
 - **Build order:** reconcile, then fill the forms.
 
