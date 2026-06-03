@@ -1146,6 +1146,294 @@ def interview_worksheet():
     save(d, "INTERVIEW_for_remaining_drafts.docx")
 
 
+# ================================================================ OA AMENDMENT NO. 1
+def oa_amendment():
+    d = new_doc("OA Amendment No. 1")
+    h1(d, "Amendment No. 1 to Operating Agreement")
+    para(d, "TYLER HOSPICE HOLDCO L.L.C. - A Wyoming Limited Liability Company", color=GREY, size=9)
+    para(d, "")
+    para(d, "DRAFT - For review and execution. Prepared for the SBA 7(a) loan application. The Members and "
+            "Manager are not represented by counsel as to this Amendment; each is advised to obtain independent "
+            "review before signing. Attorney review is recommended.",
+         italic=True, size=9, color=GREY)
+    para(d, "")
+    field(d, "Effective Date", "_______________, 2026")
+    field(d, "Original Operating Agreement (the 'Original OA')",
+          "Operating Agreement of Tyler Hospice HoldCo L.L.C., effective March 2026 (Version 5)")
+    para(d, "")
+    h2(d, "Background and recitals")
+    para(d, "The Members and the Manager have determined that certain provisions of the Original OA require "
+            "amendment to: (i) align the capitalization table with the structure on which the Company's SBA 7(a) "
+            "financing is being arranged; (ii) align federal income tax treatment with the multi-member ownership "
+            "of Adeline & Lilah, LLC; (iii) update the change-of-ownership acquisition target reference from "
+            "Healing Hands Palliative Hospice INC to Hickory Hospice LLC, a Texas limited liability company "
+            "(\"Hickory\"); (iv) calibrate Bullard's protective rights to remain consistent with U.S. Small "
+            "Business Administration (\"SBA\") Standard Operating Procedure 50 10 8 for minority equity holders "
+            "in change-of-ownership transactions; and (v) coordinate Member governance with the post-closing "
+            "capital structure. The Members hereby agree to amend the Original OA as set forth below. "
+            "Capitalized terms used and not otherwise defined have the meanings given in the Original OA.")
+    para(d, "")
+    h2(d, "1. Restated capitalization (Exhibit A)")
+    para(d, "Exhibit A to the Original OA is hereby restated in its entirety as follows. All Percentage "
+            "Interests, including those held subject to Forfeiture Conditions, are issued effective as of the "
+            "Effective Date of this Amendment, replacing any prior Exhibit A.")
+    table(d, ["Member", "Consideration", "Percentage Interest"],
+          [["Adeline & Lilah, LLC", "Services rendered (sweat equity)", "39.9%"],
+           ["James E. Bullard", "$250,000 cash (capital contribution, three tranches)", "19.9%"],
+           ["Silas R. Shelton", "Services rendered (Restricted Interest)", "13.3%*"],
+           ["Dana L. Davenport", "Services rendered (Restricted Interest)", "13.3%*"],
+           ["Bradley Gene Woodard", "Services rendered (Restricted Interest)", "13.3%*"],
+           ["Unissued Pool", "Reserved", "0.3%"],
+           ["TOTAL", "", "100.0%"]],
+          widths=[2.8, 2.6, 1.2])
+    para(d, "*Restricted Interests of Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard are subject "
+            "to the Forfeiture Conditions of Article V of the Original OA as modified by Section 4 of this "
+            "Amendment.", italic=True, size=9)
+    para(d, "")
+    h2(d, "2. Tax treatment (replaces Section 11.2 of the Original OA)")
+    para(d, "Section 11.2 of the Original OA is hereby deleted and replaced in its entirety with the following:")
+    para(d, "11.2  Tax Matters. The Company shall be treated as a partnership for U.S. federal income tax "
+            "purposes under subchapter K of the Internal Revenue Code. No election shall be made by or on "
+            "behalf of the Company to be treated as an association taxable as a corporation (including no "
+            "election under Treasury Reg. §301.7701-3 and no election under IRC §1361) without the prior "
+            "written consent of all Members. The Manager shall serve as the Company's partnership "
+            "representative under IRC §6223 for partnership audit purposes. The Manager shall cause the "
+            "preparation and timely filing of all federal, state, and local tax returns (including Form 1065 "
+            "and Schedule K-1 to each Member) within seventy-five (75) days of each fiscal year-end. All "
+            "references in this Agreement to S-Corporation status, IRC §1361, IRC §1362, Form 2553, "
+            "\"S-Corp Eligible Person,\" \"S-Corp Eligibility Certification,\" or similar S-Corporation "
+            "concepts (including the definition at Section 2.23 and references in Sections 4.5, 8.5, 8.11, "
+            "9.1(d), 9.1(e), 11.4(b), 12.4, and 12.5) shall be of no further force or effect. References to "
+            "members of any Member entity being \"S-Corp Eligible Persons\" or having to certify eligibility "
+            "under §12.4 are deleted. The eligibility certifications in Article XII shall be limited to "
+            "(i) accredited-investor status under Regulation D, and (ii) representations and warranties "
+            "regarding OIG / SAM exclusion as set forth in Section 9.1(d).",
+         italic=True, size=10)
+    para(d, "Effect on Adeline & Lilah, LLC. The Members acknowledge that Adeline & Lilah, LLC is a multi-member "
+            "Arizona limited liability company taxed as a partnership for federal purposes. This Section 2 of "
+            "the Amendment removes the prior incompatibility between the S-Corporation election in the Original "
+            "OA and Adeline & Lilah, LLC's multi-member status.", italic=True, size=9.5)
+    para(d, "")
+    h2(d, "3. Acquisition target (updates Sections 1.2, 3.14, and 3.15 of the Original OA)")
+    para(d, "All references in the Original OA to \"Healing Hands Palliative Hospice INC\" are hereby replaced "
+            "with \"Hickory Hospice LLC, a Texas limited liability company (the 'Acquired Agency').\" The "
+            "Acquired Agency is currently owned by Tracy Gleason and Ann Lozano and operates a Medicare-"
+            "certified hospice and palliative care agency in the East Texas market with current Texas Health "
+            "and Human Services Commission Home and Community Support Services Agency (\"HCSSA\") licensure "
+            "and accreditation. The Company's acquisition of the Acquired Agency is structured as a complete "
+            "change of ownership (CHOW) by purchase of one hundred percent (100%) of the Acquired Agency's "
+            "membership interests, expected to close on or about late July 2026, subject to the SBA financing "
+            "and the equity-injection schedule described in Section 3.3 of the Original OA as amended.")
+    para(d, "")
+    h2(d, "4. Restricted Interest sizing (updates Article V of the Original OA)")
+    para(d, "Section 5.1 of the Original OA is amended so that each Restricted Interest is sized at "
+            "**thirteen and three-tenths percent (13.3%)** (rather than four and nine-tenths percent (4.9%)). "
+            "The corresponding tranche sizing in Section 5.2 is amended as follows, preserving the original "
+            "milestone-based forfeiture structure (Breakeven / 3 consecutive Profitable months / 12 consecutive "
+            "Profitable months):")
+    table(d, ["Tranche", "Milestone", "Tranche size (of 13.3% grant)", "Company-level %"],
+          [["First", "Achieve Breakeven (1 month EBITDA >= 0)", "25% of grant", "3.325%"],
+           ["Second", "3 consecutive Profitable months", "50% of grant", "6.650%"],
+           ["Final", "12 consecutive Profitable months", "25% of grant", "3.325%"],
+           ["Total per Equity Grantee", "", "100%", "13.300%"]],
+          widths=[1.0, 2.5, 1.6, 1.5])
+    para(d, "All other provisions of Article V (including the §83(b) election requirement at §5.7, the "
+            "Termination Without Cause pro-rata credit at §5.5, and the Forfeiture on Termination for Cause "
+            "at §5.4) remain in full force and effect, with percentages scaled proportionally to the new "
+            "13.3% grant size.", italic=True, size=9.5)
+    para(d, "")
+    h2(d, "5. Bullard's protective rights - SBA calibration")
+    para(d, "The parties confirm that Bullard's protective rights set forth in the Original OA (information "
+            "rights under Section 6.7, anti-dilution and pro-rata protection under Sections 6.8 and 12.6, "
+            "voting rights on Reserved Matters under Section 6.2, strategic observer role under Section 6.9, "
+            "tag-along rights under Section 8.8, and the Texas Shootout buy-sell provision under Section 8.10) "
+            "remain in full force and effect, except as expressly modified by this Section 5. The Members "
+            "acknowledge that these protective rights are customary minority-investor protections of an economic "
+            "and fundamental nature and do not confer day-to-day operational control, employment, agency, or "
+            "authority to bind the Company in the ordinary course of business, which remain solely with the "
+            "Manager.")
+    para(d, "5.1 Anti-dilution floor. Section 6.8 (Anti-Dilution Protection) and Section 12.3 (Hard Dilution "
+            "Floor - Bullard Minimum Interest) of the Original OA are amended so that all references to "
+            "\"twenty percent (20.0%)\" as Bullard's floor Percentage Interest are replaced with "
+            "**\"nineteen and nine-tenths percent (19.9%)\"**.")
+    para(d, "5.2 SBA debt carve-out. Section 6.2(d) of the Original OA (Reserved Matters - incurrence of "
+            "indebtedness exceeding $500,000.00) is amended by adding the following proviso: \"; provided, "
+            "however, that the Manager may incur, modify, refinance, restructure, prepay, or take any other "
+            "action with respect to (x) the SBA 7(a) loan made or guaranteed by any participating lender under "
+            "the U.S. Small Business Administration's 7(a) loan program (the 'SBA Loan'), (y) the Hickory "
+            "seller financing arising from the acquisition described in Section 3 of Amendment No. 1, and "
+            "(z) any commercial loan that refinances or replaces (x) or (y), without requiring the consent of "
+            "Members under this Section 6.2(d), so long as such action is in the ordinary course of operating "
+            "the Company's hospice business and does not in itself constitute a Change of Control.\"")
+    para(d, "5.3 Texas Shootout deferral. Section 8.10 (Buy-Sell - Texas Shootout) of the Original OA is "
+            "amended by adding the following at the end: \"Notwithstanding any other provision of this "
+            "Section 8.10, no Member may invoke, exercise, or enforce the Texas Shootout buy-sell provision "
+            "while any principal or accrued interest under the SBA Loan remains outstanding. Upon payment in "
+            "full of the SBA Loan and any successor or refinancing loan that includes SBA guarantee, this "
+            "deferral shall lapse and Section 8.10 shall again be operative without restriction.\"")
+    para(d, "")
+    h2(d, "6. Reserved Matters arithmetic (clarification to Section 2.20 of the Original OA)")
+    para(d, "For the avoidance of doubt and reflecting the restated cap table in Section 1 of this Amendment, "
+            "the parties acknowledge that:")
+    for x in ["The Unissued Pool (0.3%) is excluded from the denominator for voting purposes under Section 2.20, leaving a denominator of 99.7%.",
+              "A Prevailing Vote (greater than 50% of outstanding Percentage Interests) requires more than 49.85 of those 99.7 votes.",
+              "A Reserved Matter requiring 60% under Section 6.2 requires at least 59.82 of those 99.7 votes.",
+              "Adeline & Lilah, LLC alone holds 39.9% (40.02% of the denominator) and cannot unilaterally pass a Reserved Matter.",
+              "Adeline & Lilah, LLC may pass a Reserved Matter by combining its 39.9% with the votes of any two (2) Equity Grantees (totaling 66.5%) or with Bullard's 19.9% plus the vote of at least one (1) Equity Grantee (totaling 73.1%).",
+              "Bullard does not hold a unilateral veto on Reserved Matters; a Reserved Matter may be passed without his vote if Adeline & Lilah, LLC and at least two (2) Equity Grantees concur."]:
+        para(d, "  - " + x)
+    para(d, "")
+    h2(d, "7. Closing schedule coordination (new Section 3.16 of the Original OA)")
+    para(d, "A new Section 3.16 is added to the Original OA as follows: \"3.16 Coordination with SBA "
+            "Closing. The Members acknowledge that the change-of-ownership closing of the Acquired Agency "
+            "shall be scheduled to occur on or after the date on which Bullard has contributed the full "
+            "$250,000.00 of the Investor Capital Contribution under Section 3.3 (currently anticipated by the "
+            "end of July 2026), in order to permit the SBA Loan to disburse with the full equity injection on "
+            "deposit, as required by SBA SOP 50 10 8. The Manager is authorized to coordinate the CHOW closing "
+            "date, the SBA Loan disbursement, and Bullard's tranche schedule accordingly.\"")
+    para(d, "")
+    h2(d, "8. Effect on prior consents; ratification")
+    para(d, "Adeline & Lilah, LLC, as the Member holding sixty percent (60.0%) of Percentage Interests under "
+            "the Original OA (and which, after giving effect to this Amendment, holds 39.9% of Percentage "
+            "Interests), and James E. Bullard, as the Member whose rights under Sections 4.2, 4.5, 3.15, 6.7, "
+            "6.8, 6.9, and Article VIII are subject to consent rights under Section 11.4(a), each consent to "
+            "the amendments set forth herein. The Members ratify and confirm the Original OA as modified by "
+            "this Amendment. All provisions of the Original OA not specifically modified by this Amendment "
+            "remain in full force and effect.")
+    para(d, "")
+    h2(d, "9. Counterparts; electronic signatures")
+    para(d, "This Amendment may be executed in counterparts and by electronic signature (including DocuSign "
+            "and PDF). Each counterpart taken together shall constitute one and the same instrument.")
+    para(d, "")
+    para(d, "")
+    para(d, "SIGNATURES", bold=True)
+    para(d, "")
+    para(d, "MANAGER (individually) — GEOFF SCHACKMANN:")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "Geoff Schackmann, Manager (non-Member capacity)")
+    para(d, "Address: 4602 E Cheery Lynn Rd, Phoenix, AZ 85018  |  geoff@azaleahospice.com")
+    para(d, "")
+    para(d, "MEMBER — ADELINE & LILAH, LLC:")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "By: Geoff Schackmann, Authorized Representative  |  Interest after Amendment: 39.9%")
+    para(d, "")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "By: Mary Elizabeth Burcham, Authorized Representative (50% member of Adeline & Lilah, LLC)")
+    para(d, "")
+    para(d, "MEMBER — INVESTOR:")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "James E. Bullard  |  Interest after Amendment: 19.9%")
+    para(d, "Address: 13910 Indiana Ave, Suite 300, Lubbock, TX 79423  |  jimbullard01@aol.com")
+    para(d, "")
+    para(d, "MEMBER — EQUITY GRANTEE (RESTRICTED INTEREST):")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "Silas R. Shelton  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Address: 1503 Lake Park Circle, Hideaway, TX 75771")
+    para(d, "")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "Dana L. Davenport  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Address: ____________________________________  [REQUIRED]")
+    para(d, "")
+    para(d, "_______________________________________     Date: ____________")
+    para(d, "Bradley Gene Woodard  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Address: 421 W Cumberland Rd, Apt 403, Tyler, TX 75703")
+    para(d, "")
+    footer_note(d)
+    save(d, "08_entity_documents/OA_Amendment_No_1_DRAFT.docx")
+
+
+# ================================================================ REVISED BULLARD ATTESTATION
+def bullard_attestation_v2():
+    d = new_doc("Bullard Attestation v2")
+    h1(d, "Investor Attestation - No Operational Control")
+    para(d, "Tyler Hospice HoldCo L.L.C. - SBA 7(a) Application  |  Revised to reflect OA Amendment No. 1",
+         color=GREY, size=9)
+    para(d, "")
+    para(d, "The undersigned, James E. Bullard, in connection with the SBA 7(a) loan application of Tyler "
+            "Hospice HoldCo L.L.C. (the \"Company\"), and as a minority equity holder in the Company, hereby "
+            "attests as follows:")
+    h2(d, "1. Ownership and contribution")
+    para(d, "I hold a 19.9% direct membership interest in the Company, acquired in exchange for a $250,000 "
+            "cash capital contribution. My contribution is being made in three tranches: $100,000 was wired "
+            "to the Company's operating account on May 7, 2026, with the remaining $150,000 scheduled to be "
+            "contributed during June and July 2026. The funds are my own non-borrowed cash, drawn from "
+            "personal savings; I have not used loan proceeds, advances, or credit (including credit-card "
+            "advances or unsecured personal loans) to fund any portion of the contribution.")
+    h2(d, "2. No management role")
+    para(d, "I hold no officer, director, manager, or employee position with the Company. I do not "
+            "participate in the day-to-day management or operation of the Company or any of its subsidiaries, "
+            "including Hickory Hospice LLC. The Manager (Geoff Schackmann, individually) and the Member "
+            "Adeline & Lilah, LLC have sole authority over management, hiring and firing, financial "
+            "decisions, vendor relationships, clinical operations, and all other Company operations.")
+    h2(d, "3. Protective minority rights only")
+    para(d, "My equity interest entitles me to certain customary minority-investor protective rights set "
+            "forth in the Operating Agreement, as amended by Amendment No. 1 (collectively, the "
+            "\"Protective Rights\"): (a) information rights including monthly unaudited financial "
+            "statements, annual reviewed financial statements, copies of tax returns, and notice of "
+            "material events; (b) anti-dilution protection with a 19.9% floor; (c) pro-rata participation "
+            "rights on future issuances; (d) voting rights on a limited set of fundamental Reserved Matters "
+            "(sale of substantially all assets, merger, additional equity issuances, certain non-SBA debt "
+            "above $500,000, amendment of the Operating Agreement, dissolution, and Change of Control); "
+            "(e) tag-along rights on a Change of Control transfer by Adeline & Lilah, LLC; and (f) a Texas "
+            "Shootout buy-sell provision deferred until the SBA Loan is paid in full.")
+    para(d, "These Protective Rights are economic in nature and are limited to fundamental Company events. "
+            "They do not confer authority over day-to-day operations, hiring or firing, vendor selection, "
+            "clinical decisions, payor relationships, marketing, or the ordinary-course business of the "
+            "Company. The Manager retains sole authority over all of these matters.")
+    h2(d, "4. SBA-related debt and Texas Shootout — explicit non-control")
+    para(d, "I confirm and acknowledge that, under OA Amendment No. 1: (a) my consent right on the "
+            "incurrence, modification, refinancing, or prepayment of indebtedness above $500,000 expressly "
+            "does NOT apply to the SBA Loan or to commercial loans that refinance the SBA Loan, so that my "
+            "approval is not required for any SBA-related debt action by the Manager; and (b) the Texas "
+            "Shootout buy-sell provision is suspended while the SBA Loan is outstanding, so that I cannot "
+            "force a buyout of the Company's controlling Members during the SBA financing period.")
+    h2(d, "5. No side agreement, secret option, or convertible instrument")
+    para(d, "Except for the Operating Agreement as amended by Amendment No. 1 and the Subscription Agreement "
+            "between the Company and me, there is no written or oral side agreement, voting agreement, "
+            "proxy, option, warrant, convertible note, profits-interest plan, earnout, employment "
+            "arrangement, or other instrument between me and the Company, the Manager, Adeline & Lilah, "
+            "LLC, or any other Member that would (i) increase my equity interest to 20% or more, "
+            "(ii) give me day-to-day management or operational control of the Company, or (iii) entitle "
+            "me to direct or override the Manager's decisions in the ordinary course of business.")
+    h2(d, "6. Reserved-matters arithmetic")
+    para(d, "I acknowledge that the Operating Agreement's Reserved Matters provisions require a 60% "
+            "supermajority vote. Adeline & Lilah, LLC (39.9%) may pass any Reserved Matter without my vote "
+            "by combining its interest with at least two of the three Equity Grantees (Silas, Dana, "
+            "Bradley), whose combined interest of 39.9% gives a total of 66.5%. I therefore do not hold "
+            "a unilateral veto on Reserved Matters.")
+    h2(d, "7. Compliance with SBA requirements")
+    para(d, "I understand that my passive minority interest is being relied upon by the SBA-participating "
+            "lender in connection with the equity-injection and personal-guaranty analysis under SOP 50 10 8 "
+            "and 13 CFR 120.160. I acknowledge that any change in my equity interest above 20%, the addition "
+            "of any operational control right not disclosed above, or the creation of any side agreement of "
+            "the kind described above could change my status under SBA regulations, and I agree to provide "
+            "prompt written notice to the Company and the lender of any such change while the SBA loan "
+            "remains outstanding.")
+    para(d, "")
+    para(d, "I attest under penalty of perjury that the foregoing is true and correct to the best of my "
+            "knowledge.")
+    para(d, "")
+    para(d, "______________________________________________________")
+    para(d, "James E. Bullard", bold=True)
+    para(d, "Address: 13910 Indiana Ave, Suite 300, Lubbock, TX 79423")
+    para(d, "Date: ___________________________")
+    para(d, "")
+    para(d, "STATE OF ___________________________}")
+    para(d, "COUNTY OF __________________________}")
+    para(d, "")
+    para(d, "Subscribed and sworn to before me this _____ day of _____________________, 2026.")
+    para(d, "")
+    para(d, "______________________________________________________")
+    para(d, "Notary Public                                      My commission expires: _______________")
+    para(d, "")
+    para(d, "DRAFT - reflects OA Amendment No. 1 calibration of Bullard's rights. The undersigned should "
+            "review with independent counsel before execution; the description of \"Protective Rights\" "
+            "above should be conformed to the executed Amendment.",
+         italic=True, size=8.5, color=GREY)
+    footer_note(d)
+    save(d, "08_entity_documents/Bullard_Investor_Attestation_v2_DRAFT.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
@@ -1163,4 +1451,6 @@ if __name__ == "__main__":
     insurance_requirements()
     personal_cash_flow()
     interview_worksheet()
+    oa_amendment()
+    bullard_attestation_v2()
     print("Done.")
