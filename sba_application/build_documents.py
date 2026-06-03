@@ -720,6 +720,409 @@ def bullard_attestation():
     save(d, "08_entity_documents/Bullard_Investor_Attestation_TEMPLATE.docx")
 
 
+# ================================================================ SUBMISSION COVER SHEET + TOC
+def submission_cover_sheet():
+    d = new_doc("Submission Cover Sheet")
+    h1(d, "Submission Package - Table of Contents")
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
+    field(d, "Loan request", "$500,000 SBA 7(a) | Total project: $1,050,000")
+    field(d, "Borrower", "Tyler Hospice Hold LLC (WY) - EIN 41-4966640")
+    field(d, "Operating subsidiary", "Hickory Hospice LLC (TX) - the acquired Medicare-certified hospice")
+    field(d, "Primary guarantor", "Geoff Schackmann via Adeline & Lilah, LLC (39.9%, sole 20%+ owner)")
+    field(d, "Lender contact", "John Hart")
+    para(d, "")
+    h2(d, "How this package is organized")
+    para(d, "Each section corresponds to one or more items on the lender's SBA 7(a) Loan Checklist. "
+            "The folder structure under /sba_application/ mirrors this index.")
+    table(d, ["Section", "Contents", "Folder"],
+          [["00", "Source forms (blank, as provided by lender)", "00_source_forms/"],
+           ["01", "Company Profile", "01_company_profile/"],
+           ["02", "Use of Proceeds + Equity Injection / SBA Structure memo", "02_use_of_funds/"],
+           ["03", "Business Plan (Rev 4.00) + Reconciliation/Break-even memo (drop-ins for Rev 5.00)", "03_business_plan/"],
+           ["04", "Business Debt Schedule", "04_business_debt_schedule/"],
+           ["05", "Personal Financial Statement (SBA 413) - guidance + completed form", "05_personal_financial_statement/"],
+           ["06", "Personal History (SBA 912) + Management Resumes (4)", "06_personal_history_resume/"],
+           ["07", "Personal Cash Flow (SBA 7a)", "07_personal_cash_flow/"],
+           ["08", "Entity documents - WY formation, EIN letter, Operating Agreement, Investor Attestation", "08_entity_documents/"],
+           ["09", "Financial Model - 3 workbooks (Operations Dashboard, SBA Loan Package, Investor Package)", "09_financial_model/"],
+           ["10", "Supporting documents - tax returns, bank statements, purchase agreement, PFS support, injection evidence", "10_supporting_documents/"],
+           ["11", "Lender Credit Memo (exec summary) + DSCR Sensitivity / Stress Test", "11_lender_credit_memo/"]],
+          widths=[0.6, 4.4, 2.0])
+    h2(d, "Cross-reference to lender's SBA 7(a) Loan Checklist")
+    para(d, "Each item on the lender-provided checklist is found at the location below:", italic=True, size=9)
+    table(d, ["Checklist item", "Location"],
+          [["1. SBA 7(a) Loan Checklist", "00_source_forms/1_SBA_7a_Loan_Checklist.docx"],
+           ["2. Company Profile", "01_company_profile/Company_Profile_DRAFT.docx"],
+           ["3. Use of Funds", "02_use_of_funds/Use_of_Funds_DRAFT.docx"],
+           ["3a. Equity Injection / SBA Structure memo (supporting)", "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx"],
+           ["4. Business Plan", "03_business_plan/Azalea_SBA_Business_Plan_Rev4.00_2026-06-02.pdf"],
+           ["4a. Reconciliation / Break-even memo (supporting)", "03_business_plan/RECONCILIATION_and_Breakeven_MEMO.docx"],
+           ["5. Business Debt Schedule", "04_business_debt_schedule/Business_Debt_Schedule_DRAFT.docx"],
+           ["6. Personal History (SBA 912) - Geoff Schackmann", "06_personal_history_resume/"],
+           ["7. Personal Financial Statement (SBA 413) - Geoff Schackmann", "05_personal_financial_statement/"],
+           ["7a. Personal Cash Flow - Geoff Schackmann", "07_personal_cash_flow/"],
+           ["8. Management Resumes (4)", "06_personal_history_resume/"],
+           ["Lender Credit Memo (exec summary)", "11_lender_credit_memo/Lender_Credit_Memo_EXEC_SUMMARY.docx"],
+           ["DSCR Sensitivity / Stress Test", "11_lender_credit_memo/DSCR_Sensitivity_Stress_Test_MEMO.docx"],
+           ["Equity injection evidence (Tranche 1 confirmed; 2-3 pending)", "10_supporting_documents/equity_injection_evidence/"],
+           ["Geoff PFS support (VistaRiver MIPA + Note)", "10_supporting_documents/personal_financial_statement_support/"],
+           ["Hickory CHOW purchase agreement", "10_supporting_documents/purchase_agreement_seller_note/"],
+           ["Tax returns (3 yrs personal)", "10_supporting_documents/tax_returns/"],
+           ["Bank / brokerage statements", "10_supporting_documents/bank_brokerage_statements/"],
+           ["Credit report and driver license", "10_supporting_documents/credit_drivers_license/"],
+           ["Operating Agreement, EIN letter, formation docs", "08_entity_documents/"],
+           ["Financial Model (Excel)", "09_financial_model/"]],
+          widths=[3.6, 3.4])
+    footer_note(d)
+    save(d, "SUBMISSION_COVER_SHEET_and_TOC.docx")
+
+
+# ================================================================ CLOSING CHECKLIST
+def closing_checklist():
+    d = new_doc("Closing Checklist")
+    h1(d, "SBA 7(a) Closing Checklist")
+    para(d, "Tyler Hospice Hold LLC - Azalea Hospice CHOW. Items typically required at SBA loan close.",
+         color=GREY, size=9)
+    para(d, "This is a standard close checklist; the lender will issue a final, deal-specific list. Use this to "
+            "stage documents and identify long-lead items now.")
+    h2(d, "A. Borrower entity")
+    for x in ["Tyler Hospice Hold LLC - WY Certificate of Formation",
+              "Tyler Hospice Hold LLC - Operating Agreement (executed, current)",
+              "Tyler Hospice Hold LLC - EIN assignment letter (IRS CP-575)",
+              "Tyler Hospice Hold LLC - Certificate of Good Standing (WY) - recent (within 30 days of close)",
+              "Tyler Hospice Hold LLC - Foreign qualification in TX (Certificate of Authority) and TX Good Standing",
+              "Hickory Hospice LLC - Certificate of Formation (TX)",
+              "Hickory Hospice LLC - Operating Agreement (pre- and post-CHOW)",
+              "Hickory Hospice LLC - Certificate of Good Standing (TX) - recent",
+              "Member resolutions authorizing the loan, the CHOW, the guarantor signing"]:
+        para(d, "  - " + x)
+    h2(d, "B. Transaction documents")
+    for x in ["Hickory CHOW Membership Interest Purchase Agreement - executed",
+              "Hickory CHOW seller promissory note ($300K, 36 mo, 6%) - executed",
+              "Bill of sale / assignment of membership interests - executed",
+              "Standby Agreement (if any seller-financing portion is on standby) - SBA Form 155",
+              "UCC-1 financing statement filings (SBA lender, seller note)",
+              "Subordination agreement(s) between SBA lender and seller (if required)"]:
+        para(d, "  - " + x)
+    h2(d, "C. Licenses, accreditations, payor enrollment (CHOW)")
+    for x in ["Texas Department of Health and Human Services - HCSSA license transfer / amendment",
+              "Medicare Provider Transaction Access Number (PTAN) - CHOW filing (Form 855A) status confirmation",
+              "Medicare provider agreement / Tie-In notice",
+              "CHAP or ACHC accreditation - notice of CHOW and continuation",
+              "DEA registration (if applicable to controlled-drug handling) - CHOW update",
+              "State pharmacy licenses (if applicable)",
+              "NPI - Type 2 organizational NPI verified for the new ownership structure"]:
+        para(d, "  - " + x)
+    h2(d, "D. Real estate / lease")
+    for x in ["Office lease (term not less than the SBA loan term, with options) - executed",
+              "Landlord consent / Landlord's Waiver of distraint (SBA standard) - signed by landlord",
+              "Certificate of insurance naming SBA lender as additional insured (premises and operations)"]:
+        para(d, "  - " + x)
+    h2(d, "E. Equity injection verification")
+    for x in ["Full $250,000 on deposit in Tyler Hospice Hold LLC operating account at close (per SOP 50 10 8)",
+              "Bank statements (Mercury / Column N.A. acct ****1275) showing all three tranches received",
+              "Bullard source-of-funds statements (30+ day seasoning prior to each tranche, in his name)",
+              "Bullard wire / capital-contribution confirmations for each tranche",
+              "Bullard Investor Attestation - executed and notarized (no control / no side agreement)",
+              "Capital Contribution Agreement (Bullard) - executed",
+              "Updated Operating Agreement reflecting current cap table - executed"]:
+        para(d, "  - " + x)
+    h2(d, "F. Guarantor (Geoff Schackmann)")
+    for x in ["Personal guaranty (SBA Form 148 or lender form) - signed",
+              "SBA Form 413 (Personal Financial Statement) - signed, dated within 90 days",
+              "SBA Form 912 (Personal History) - signed; CAIVRS / SAM cleared",
+              "Three years personal tax returns + most recent year's W-2s and 1099s",
+              "Credit report (lender pulls; have driver license ready)",
+              "Life insurance on guarantor, collaterally assigned to lender (if required for loan size)",
+              "Spouse acknowledgement (if state requires) - signed"]:
+        para(d, "  - " + x)
+    h2(d, "G. Insurance (at close)")
+    for x in ["Business / general liability - certificate naming SBA lender",
+              "Professional liability for hospice / clinical operations",
+              "Hazard insurance on tangible personal property (equipment) financed",
+              "Workers' compensation - state certificate",
+              "Cyber liability (recommended given PHI/EMR exposure)",
+              "Life insurance on guarantor, collaterally assigned to SBA lender (if required)"]:
+        para(d, "  - " + x)
+    h2(d, "H. Other lender deliverables")
+    for x in ["SBA Authorization (issued by SBA after lender request) - lender provides",
+              "SBA Form 1919 (Borrower Information Form) - completed",
+              "SBA Form 1920 (Lender's Application) - lender completes",
+              "Resolution of borrower authorizing the loan - executed",
+              "Bank's loan agreement, note, security agreement - executed",
+              "Disbursement instructions for the $500K (operating account + use-of-proceeds wires)",
+              "Closing Statement / Settlement Statement"]:
+        para(d, "  - " + x)
+    footer_note(d)
+    save(d, "11_lender_credit_memo/CLOSING_CHECKLIST.docx")
+
+
+# ================================================================ INSURANCE REQUIREMENTS SUMMARY
+def insurance_requirements():
+    d = new_doc("Insurance Requirements")
+    h1(d, "Insurance Requirements - SBA 7(a) and Hospice Operations")
+    para(d, "Tyler Hospice Hold LLC - Azalea Hospice & Palliative Care", color=GREY, size=9)
+    para(d, "Coverages typically required by SBA and prudent for a hospice CHOW operating at the scale "
+            "underwritten. Confirm specifics with the lender at close.")
+    h2(d, "Required by SBA / lender")
+    table(d, ["Coverage", "Typical limits", "Purpose / SBA requirement"],
+          [["General Liability",                "$1M occurrence / $2M aggregate",
+            "Standard SBA requirement; covers third-party bodily injury and property damage."],
+           ["Professional Liability (Hospice)", "$1M / $3M typical",
+            "Clinical malpractice exposure. SBA expects coverage appropriate to industry."],
+           ["Property / Hazard",                "Replacement cost on equipment",
+            "Required on any tangible personal property securing the SBA loan."],
+           ["Workers' Compensation",            "Statutory (TX is opt-out but coverage recommended)",
+            "Standard requirement once payroll commences; Texas allows non-subscription but most lenders prefer carriage."],
+           ["Business Auto (if applicable)",    "$1M CSL",
+            "Required if any owned/leased vehicles used in patient visits or administration."],
+           ["Life Insurance on Guarantor",      "Amount = SBA loan balance, declining or level term",
+            "Required by SBA for sole-guarantor deals to protect repayment in the event of death; collaterally assigned to lender."],
+           ["Cyber / PHI Breach Liability",    "$1M typical",
+            "Strongly recommended given EMR and HIPAA-regulated PHI; not always SBA-required but a hospice agency should carry it."]],
+          widths=[1.9, 1.8, 3.0])
+    h2(d, "Prudent additional coverages")
+    for x in ["Employment Practices Liability (EPLI) - $1M",
+              "Directors & Officers / Management Liability - $1M (light coverage for an LLC, but useful given multi-member structure)",
+              "Crime / Employee Dishonesty - $250K-$500K",
+              "Excess / Umbrella - $5M (often cheapest way to extend other limits)",
+              "Hired & Non-Owned Auto - if staff use personal vehicles for patient visits"]:
+        para(d, "  - " + x)
+    h2(d, "Carriers to approach (Texas hospice market)")
+    for x in ["CNA Healthcare - specialty hospice/home-health markets",
+              "Coverys - clinical malpractice for hospice",
+              "ProAssurance - hospice and home-health professional",
+              "Markel - mid-market healthcare",
+              "Travelers / Hartford / Hiscox - GL/property/cyber packages"]:
+        para(d, "  - " + x)
+    para(d, "Ask your broker for a comparison of two or three quotes and note the SBA collateral-assignment "
+            "requirement when getting the life insurance quote (this drives the carrier choice; not all carriers "
+            "issue collateral assignments quickly).", italic=True, size=9.5)
+    footer_note(d)
+    save(d, "11_lender_credit_memo/INSURANCE_REQUIREMENTS.docx")
+
+
+# ================================================================ PERSONAL CASH FLOW PRE-FILL FOR GEOFF
+def personal_cash_flow():
+    d = new_doc("Personal Cash Flow Geoff")
+    h1(d, "Personal Cash Flow Statement - Geoff Schackmann")
+    para(d, "SBA 7(a) Form 7a (template). Monthly basis. Known income lines pre-filled; please complete the "
+            "remaining lines. Sign and date at bottom.", color=GREY, size=9)
+    field(d, "Name", "Geoff Schackmann")
+    field(d, "Address", TBD)
+    field(d, "Statement period (monthly)", TBD + "  (typically the most recent month or a 3-month average)")
+    para(d, "")
+    h2(d, "Personal income (monthly)")
+    table(d, ["Source", "Amount", "Notes / verification"],
+          [["VistaRiver Inc - promissory note payment", "$14,456.80", "Per executed Note dated Aug 15, 2025 (in folder 10). Through Aug 2030."],
+           ["Salary / W-2 income (if any)", TBD, "Pay stub or W-2; list employer."],
+           ["Distributions from Tyler Hospice Hold LLC (post-close)", "$0 (ramp)", "No member distributions modeled in Y1; tax distributions only in Y2+"],
+           ["Distributions from other businesses owned", TBD, "List entity, role, amount, frequency."],
+           ["Rental income (net)", TBD, "If applicable."],
+           ["Investment income (interest, dividends)", TBD, "From most recent 1099 / brokerage statement."],
+           ["Spouse income (if jointly filing)", TBD, "Source and amount; W-2 / 1099."],
+           ["Other (royalties, retirement, etc.)", TBD, ""],
+           ["TOTAL MONTHLY INCOME", TBD, ""]],
+          widths=[3.0, 1.2, 2.5])
+    h2(d, "Personal expenses (monthly)")
+    table(d, ["Category", "Amount", "Notes"],
+          [["Housing - mortgage or rent", TBD, "Principal + interest + taxes + insurance if escrowed"],
+           ["Property taxes (if not escrowed)", TBD, ""],
+           ["Homeowner / renter insurance (if not escrowed)", TBD, ""],
+           ["Utilities (electric, gas, water, internet, phone)", TBD, ""],
+           ["Food and household", TBD, "Average; include groceries and routine dining"],
+           ["Vehicle - payment(s)", TBD, ""],
+           ["Vehicle - fuel, insurance, maintenance", TBD, ""],
+           ["Health insurance premiums (out of pocket)", TBD, ""],
+           ["Medical / dental (routine)", TBD, ""],
+           ["Childcare / tuition / education", TBD, ""],
+           ["Other insurance (life, disability, umbrella)", TBD, ""],
+           ["Credit card minimum payments", TBD, "List balances; minimums only here"],
+           ["Other loan payments (student, personal, etc.)", TBD, ""],
+           ["Alimony / child support (if any)", TBD, ""],
+           ["Charitable / religious giving", TBD, ""],
+           ["Discretionary (entertainment, travel, etc.)", TBD, ""],
+           ["Income / self-employment taxes (estimated)", TBD, "Quarterly estimate / 12"],
+           ["Other recurring", TBD, ""],
+           ["TOTAL MONTHLY EXPENSES", TBD, ""]],
+          widths=[3.0, 1.2, 2.5])
+    h2(d, "Net monthly cash flow")
+    table(d, ["Line", "Amount"],
+          [["Total monthly income", TBD],
+           ["Less: total monthly expenses", TBD],
+           ["NET MONTHLY CASH FLOW", TBD]],
+          widths=[4.0, 1.5])
+    para(d, "")
+    h2(d, "Certification")
+    para(d, "I certify that the foregoing is a true and complete statement of my monthly personal income and "
+            "expenses as of the date indicated.")
+    para(d, "")
+    para(d, "____________________________________________________________")
+    para(d, "Geoff Schackmann", bold=True)
+    para(d, "Date: ___________________________")
+    footer_note(d)
+    save(d, "07_personal_cash_flow/Personal_Cash_Flow_Geoff_PRE-FILL.docx")
+
+
+# ================================================================ INTERVIEW WORKSHEET (for remaining drafts)
+def interview_worksheet():
+    d = new_doc("Interview Worksheet")
+    h1(d, "Interview Worksheet - Remaining Drafts")
+    para(d, "Answers will feed into: Cover Letter to John Hart, Anticipated Q&A memo, Capital Contribution "
+            "Agreement (Bullard), Operating Agreement for Tyler Hospice Hold LLC, Bullard Source-of-Funds "
+            "Letter, Hickory CHOW Purchase Agreement starter, and Affiliate / Size-Standard memo.",
+         color=GREY, size=9)
+    para(d, "Reasonable defaults are pre-filled where industry standard applies - just confirm or override. "
+            "Free-form lines are marked TBD. Answer in any order; sections are independent.", italic=True, size=9.5)
+    para(d, "")
+
+    # --- LENDER / COVER LETTER --------------------------------------------
+    h2(d, "1. Lender contact (for cover letter and anticipated Q&A)")
+    field(d, "1.1 Bank / lender name", TBD)
+    field(d, "1.2 Bank street address", TBD)
+    field(d, "1.3 John Hart's exact title", TBD + "  (default if unsure: \"SBA Loan Officer\")")
+    field(d, "1.4 John Hart's direct email and phone", TBD)
+    field(d, "1.5 Your preferred contact info for the lender file", TBD + "  (email + cell)")
+    field(d, "1.6 Submission date", "Today's date unless you specify otherwise")
+    field(d, "1.7 The 'couple items to discuss' on the SBA checklist - what are they?",
+          TBD + "  (this is the highest-signal flag we have; list everything John mentioned, even informally)")
+    field(d, "1.8 Anything you've already verbally committed to John (timing, structure, follow-ups)", TBD)
+    field(d, "1.9 Any prior lender feedback worth pre-addressing", TBD + "  (other banks that passed or asked hard questions)")
+    field(d, "1.10 Anything in the credit profile you're worried about", TBD)
+
+    # --- BULLARD / CAPITAL CONTRIBUTION & SOURCE OF FUNDS -----------------
+    h2(d, "2. James Bullard - Capital Contribution Agreement + Source-of-Funds letter")
+    field(d, "2.1 Bullard's full legal name (with middle name or initial)", TBD)
+    field(d, "2.2 Bullard's home address", TBD)
+    field(d, "2.3 Bullard's email and phone", TBD)
+    field(d, "2.4 Source of the $250K (savings / sale of asset / inheritance / business income / other)", TBD)
+    field(d, "2.5 If sale or business income: brief paper trail",
+          TBD + "  (e.g., 'sale of XYZ stock March 2026' or 'business distributions from ABC LLC over 2024-2025')")
+    field(d, "2.6 Account institution(s) the funds are sitting in", TBD + "  (bank/brokerage name; account type)")
+    field(d, "2.7 How long the funds have been seasoned in those accounts",
+          TBD + "  (SOP 50 10 8 wants 30+ days; longer is better)")
+    field(d, "2.8 Scheduled date(s) and approximate amounts for tranches 2 and 3", TBD + "  (e.g., '$75K June 15, $75K July 15')")
+    field(d, "2.9 Effective date of Bullard's 19.9% membership interest",
+          "Default: May 7, 2026 (date Tranche 1 hit the account) - confirm or specify alternative")
+    field(d, "2.10 Distribution preference for Bullard",
+          "Default: pro-rata distributions with all members (no preferred return) - confirm or override")
+    field(d, "2.11 Transfer restrictions on his interest",
+          "Default: no transfer without Manager consent and right of first refusal by Company / other members - confirm")
+    field(d, "2.12 Put/call or buyout terms",
+          "Default: none in initial agreement; can be added by amendment - confirm")
+    field(d, "2.13 Governing law for the Capital Contribution Agreement",
+          "Default: Wyoming (entity's state of formation) - confirm")
+
+    # --- ADELINE & LILAH / GEOFF ------------------------------------------
+    h2(d, "3. Adeline & Lilah, LLC and Geoff (for OA, Cap Contribution recitals)")
+    field(d, "3.1 Adeline & Lilah, LLC's principal office address",
+          "Default: 2942 N 24th St STE 115 PMB, Phoenix, AZ 85016 (from VistaRiver note) - confirm")
+    field(d, "3.2 Adeline & Lilah, LLC's state of formation", "Default: Arizona - confirm")
+    field(d, "3.3 Geoff's home address", TBD)
+    field(d, "3.4 Geoff's email and phone for SBA file", TBD)
+    field(d, "3.5 Spouse's name (if any) and whether she is a member of Adeline & Lilah, LLC",
+          "From the VistaRiver MIPA Adeline & Lilah, LLC appears to have two owners: Geoff (50%) and Mary Elizabeth "
+          "Burcham (50%). Confirm relationship and whether Mary Elizabeth signs guarantor docs / spouse "
+          "acknowledgement.")
+    field(d, "3.6 Is anyone else a member or signatory of Adeline & Lilah, LLC?", TBD)
+
+    # --- TYLER HOSPICE HOLD LLC / OPERATING AGREEMENT ----------------------
+    h2(d, "4. Tyler Hospice Hold LLC - Operating Agreement")
+    field(d, "4.1 Does Tyler Hospice Hold LLC have an existing Operating Agreement?",
+          "If YES, share it (we'll amend). If NO, we'll draft a fresh one. Default assumption: NO.")
+    field(d, "4.2 Tyler Hospice Hold LLC registered office (Wyoming filing address)", TBD + "  (typically a WY registered agent)")
+    field(d, "4.3 Tax election",
+          "Default: LLC taxed as partnership (default federal treatment for multi-member LLCs). "
+          "Alternative: elect S-corporation (Form 2553) - usually only beneficial above ~$150K of distributable profit "
+          "per owner-employee. Confirm or specify.")
+    field(d, "4.4 Manager-managed vs. member-managed",
+          "Default: MANAGER-MANAGED with Adeline & Lilah, LLC as sole Manager. This matches the SBA narrative "
+          "(passive minority + sole Manager with control). Confirm.")
+    field(d, "4.5 Vesting for operator-members (Silas, Dana, Bradley, 13.3% each)",
+          "RECOMMENDATION: 4-year vest with 1-year cliff, accelerating on the lender's release of the SBA loan "
+          "or change of control. Protects the deal if any operator leaves. If you prefer fully vested at close, "
+          "say so. Default if you skip: 4-year / 1-year cliff.")
+    field(d, "4.6 Distribution policy",
+          "Default: (a) mandatory quarterly tax distributions sized to cover members' tax on allocated income at "
+          "the highest applicable rate; (b) other distributions at Manager's discretion. Confirm.")
+    field(d, "4.7 Capital call authority",
+          "Default: no mandatory capital calls; voluntary additional contributions require Manager approval and "
+          "do not dilute non-contributing members. Confirm.")
+    field(d, "4.8 Officers / titles (if any) and who holds them",
+          "Default: Managing Member = Geoff (via Adeline & Lilah); Executive Director = Silas; Director of "
+          "Nursing = Dana; Director of Sales = Bradley. Confirm.")
+    field(d, "4.9 Books, records, fiscal year",
+          "Default: calendar year, accrual basis, books at the principal office. Confirm.")
+    field(d, "4.10 Buy-sell / departure (operator-member leaves Company)",
+          "RECOMMENDATION: Company has option to repurchase unvested interest at $0 and vested interest at book "
+          "value over 36 months. If you want a different price formula (e.g., trailing-12 EBITDA multiple), say so.")
+    field(d, "4.11 Drag-along (Manager can force sale)",
+          "Default: Manager (Adeline & Lilah) holding 39.9% may not unilaterally drag; needs members holding "
+          ">=51% combined to trigger drag of remaining members. Confirm.")
+    field(d, "4.12 Governing law", "Default: Wyoming - confirm")
+
+    # --- HICKORY CHOW PURCHASE AGREEMENT ----------------------------------
+    h2(d, "5. Hickory Hospice LLC - CHOW Purchase Agreement (starter draft)")
+    para(d, "If you already have a signed PA from the Hickory seller, share it and skip this section - we'll use "
+            "that. Otherwise we'll build a starter.", italic=True, size=9)
+    field(d, "5.1 Hickory Hospice LLC's state of formation", "Default: Texas - confirm")
+    field(d, "5.2 Hickory's principal office address", TBD)
+    field(d, "5.3 Current owner(s) of Hickory: legal name(s), address(es), ownership %",
+          TBD + "  (if multiple, list each)")
+    field(d, "5.4 Target closing date", TBD + "  (consider coordinating with the July equity tranche - see Equity Injection memo)")
+    field(d, "5.5 Seller note - confirm $300,000, 36 months, 6% interest, fully amortizing", "Confirm or override")
+    field(d, "5.6 Cash at close from buyer for the acquisition",
+          "Default: $0 (fully seller-financed per the model). Confirm.")
+    field(d, "5.7 Earnest money / good-faith deposit", "Default: $0 / none. Confirm or specify.")
+    field(d, "5.8 Existing employees", "Are clinical / billing staff staying? Severance? Accrued PTO handled by whom?")
+    field(d, "5.9 Existing contracts to assume",
+          "List or describe: lease, EMR contract, supply contracts, payor contracts, etc.")
+    field(d, "5.10 Licenses / accreditations transferring",
+          "Default to assume: TX HCSSA license, CHAP or ACHC accreditation, Medicare PTAN/NPI. Confirm and specify "
+          "which accreditation (CHAP or ACHC).")
+    field(d, "5.11 Survey or due-diligence period before close",
+          "Default: 30-day diligence + 30 days to close after diligence. Confirm.")
+    field(d, "5.12 Reps and warranties survival period",
+          "Default: 12 months post-close (fundamentals + tax + healthcare-regulatory uncapped or up to purchase price; "
+          "general reps capped at 10% of purchase price). Confirm.")
+    field(d, "5.13 Non-compete from seller", "Default: 3 years, 25-mile radius from the agency. Confirm.")
+    field(d, "5.14 Indemnification cap and basket",
+          "Default: $30,000 basket (~10%); cap at $300,000 (purchase price); 12-month survival for general; "
+          "longer for fundamentals/tax/healthcare-regulatory. Confirm.")
+    field(d, "5.15 Governing law", "Default: Texas - confirm")
+
+    # --- AFFILIATE / SIZE-STANDARD ----------------------------------------
+    h2(d, "6. Affiliate / size-standard memo - facts I need")
+    field(d, "6.1 Geoff's role with VistaRiver Inc post-sale",
+          "Default assumption based on the MIPA: passive note holder ONLY (no officer, director, manager, "
+          "employee role; no continuing equity). Confirm or correct.")
+    field(d, "6.2 Other businesses Geoff currently owns >=20% of (operating or holding)",
+          TBD + "  (list each: name, state, ownership %, role, approximate revenue)")
+    field(d, "6.3 Other businesses Geoff currently MANAGES (any title) even if he doesn't own them",
+          TBD + "  (officer, manager, signer)")
+    field(d, "6.4 Multi-hospice operating history referenced in the plan",
+          TBD + "  (which agencies, current status: still active / sold / closed; Geoff's current role with each)")
+    field(d, "6.5 'Paloma' is referenced as the source of the migrated clinical team - what's the relationship?",
+          TBD + "  (former employer of Silas/Dana? Does Geoff have an ownership or board role? Any current contract?)")
+    field(d, "6.6 Bullard's other business interests where he holds 50%+ ownership",
+          TBD + "  (these can pull into SBA affiliate analysis even though he's <20% here)")
+    field(d, "6.7 Silas's current employer (where he works today, before transitioning to Azalea)",
+          TBD + "  (and any non-compete or non-solicit that could constrain hiring)")
+    field(d, "6.8 Dana's current employer", TBD + "  (and any non-compete or non-solicit)")
+    field(d, "6.9 Bradley's current employer (the 'East-Texas hospice' VP-BD role in his resume)",
+          TBD + "  (active employment? Non-compete? Garden leave?)")
+    field(d, "6.10 Identity-of-interest affiliation (any close family members operating other hospices)?",
+          TBD + "  (SBA aggregates relatives' businesses for affiliation analysis)")
+
+    para(d, "")
+    h2(d, "How to return this")
+    para(d, "Just type answers into the doc and send it back, or summarize the answers in chat - whichever is "
+            "faster for you. Skip any question and we'll use the default noted; flag anything you want me to "
+            "research further.")
+    footer_note(d)
+    save(d, "INTERVIEW_for_remaining_drafts.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
@@ -732,4 +1135,9 @@ if __name__ == "__main__":
     lender_credit_memo()
     sensitivity_memo()
     bullard_attestation()
+    submission_cover_sheet()
+    closing_checklist()
+    insurance_requirements()
+    personal_cash_flow()
+    interview_worksheet()
     print("Done.")
