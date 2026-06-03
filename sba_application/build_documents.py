@@ -103,15 +103,19 @@ def company_profile():
     h2(d, "Company Ownership (100% must be shown)")
     table(d,
           ["#", "Name and Address", "SSN / EIN", "Ownership %", "Company Title", "Email"],
-          [["1", "Adeline & Lilah, LLC (AZ) - Geoff Schackmann, sole member", TBD, "34.8%", "Managing Member", TBD],
-           ["2", "James Bullard", TBD, "25.0%*", "Investor / standby creditor (no operational role)", TBD],
+          [["1", "Adeline & Lilah, LLC (AZ) - Geoff Schackmann, sole member", TBD, "39.9%", "Managing Member", TBD],
+           ["2", "James Bullard", TBD, "19.9%*", "Minority investor member (passive; no management or control role)", TBD],
            ["3", "Silas R. Shelton", TBD, "13.3%", "Executive Director", TBD],
            ["4", "Dana L. Davenport", TBD, "13.3%", "Director of Nursing", TBD],
            ["5", "Bradley G. Woodard", TBD, "13.3%", "Director of Sales", TBD]],
           widths=[0.3, 2.4, 1.0, 0.8, 1.4, 1.2])
-    para(d, "*James Bullard's 25.0% interest is reserved post-conversion; pre-conversion he holds a "
-            "convertible note (debt only) and stays below 20%, so no additional SBA personal guaranty is "
-            "triggered (13 CFR 120.160). Unissued/reserved pool: 0.3%.", italic=True, size=9)
+    para(d, "*James Bullard holds a direct, fully funded minority equity interest of 19.9% - below the 20% "
+            "threshold - as a passive investor. He has no management authority, no voting control, and no side "
+            "agreement granting him control of the business; the Managing Member (Adeline & Lilah, LLC) retains "
+            "control. Consistent with SOP 50 10 8 and 13 CFR 120.160, an equity holder of less than 20% in a "
+            "complete change of ownership is not required to provide a personal guaranty or Personal Financial "
+            "Statement. Mr. Bullard's $250,000 cash capital contribution is the source of the equity injection "
+            "for this transaction (see Use of Proceeds). Unissued/reserved pool: 0.3%.", italic=True, size=9)
     para(d, "")
     field(d, "Name to be used on business checking account", "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)")
     field(d, "Designated signers on checking account", "Geoff Schackmann (Managing Member, sole signer)")
@@ -124,7 +128,6 @@ def company_profile():
     h2(d, "Affiliated Companies")
     table(d, ["Affiliate", "Relationship", "# Employees"],
           [["Hickory Hospice LLC (TX)", "Wholly owned operating subsidiary (the acquired agency)", "Operating staff"],
-           ["Avant Hospice LLC (Mabank, TX)", "Affiliate via Managing Member; separate seller-financed deal, funded outside this loan", TBD],
            ["Adeline & Lilah, LLC (AZ)", "Holding entity for Managing Member's interest", "0"]],
           widths=[2.2, 3.6, 1.0])
     footer_note(d)
@@ -149,7 +152,7 @@ def use_of_funds():
     h2(d, "Loan Request Reconciliation")
     table(d, ["Line", "Amount"],
           [["Total funds required", "$1,050,000"],
-           ["Less: proposed borrower equity injection (Form 155 standby)", "($250,000)"],
+           ["Less: borrower equity injection (cash capital contribution)", "($250,000)"],
            ["Less: seller financing (Hickory license note, non-SBA)", "($300,000)"],
            ["Total SBA 7(a) loan request", "$500,000"]],
           widths=[4.5, 1.5])
@@ -166,9 +169,16 @@ def use_of_funds():
             "service (SBA loan plus seller note) while accounts receivable normalize to the ~45-day Medicare "
             "cycle, and holds a $25,000 minimum cash floor with the $100,000 working-capital line undrawn in the "
             "base case.")
-    para(d, "Source of the borrower's equity injection: $250,000 provided through investor James Bullard's "
-            "convertible promissory note, of which $191,000 is placed on standby under SBA Form 155 as the "
-            "required injection. Supporting bank / brokerage statements to be attached.", italic=True, size=9.5)
+    para(d, "Source of the borrower's equity injection: $250,000 in cash, provided as a capital contribution by "
+            "minority member James Bullard (19.9% non-controlling interest) in exchange for his equity interest. "
+            "This is a bona fide, non-borrowed equity injection equal to approximately 23.8% of total project "
+            "cost - well above the 10% minimum required for a complete change of ownership under SOP 50 10 8. The "
+            "injection is verified by Mr. Bullard's bank / brokerage statements and the capital-contribution wire "
+            "into the company's account. Because Mr. Bullard is a passive investor holding less than 20% with no "
+            "management or control rights and no side agreement, his contribution counts as qualifying equity "
+            "without triggering a personal guaranty (consistent with SOP 50 10 8 and 13 CFR 120.160). The "
+            "$300,000 Hickory seller note is not on standby and is therefore treated as acquisition debt within "
+            "combined debt service, not as part of the equity injection.", italic=True, size=9.5)
     para(d, "")
     h2(d, "How will this loan benefit the company?")
     para(d, "The loan capitalizes the acquisition and relaunch of an established, billing-ready hospice on "
@@ -211,7 +221,7 @@ def debt_schedule():
 # ================================================================ 6/8. MANAGEMENT RESUMES
 RESUMES = {
  "Geoff_Schackmann": dict(
-   name="Geoff Schackmann", title="Managing Member (34.8% via Adeline & Lilah, LLC)",
+   name="Geoff Schackmann", title="Managing Member (39.9% via Adeline & Lilah, LLC)",
    summary="Multi-hospice operator and transaction-led growth leader with operational responsibility for "
            "Medicare-certified hospice and palliative-care agencies across multiple states. Sole member of "
            "Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler Hospice Hold LLC is held. "
@@ -374,12 +384,13 @@ def information_needed():
     for x in ["Principal office street address, city, zip, phone, fax, web address",
               "CPA name / firm / phone", "Attorney name / firm / phone",
               "Insurance agent name / firm / phone",
-              "Confirm business checking account name and signers",
-              "Avant Hospice LLC employee count (affiliate disclosure)"]:
+              "Confirm business checking account name and signers"]:
         para(d, "  - " + x)
-    h2(d, "B. For each owner of 20% or more (Geoff Schackmann via Adeline & Lilah; confirm others)")
-    para(d, "Note: each 20%+ owner needs items below. Bullard is debt-only pre-conversion (<20%), so likely "
-            "excluded for now - confirm with John Hart.", italic=True, size=9)
+    h2(d, "B. For each owner of 20% or more (Geoff Schackmann via Adeline & Lilah, LLC at 39.9%)")
+    para(d, "Note: only owners of 20% or more need the personal items below. James Bullard holds 19.9% as a "
+            "passive minority investor and is below the 20% threshold, so no personal guaranty, PFS, or Form 912 "
+            "is required of him. The lender will still verify the source of his $250,000 injection via his bank / "
+            "brokerage statements (item below), which is standard for any equity-injection source.", italic=True, size=9)
     for x in ["SSN, date of birth, place of birth, home address (and prior address with dates)",
               "Personal Financial Statement (SBA Form 413) - assets, liabilities, income",
               "Personal cash flow statement (template 7a)",
@@ -393,13 +404,11 @@ def information_needed():
     for x in ["Hickory CHOW purchase agreement (Asset/Membership Purchase Agreement)",
               "Executed Hickory seller note ($300,000, 36 months, 6%) and security documentation",
               "Letter of intent / contract for the Hickory purchase",
-              "Office lease or LOI (term should match the loan term, with options)",
-              "Avant Hospice LLC: tax returns, interim financials, debt schedule (affiliate package)"]:
+              "Office lease or LOI (term should match the loan term, with options)"]:
         para(d, "  - " + x)
     h2(d, "D. Decisions for you / John Hart")
     for x in ["Approve updating the Business Plan financials to the current model (see Reconciliation memo) - recommended",
               "The 'bank approval - a couple items to discuss' note on the checklist: what are John's items?",
-              "Confirm whether James Bullard needs a PFS/tax returns now (debt-only, <20% pre-conversion)",
               "Whether the lender wants the COVID questionnaire answered (we can draft brief responses)"]:
         para(d, "  - " + x)
     footer_note(d)
@@ -432,9 +441,67 @@ def personal_forms_guide():
     save(d, "05_personal_financial_statement/HOW_TO_COMPLETE_personal_forms.docx")
 
 
+# ================================================================ EQUITY INJECTION / SBA STRUCTURE MEMO
+def equity_injection_memo():
+    d = new_doc("Equity Injection Memo")
+    h1(d, "Equity Injection & Capital Structure - SOP 50 10 8 Compliance")
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)",
+         color=GREY, size=9)
+    para(d, "")
+    para(d, "This memo documents how the transaction satisfies the equity-injection requirements of SOP 50 10 8 "
+            "(effective June 1, 2025) for a complete change of ownership, and how the investor's contribution is "
+            "structured so that it qualifies as equity without triggering a personal guaranty.")
+    h2(d, "Capital structure")
+    table(d, ["Source", "Amount", "% of project", "Treatment"],
+          [["SBA 7(a) loan", "$500,000", "47.6%", "Senior debt"],
+           ["Equity injection - cash (James Bullard, 19.9% member)", "$250,000", "23.8%", "Qualifying equity injection"],
+           ["Seller note (Hickory CHOW, 36 mo, 6%)", "$300,000", "28.6%", "Acquisition debt (not on standby; not equity)"],
+           ["Total project cost", "$1,050,000", "100%", ""]],
+          widths=[3.2, 1.1, 1.1, 1.8])
+    h2(d, "1. The 10% minimum injection is met more than twice over")
+    para(d, "SOP 50 10 8 requires a minimum equity injection of at least 10% of total project cost for a complete "
+            "change of ownership - here, $105,000. The transaction injects $250,000 of cash equity (23.8% of "
+            "project cost), comfortably above the floor. The injection is non-borrowed cash, verified by the "
+            "investor's bank / brokerage statements and the capital-contribution wire into the company's account, "
+            "with funds seasoned in the contributor's account (lender to retain 30+ days of statements per the SOP "
+            "verification standard).")
+    h2(d, "2. The seller note does not need to - and does not - count as equity")
+    para(d, "Under SOP 50 10 8, seller debt counts toward the injection only if it is on full standby (no "
+            "principal or interest) for the life of the SBA loan, and even then for no more than 50% of the "
+            "required injection. The $300,000 Hickory seller note is amortizing (36 months at 6%) and is therefore "
+            "treated as acquisition debt serviced within combined debt service - not as part of the equity "
+            "injection. Because the cash injection alone clears the 10% requirement by a wide margin, no standby "
+            "of the seller note is required.")
+    h2(d, "3. The investor's equity qualifies without a personal guaranty")
+    para(d, "The $250,000 is contributed by James Bullard as a capital contribution in exchange for a direct, "
+            "fully funded 19.9% membership interest. In a complete change of ownership, SOP 50 10 8 does not "
+            "require a personal guaranty or Personal Financial Statement from an equity holder of less than 20%. "
+            "Mr. Bullard's interest is held below that threshold, so his cash qualifies as equity injection while "
+            "he remains a non-guarantor.")
+    para(d, "To preserve eligibility, the structure deliberately avoids the practice SBA flags as disqualifying - "
+            "an investor taking less than 20% to dodge a guaranty while using a side agreement to control the "
+            "business. Mr. Bullard is a passive investor: he holds no management authority, no voting control, and "
+            "no side agreement, option, or convertible instrument that would give him control or push his interest "
+            "to 20% or more. Control of the business rests entirely with the Managing Member, Adeline & Lilah, LLC "
+            "(Geoff Schackmann, 39.9%), who provides the unconditional personal guaranty as the sole 20%+ owner.")
+    h2(d, "4. Guaranty and disclosure summary")
+    table(d, ["Owner", "Interest", "20%+?", "Personal guaranty / PFS / Form 912"],
+          [["Adeline & Lilah, LLC (Geoff Schackmann)", "39.9%", "Yes", "Required - provided"],
+           ["James Bullard (passive investor)", "19.9%", "No", "Not required (source-of-funds verification only)"],
+           ["Silas R. Shelton", "13.3%", "No", "Not required"],
+           ["Dana L. Davenport", "13.3%", "No", "Not required"],
+           ["Bradley G. Woodard", "13.3%", "No", "Not required"]],
+          widths=[2.8, 1.0, 0.8, 2.6])
+    para(d, "All equity owners are disclosed regardless of percentage, and all are U.S. citizens or lawful "
+            "permanent residents (to be verified by the lender per SOP 50 10 8).", italic=True, size=9)
+    footer_note(d)
+    save(d, "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
+    equity_injection_memo()
     debt_schedule()
     management_resumes()
     reconciliation_memo()

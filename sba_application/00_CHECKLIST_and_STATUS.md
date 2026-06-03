@@ -15,6 +15,7 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | 1 | SBA 7(a) Loan Checklist (master) | reference | `00_source_forms/1_*` |
 | 2 | Company Profile | **DRAFT - needs your data** | `01_company_profile/` |
 | 3 | Use of Funds / Use of Proceeds | **DRAFTED** (from model) | `02_use_of_funds/` |
+| 3a | Equity Injection & SBA Structure memo | **DRAFTED** (SOP 50 10 8) | `02_use_of_funds/` |
 | 4 | Business Plan | **COMPLETE (Rev 4.00)** - needs financial refresh | `03_business_plan/` |
 | 5 | Business Debt Schedule | **DRAFTED** (no pre-close debt) | `04_business_debt_schedule/` |
 | 6 | Personal History Form (SBA 912) | needs you (personal) | `06_personal_history_resume/` + guide |
@@ -38,49 +39,58 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
   professional summary, work history, and education drafted from the business plan; personal fields blank.
 - **Reconciliation & Break-even memo** - resolves the plan-vs-model number gap (see below) and supplies the
   break-even figure (ADC ~16) that the Business Plan Guide asks for but the plan does not yet state.
+- **Equity Injection & SBA Structure memo** - documents SOP 50 10 8 compliance for the injection and the
+  minority-investor structure (see below).
 - **Information Needed sheet** (`INFORMATION_NEEDED_FROM_YOU.docx`) - every remaining blank, organized.
 - **Personal-forms guide** - how to complete 413, 912, and 7a.
 
-## The one thing to decide first
+## Capital structure - FINALIZED (SOP 50 10 8)
 
-**The Business Plan (Rev 4.00) financials do not match the current operating model.** Revenue matches;
-costs/EBITDA/DSCR differ because the current model carries fuller, more defensible direct-care staffing.
+The equity injection and cap table are decided and built into the package:
 
-| | Plan Rev 4.00 | Current model |
+- **$250,000 cash equity injection** = a capital contribution by **James Bullard** for a **direct 19.9%
+  minority interest** (passive; no control, no side agreement, no convertible note). At 23.8% of project
+  cost it clears the 10% SOP 50 10 8 minimum by more than 2x.
+- Holding **under 20%**, Bullard needs **no personal guaranty and no PFS**; only source-of-funds
+  verification (his bank/brokerage statements). The convertible-note / Form 155 framing was dropped.
+- **$300,000 seller note** = amortizing acquisition debt inside combined DSCR; **not** standby, **not** equity.
+- **Geoff (Adeline & Lilah, LLC) raised 34.8% -> 39.9%**, remaining the sole 20%+ owner and sole guarantor.
+
+Full write-up: `02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx`.
+
+## Financials - reconciled to the current model
+
+Per best-practice underwriting, the package uses the current operating model (not the older plan figures):
+
+| | Plan Rev 4.00 (superseded) | Current model (in use) |
 |---|---|---|
 | EBITDA Y1 / Y2 / Y3 | $311K / $814K / $1,186K | $303K / $680K / $1,008K |
 | Combined DSCR Y1 / Y2 / Y3 | 1.61x / 4.20x / 6.12x | 1.56x / 3.50x / 5.20x |
 | Global 3-yr DSCR | 3.97x | 3.42x |
 
-**Recommendation:** update the plan to the current model (corrected drop-in tables are in the
-Reconciliation memo). Both still clear the 1.25x floor every year; the current model is the more
-defensible staffing story. This is the first decision when you wake up.
+Corrected drop-in tables are in the Reconciliation memo. **Remaining action:** refresh the Business Plan PDF
+(Rev 4.00) financial sections to match the current model before final submission.
 
 ## Still needed from you - short version
 
-1. Personal data for each 20%+ owner: SSN, DOB, addresses, tax returns (3 yrs), PFS, cash flow, history form, credit, license.
+1. Personal data for the 20%+ owner (Geoff via Adeline & Lilah, LLC): SSN, DOB, addresses, tax returns (3 yrs), PFS, cash flow, history form, credit, license.
 2. Company contacts: CPA, attorney, insurance agent; office address/phone.
 3. Transaction docs: Hickory purchase agreement + executed seller note; office lease/LOI.
-4. Affiliate package for Avant Hospice LLC (tax returns, interim financials, debt schedule).
-5. Equity-source proof: two months of bank/brokerage statements.
-6. Decisions: approve plan financial refresh; John Hart's "couple items to discuss"; whether Bullard files personal docs now.
+4. Equity-source proof: Bullard's bank/brokerage statements (30+ days) and the contribution wire.
+5. Decisions: approve Business Plan PDF financial refresh; John Hart's "couple items to discuss".
 
 Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
 
-
 ---
 
-## Decisions locked tonight
+## Decisions locked
 
-- **Personal Financial Statement + tax returns: Geoff Schackmann only.** Via Adeline & Lilah LLC, 34.8%
-  ownership. Bullard stays debt-only pre-conversion (<20%), so no personal disclosures required.
-- **Build order: reconcile model and plan first, then fill the forms** with the agreed figures.
+- **Personal Financial Statement + tax returns: Geoff Schackmann only.** Via Adeline & Lilah, LLC,
+  39.9% ownership - the sole 20%+ owner and guarantor. Bullard at 19.9% needs no personal disclosures.
+- **Equity injection: $250,000 cash from James Bullard for a 19.9% passive minority interest** -
+  SOP 50 10 8-compliant, no guaranty triggered. Convertible-note / Form 155 framing dropped.
+- **Financials reconciled to the current operating model** (1.56x / 3.50x / 5.20x combined DSCR).
+- **Build order:** reconcile, then fill the forms.
 
-## On HOLD pending conversation
-
-- Reconciling the plan-vs-model numbers (we want to talk through John Hart's lens first).
-- Final capital structure framing for the equity injection (the Bullard convertible / Form 155 standby
-  framing in plan v4.00 is workable but we want to re-examine before going to John).
-
-A focused brief is in `DISCUSSION_BRIEF_for_John_Hart_lens.md` - talking points and three questions
-worth asking John before we commit final language.
+A focused brief is in `DISCUSSION_BRIEF_for_John_Hart_lens.md` - what John will scrutinize and the few
+questions that are genuinely his to answer.

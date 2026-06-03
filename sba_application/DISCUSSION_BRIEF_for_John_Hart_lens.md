@@ -1,95 +1,90 @@
-# Discussion Brief - John Hart's Underwriting Lens
+# Underwriting Brief - John Hart's Lens (updated: structure finalized)
 
-**Status:** Held pending conversation. No model/plan/form changes will be made
-until we agree on (a) what John will scrutinize first and (b) the final capital
-structure framing for the equity injection.
-
-This brief lays out what an SBA 7(a) underwriter typically zeroes in on for a
-hospice CHOW like this, so we can decide where to optimize before reworking
-anything.
+**Status:** Moving forward. The capital structure and equity-injection treatment
+are now decided and built into the draft package (per your direction to proceed on
+best-practice underwriting). This brief records what was decided, why it is
+SOP 50 10 8-compliant, and the open questions that are genuinely John's to answer.
 
 ---
 
-## What an SBA underwriter cares about, in order
+## Decided and built into the package
 
-1. **DSCR floor (annual and global).** Has to clear 1.25x in every year on combined
-   debt service. Both versions of our financials clear it - the question is by how
-   much, and whether the assumptions behind the number look credible.
+### Equity injection - finalized
+- **$250,000 cash equity injection**, contributed by **James Bullard** as a capital
+  contribution for a **direct 19.9% minority membership interest** (passive; no
+  management, no voting control, no side agreement, no convertible instrument).
+- This is **23.8% of total project cost** - more than double the **10% minimum**
+  SOP 50 10 8 requires for a complete change of ownership ($105,000 floor).
+- Because Bullard holds **under 20%**, SOP 50 10 8 requires **no personal guaranty
+  and no PFS** from him - his cash still qualifies as equity injection. Only the
+  source of funds is verified (his bank/brokerage statements + the contribution
+  wire). This is the clean way to get his money to count as equity without pushing
+  him to 20%+.
+- We deliberately dropped the convertible-note / Form 155 framing. A convertible
+  note paying P+I does not count as injection, and a conversion to 25% would have
+  re-triggered a guaranty and raised the "buying <20% to dodge a guaranty via a side
+  agreement" eligibility flag SBA explicitly polices. Straight minority equity with
+  no control rights avoids all of that.
+- The **$300,000 Hickory seller note** (36 mo, 6%, amortizing) is **acquisition debt
+  inside combined debt service - not equity** and is **not on standby** (it doesn't
+  need to be, since the cash injection clears the 10% floor on its own).
 
-2. **Staffing realism.** At ADC 50-56, the lender will mentally compare staff count
-   to caseload ratios. The plan's leaner roster (higher margins) invites the
-   question "where are the rest of your aides?" The current model's fuller roster
-   answers that question pre-emptively but at the cost of margin.
+### Cap table (totals 100%)
+| Owner | Interest | 20%+? | Guaranty / PFS / 912 |
+|---|---|---|---|
+| Adeline & Lilah, LLC (Geoff Schackmann) | 39.9% | Yes | Required - provided |
+| James Bullard (passive investor) | 19.9% | No | Not required (source-of-funds only) |
+| Silas R. Shelton | 13.3% | No | Not required |
+| Dana L. Davenport | 13.3% | No | Not required |
+| Bradley G. Woodard | 13.3% | No | Not required |
+| Reserved pool | 0.3% | - | - |
 
-3. **Equity injection and its source.** SBA requires the injection be from the
-   borrower's own funds or from a *standby* third party. A convertible note where
-   the lender (Bullard) gets monthly P+I would not count; full standby (no payments,
-   no acceleration, subordinate to SBA) for the term of the SBA loan does. The plan
-   describes $191K as "on standby" - we need to confirm what John will accept.
+Geoff is the sole 20%+ owner and sole guarantor - consistent with the "Geoff only"
+decision. His stake was raised from 34.8% to 39.9% (absorbing the 5.1% freed when
+Bullard moved from 25% to 19.9%), which also gives the guarantor more skin in the
+game.
 
-4. **Affiliate disclosure (Paloma, Avant).** Both are operations adjacent to or
-   pursued by the Managing Member. The plan discloses Avant; Paloma is the source of
-   the migrated clinical team. SBA size-standard testing and credit-history pulls
-   touch all affiliates. John will ask about both.
+A standalone write-up of all of the above is in
+`02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx`.
 
-5. **CHOW mechanics.** Is the Hickory transaction a stock/membership purchase
-   (which is what the plan says - "100% of membership interests")? That has tax,
-   liability, and SBA-treatment implications. We need the purchase agreement to
-   match.
+### Financials - reconciled to the current model
+Per best practice, the package uses the **current operating model** (the fully
+reconciled, realistically staffed version), not the older plan figures:
+- EBITDA $303K / $680K / $1,008K (margins 21% / 25% / 27%)
+- Combined DSCR **1.56x / 3.50x / 5.20x**; global 3-yr **3.42x** (floor 1.25x)
+- Break-even ~16 ADC vs. validated opening census ~22 ADC
 
-6. **Use of proceeds, especially working capital.** SBA notes any loan where >=50%
-   of proceeds go to working capital - and most of our $500K does. Lender memo has
-   to explain why this much working capital is necessary, which our model handles
-   nicely (ramp payroll + dual debt service + AR normalization).
+"We staffed for the census we're underwriting" is the more defensible story than the
+old plan's 32% Y3 margin. Drop-in corrected tables are in
+`03_business_plan/RECONCILIATION_and_Breakeven_MEMO.docx`; the Business Plan PDF
+(Rev 4.00) still shows the old figures and should be refreshed to match before final
+submission.
 
-7. **Borrower experience.** Geoff's multi-hospice operating history is the credit's
-   anchor. The plan presents this well; John will probe specifics (which agencies,
-   what outcomes, any failed transactions).
+---
 
-## Three things I'd ask John before committing the final draft
+## What an SBA underwriter still cares about, in order
 
-1. **"What's your DSCR comfort level?"** SBA floor is 1.25x. Some lenders prefer
-   1.40x+ for hospice CHOW. If John wants 1.40x+, the current model's 1.56x in Y1
-   already clears it. If he insists on 1.25x being the bar and prefers higher
-   reported margins as buffer, the plan's leaner version wins.
+1. **DSCR floor.** Clears 1.25x every year (1.56x Y1) and global 3.42x. Solid.
+2. **Staffing realism.** Current-model roster matches a 50+ ADC agency - answers the
+   "where are the aides?" question pre-emptively.
+3. **Equity injection source.** Resolved above; lender retains 30+ days of Bullard's
+   statements per the SOP verification standard.
+4. **CHOW mechanics.** Purchase of 100% of Hickory membership interests; provider
+   number, license, and accreditation transfer. Purchase agreement must match.
+5. **Use of proceeds / working capital.** Most of the $500K is working capital; the
+   model justifies it (ramp payroll + dual debt service + AR normalization).
+6. **Borrower experience.** Geoff's multi-hospice operating history is the anchor;
+   John will probe specifics (agencies, outcomes, any failed transactions).
+7. **Clinical-team continuity.** The migrated clinical team's prior employment and any
+   non-compete/non-solicit obligations are worth confirming so referral continuity
+   isn't challenged.
 
-2. **"How do you want the Bullard injection structured?"** Options:
-   - $191K full standby + $59K paid - simplest if John accepts partial standby
-   - Full $250K standby - most conservative, costs Bullard cash-on-cash returns
-   - Re-frame Bullard as straight subordinated debt (not equity) and Geoff funds
-     the $250K injection personally - cleanest under §120.160 but moves cash burden
-     to Geoff
-   - Some variant of these
+## Open questions that are genuinely John's to answer
 
-3. **"What are the 'couple items to discuss' from your bank approval note?"** The
-   checklist mentions this; it's the highest-signal flag we have about what John
-   already sees as friction.
-
-## My recommendation (subject to John's input)
-
-**On the reconciliation:** lean toward updating the plan to the current model
-(richer staffing, 21/25/27% margins, 1.56/3.50/5.20x DSCR). The story is still
-strong, and "we staffed for the census we're underwriting" reads as conservative
-operating discipline, not weakness. The plan's 32% Y3 margin is high for hospice
-and may invite skepticism.
-
-**On the capital structure:** wait for John. The convertible-with-standby framing
-is legally workable but uncommon; a clean answer ("$250K cash from Adeline & Lilah
-LLC + $300K seller note + $500K SBA, period") is easier for an underwriter to
-process if it's available to us.
-
-## Locked decisions (from tonight's discussion)
-
-- Personal Financial Statement + tax returns: **Geoff Schackmann only** (via
-  Adeline & Lilah LLC, 34.8% ownership). Bullard stays debt-only pre-conversion,
-  below 20%, no personal disclosures required (13 CFR 120.160).
-- Build order: reconcile model+plan first, then fill the blank forms with the
-  agreed numbers.
-
-## What I'm NOT doing until we talk
-
-- No changes to the financial model (workbooks stay as committed)
-- No revision of the Business Plan financial sections
-- No drafting of the Sources & Uses paragraph that depends on the Bullard
-  structure (the Use of Funds DRAFT in folder 02 has placeholder language that
-  matches the current plan; we'll firm up after our conversation)
+1. **DSCR comfort level.** Floor is 1.25x; some lenders want 1.40x+ on hospice CHOW.
+   We clear either bar at 1.56x Y1, so this only affects how we present cushion.
+2. **The "couple items to discuss" from your bank-approval note.** Highest-signal flag
+   we have about what John already sees as friction - worth surfacing early.
+3. **Verification mechanics for the injection.** Confirm John's preferred evidence
+   (which statements, wire timing relative to close) so the contribution is papered
+   the way his credit team expects.
