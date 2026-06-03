@@ -25,6 +25,7 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | - | Financial Model (3 workbooks) | **COMPLETE** | `09_financial_model/` |
 | - | Entity documents / EIN letter | needs you | `08_entity_documents/` |
 | - | Tax returns, bank statements, purchase agreement | needs you | `10_supporting_documents/` |
+| - | PFS support - VistaRiver MIPA + note | **PROVIDED** (8/15/2025) | `10_supporting_documents/personal_financial_statement_support/` |
 
 ---
 
@@ -74,10 +75,11 @@ Corrected drop-in tables are in the Reconciliation memo. **Remaining action:** r
 ## Still needed from you - short version
 
 1. Personal data for the 20%+ owner (Geoff via Adeline & Lilah, LLC): SSN, DOB, addresses, tax returns (3 yrs), PFS, cash flow, history form, credit, license.
-2. Company contacts: CPA, attorney, insurance agent; office address/phone.
-3. Transaction docs: Hickory purchase agreement + executed seller note; office lease/LOI.
-4. Equity-source proof: Bullard's bank/brokerage statements (30+ days) and the contribution wire.
-5. Decisions: approve Business Plan PDF financial refresh; John Hart's "couple items to discuss".
+2. PFS asset support for Geoff: VistaRiver MIPA + note is in the file; still need a VistaRiver payment ledger / recent statement confirming the note is current, plus any other PFS assets (real estate, retirement, etc.).
+3. Company contacts: CPA, attorney, insurance agent; office address/phone.
+4. Transaction docs: Hickory purchase agreement + executed seller note; office lease/LOI.
+5. **Equity-injection verification: Bullard's bank/brokerage statements (30+ days, in his name) showing the $250,000, plus the contribution wire into the company account.** SOP 50 10 8 requires this even though Bullard is under 20% with no PFS/guaranty.
+6. Decisions: approve Business Plan PDF financial refresh; John Hart's "couple items to discuss".
 
 Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
 

@@ -398,7 +398,17 @@ def information_needed():
               "Three years of personal tax returns (all schedules, W-2s, 1099s)",
               "Resume / Management Resume personal fields (SSN, DOB, addresses, dates, spouse, military, education)",
               "Credit report and driver license",
-              "Two months of bank / brokerage statements showing the equity injection source"]:
+              "PFS asset support: the executed VistaRiver MIPA + Promissory Note (already in folder 10) and",
+              "  a current VistaRiver payment ledger or recent statements confirming the note is current",
+              "Any other PFS assets to disclose (real estate, retirement accounts, vehicles, other investments)"]:
+        para(d, "  - " + x)
+    h2(d, "B2. Equity injection verification (James Bullard, contributor)")
+    para(d, "These items verify the source of the $250,000 cash equity injection per SOP 50 10 8. "
+            "Required even though Mr. Bullard is under 20% and provides no personal guaranty.", italic=True, size=9)
+    for x in ["Mr. Bullard's bank or brokerage statements - at least 30 days, in his name, showing the $250,000 available",
+              "Evidence of the wire/transfer of the $250,000 capital contribution into the company's bank account",
+              "If any portion of the source funds is from sale of an asset or from another account, the trail/statements connecting the two",
+              "(Note: this does NOT require a PFS, Form 912, or tax returns from Mr. Bullard - only source-of-funds documentation)"]:
         para(d, "  - " + x)
     h2(d, "C. Transaction documents")
     for x in ["Hickory CHOW purchase agreement (Asset/Membership Purchase Agreement)",
