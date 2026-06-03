@@ -94,20 +94,20 @@ def company_profile():
     field(d, "Date current management assumed control", "At CHOW close (see business plan, Section 10)")
     field(d, "Federal Taxpayer Identification Number (EIN)", "41-4966640")
     field(d, "Web Address", TBD)
-    field(d, "Address", TBD + "  (principal office, Tyler, TX area)")
+    field(d, "Address", "Tyler, TX area (office lease in negotiation - candidate sites include 13387 Hwy 69 N and others)")
     field(d, "City / County / State / Zip", "Tyler / Smith / TX / " + TBD)
-    field(d, "Contact / Phone / Fax", TBD)
+    field(d, "Contact / Phone / Fax", "Geoff Schackmann, Managing Member - 480-495-5474 - geoff@azaleahospice.com")
     field(d, "Number of employees at application", "9 (Year-1 staggered roster)")
     field(d, "Number of employees when loan approved", "Scales to ~25+ FT by Year 3 on census triggers")
     para(d, "")
     h2(d, "Company Ownership (100% must be shown)")
     table(d,
           ["#", "Name and Address", "SSN / EIN", "Ownership %", "Company Title", "Email"],
-          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member", TBD, "39.9%", "Managing Member of Tyler Hospice Hold LLC", TBD],
-           ["2", "James Bullard", TBD, "19.9%*", "Minority investor member (passive; no management or control role)", TBD],
-           ["3", "Silas R. Shelton", TBD, "13.3%**", "Executive Director", TBD],
+          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member - 4602 E Cheery Lynn Rd, Phoenix, AZ 85018", TBD, "39.9%", "Managing Member of Tyler Hospice Hold LLC", "geoff@azaleahospice.com"],
+           ["2", "James E. Bullard - 13910 Indiana Ave, Suite 300, Lubbock, TX 79423", TBD, "19.9%*", "Minority investor member (passive; no management or control role)", "jimbullard01@aol.com"],
+           ["3", "Silas R. Shelton - 1503 Lake Park Circle, Hideaway, TX 75771", TBD, "13.3%**", "Executive Director", "silas@azaleahospice.com"],
            ["4", "Dana L. Davenport", TBD, "13.3%**", "Director of Nursing", TBD],
-           ["5", "Bradley G. Woodard", TBD, "13.3%**", "Director of Sales", TBD]],
+           ["5", "Bradley G. Woodard - 421 W Cumberland Rd, Apt 403, Tyler, TX 75703", TBD, "13.3%**", "Director of Sales", TBD]],
           widths=[0.3, 2.4, 1.0, 0.8, 1.4, 1.2])
     para(d, "*James Bullard holds a direct, fully funded minority equity interest of 19.9% - below the 20% "
             "threshold - as a passive investor. He has no management authority, no voting control, and no side "

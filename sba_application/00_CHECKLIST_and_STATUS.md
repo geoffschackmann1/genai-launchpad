@@ -30,6 +30,8 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | 9 | Lender Credit Memo (executive summary) | **DRAFTED** | `11_lender_credit_memo/` |
 | 9a | DSCR Sensitivity / Stress Test | **DRAFTED** | `11_lender_credit_memo/` |
 | 9b | Bullard No-Control Attestation (template) | **DRAFTED** | `08_entity_documents/` |
+| - | Operating Agreement v7 (existing draft) | **PROVIDED** - reconciliation needed | `08_entity_documents/Tyler_Hospice_HoldCo_OA_v7_AS_PROVIDED.docx` |
+| - | OA Reconciliation Memo (5 conflicts) | **DRAFTED** - awaiting direction | `08_entity_documents/OA_RECONCILIATION_MEMO.md` |
 
 ---
 
