@@ -403,13 +403,19 @@ def information_needed():
               "Any other PFS assets to disclose (real estate, retirement accounts, vehicles, other investments)"]:
         para(d, "  - " + x)
     h2(d, "B2. Equity injection verification (James Bullard, contributor)")
-    para(d, "These items verify the source of the $250,000 cash equity injection per SOP 50 10 8. "
-            "Required even though Mr. Bullard is under 20% and provides no personal guaranty.", italic=True, size=9)
-    for x in ["Mr. Bullard's bank or brokerage statements - at least 30 days, in his name, showing the $250,000 available",
-              "Evidence of the wire/transfer of the $250,000 capital contribution into the company's bank account",
-              "If any portion of the source funds is from sale of an asset or from another account, the trail/statements connecting the two",
-              "(Note: this does NOT require a PFS, Form 912, or tax returns from Mr. Bullard - only source-of-funds documentation)"]:
+    para(d, "Tranche 1 of $100,000 is confirmed received - Mercury (Column N.A.) acct ****1275, May 7, 2026 wire "
+            "from JIM BULLARD; balance still held as of June 3, 2026. Tranches 2 ($TBD, June 2026) and 3 ($TBD, "
+            "July 2026) are committed and outstanding. The following remain needed; SOP 50 10 8 source-of-funds "
+            "verification is required for each tranche even though Mr. Bullard is under 20% (no PFS, Form 912, "
+            "tax returns, or guaranty required of him).", italic=True, size=9)
+    for x in ["Mr. Bullard's bank or brokerage statements - in his own name - covering 30+ days BEFORE each wire, showing the funds available",
+              "Wire/transfer confirmations for the June and July tranches as they land",
+              "Final Mercury statement (or trailing-day balance) showing the full $250,000 has been received once Tranche 3 lands",
+              "Save the screenshot/PDF of Mercury acct ****1275 showing the May 7 wire under 10_supporting_documents/equity_injection_evidence/"]:
         para(d, "  - " + x)
+    para(d, "Timing flag for John Hart: SBA disbursement should occur after the July tranche lands, OR a "
+            "disbursement holdback should cover the un-funded balance at closing, OR tranches 2 and 3 should be "
+            "accelerated. The injection is sound; only the schedule needs coordination.", italic=True, size=9)
     h2(d, "C. Transaction documents")
     for x in ["Hickory CHOW purchase agreement (Asset/Membership Purchase Agreement)",
               "Executed Hickory seller note ($300,000, 36 months, 6%) and security documentation",
@@ -475,6 +481,23 @@ def equity_injection_memo():
             "investor's bank / brokerage statements and the capital-contribution wire into the company's account, "
             "with funds seasoned in the contributor's account (lender to retain 30+ days of statements per the SOP "
             "verification standard).")
+    h2(d, "1a. Contribution status and schedule")
+    para(d, "The injection is being contributed in tranches to the borrower's Mercury (Column N.A.) operating "
+            "account ending 1275. As of the date of this memo:")
+    table(d, ["Tranche", "Date", "Amount", "Method", "Status"],
+          [["1 of 3", "May 7, 2026", "$100,000", "Wire from James Bullard", "RECEIVED - in account"],
+           ["2 of 3", "June 2026", "(scheduled)", "Wire from James Bullard", "Committed"],
+           ["3 of 3", "July 2026", "(scheduled)", "Wire from James Bullard", "Committed"],
+           ["Total", "", "$250,000", "", ""]],
+          widths=[0.8, 1.2, 1.2, 2.0, 1.6])
+    para(d, "Evidence on file: Mercury account balance and transaction record dated June 3, 2026 showing the "
+            "May 7, 2026 incoming wire of $100,000 from JIM BULLARD with the $100,000 balance still held (only "
+            "de-minimis Gusto payroll-test ACH activity since). Source-of-funds statements in Mr. Bullard's name "
+            "covering the 30+ days prior to each wire will be retained for each tranche per SOP 50 10 8.", italic=True, size=9.5)
+    para(d, "Closing timing: SOP 50 10 8 requires the full equity injection to be on deposit at or before SBA "
+            "loan disbursement. Either (a) SBA closing/disbursement is scheduled after the July tranche lands, "
+            "or (b) a disbursement holdback is established equal to any un-funded balance at closing. The "
+            "borrower can also accelerate tranches 2 and 3 if a faster close is preferred.", italic=True, size=9.5)
     h2(d, "2. The seller note does not need to - and does not - count as equity")
     para(d, "Under SOP 50 10 8, seller debt counts toward the injection only if it is on full standby (no "
             "principal or interest) for the life of the SBA loan, and even then for no more than 50% of the "

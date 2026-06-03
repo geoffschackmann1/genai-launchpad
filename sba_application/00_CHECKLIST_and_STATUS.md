@@ -26,6 +26,7 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | - | Entity documents / EIN letter | needs you | `08_entity_documents/` |
 | - | Tax returns, bank statements, purchase agreement | needs you | `10_supporting_documents/` |
 | - | PFS support - VistaRiver MIPA + note | **PROVIDED** (8/15/2025) | `10_supporting_documents/personal_financial_statement_support/` |
+| - | Equity injection - Tranche 1 ($100K) wire | **CONFIRMED** (5/7/2026) | `10_supporting_documents/equity_injection_evidence/` |
 
 ---
 
@@ -78,7 +79,8 @@ Corrected drop-in tables are in the Reconciliation memo. **Remaining action:** r
 2. PFS asset support for Geoff: VistaRiver MIPA + note is in the file; still need a VistaRiver payment ledger / recent statement confirming the note is current, plus any other PFS assets (real estate, retirement, etc.).
 3. Company contacts: CPA, attorney, insurance agent; office address/phone.
 4. Transaction docs: Hickory purchase agreement + executed seller note; office lease/LOI.
-5. **Equity-injection verification: Bullard's bank/brokerage statements (30+ days, in his name) showing the $250,000, plus the contribution wire into the company account.** SOP 50 10 8 requires this even though Bullard is under 20% with no PFS/guaranty.
+5. **Equity-injection verification:** Tranche 1 = $100K wire on May 7, 2026 from JIM BULLARD into Mercury ****1275 is CONFIRMED (screenshot on file). Still needed: (a) Bullard's bank/brokerage statements in his name covering 30+ days before each wire; (b) wires for the June and July tranches as they land; (c) final Mercury statement showing the full $250K after Tranche 3.
+5a. **Closing timing decision:** SBA disbursement should land after the July tranche, or a holdback should cover any un-funded balance at close, or tranches 2-3 should be accelerated. Coordinate with John Hart.
 6. Decisions: approve Business Plan PDF financial refresh; John Hart's "couple items to discuss".
 
 Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
@@ -91,6 +93,7 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
   39.9% ownership - the sole 20%+ owner and guarantor. Bullard at 19.9% needs no personal disclosures.
 - **Equity injection: $250,000 cash from James Bullard for a 19.9% passive minority interest** -
   SOP 50 10 8-compliant, no guaranty triggered. Convertible-note / Form 155 framing dropped.
+  Phased: **$100K wire confirmed May 7, 2026**; balance $150K committed for June and July 2026.
 - **Financials reconciled to the current operating model** (1.56x / 3.50x / 5.20x combined DSCR).
 - **Build order:** reconcile, then fill the forms.
 
