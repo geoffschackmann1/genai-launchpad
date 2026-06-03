@@ -66,3 +66,21 @@ defensible staffing story. This is the first decision when you wake up.
 6. Decisions: approve plan financial refresh; John Hart's "couple items to discuss"; whether Bullard files personal docs now.
 
 Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
+
+
+---
+
+## Decisions locked tonight
+
+- **Personal Financial Statement + tax returns: Geoff Schackmann only.** Via Adeline & Lilah LLC, 34.8%
+  ownership. Bullard stays debt-only pre-conversion (<20%), so no personal disclosures required.
+- **Build order: reconcile model and plan first, then fill the forms** with the agreed figures.
+
+## On HOLD pending conversation
+
+- Reconciling the plan-vs-model numbers (we want to talk through John Hart's lens first).
+- Final capital structure framing for the equity injection (the Bullard convertible / Form 155 standby
+  framing in plan v4.00 is workable but we want to re-examine before going to John).
+
+A focused brief is in `DISCUSSION_BRIEF_for_John_Hart_lens.md` - talking points and three questions
+worth asking John before we commit final language.
