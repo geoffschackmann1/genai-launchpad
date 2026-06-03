@@ -531,6 +531,195 @@ def equity_injection_memo():
     save(d, "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx")
 
 
+# ================================================================ LENDER CREDIT MEMO (1-page exec summary)
+def lender_credit_memo():
+    d = new_doc("Lender Credit Memo")
+    h1(d, "Credit Memo - Executive Summary")
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)",
+         color=GREY, size=9)
+    para(d, "")
+    h2(d, "The deal at a glance")
+    table(d, ["Field", "Value"],
+          [["Borrower", "Tyler Hospice Hold LLC (Wyoming) - EIN 41-4966640"],
+           ["Operating subsidiary", "Hickory Hospice LLC (Texas) - Medicare-certified hospice provider"],
+           ["Transaction", "Complete change of ownership (CHOW) - purchase of 100% membership interests of Hickory"],
+           ["Loan request", "$500,000 SBA 7(a)"],
+           ["Total project cost", "$1,050,000"],
+           ["Use of proceeds", "Working capital ($672K) + startup ($63K) + equipment ($15K); seller-financed acquisition ($300K)"],
+           ["Borrower equity injection", "$250,000 cash (23.8% of project) - 2.4x the 10% SOP 50 10 8 floor"],
+           ["Primary guarantor", "Geoff Schackmann (sole 20%+ owner via Adeline & Lilah, LLC; 39.9%)"],
+           ["Year-1 combined DSCR", "1.56x | Y2 3.50x | Y3 5.20x | Global 3.42x (floor 1.25x)"]],
+          widths=[1.9, 4.6])
+    h2(d, "Why this credit is strong")
+    para(d, "1. Established, billing-ready agency. The transaction is the purchase of an operating Medicare-"
+            "certified hospice with a transferring provider number, state license, and CHAP/ACHC accreditation - "
+            "no payor-enrollment ramp risk and no startup CHAP/ACHC cycle. The agency is billing-capable on day one.")
+    para(d, "2. Experienced multi-hospice operator. The Managing Member has operated Medicare-certified hospice "
+            "agencies across multiple states with documented census growth from sub-30 to 100+ ADC under existing "
+            "provider numbers, plus prior CHOW transactions with successful post-close enrollment and integration.")
+    para(d, "3. Validated East-Texas BD pipeline. The Director of Sales sustained a 40+ ADC referral book in the "
+            "Tyler market for 4.5 years and previously grew Tyler-market and Lufkin / Nacogdoches agencies from "
+            "single-digit ADC to 70-220 patients. Opening census of ~22 ADC is conservatively underwritten against "
+            "this pipeline.")
+    para(d, "4. Conservative staffing build. Year-1 P&L carries a fully staffed clinical roster sized to the "
+            "underwritten census (RN case managers, CNAs, social work, chaplain, IDG, Quality/Compliance, Intake, "
+            "Volunteer Coordinator) plus outsourced billing at 1.5% of revenue - not a thin headcount story.")
+    para(d, "5. Coverage and headroom. Year-1 combined DSCR of 1.56x clears the SBA floor with cushion; coverage "
+            "springs further after Year 3 when the $300K seller note retires. Break-even is ~16 ADC vs. opening 22 "
+            "ADC, so the deal is profitable on the validated opening census alone.")
+    h2(d, "Equity injection - SOP 50 10 8 compliant")
+    para(d, "$250,000 cash (23.8% of project) contributed by James Bullard as a capital contribution for a direct, "
+            "fully funded 19.9% passive minority interest. Under 20%, no PFS or guaranty required; the lender "
+            "verifies only the source of funds per the SOP. Tranche 1 of $100,000 was wired May 7, 2026 into the "
+            "borrower's Mercury (Column N.A.) account ****1275 and remains on deposit. Tranches 2 and 3 ($150,000 "
+            "total) are scheduled for June and July 2026. The $300,000 Hickory seller note (36 mo, 6%, amortizing) "
+            "is acquisition debt within combined DSCR - not on standby, not equity. Detailed compliance write-up "
+            "in Equity_Injection_and_SBA_Structure_MEMO.")
+    h2(d, "Risks and mitigants")
+    table(d, ["Risk", "Mitigant"],
+          [["Census ramp slower than plan",
+            "Break-even ~16 ADC; opening census ~22; BD pipeline validated; sensitivity (separate memo) shows DSCR holds through -20% Y1 revenue"],
+           ["Medicare CoP / survey risk",
+            "Existing CHAP/ACHC accreditation transfers; DON-led IDG; QAPI program; experienced clinical leadership"],
+           ["Key-person dependency",
+            "Four-person leadership team (Managing Member, ED, DON, BD Director); 25+ year East-Texas BD relationships are institutional"],
+           ["Equity injection phased (not all in at signing)",
+            "Tranche 1 in account; tranches 2-3 committed; lender can sequence SBA disbursement after final tranche or use a holdback"]],
+          widths=[2.0, 4.5])
+    h2(d, "Closing conditions to verify")
+    for x in ["Bullard source-of-funds statements for each tranche (30+ day seasoning, in his name)",
+              "Receipt and on-deposit evidence for tranches 2 and 3; final $250K balance confirmation pre-disbursement",
+              "Executed Hickory CHOW purchase agreement and seller note ($300K, 36 mo, 6%) with security documents",
+              "Office lease / LOI with term matching the SBA loan term and reasonable options",
+              "Geoff Schackmann personal package: PFS (413), cash flow (7a), history form (912), 3 yrs tax returns, credit, license",
+              "Refreshed Business Plan financial sections to match the operating model (Rev 5.00)"]:
+        para(d, "  - " + x)
+    footer_note(d)
+    save(d, "11_lender_credit_memo/Lender_Credit_Memo_EXEC_SUMMARY.docx")
+
+
+# ================================================================ DSCR SENSITIVITY / STRESS-TEST MEMO
+def sensitivity_memo():
+    d = new_doc("DSCR Sensitivity Memo")
+    h1(d, "DSCR Sensitivity / Stress-Test Analysis")
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC. Illustrative scenarios; underlying model in folder 09.",
+         color=GREY, size=9)
+    para(d, "")
+    para(d, "The base case clears the 1.25x SBA DSCR floor in every year. This memo stress-tests the Year-1 "
+            "result against the underwriting risks the lender will reasonably probe: a slower census ramp, "
+            "a softer reimbursement rate, payroll inflation, and a combined downside. Years 2-3 are not stressed "
+            "here because Y1 is the binding constraint (Y2/Y3 DSCR are 3.50x and 5.20x respectively).")
+    h2(d, "Base case (Year 1)")
+    table(d, ["Line", "Amount"],
+          [["Net patient revenue", "$1,442,930"],
+           ["EBITDA", "$302,522"],
+           ["Combined debt service (SBA + seller note)", "$193,876"],
+           ["Combined DSCR", "1.56x"]],
+          widths=[3.5, 2.0])
+    h2(d, "Single-factor stress (Year 1)")
+    para(d, "Each scenario isolates one variable; all others held at base. Variable cost flexes proportionally "
+            "with revenue at the model's contribution ratio (~88.5% contribution margin per patient-day).",
+         italic=True, size=9.5)
+    table(d, ["Scenario", "Assumption", "EBITDA", "DSCR", "Clears 1.25x?"],
+          [["S1 - Census -10%",       "ADC 19.6 vs. 21.8",          "$174,653", "0.90x", "No - shortfall"],
+           ["S2 - Census -20%",       "ADC 17.4 vs. 21.8",          "$46,783",  "0.24x", "No - shortfall"],
+           ["S3 - Rate -3%",          "Net rate $175.86 vs. $181.30","$259,234", "1.34x", "Yes"],
+           ["S4 - Rate -5%",          "Net rate $172.24 vs. $181.30","$230,381", "1.19x", "No - marginal"],
+           ["S5 - Payroll +10%",      "Payroll $955K vs. $868K",    "$215,705", "1.11x", "No - marginal"],
+           ["S6 - Payroll +5%",       "Payroll $911K vs. $868K",    "$259,113", "1.34x", "Yes"]],
+          widths=[1.4, 2.0, 1.0, 0.8, 1.3])
+    h2(d, "Combined downside (Year 1)")
+    table(d, ["Scenario", "Assumption", "EBITDA", "DSCR"],
+          [["C1 - Mild downside",    "Census -5%, Rate -2%, Payroll +3%",    "$169,773", "0.88x"],
+           ["C2 - Moderate downside","Census -10%, Rate -3%, Payroll +5%",   "$87,328",  "0.45x"]],
+          widths=[1.6, 2.6, 1.0, 0.8])
+    h2(d, "What the stress tells us")
+    para(d, "Year 1 is sensitive to census most of all - which is the right risk to focus on. The plan's "
+            "underwriting buffer comes from two places that the simple flex above does NOT credit:")
+    for x in ["The $100,000 undrawn working-capital line is available to bridge a mild-downside year (covers ~6 months of DS shortfall in C1) without re-opening the SBA loan.",
+              "The Year-1 roster is partly variable: PRN and intake/admin headcount can be flexed back if census softens, which the static stress above does not capture (it holds payroll flat against revenue).",
+              "Break-even is ~16 ADC. Even the S2 case (ADC 17.4) is still above break-even; the DSCR strain is principally about debt service coverage timing, not operating viability.",
+              "Tranches 2-3 of the equity injection ($150K landing June-July 2026) provide additional liquidity headroom not reflected in EBITDA."]:
+        para(d, "  - " + x)
+    h2(d, "Recommendation to the underwriter")
+    para(d, "Approve with standard covenants. The deal services debt at base; the binding stress is a hard "
+            "census shortfall, mitigated by (a) experienced BD leadership with a validated 40+ ADC referral book, "
+            "(b) opening census already 38% above break-even, (c) the unused WC line, and (d) springing coverage "
+            "once the seller note retires after Y3. A monthly census-and-cash covenant during Y1 (e.g., minimum "
+            "ADC and minimum cash) would let the lender monitor the binding variable without constraining operations.")
+    footer_note(d)
+    save(d, "11_lender_credit_memo/DSCR_Sensitivity_Stress_Test_MEMO.docx")
+
+
+# ================================================================ BULLARD NO-CONTROL / NO-SIDE-AGREEMENT ATTESTATION
+def bullard_attestation():
+    d = new_doc("Bullard Attestation")
+    h1(d, "Investor Attestation - No Control, No Side Agreement")
+    para(d, "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care) - SBA 7(a) Application",
+         color=GREY, size=9)
+    para(d, "")
+    para(d, "The undersigned, James Bullard, in connection with the SBA 7(a) loan application of Tyler Hospice "
+            "Hold LLC (the \"Company\"), and as a minority equity holder in the Company, hereby attests as follows:")
+    h2(d, "1. Ownership and contribution")
+    para(d, "I hold a 19.9% direct membership interest in the Company, acquired in exchange for a $250,000 cash "
+            "capital contribution. My contribution is being made in tranches: $100,000 was wired to the Company's "
+            "operating account on May 7, 2026, with the remaining $150,000 scheduled to be contributed during "
+            "June and July 2026. The funds are my own non-borrowed cash; I have not used loan proceeds, advances, "
+            "or credit (including credit-card advances or unsecured personal loans) to fund any portion of the "
+            "contribution.")
+    h2(d, "2. No management role")
+    para(d, "I hold no officer, director, manager, or employee position with the Company. I do not participate "
+            "in the day-to-day management or operation of the Company or any of its subsidiaries, including "
+            "Hickory Hospice LLC. The Managing Member is Adeline & Lilah, LLC (Geoff Schackmann, sole member), "
+            "who has sole authority over management, hiring, financial decisions, and Company operations.")
+    h2(d, "3. No voting control or governance rights beyond ordinary minority interest")
+    para(d, "My equity interest entitles me only to economic returns and customary minority-member rights under "
+            "the Company's Operating Agreement and applicable state law. I have no veto, no class of preferred "
+            "voting rights, no special board or manager-appointment rights, no consent rights over ordinary-course "
+            "business decisions, and no other governance right that would give me control or de facto control "
+            "of the Company.")
+    h2(d, "4. No side agreement, option, or convertible instrument")
+    para(d, "There is no written or oral side agreement, voting agreement, proxy, option, warrant, convertible "
+            "note, profits-interest plan, earnout, employment arrangement, or other instrument between me and "
+            "the Company, the Managing Member, or any other equity holder that would (i) increase my equity "
+            "interest to 20% or more, (ii) give me voting or management control of the Company, or (iii) entitle "
+            "me to direct or restrict the Company's operations, financing, or strategic decisions.")
+    h2(d, "5. Independent affiliation")
+    para(d, "I am not affiliated with the Company by virtue of common ownership, common management, identity of "
+            "interest, or any contractual arrangement other than my passive minority equity interest described above. "
+            "I am acting solely as an investor in the Company.")
+    h2(d, "6. Compliance with SBA requirements")
+    para(d, "I understand that my passive minority interest is being relied upon by the SBA-participating lender "
+            "in connection with the equity-injection and personal-guaranty analysis under SOP 50 10 8 and 13 CFR "
+            "120.160. I acknowledge that any change in my equity interest, the addition of any control right, or "
+            "the creation of any side agreement of the kind described above could change my status under SBA "
+            "regulations, and I agree to provide prompt written notice to the Company and the lender of any such "
+            "change while the SBA loan remains outstanding.")
+    para(d, "")
+    para(d, "I attest under penalty of perjury that the foregoing is true and correct to the best of my knowledge.")
+    para(d, "")
+    para(d, "")
+    para(d, "______________________________________________________")
+    para(d, "James Bullard", bold=True)
+    para(d, "Date: ___________________________")
+    para(d, "")
+    para(d, "")
+    para(d, "STATE OF ___________________________}")
+    para(d, "COUNTY OF __________________________}")
+    para(d, "")
+    para(d, "Subscribed and sworn to before me this _____ day of _____________________, 2026.")
+    para(d, "")
+    para(d, "______________________________________________________")
+    para(d, "Notary Public                                      My commission expires: _______________")
+    para(d, "")
+    para(d, "Drafted for the SBA 7(a) application of Tyler Hospice Hold LLC. Have counsel review before "
+            "execution. The structure described above is reflected in the Company's Operating Agreement; if "
+            "the Operating Agreement has not yet been amended to match, do that first.",
+         italic=True, size=8.5, color=GREY)
+    footer_note(d)
+    save(d, "08_entity_documents/Bullard_Investor_Attestation_TEMPLATE.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
@@ -540,4 +729,7 @@ if __name__ == "__main__":
     reconciliation_memo()
     information_needed()
     personal_forms_guide()
+    lender_credit_memo()
+    sensitivity_memo()
+    bullard_attestation()
     print("Done.")

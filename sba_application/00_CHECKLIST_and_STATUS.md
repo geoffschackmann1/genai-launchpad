@@ -27,6 +27,9 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | - | Tax returns, bank statements, purchase agreement | needs you | `10_supporting_documents/` |
 | - | PFS support - VistaRiver MIPA + note | **PROVIDED** (8/15/2025) | `10_supporting_documents/personal_financial_statement_support/` |
 | - | Equity injection - Tranche 1 ($100K) wire | **CONFIRMED** (5/7/2026) | `10_supporting_documents/equity_injection_evidence/` |
+| 9 | Lender Credit Memo (executive summary) | **DRAFTED** | `11_lender_credit_memo/` |
+| 9a | DSCR Sensitivity / Stress Test | **DRAFTED** | `11_lender_credit_memo/` |
+| 9b | Bullard No-Control Attestation (template) | **DRAFTED** | `08_entity_documents/` |
 
 ---
 
