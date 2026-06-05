@@ -150,6 +150,8 @@ Updated: Use of Funds, Equity Injection memo, Business Debt Schedule (no debt), 
 Lender Credit Memo, DSCR Sensitivity (recomputed SBA-only), Cover Letter + Q&A, Business Plan Rev 5.00
 (all 13 sections), Submission Readiness (B1 resolved). Office = 13387 Hwy 69 N, Tyler.
 
-STILL OPEN: the Excel model workbook (09_financial_model) still reflects the old dual-debt structure
-and needs the seller-note rows removed / WC reset to $372K to produce final figures. The generated
-docs use the hand-computed SBA-only numbers above.
+Excel model RE-CUT (09_financial_model/Azalea_Hospice_SBA_Loan_Package.xlsx): seller note removed, WC
+reset to $372K, opening cash subtracts the license. Independently recalculated and balanced - DSCR
+3.59x / 8.06x / 11.94x (global 7.86x); min cash $264K. See MODEL_RECUT_NOTE.md. NOTE: open in Excel
+once before sending (recalcs on open); the Investor Package and Operations Dashboard workbooks still
+show the old structure.
