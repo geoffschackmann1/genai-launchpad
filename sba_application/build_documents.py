@@ -1434,6 +1434,321 @@ def bullard_attestation_v2():
     save(d, "08_entity_documents/Bullard_Investor_Attestation_v2_DRAFT.docx")
 
 
+# ================================================================ BULLARD SUBSCRIPTION / CAPITAL CONTRIBUTION AGREEMENT
+def bullard_subscription():
+    d = new_doc("Bullard Subscription Agreement")
+    h1(d, "Subscription and Capital Contribution Agreement")
+    para(d, "TYLER HOSPICE HOLDCO L.L.C. - A Wyoming Limited Liability Company", color=GREY, size=9)
+    para(d, "DRAFT for review and execution. The parties are not represented by counsel as to this Agreement; "
+            "independent review is recommended before signing.", italic=True, size=9, color=GREY)
+    para(d, "")
+    para(d, "This Subscription and Capital Contribution Agreement (this \"Agreement\") is entered into as of "
+            "_______________, 2026 (the \"Effective Date\"), by and between Tyler Hospice HoldCo L.L.C., a "
+            "Wyoming limited liability company (the \"Company\"), and James E. Bullard, an individual residing "
+            "at 13910 Indiana Ave, Suite 300, Lubbock, TX 79423 (the \"Investor\"). This Agreement is the "
+            "\"Subscription Agreement\" referenced in Section 11.5 of the Company's Operating Agreement, as "
+            "amended by Amendment No. 1 (together, the \"Operating Agreement\").")
+    h2(d, "1. Subscription")
+    para(d, "The Investor hereby irrevocably subscribes for and agrees to purchase a nineteen and nine-tenths "
+            "percent (19.9%) membership interest in the Company (the \"Interest\") for an aggregate purchase "
+            "price of Two Hundred Fifty Thousand Dollars ($250,000.00) (the \"Purchase Price\"), and the "
+            "Company agrees to issue the Interest to the Investor upon the terms and conditions set forth "
+            "herein and in the Operating Agreement. The Interest is fully earned upon payment and is not "
+            "subject to any vesting, forfeiture, or repurchase condition.")
+    h2(d, "2. Payment of the Purchase Price (tranches)")
+    para(d, "The Investor shall pay the Purchase Price by wire transfer of immediately available funds to the "
+            "Company's operating account in three tranches:")
+    table(d, ["Tranche", "Amount", "Timing", "Status"],
+          [["Tranche 1", "$100,000", "Paid May 7, 2026", "RECEIVED - on deposit"],
+           ["Tranche 2", "$75,000", "On or before June 30, 2026", "Committed"],
+           ["Tranche 3", "$75,000", "On or before July 31, 2026", "Committed"],
+           ["Total", "$250,000", "", ""]],
+          widths=[1.1, 1.1, 2.3, 2.0])
+    para(d, "The parties acknowledge that the $100,000 Tranche 1 wire was received in the Company's Mercury "
+            "(Column N.A.) operating account ending 1275 on May 7, 2026. The Investor's full 19.9% Interest is "
+            "recorded and effective as of the Effective Date; provided that if the Investor fails to fund any "
+            "tranche when due and fails to cure within ten (10) business days of written notice, the Company's "
+            "sole remedy shall be to reduce the Investor's Percentage Interest proportionally to the amount "
+            "actually funded (funded amount / $250,000 x 19.9%), with the unfunded balance reverting to "
+            "Adeline & Lilah, LLC, and the Investor shall have no further obligation as to the unfunded "
+            "portion. The tranche amounts of $75,000 for Tranches 2 and 3 may be adjusted by mutual written "
+            "agreement so long as the full $250,000 is funded on or before July 31, 2026.")
+    h2(d, "3. Source of funds")
+    para(d, "The Investor represents that the entire Purchase Price is and will be funded from the Investor's "
+            "own personal savings and is not borrowed, advanced, or financed by any third party, and is not "
+            "secured directly or indirectly by any assets of the Company or the business being acquired. The "
+            "Investor agrees to provide the Company and its SBA lender with bank or brokerage statements "
+            "evidencing the availability and source of the funds for each tranche, covering at least the "
+            "thirty (30) days prior to each wire, as required by SBA SOP 50 10 8.")
+    h2(d, "4. Use of proceeds")
+    para(d, "The Company shall use the Purchase Price as the borrower equity injection for its SBA 7(a) "
+            "financing and the change-of-ownership acquisition of Hickory Hospice LLC, and for working capital "
+            "of the hospice business, consistent with Section 3.14 of the Operating Agreement.")
+    h2(d, "5. Adoption of the Operating Agreement")
+    para(d, "By executing this Agreement, the Investor (a) adopts, joins, and agrees to be bound by all terms "
+            "of the Operating Agreement as a Member; (b) confirms that the rights associated with the Interest "
+            "are solely those set forth in the Operating Agreement as amended (including the protective "
+            "minority rights and the SBA-related limitations described in Amendment No. 1); and (c) "
+            "acknowledges that the Interest does not confer any day-to-day management or operational control "
+            "of the Company.")
+    h2(d, "6. Investor representations and warranties")
+    para(d, "The Investor represents and warrants to the Company that: (a) the Investor is an \"accredited "
+            "investor\" as defined in Rule 501(a) of Regulation D under the Securities Act of 1933, as amended; "
+            "(b) the Investor is acquiring the Interest for the Investor's own account for investment and not "
+            "with a view to resale or distribution; (c) the Investor has such knowledge and experience in "
+            "financial and business matters as to be capable of evaluating the merits and risks of the "
+            "investment and can bear the economic risk of a total loss; (d) the Investor understands the "
+            "Interest is not registered under federal or state securities laws and is a \"restricted "
+            "security\"; (e) the Investor is a United States citizen or lawful permanent resident; (f) neither "
+            "the Investor nor any entity the Investor controls is excluded, suspended, or debarred from any "
+            "federal or state healthcare program (OIG LEIE / SAM.gov); and (g) the Investor has had the "
+            "opportunity to ask questions of and receive answers from the Manager.")
+    h2(d, "7. Company representations")
+    para(d, "The Company represents that, upon receipt of each tranche, the Interest will be duly issued, "
+            "and that the Company shall record the Investor as a Member on its books and update Exhibit A "
+            "to the Operating Agreement accordingly.")
+    h2(d, "8. Miscellaneous")
+    para(d, "This Agreement, together with the Operating Agreement, constitutes the entire agreement between "
+            "the parties regarding the subject matter and supersedes all prior understandings. This Agreement "
+            "is governed by the laws of the State of Wyoming. It may be executed in counterparts and by "
+            "electronic signature. If any provision conflicts with the Operating Agreement, the Operating "
+            "Agreement controls except as to the tranche payment schedule in Section 2, which controls as to "
+            "payment timing.")
+    para(d, "")
+    para(d, "COMPANY — TYLER HOSPICE HOLDCO L.L.C.", bold=True)
+    para(d, "By: _______________________________________   Date: ____________")
+    para(d, "Geoff Schackmann, Manager")
+    para(d, "")
+    para(d, "INVESTOR", bold=True)
+    para(d, "_______________________________________   Date: ____________")
+    para(d, "James E. Bullard")
+    footer_note(d)
+    save(d, "08_entity_documents/Bullard_Subscription_and_Capital_Contribution_DRAFT.docx")
+
+
+# ================================================================ BULLARD SOURCE-OF-FUNDS LETTER
+def bullard_source_of_funds():
+    d = new_doc("Bullard Source of Funds")
+    h1(d, "Source-of-Funds Letter - Equity Injection")
+    para(d, "SBA 7(a) Application - Tyler Hospice HoldCo L.L.C.  |  Investor: James E. Bullard",
+         color=GREY, size=9)
+    para(d, "Template for the Investor to complete with his bank/brokerage details and sign. Accompanies the "
+            "statements that evidence each tranche.", italic=True, size=9, color=GREY)
+    para(d, "")
+    field(d, "Date", TBD)
+    para(d, "To: [SBA-participating lender] and Tyler Hospice HoldCo L.L.C.")
+    para(d, "")
+    para(d, "Re: Source of $250,000 equity injection into Tyler Hospice HoldCo L.L.C.")
+    para(d, "")
+    para(d, "To Whom It May Concern:")
+    para(d, "I, James E. Bullard, am contributing $250,000 in cash to Tyler Hospice HoldCo L.L.C. (the "
+            "\"Company\") in exchange for a 19.9% membership interest. I am providing this letter in support "
+            "of the Company's SBA 7(a) loan application to document the source of those funds, as required "
+            "by SBA SOP 50 10 8.")
+    h2(d, "1. Source")
+    para(d, "The full $250,000 comes from my personal savings, accumulated over time and held in the "
+            "account(s) listed below. None of these funds are borrowed, advanced on credit, or financed by "
+            "any third party, and none are or will be secured by the assets of the Company or of Hickory "
+            "Hospice LLC.")
+    h2(d, "2. Account(s) holding the funds")
+    table(d, ["Institution", "Account type", "Last 4 of account", "Approx. balance held for this purpose"],
+          [[TBD, TBD, TBD, TBD],
+           [TBD, TBD, TBD, TBD]],
+          widths=[2.2, 1.5, 1.3, 1.7])
+    h2(d, "3. Contribution schedule")
+    table(d, ["Tranche", "Amount", "Date wired / to be wired", "Sending account (last 4)"],
+          [["Tranche 1", "$100,000", "May 7, 2026 (completed)", TBD],
+           ["Tranche 2", "$75,000", "On or before June 30, 2026", TBD],
+           ["Tranche 3", "$75,000", "On or before July 31, 2026", TBD]],
+          widths=[1.0, 1.0, 2.2, 2.0])
+    h2(d, "4. Supporting documentation")
+    para(d, "I have provided (or will provide) bank/brokerage statements for the account(s) above covering at "
+            "least the 30 days prior to each wire, showing the funds available and on deposit. I authorize the "
+            "Company and its SBA lender to verify these funds with my financial institution(s).")
+    h2(d, "5. Certification")
+    para(d, "I certify under penalty of perjury that the foregoing is true and correct, and that the funds "
+            "described are my own and are not borrowed.")
+    para(d, "")
+    para(d, "_______________________________________   Date: ____________")
+    para(d, "James E. Bullard", bold=True)
+    para(d, "13910 Indiana Ave, Suite 300, Lubbock, TX 79423  |  jimbullard01@aol.com")
+    footer_note(d)
+    save(d, "10_supporting_documents/equity_injection_evidence/Bullard_Source_of_Funds_Letter_TEMPLATE.docx")
+
+
+# ================================================================ AFFILIATE / SIZE-STANDARD MEMO
+def affiliate_memo():
+    d = new_doc("Affiliate Memo")
+    h1(d, "Affiliate and Size-Standard Memorandum")
+    para(d, "SBA 7(a) Application - Tyler Hospice HoldCo L.L.C. (dba Azalea Hospice & Palliative Care)",
+         color=GREY, size=9)
+    para(d, "This memorandum identifies the borrower's affiliates for SBA size-standard and eligibility "
+            "purposes (13 CFR 121.103) and documents why the borrower meets the applicable size standard.")
+    h2(d, "Applicable size standard")
+    para(d, "The borrower operates in NAICS 621610 (Home Health Care Services) / hospice, for which the SBA "
+            "receipts-based size standard is $19.0 million in average annual receipts (confirm current "
+            "threshold at application). As a newly formed entity acquiring a single small hospice agency, the "
+            "borrower and its affiliates are comfortably within the standard.")
+    h2(d, "Ownership and control analysis")
+    para(d, "Under 13 CFR 121.103, affiliation arises principally through control - common ownership of more "
+            "than 50%, common management, or identity of interest. The borrower's controlling party is Geoff "
+            "Schackmann, through Adeline & Lilah, LLC (39.9%) and as Manager. Affiliation is therefore "
+            "assessed primarily through Mr. Schackmann's other controlled entities.")
+    table(d, ["Entity", "Relationship to borrower", "Geoff's interest / role", "Affiliate?"],
+          [["Hickory Hospice LLC (TX)", "Acquisition target / future wholly owned operating subsidiary",
+            "100% after CHOW close", "Yes - consolidated as subsidiary"],
+           ["Adeline & Lilah, LLC (AZ)", "Holding entity for Geoff's interest in the borrower",
+            "50% member + Manager", "Yes - upstream holder; no operations"],
+           ["VistaRiver Inc (OR)", "Geoff sold his 33.33% in Aug 2025; holds only a seller note",
+            "0% equity; passive note holder only; no officer/manager/employee role",
+            "No - passive creditor, no control"],
+           ["James E. Bullard's other interests", "Bullard is a 19.9% passive minority investor in the borrower",
+            "n/a to Geoff; Bullard holds no control of borrower", "Investigate Bullard's >50% entities (below)"]],
+          widths=[1.9, 2.2, 2.0, 1.2])
+    h2(d, "VistaRiver Inc - not an affiliate")
+    para(d, "Geoff Schackmann sold his entire 33.33% membership interest in VistaRiver Inc on August 15, 2025 "
+            "(Membership Interest Purchase Agreement on file in folder 10). He retains no equity, no officer, "
+            "manager, director, or employee role, and no control of any kind. His only continuing relationship "
+            "is as the holder of a secured promissory note (a passive creditor position). Under 13 CFR "
+            "121.103, a creditor relationship without ownership or control does not create affiliation. "
+            "VistaRiver is therefore NOT an affiliate of the borrower. The note is, however, a personal asset "
+            "and income source disclosed on Mr. Schackmann's Personal Financial Statement.")
+    h2(d, "Geoff Schackmann - no other controlled operating businesses")
+    para(d, "Mr. Schackmann has confirmed that, other than the entities listed above, he does not own 20% or "
+            "more of, nor manage, any other operating business. The multi-hospice operating experience "
+            "described in the business plan and his resume reflects prior operating roles and engagements; "
+            "to the extent any such agency is currently owned or controlled by Mr. Schackmann, it should be "
+            "listed here. [Confirm: list any currently owned/controlled hospice agency, with ownership %, "
+            "role, and revenue, or confirm none.]")
+    para(d, "Action item: Mr. Schackmann to confirm in writing that he holds no current ownership of 20%+ or "
+            "management role in any operating business other than those listed above, so this memo can state "
+            "it affirmatively for the lender.", italic=True, size=9.5)
+    h2(d, "James E. Bullard - minority investor; limited affiliation reach")
+    para(d, "Mr. Bullard is a 19.9% passive minority investor in the borrower with protective minority rights "
+            "but no operational control (see OA Amendment No. 1 and his Investor Attestation). Because he does "
+            "not control the borrower, his other business holdings generally do not pull into the borrower's "
+            "affiliation group. However, SBA may review entities Bullard controls (>50%) for completeness. "
+            "[Confirm: list any business in which Mr. Bullard holds 50%+, or confirm none known.]")
+    h2(d, "Operator-members - employment, not affiliation")
+    para(d, "Silas R. Shelton, Dana L. Davenport, and Bradley G. Woodard hold 13.3% each (Restricted "
+            "Interests, milestone-vested) and serve in operating roles. None controls the borrower. Their "
+            "prior or current employers are relevant to non-compete / non-solicit and transition questions "
+            "(addressed separately), not to affiliation. Mr. Woodard has confirmed he has no non-compete "
+            "with his current employer.")
+    h2(d, "Conclusion")
+    para(d, "After giving effect to the CHOW, the borrower's affiliate group consists of the borrower, its "
+            "wholly owned subsidiary Hickory Hospice LLC, and the upstream holding entity Adeline & Lilah, "
+            "LLC (non-operating). Combined average annual receipts are well below the applicable size "
+            "standard. VistaRiver Inc is not an affiliate (passive creditor relationship only). The borrower "
+            "is a small business concern eligible for SBA 7(a) financing, subject to the lender's confirmation "
+            "of the current size threshold and the two open confirmations noted above.")
+    footer_note(d)
+    save(d, "01_company_profile/Affiliate_and_Size_Standard_MEMO.docx")
+
+
+# ================================================================ COVER LETTER + ANTICIPATED Q&A
+def cover_letter_and_qa():
+    d = new_doc("Cover Letter and QA")
+    h1(d, "Cover Letter")
+    para(d, "Tyler Hospice HoldCo L.L.C. (dba Azalea Hospice & Palliative Care)  |  SBA 7(a) Application",
+         color=GREY, size=9)
+    para(d, "Generic version - personalize the lender name/address and the salutation once a specific lender "
+            "is identified from John Hart's network.", italic=True, size=9, color=GREY)
+    para(d, "")
+    field(d, "Date", TBD)
+    para(d, "[Lender name]")
+    para(d, "[Lender address]")
+    para(d, "Attn: [SBA Loan Officer]")
+    para(d, "")
+    para(d, "Re: SBA 7(a) loan request - $500,000 - Tyler Hospice HoldCo L.L.C. (Azalea Hospice & Palliative "
+            "Care) - change-of-ownership acquisition of Hickory Hospice LLC")
+    para(d, "")
+    para(d, "Dear [Loan Officer]:")
+    para(d, "We are pleased to submit this SBA 7(a) loan application for Tyler Hospice HoldCo L.L.C., a Wyoming "
+            "limited liability company doing business as Azalea Hospice & Palliative Care. We are requesting a "
+            "$500,000 SBA 7(a) loan as part of a $1,050,000 total project to acquire and operate Hickory "
+            "Hospice LLC, an established, Medicare-certified hospice agency in the East Texas market, through "
+            "a complete change of ownership.")
+    para(d, "The transaction is built on a strong foundation:")
+    for x in ["Established, billing-ready agency. We are acquiring an operating Medicare-certified hospice with a transferring provider number, HCSSA license, and accreditation - billing-capable from day one, with no startup enrollment ramp.",
+              "Experienced operator and validated local team. Our Managing Member has grown multiple hospice agencies from sub-30 to 100+ ADC; our Director of Sales has sustained a 40+ ADC referral book in the Tyler market for 4.5 years.",
+              "Meaningful equity. A $250,000 cash equity injection (23.8% of project cost) - more than double the 10% SOP 50 10 8 minimum. $100,000 is already on deposit; the balance funds by the end of July 2026.",
+              "Coverage with cushion. Combined debt-service coverage of 1.56x in Year 1, rising to 3.50x and 5.20x; global three-year DSCR of 3.42x against the 1.25x floor. Break-even is ~16 ADC versus a validated opening census of ~22.",
+              "Conservative structure. Seller-financed acquisition ($300,000, 36-month note), a fully staffed clinical roster sized to the underwritten census, and an undrawn working-capital line."]:
+        para(d, "  - " + x)
+    para(d, "The enclosed package is indexed in the Submission Cover Sheet and includes the Company Profile, "
+            "Use of Proceeds, Business Plan, financial model, equity-injection documentation, the borrower's "
+            "operating agreement (as amended), and a lender credit memorandum with a DSCR sensitivity "
+            "analysis. The sole 20%+ owner and guarantor is Geoff Schackmann (through Adeline & Lilah, LLC); "
+            "his personal financial information is provided separately.")
+    para(d, "We would welcome the opportunity to walk you through the deal and answer any questions. Thank you "
+            "for your consideration.")
+    para(d, "")
+    para(d, "Sincerely,")
+    para(d, "")
+    para(d, "Geoff Schackmann")
+    para(d, "Managing Member, Tyler Hospice HoldCo L.L.C.")
+    para(d, "480-495-5474  |  geoff@azaleahospice.com")
+
+    d.add_page_break()
+    h1(d, "Anticipated Underwriter Questions & Responses")
+    para(d, "Prepared to speed the credit team's review. These are the questions an SBA underwriter is most "
+            "likely to raise on this deal, with our responses.", color=GREY, size=9)
+    qa = [
+        ("Why is so much of the loan working capital?",
+         "This is a relaunch of an acquired agency. The acquisition itself is seller-financed, so SBA proceeds "
+         "and equity fund the working-capital reserve that carries ramp-period payroll and combined debt "
+         "service while Medicare receivables normalize to the ~45-day cycle. The model holds a $25,000 minimum "
+         "cash floor with the $100,000 WC line undrawn in the base case."),
+        ("Is Bullard's 19.9% a device to avoid a guaranty?",
+         "No. Mr. Bullard is contributing $250,000 of his own savings as a genuine capital contribution for a "
+         "19.9% interest - the cash is the equity injection. He holds protective minority rights but no "
+         "day-to-day operational control; the Manager (Geoff Schackmann via Adeline & Lilah, LLC) controls the "
+         "business. Per OA Amendment No. 1, Bullard's consent is not required for SBA-loan actions, and the "
+         "Texas Shootout buy-sell is suspended while the SBA loan is outstanding. He has signed an attestation "
+         "to this effect. He does not hold a unilateral veto: a 60% Reserved-Matters vote can pass with "
+         "Adeline & Lilah plus any two operator-members (66.5%)."),
+        ("The equity injection isn't all in yet - how is that handled?",
+         "$100,000 was wired May 7, 2026 and is on deposit. The remaining $150,000 funds by July 31, 2026. We "
+         "have scheduled the CHOW close and SBA disbursement to occur after the full $250,000 is on deposit, so "
+         "the complete injection is verified at disbursement per SOP 50 10 8. Source-of-funds statements are "
+         "provided for each tranche."),
+        ("How real is the census ramp?",
+         "Opening census of ~22 ADC is underwritten conservatively against a validated referral pipeline: the "
+         "Director of Sales sustained 40+ ADC in this market for 4.5 years and previously built agencies from "
+         "single digits to 70-220 patients. Break-even is ~16 ADC, so we are profitable at opening census. The "
+         "DSCR sensitivity memo stresses census down 10-20% and shows the mitigants (WC line, partly variable "
+         "roster, springing coverage after the seller note retires)."),
+        ("What happens if Year 1 underperforms?",
+         "The enclosed sensitivity analysis tests census, rate, and payroll shocks. The binding risk is a hard "
+         "census shortfall; mitigants include the undrawn $100,000 WC line (covers ~6 months of debt-service "
+         "shortfall in a mild-downside year), a roster that can flex with census, opening census 38% above "
+         "break-even, and the remaining equity tranches. We propose a monthly census-and-cash covenant in "
+         "Year 1 so the lender can monitor the binding variable."),
+        ("Is the CHOW provider-number transfer clean?",
+         "The acquisition is a purchase of 100% of Hickory Hospice LLC's membership interests; the Medicare "
+         "PTAN/NPI, HCSSA license, and accreditation transfer through the CHOW process. We will provide the "
+         "executed purchase agreement, the CMS-855A CHOW filing status, and the accreditation continuation "
+         "notice at or before close."),
+        ("Are there affiliates that affect size or eligibility?",
+         "The affiliate group is the borrower, its wholly owned subsidiary Hickory, and the non-operating "
+         "holding entity Adeline & Lilah, LLC - well within the size standard. Geoff Schackmann sold his prior "
+         "VistaRiver interest in 2025 and holds only a passive seller note (not an affiliate). See the "
+         "Affiliate & Size-Standard memo."),
+        ("Why does the business plan show different numbers than the model?",
+         "The business plan (Rev 4.00) was generated from an earlier model version. The current operating "
+         "model carries a fuller, more defensible clinical roster; revenue matches but costs/EBITDA/DSCR are "
+         "slightly lower and more conservative. The Reconciliation memo provides the corrected drop-in tables; "
+         "the plan is being refreshed to match. All figures in the credit memo reflect the current model."),
+    ]
+    for q, a in qa:
+        para(d, "Q: " + q, bold=True)
+        para(d, "A: " + a)
+        para(d, "")
+    footer_note(d)
+    save(d, "11_lender_credit_memo/Cover_Letter_and_Anticipated_QA_DRAFT.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
@@ -1453,4 +1768,8 @@ if __name__ == "__main__":
     interview_worksheet()
     oa_amendment()
     bullard_attestation_v2()
+    bullard_subscription()
+    bullard_source_of_funds()
+    affiliate_memo()
+    cover_letter_and_qa()
     print("Done.")

@@ -31,7 +31,12 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | 9a | DSCR Sensitivity / Stress Test | **DRAFTED** | `11_lender_credit_memo/` |
 | 9b | Bullard No-Control Attestation (template) | **DRAFTED** | `08_entity_documents/` |
 | - | Operating Agreement v7 (existing draft) | **PROVIDED** - reconciliation needed | `08_entity_documents/Tyler_Hospice_HoldCo_OA_v7_AS_PROVIDED.docx` |
-| - | OA Reconciliation Memo (5 conflicts) | **DRAFTED** - awaiting direction | `08_entity_documents/OA_RECONCILIATION_MEMO.md` |
+| - | OA Reconciliation Memo (5 conflicts) | **RESOLVED** (1A/2B/3A/4A/5A) | `08_entity_documents/OA_RECONCILIATION_MEMO.md` |
+| - | OA Amendment No. 1 | **DRAFTED** | `08_entity_documents/OA_Amendment_No_1_DRAFT.docx` |
+| - | Bullard Subscription / Capital Contribution | **DRAFTED** | `08_entity_documents/` |
+| - | Bullard Source-of-Funds letter (template) | **DRAFTED** | `10_supporting_documents/equity_injection_evidence/` |
+| - | Affiliate / Size-Standard memo | **DRAFTED** | `01_company_profile/` |
+| - | Cover Letter + Anticipated Q&A | **DRAFTED** (generic) | `11_lender_credit_memo/` |
 
 ---
 
