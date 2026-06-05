@@ -1749,6 +1749,580 @@ def cover_letter_and_qa():
     save(d, "11_lender_credit_memo/Cover_Letter_and_Anticipated_QA_DRAFT.docx")
 
 
+# ================================================================ BUSINESS PLAN REV 5.00 (regenerated, current model)
+def business_plan():
+    d = new_doc("Business Plan Rev 5.00")
+    # ---- Cover ----
+    h1(d, "AZALEA HOSPICE & PALLIATIVE CARE")
+    para(d, "Business Plan - SBA 7(a) Application", bold=True, size=13, color=NAVY)
+    para(d, "Tyler Hospice HoldCo L.L.C., operating as Azalea Hospice & Palliative Care", color=GREY, size=10)
+    para(d, "dba Azalea Hospice & Palliative Care - EIN 41-4966640 - Wyoming holding company operating "
+            "Hickory Hospice LLC (Texas)", size=9, color=GREY)
+    para(d, "Rev. 5.00 - June 2026  (supersedes Rev 4.00 dated 2026-06-02; financials reconciled to the "
+            "current operating model and capital structure updated)", italic=True, size=9, color=GREY)
+    para(d, "")
+    para(d, "Acquisition and relaunch of Hickory Hospice LLC - an established, Medicare-certified hospice - "
+            "as Azalea Hospice & Palliative Care, led by an experienced East-Texas clinical team with an "
+            "established patient panel and modeled on validated local economics.")
+    para(d, "")
+    h2(d, "Headline metrics")
+    table(d, ["Metric", "Value", "Detail"],
+          [["Loan request", "$500,000", "SBA 7(a) - 10-yr term"],
+           ["Total project", "$1.05M", "$500K SBA - $300K seller note - $250K equity"],
+           ["Year-1 EBITDA", "$302,522", "21.0% margin - growing to $1.01M by Year 3"],
+           ["Global DSCR", "3.42x", "3-yr combined - floor 1.25x"],
+           ["Equity injection", "$250,000", "23.8% of project - 2.4x the 10% SOP 50 10 8 minimum"]],
+          widths=[1.6, 1.3, 3.6])
+    para(d, "Confidential - prepared exclusively for the SBA 7(a) loan application. All figures are computed "
+            "from the Azalea Hospice SBA Loan Package operating model. Do not distribute without written "
+            "consent.", italic=True, size=8, color=GREY)
+
+    # ---- 01 Executive Summary ----
+    d.add_page_break()
+    h1(d, "01 - Executive Summary")
+    h2(d, "Loan request")
+    para(d, "Tyler Hospice HoldCo L.L.C. requests a $500,000 SBA 7(a) loan to acquire and relaunch Hickory "
+            "Hospice LLC - an established, Medicare-certified hospice - as Azalea Hospice & Palliative Care. "
+            "The agency's existing Medicare-certified provider number is acquired through a change of ownership "
+            "(CHOW) for $300,000 in seller financing (36-month note at 6%), giving Azalea immediate, "
+            "billing-ready capability with no new-enrollment delay. The loan is paired with a $250,000 cash "
+            "equity injection and a $100,000 working-capital line held in reserve, for a total project of "
+            "$1.05 million.")
+    h2(d, "Use of funds")
+    table(d, ["Use", "Amount", "Detail"],
+          [["Hickory Medicare license (CHOW)", "$300,000", "Existing Medicare provider number; self-financed by the seller note"],
+           ["Startup one-time costs", "$63,000", "855A filing, TX licensure, EMR, supply stock, legal, contingency"],
+           ["Startup equipment (capex)", "$15,000", "Computers, office furniture; 5-yr straight-line depreciation"],
+           ["Working-capital reserve (opening cash)", "$672,000", "Funds ramp payroll and dual debt service; holds the $25K floor, line undrawn"],
+           ["Total uses", "$1,050,000", "SBA $500K - Seller note $300K - Equity $250K - WC line $100K (undrawn)"]],
+          widths=[2.5, 1.1, 2.9])
+    h2(d, "Business overview")
+    para(d, "Azalea relaunches the acquired Hickory agency in the Tyler / Smith County market (CBSA 46340) "
+            "under an experienced local team that brings established referral relationships and an existing "
+            "patient panel. The model is grounded in validated economics - a proven ~22 ADC / ~$118K-net-per-"
+            "month book benchmarked to actual collections - and the base case grows with the local referral "
+            "pipeline to ~40 ADC in Year 2 and ~54 ADC in Year 3. Revenue is 100% Medicare RHC per-diem at a "
+            "blended net rate of $181/patient-day (escalating 2.5%/year).")
+    h2(d, "Management team")
+    para(d, "Azalea is led by an already-seated team: Geoff Schackmann (Managing Member - multi-hospice "
+            "operator), Silas Shelton (Executive Director), Dana Davenport (Director of Nursing), and Bradley "
+            "Woodard (Director of Sales - 25+ years East-Texas hospice business development), supported by RN "
+            "case managers, hospice aides, a PRN visit pool, and 1099 Medical Directors.")
+    h2(d, "Repayment case")
+    table(d, ["", "Year 1", "Year 2", "Year 3"],
+          [["Net income", "$190,032", "$571,134", "$905,290"],
+           ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
+           ["Combined DSCR", "1.56x", "3.50x", "5.20x"]],
+          widths=[1.8, 1.5, 1.5, 1.5])
+    para(d, "The operation is EBITDA-positive from early in the ramp. Against combined debt service of "
+            "$193,876/yr (SBA $84,357 + seller note $109,519), the model clears a global 3-year DSCR of 3.42x "
+            "- well above the 1.25x floor - with coverage strengthening each year (1.56x -> 3.50x -> 5.20x) "
+            "and springing higher once the seller note retires after Year 3. The $672,000 opening reserve "
+            "keeps minimum cash well above the $25,000 floor throughout, with the $100,000 line never drawn "
+            "in the base case.")
+
+    # ---- 02 Company Description ----
+    d.add_page_break()
+    h1(d, "02 - Company Description")
+    h2(d, "2.1 Legal structure")
+    para(d, "Tyler Hospice HoldCo L.L.C. is a Wyoming LLC (formed 2026; EIN 41-4966640), authorized to do "
+            "business in Texas. As the borrower and holding entity, it owns 100% of Hickory Hospice LLC - a "
+            "Texas HCSSA-licensed, Medicare-certified hospice - which operates as Azalea Hospice & Palliative "
+            "Care. The transaction is a change of ownership (CHOW) of Hickory's existing provider number "
+            "(purchase of 100% of membership interests), so Azalea runs on a licensed, billing-ready platform "
+            "from day one - preserving the existing number rather than awaiting a new-provider 855A "
+            "enrollment, with CHAP/ACHC accreditation transferring in the CHOW. The Company is taxed as a "
+            "partnership for federal income tax purposes.")
+    h2(d, "2.2 Ownership & capitalization")
+    table(d, ["Member / source", "Interest", "Role & structure"],
+          [["Adeline & Lilah, LLC (AZ)", "39.9%", "Managing Member - owned 50% Geoff Schackmann / 50% Mary Elizabeth Burcham; Geoff serves as Manager and provides the SBA personal guaranty"],
+           ["James E. Bullard", "19.9%", "Passive minority investor - $250,000 cash capital contribution; protective minority rights only, no operational control; under 20%, no guaranty"],
+           ["Silas R. Shelton", "13.3%", "Executive Director - Restricted Interest, milestone-vested"],
+           ["Dana L. Davenport", "13.3%", "Director of Nursing - Restricted Interest, milestone-vested"],
+           ["Bradley G. Woodard", "13.3%", "Director of Sales - Restricted Interest, milestone-vested"],
+           ["Unissued pool", "0.3%", "Reserved for future grants"]],
+          widths=[2.2, 0.9, 3.4])
+    h2(d, "Sources of capital & SBA guaranty")
+    para(d, "The $1.05M project is funded by the $500,000 SBA 7(a) loan, the $300,000 seller note "
+            "(self-financing the license), and a $250,000 cash equity injection contributed by investor "
+            "James E. Bullard in exchange for a direct 19.9% membership interest. The injection equals 23.8% "
+            "of total project cost - more than double the 10% minimum required under SBA SOP 50 10 8 for a "
+            "complete change of ownership. Mr. Bullard's funds are his own savings (non-borrowed), verified "
+            "by his bank statements; $100,000 was wired on May 7, 2026 and the balance funds by the end of "
+            "July 2026. Because he holds less than 20% and exercises no operational control, no personal "
+            "guaranty is required of him (13 CFR 120.160). The Managing Member (Geoff Schackmann, via "
+            "Adeline & Lilah, LLC) is the sole 20%+ owner and provides the SBA personal guaranty.")
+    h2(d, "2.3 Acquired platform & validated economics")
+    para(d, "Rather than projecting speculative new-admit growth, the financial model is benchmarked to "
+            "actual operating results - a proven ~22 ADC / ~$118K-net-per-month book (Apr-Jun 2025 actuals) "
+            "- so the per-diem rate, patient-day costs, and census all reconcile to real collections. Because "
+            "the CHOW preserves the provider number, the patient panel, care team, and referral relationships "
+            "carry over, supporting revenue continuity from day one.")
+    h2(d, "2.4 Brand and identity")
+    para(d, "Azalea Hospice & Palliative Care is positioned for dignity-led hospice service in East Texas. "
+            "Tagline: \"The standard you upheld your whole life is the one we keep today.\" Service pillars: "
+            "Honor, Dignity, Faith, and Reverence - aligned to the conservative-Christian demographic "
+            "prevalent in Smith County.")
+
+    # ---- 03 Market and Industry ----
+    d.add_page_break()
+    h1(d, "03 - Market and Industry Analysis")
+    h2(d, "3.1 Hospice regulatory environment")
+    para(d, "Hospice in the United States is delivered under the Medicare Hospice Benefit (established 1982, "
+            "codified at 42 CFR Part 418). Patients with a terminal prognosis of six months or less, certified "
+            "by two physicians, elect the benefit in lieu of curative treatment. Four levels of care are "
+            "reimbursed: Routine Home Care (RHC) at a two-tier per-diem (days 1-60 higher, days 61+ lower), "
+            "General Inpatient (GIP), Continuous Home Care (CHC), and Inpatient Respite (IRC). Azalea is "
+            "modeled at ~100% RHC, consistent with national community-hospice patterns.")
+    para(d, "For FY2026 the national RHC rates are $230.83/day (Tier 1, days 1-60) and $182.36/day (Tier 2, "
+            "days 61+), adjusted by the Tyler CBSA 46340 wage index (0.88) on the 0.68 labor share. With 40% "
+            "of patient-days in Tier 1, the blended gross rate is $185.29/PD; net of 2% sequestration and "
+            "0.15% write-offs, the blended net rate is $181/PD - validated against actual Tyler-market "
+            "collections and escalated 2.5%/year (CMS hospice rates have risen every year since 2010).")
+    h2(d, "3.2 Tyler market - demographics and service area")
+    para(d, "Tyler, Texas (city pop. ~110,000; metro ~245,000) is the principal city of Smith County and the "
+            "regional healthcare hub for East Texas. Azalea operates from a principal office in the Tyler area "
+            "with a ~45-mile service radius.")
+    for x in ["Service-area population: ~350,000 across Smith, Cherokee, Henderson, Rusk, Van Zandt, and Wood counties",
+              "Medicare-eligible population (65+): ~60,000+",
+              "Hospice utilization: 50-55% of Medicare decedents (above the ~50% national average) - a mature, accepting market",
+              "Population growth: Tyler has grown 15%+ since 2010, driven by healthcare-sector expansion and retirement in-migration",
+              "Dominant religious demographic: conservative-Christian - strong alignment with Azalea's faith-based service pillars"]:
+        para(d, "  - " + x)
+    h2(d, "3.3 Major hospital systems - referral drivers")
+    for x in ["UT Health Tyler - 502-bed Level 1 trauma center, regional referral hub",
+              "CHRISTUS Trinity Mother Frances - 438-bed acute care flagship",
+              "UT Health North East - 153-bed acute care",
+              "CHRISTUS Louis & Peaches Owen Heart Hospital - cardiac",
+              "Texas Spine & Joint Hospital - 64-bed surgical",
+              "UT Health Jacksonville - 90-bed acute care (Cherokee County)"]:
+        para(d, "  - " + x)
+    h2(d, "3.4 Skilled nursing & assisted living landscape")
+    para(d, "Smith County and surrounding counties hold ~40+ skilled nursing facilities (SNFs) and ~30+ "
+            "assisted living facilities (ALFs). These are a concentrated, high-volume referral source: "
+            "residents with terminal diagnoses frequently elect hospice, and facility relationships drive "
+            "consistent admission volume. Tier 1 facilities (highest-census SNFs and ALFs in the Tyler metro) "
+            "receive weekly in-person visits from the Director of Sales and clinical liaison; Tier 2 "
+            "facilities receive bi-weekly or monthly touchpoints by census potential.")
+    h2(d, "3.5 Physician & referral source ecosystem")
+    para(d, "Hospice admissions in the Tyler market are driven by referral relationships with hospital "
+            "discharge planners and case managers (the single highest-volume source), 200+ primary care "
+            "physicians, oncologists (UT Health Tyler Cancer Center, Texas Oncology, CHRISTUS), organ-"
+            "specialty physicians (pulmonology, cardiology, neurology), SNF/ALF medical directors and DONs, "
+            "and the faith-community and pastoral-care networks that are uniquely important in East Texas. A "
+            "mature, above-average-utilization market with 60,000+ Medicare-eligible residents and 70+ senior "
+            "facilities - entered not cold, but by an experienced local team on validated Tyler-market "
+            "economics.")
+
+    # ---- 04 Competitive ----
+    d.add_page_break()
+    h1(d, "04 - Competitive Analysis")
+    para(d, "The Tyler/Smith County hospice market includes national multi-state operators, regional "
+            "providers, and local independents. Key Medicare-certified providers serving the market:")
+    table(d, ["Competitor", "Type", "Weaknesses vs. Azalea"],
+          [["Heart to Heart Hospice - Tyler", "Regional (TX)", "Standard model; no faith-based differentiation"],
+           ["VITAS Healthcare - Tyler", "National", "Bureaucratic; national protocols; less personal"],
+           ["Hospice of East Texas", "Local nonprofit", "Limited marketing budget; slower growth"],
+           ["CHRISTUS Hospice", "Health system", "System constraints; less flexibility"],
+           ["Enhabit Hospice - Tyler", "National (public)", "Fragmented sales effort; less local focus"],
+           ["Traditions Health - Tyler", "National", "Newer entrant; relationships unproven"],
+           ["Kindred / CenterWell", "National (Humana)", "Limited to Humana MA members"],
+           ["Harbor Hospice - East TX", "Regional", "Limited capacity; smaller sales team"]],
+          widths=[2.2, 1.4, 3.0])
+    h2(d, "Azalea's differentiation")
+    for x in ["Validated local economics - modeled on a proven ~22 ADC Tyler book and an experienced team, not a standing start",
+              "Dignity-led hospitality model - luxury-hospitality standards applied to end-of-life care",
+              "Faith-aligned positioning - explicit Christian-values messaging resonant with the local demographic",
+              "Speed of admission - same-day / next-day response, faster than national competitors' 24-72 hours",
+              "Local independent ownership - faster decisions, no corporate bureaucracy, deeper relationship investment"]:
+        para(d, "  - " + x)
+
+    # ---- 05 SWOT ----
+    d.add_page_break()
+    h1(d, "05 - SWOT Analysis")
+    h2(d, "Strengths")
+    for x in ["Modeled on validated Tyler-market economics (~22 ADC, ~$118K/mo) benchmarked to actual local collections",
+              "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships",
+              "Acquired Medicare provider number (CHOW) - billing-ready from day one, no new-provider enrollment lag",
+              "Large capital cushion - $672K opening cash; $100K WC line never drawn in base case",
+              "Combined DSCR rises 1.56x -> 5.20x across the plan; meaningful $250K cash equity injection",
+              "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Managing Member"]:
+        para(d, "  - " + x)
+    h2(d, "Weaknesses")
+    for x in ["Carries two debt layers (SBA + seller note) in Years 1-3, compressing Year-1 coverage vs. a single-loan structure",
+              "Revenue depends on converting the team's established relationships into admissions during ramp",
+              "Single-office, single-market concentration",
+              "Several go-forward cost adds (own lease, Medical Directors, benefits, marketing) not in the benchmarked actuals",
+              "Sensitivity to a sustained census shortfall (see Section 11.7 and the DSCR Sensitivity memo)",
+              "Managing Member's attention is split across other interests during launch"]:
+        para(d, "  - " + x)
+    h2(d, "Opportunities")
+    for x in ["Growing 65+ population (60,000+ Medicare-eligible) with above-average utilization",
+              "Base-case census growth to ~54 ADC by Year 3 from the team's referral pipeline; upside path to ~60 ADC",
+              "70+ SNF/ALF facilities, many underserved by incumbents",
+              "Faith-based marketing to an extensive church and ministry network",
+              "Palliative-care consultation line as a Year 2-3 revenue diversifier",
+              "CMS hospice rates have risen every year since 2010; model carries a conservative 2.5%/yr escalation"]:
+        para(d, "  - " + x)
+    h2(d, "Threats")
+    for x in ["National competitors with larger sales forces and budgets",
+              "CMS reimbursement or regulatory changes",
+              "Medicare Advantage hospice carve-in could shift referral dynamics",
+              "East Texas clinical labor shortage could pressure wages",
+              "Seller note ($300K, 36 mo) adds debt service in Years 1-3; coverage strengthens sharply once it retires"]:
+        para(d, "  - " + x)
+
+    # ---- 06 Marketing ----
+    d.add_page_break()
+    h1(d, "06 - Marketing, Sales & Referral Strategy")
+    para(d, "Hospice census in the Tyler market is relationship-driven. Azalea's strategy leverages the "
+            "leadership team's established local referral relationships across five active development "
+            "channels.")
+    h2(d, "6.1 Hospital referral channel")
+    para(d, "Discharge planners and case managers generate the highest referral volume. The Director of Sales "
+            "(Woodard) maintains a structured weekly cadence: UT Health Tyler and CHRISTUS Trinity Mother "
+            "Frances (2x/week each), UT Health North East and Texas Spine & Joint (1x/week each), and "
+            "bi-weekly touchpoints at regional hospitals. Tactics: in-services on hospice eligibility, branded "
+            "referral materials, and a same-day admission-response protocol (clinical liaison dispatched "
+            "within 60 minutes).")
+    h2(d, "6.2 SNF / ALF facility channel")
+    para(d, "Tier 1 covers the ~15 highest-census SNFs and ALFs/memory-care communities in the Tyler metro "
+            "with weekly visits and a dedicated clinical liaison; Tier 2 covers the remaining 40+ SNFs and "
+            "20+ ALFs across the six-county service area with bi-weekly touchpoints. Quarterly facility "
+            "in-services and pre-positioned election packets support consistent volume.")
+    h2(d, "6.3 Physician & clinical channel")
+    para(d, "CE-accredited physician lunch-and-learns, direct educational outreach, an EHR-embedded referral "
+            "pathway, and same-day response to physician referrals target the 200+ PCPs, oncologists, and "
+            "organ-specialty physicians in the service area.")
+    h2(d, "6.4 Faith community & pastoral care channel")
+    para(d, "Tyler's 200+ churches and pastoral networks are uniquely valuable referral and brand-building "
+            "partners. Tactics: monthly pastor breakfasts, hospice education for church visitation teams, "
+            "bereavement-workshop sponsorship, and chaplaincy partnerships with major hospitals.")
+    h2(d, "6.5 Marketing tactics & budget")
+    para(d, "Digital: local SEO, Google Business Profile and review generation, Facebook/Instagram education "
+            "and testimonial content to adults 45-75 within 50 miles, and Google Ads on high-intent hospice "
+            "terms. Traditional & community: quarterly educational mailers to SNFs/ALFs/physician offices, "
+            "senior-focused print, branded admission books and referral pads, bereavement support groups, "
+            "senior health fairs, and church health-ministry workshops. The model funds $3,000/mo "
+            "($36,000/yr) of marketing within fixed G&A, sustained across all three years.")
+    h2(d, "6.6 Census model")
+    table(d, ["Period", "Base ADC", "Primary channel"],
+          [["Months 1-3 (launch)", "12 -> 22", "Panel transition + team activation"],
+           ["Months 4-12", "22 -> 24", "Hospital + SNF/ALF"],
+           ["Year 2", "~40 avg (30 -> 50)", "All channels + faith"],
+           ["Year 3", "~54 avg (51 -> 56)", "All channels + organic"]],
+          widths=[1.8, 1.6, 3.2])
+    para(d, "All DSCR and repayment figures in Section 11 use this conservative base path. An upside path "
+            "reaches ~60 ADC by Year 3 and is presented as scenario sensitivity.")
+
+    # ---- 07 Operations ----
+    d.add_page_break()
+    h1(d, "07 - Operations Plan")
+    h2(d, "7.1 Service lines & clinical model")
+    para(d, "Azalea delivers Routine Home Care (RHC) at patient homes, ALFs, and SNFs, with access to GIP "
+            "(contracted inpatient beds), CHC, and Inpatient Respite, plus 12-month bereavement support per "
+            "Medicare CoP. Care is delivered by an interdisciplinary group (IDG) - RN case manager, medical "
+            "director, hospice aide, social worker, chaplain - meeting every 15 days, with 24/7 RN on-call "
+            "coverage. A QAPI program runs monthly KPI dashboards.")
+    h2(d, "7.2 Core staffing roster (Year 1)")
+    para(d, "Staggered W-2 hires plus a census-driven PRN pool. Employer burden of 18.27% applies to W-2 "
+            "wages; health insurance is $550/employee/mo; Medical Directors are 1099 contractors. The Year-1 "
+            "roster is sized to the opening ~22 ADC within hospice staffing ratios and includes the Executive "
+            "Director, Director of Nursing, Director of Sales, RN case managers, a CNA/hospice aide, a "
+            "Director of Business Development, an Office Manager, and a 1099 Medical Director.")
+    h2(d, "7.3 Capacity-driven hiring (Years 2-3)")
+    para(d, "As census grows toward ~54 ADC, the roster scales on census triggers (RN caseload 1:12; aide "
+            "1:10), converting PRN roles to salaried and adding compliance, intake, and volunteer-coordinator "
+            "support. Second through sixth RN case managers and CNAs load in as ADC crosses their thresholds "
+            "(Months 13-34); FT social worker, LVN, and chaplain convert from PRN (Months 14-18); a Quality/"
+            "Compliance Manager, Intake Coordinator, and Volunteer Coordinator are added (Months 16-26); and "
+            "a second Medical Director is added at Month 22. This is the fuller, more defensible direct-care "
+            "build reflected in the current operating model.")
+    h2(d, "7.4 Facility & technology")
+    para(d, "Principal office in the Tyler, TX area at $3,000/mo (a go-forward lease assumption). Hours M-F "
+            "8-5 with 24/7/365 on-call; ~45-mile service radius. EMR, PCR, and outsourced billing (1.5% of "
+            "gross) run on the platform reflected in G&A. Field travel is mileage-reimbursed initially; an "
+            "owned fleet is evaluated in Year 2.")
+
+    # ---- 08 Management ----
+    d.add_page_break()
+    h1(d, "08 - Management and Organization")
+    para(d, "Azalea is operated by an experienced, already-seated team whose established East-Texas referral "
+            "relationships are a key de-risking factor. Officer salaries are fully loaded into the operating "
+            "model as expenses (no compensation is omitted, per SBA requirements).")
+    h2(d, "8.1 Ownership & reporting structure")
+    table(d, ["Entity / person", "Role", "Interest", "Reports to"],
+          [["Adeline & Lilah, LLC - Geoff Schackmann", "Managing Member (holding co.)", "39.9%", "-"],
+           ["Silas R. Shelton", "Executive Director", "13.3%", "Managing Member"],
+           ["Dana L. Davenport", "Director of Nursing", "13.3%", "Executive Director"],
+           ["Bradley G. Woodard", "Director of Sales", "13.3%", "Executive Director"],
+           ["James E. Bullard", "Passive minority investor", "19.9%", "No operational role"]],
+          widths=[2.4, 1.9, 0.9, 1.6])
+    para(d, "Tyler Hospice HoldCo L.L.C. (Wyoming holding company) owns 100% of Hickory Hospice LLC (Texas "
+            "operating subsidiary), which does business as Azalea Hospice & Palliative Care. The Executive "
+            "Director leads operations; the Director of Nursing leads the clinical team; the Director of Sales "
+            "leads business development. Mr. Bullard is a passive investor with protective minority rights but "
+            "no management authority or signing power.")
+    h2(d, "8.2 Decision authority")
+    for x in ["Operating within budget ($0-$10K): Executive Director (Shelton)",
+              "Above $10K or out-of-budget: Managing Member (Schackmann, via Adeline & Lilah)",
+              "Clinical / regulatory: Director of Nursing (Davenport), escalated to Executive Director + Medical Director",
+              "Hiring / firing senior staff: Executive Director, with Managing Member concurrence",
+              "Strategic / capital / acquisition: Managing Member",
+              "Bank account signatures: Managing Member (sole signer)"]:
+        para(d, "  - " + x)
+    h2(d, "8.3 Equity vesting (operator-members)")
+    para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement, "
+            "subject to milestone-based forfeiture conditions that lapse as the business achieves financial "
+            "performance: 25% on the first month of Breakeven (EBITDA >= 0), 50% on three consecutive "
+            "Profitable months, and the final 25% on twelve consecutive Profitable months. Each grantee files "
+            "a timely IRC Section 83(b) election. Unvested interests are forfeited on departure prior to "
+            "milestone lapse, aligning operator equity with the credit's performance.")
+
+    # ---- 09 Leadership ----
+    d.add_page_break()
+    h1(d, "09 - Leadership Team")
+    h2(d, "Geoff Schackmann - Managing Member (via Adeline & Lilah, LLC, 39.9%)")
+    para(d, "Multi-hospice operator and transaction-led growth leader with operational responsibility for "
+            "Medicare-certified hospice and palliative-care agencies across multiple states. Co-owner and "
+            "Managing Member of Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler "
+            "Hospice HoldCo is held. Direct experience includes change-of-ownership (CHOW) transactions and "
+            "post-CHOW enrollment oversight, census growth from sub-30 to 100+ ADC under existing Medicare "
+            "provider numbers, multi-site clinical operations under Texas HCSSA and Oregon hospice licensure, "
+            "CHAP and Joint Commission accreditation, acquisition due diligence (clinical, financial, "
+            "regulatory), and lender/investor relationships across SBA 7(a), conventional, and mezzanine "
+            "structures. Leads transaction structuring, financing, capital allocation, and post-close "
+            "integration. Sole 20%+ owner and SBA personal guarantor.")
+    h2(d, "Bradley G. Woodard - Director of Sales (13.3%)")
+    para(d, "More than 25 years of East-Texas hospice business development and administration. Founding "
+            "administrator of one of the Tyler market's largest hospices (licensed 2004; grown to 220 "
+            "patients, 109 employees, and 62 volunteers), with subsequent census-building roles across "
+            "multiple East-Texas agencies - including start-ups in Lufkin/Nacogdoches (0->48 in six months; "
+            "12->70+) and Grace Hospice of East Texas (8->145+). Most recently VP of Business Development for "
+            "an East-Texas hospice (2021-present), sustaining a 40+ ADC book for 4.5 years, with no "
+            "non-compete restricting his transition to Azalea. Licensed Nursing Home Administrator "
+            "(LNFA #7136); B.S., Texas A&M University.")
+    h2(d, "Silas R. Shelton - Executive Director (13.3%)")
+    para(d, "Operational leadership of Azalea Hospice & Palliative Care, with day-to-day responsibility for "
+            "regulatory compliance under Texas HCSSA and the Medicare Conditions of Participation, payer-mix "
+            "management, referral-source partnerships across Smith County and surrounding East-Texas counties, "
+            "and overall site leadership. Direct reports include the Director of Nursing, the Director of "
+            "Sales, and the full clinical and operational team.")
+    h2(d, "Dana L. Davenport - Director of Nursing (13.3%)")
+    para(d, "Clinical leadership of the Azalea nursing team, responsible for Medicare Conditions of "
+            "Participation compliance, interdisciplinary group (IDG) oversight, plan-of-care management, and "
+            "clinical quality (QAPI). Leads RN case managers, hospice aides, social workers, and chaplains "
+            "across the service area.")
+    h2(d, "Investor")
+    para(d, "James E. Bullard is a passive minority investor holding a 19.9% membership interest acquired "
+            "for a $250,000 cash capital contribution (his own savings). He holds customary protective "
+            "minority rights (information rights, anti-dilution with a 19.9% floor, voting on a defined set "
+            "of fundamental Reserved Matters, and tag-along rights) but has no management authority, no "
+            "operational or clinical role, and no signing power. His consent is not required for SBA-loan "
+            "actions, and his buy-sell rights are suspended while the SBA loan is outstanding. As a sub-20% "
+            "non-controlling member, he provides no SBA personal guaranty (13 CFR 120.160).")
+
+    # ---- 10 Acquisition ----
+    d.add_page_break()
+    h1(d, "10 - Acquisition and Launch Strategy")
+    h2(d, "10.1 Acquisition & CHOW structure")
+    para(d, "The transaction is the acquisition of Hickory Hospice LLC - an established, Medicare-certified "
+            "hospice currently owned by Tracy Gleason and Ann Lozano - structured as a Medicare change of "
+            "ownership (CHOW) by purchase of 100% of its membership interests. The purchase is seller-financed "
+            "via a $300,000 note (36 months at 6%). Hickory's existing Medicare provider number, state "
+            "license, and CHAP/ACHC accreditation carry over to Azalea, so the agency is billing-ready from "
+            "day one rather than waiting on a new-provider 855A enrollment. Azalea files the CMS-855A change "
+            "of ownership and updates banking, EMR, and insurance into the new ownership structure.")
+    h2(d, "10.2 Revenue continuity")
+    para(d, "Because the CHOW preserves the existing provider number, the patient panel, care team, and "
+            "referral relationships transfer intact - revenue continues without the gap a cold-start de-novo "
+            "would face. The model's economics are benchmarked to actual collections rather than to "
+            "speculative new-admit forecasts, so the opening ramp toward ~22 ADC carries materially less "
+            "uncertainty, and growth above that level is driven by the team's own referral pipeline.")
+    h2(d, "10.3 Affiliate disclosure")
+    para(d, "The borrower's affiliate group consists of the borrower, its wholly owned operating subsidiary "
+            "Hickory Hospice LLC, and the non-operating holding entity Adeline & Lilah, LLC - well within the "
+            "applicable SBA size standard. The Managing Member previously held a 33.33% interest in VistaRiver "
+            "Inc, which he sold in August 2025; he retains only a passive seller-note receivable (no equity, "
+            "officer, manager, or employee role), so VistaRiver is not an SBA affiliate. A separate Affiliate "
+            "and Size-Standard memorandum is included in the application package.")
+    h2(d, "10.4 Launch timeline & equity-injection coordination")
+    table(d, ["Window", "Phase", "Key activities"],
+          [["Through July 2026", "Equity injection", "Bullard funds the $250,000 in three tranches ($100K received 5/7/2026; balance by 7/31/2026)"],
+           ["Late July 2026", "Close & stand-up", "Close Hickory CHOW after full injection on deposit; update banking (CMS-588 EFT), EMR, insurance; staff retention/credentialing"],
+           ["Days 1-90 post-close", "855A CHOW", "File CMS-855A; CMS updates the provider number to Azalea; license & accreditation transfer confirmed; billing uninterrupted"],
+           ["Days 30-120", "BD ramp", "Woodard-led weekly referral cadence; digital marketing live; AR normalizes to ~45-day Medicare cycle"],
+           ["Day 120+", "Growth", "Census builds with the referral pipeline; capacity hires triggered by ADC thresholds; combined DSCR > 1.25x and rising"]],
+          widths=[1.4, 1.3, 3.9])
+    para(d, "SBA disbursement is sequenced to occur with the full $250,000 equity injection on deposit, in "
+            "compliance with SOP 50 10 8.", italic=True, size=9.5)
+
+    # ---- 11 Financials ----
+    d.add_page_break()
+    h1(d, "11 - Financial Plan and Projections")
+    h2(d, "11.1-11.2 Sources & uses of funds")
+    table(d, ["Source", "Amount", "Use", "Amount"],
+          [["SBA 7(a) loan", "$500,000", "Hickory Medicare license (CHOW)", "$300,000"],
+           ["Hickory license seller note", "$300,000", "Startup one-time costs (855A, licensure, EMR, supplies, legal, contingency)", "$63,000"],
+           ["Cash equity injection (Bullard)", "$250,000", "Startup equipment (capex)", "$15,000"],
+           ["", "", "Working-capital reserve (opening cash)", "$672,000"],
+           ["Total sources", "$1,050,000", "Total uses", "$1,050,000"]],
+          widths=[2.2, 1.1, 2.6, 1.1])
+    para(d, "The license is seller-financed, so no cash leaves at close for the purchase - preserving the "
+            "working-capital reserve. A $100,000 working-capital line at 10.5% APR is available and undrawn "
+            "in the base case.")
+    h2(d, "11.3 Key assumptions")
+    table(d, ["Assumption", "Value"],
+          [["Payer mix", "100% Medicare RHC"],
+           ["RHC per-diem (Tier 1 / Tier 2)", "$230.83 / $182.36 (FY2026)"],
+           ["Tyler CBSA wage index", "0.88 (0.68 labor share)"],
+           ["Blended net rate / patient-day", "$181 - escalating 2.5% / year"],
+           ["Census - base case (avg ADC)", "21.8 -> 40.2 -> 53.8 (Yrs 1-3)"],
+           ["Patient COGS / patient-day", "supplies + DME + Rx (per model)"],
+           ["Benefits load (W-2)", "18.27% + $550/employee/mo health"],
+           ["Medical Directors (1099)", "$4,000/mo + $5,000/mo from M22"],
+           ["Outsourced billing / QR fee", "1.5% / 0.75% of gross"],
+           ["SBA 7(a)", "$500,000 - 11.5% APR - 120 mo - $7,029.77/mo"],
+           ["Seller note (Hickory license)", "$300,000 - 6% - 36 mo - $9,126.58/mo"],
+           ["Equity / WC line", "$250,000 / $100,000 @ 10.5%"],
+           ["Depreciation & amortization", "$78K startup+capex (5-yr) + $300K license (15-yr) = $35,600/yr"],
+           ["TX franchise tax / AR-AP days", "per model / 45-30"],
+           ["Opening cash", "$672,000"]],
+          widths=[2.6, 4.0])
+    h2(d, "11.4 Three-year profit & loss (current operating model)")
+    table(d, ["Line item", "Year 1", "Year 2", "Year 3"],
+          [["Average daily census (ADC)", "21.8", "40.2", "53.8"],
+           ["Net patient revenue", "$1,442,930", "$2,728,642", "$3,734,934"],
+           ["Patient-related COGS", "$71,549", "$132,002", "$176,276"],
+           ["Payroll & related", "$868,172", "$1,686,864", "$2,297,748"],
+           ["Operating G&A", "$200,687", "$230,251", "$253,390"],
+           ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
+           ["EBITDA margin", "21.0%", "24.9%", "27.0%"],
+           ["Depreciation & amortization", "$35,600", "$35,600", "$35,600"],
+           ["Interest (SBA + seller note)", "$71,479", "$62,558", "$52,623"],
+           ["TX franchise tax", "$5,411", "$10,232", "$14,006"],
+           ["Net income", "$190,032", "$571,134", "$905,290"]],
+          widths=[2.6, 1.4, 1.4, 1.4])
+    para(d, "Net revenue grows from $1.44M to $3.73M and EBITDA from $303K to $1.01M as the base-case census "
+            "builds from ~22 to ~54 ADC on the team's referral pipeline, with a conservative 2.5% annual CMS "
+            "per-diem escalation. Payroll scales on census triggers, carrying the fuller, more defensible "
+            "direct-care roster sized to the census being underwritten. D&A of $35,600/yr is a non-cash "
+            "charge below EBITDA that does not affect debt-service coverage.")
+    h2(d, "11.5 Year-1 monthly detail (selected months)")
+    table(d, ["Month", "ADC", "Net revenue", "DSCR (combined)"],
+          [["M1 (transition)", "12.0", "~$66,000", "below floor - covered by reserve"],
+           ["M3", "22.0", "~$121,000", "clears 1.25x"],
+           ["M6", "22.7", "~$125,000", "clears 1.25x"],
+           ["M12", "24.0", "~$132,000", "clears 1.25x"]],
+          widths=[1.6, 1.0, 1.6, 2.4])
+    para(d, "DSCR here is on combined debt service (SBA loan + seller note = $16,156/month). Month 1 is the "
+            "transition month (partial census at 12 ADC) and is fully absorbed by the $672K opening cash "
+            "reserve; coverage clears the 1.25x floor on a sustained basis as census stabilizes around the "
+            "validated ~22 ADC. On an annual basis Year 1 covers at 1.56x.")
+    h2(d, "11.6 Lender summary & debt-service coverage")
+    table(d, ["Metric", "Year 1", "Year 2", "Year 3"],
+          [["Net revenue", "$1,442,930", "$2,728,642", "$3,734,934"],
+           ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
+           ["Debt service - SBA", "$84,357", "$84,357", "$84,357"],
+           ["Debt service - seller note", "$109,519", "$109,519", "$109,519"],
+           ["Combined debt service", "$193,876", "$193,876", "$193,876"],
+           ["Combined DSCR", "1.56x", "3.50x", "5.20x"],
+           ["Net income", "$190,032", "$571,134", "$905,290"]],
+          widths=[2.6, 1.4, 1.4, 1.4])
+    para(d, "Global 3-year combined DSCR: 3.42x (vs. 1.25x floor). Combined debt service is $16,156/month "
+            "($193,876/year): SBA 7(a) $7,029.77/mo plus the seller note $9,126.58/mo. The operation clears "
+            "the 1.25x floor on an annual basis in every year, and combined coverage rises sharply as census "
+            "builds - springing to roughly 12x on the SBA loan alone once the seller note retires at the end "
+            "of Year 3. Break-even is approximately 16 ADC, below the validated opening census of ~22 ADC, so "
+            "the operation is profitable on the opening book.")
+    h2(d, "11.7 Stress tests (Year-2 steady state, combined debt service, floor 1.25x)")
+    table(d, ["Scenario", "Net revenue", "EBITDA", "DSCR", "Clears?"],
+          [["Base (Year 2)", "$2,728,642", "$679,524", "3.50x", "Yes"],
+           ["Census -20% (static roster)", "$2,182,914", "~$196,600", "~1.01x", "Marginal"],
+           ["Census -35% (static roster)", "$1,773,617", "~($165,700)", "<0", "No"],
+           ["Wage +10%", "$2,728,642", "~$510,800", "2.63x", "Yes"],
+           ["Combined (-20% census / +10% wage)", "$2,182,914", "~$27,900", "~0.14x", "No"]],
+          widths=[2.4, 1.4, 1.3, 0.9, 0.9])
+    para(d, "Reading the stress tests - honest framing. This is a deliberately severe static sensitivity: "
+            "revenue and variable costs scale with the census shock, but the full Year-2 salaried roster is "
+            "held constant and both debt layers are carried simultaneously. On this basis the base case "
+            "covers at 3.50x and a +10% wage shock still clears at 2.63x, but a sustained 20% census "
+            "shortfall lands only marginally at ~1.01x and the severe combined case does not clear. Three "
+            "points matter for the credit: (1) the roster is census-driven - the capacity RN/CNA and core-IDG "
+            "hires only load in as ADC crosses their triggers, so a 20-35% lower census would carry a "
+            "materially lighter cost base than this static test assumes; (2) the binding variable is census, "
+            "which is why opening census is the validated ~22 ADC book (break-even ~16 ADC) grown by an "
+            "experienced team's referral pipeline, not a cold start; and (3) liquidity is the core protection "
+            "- the $672K opening reserve and the undrawn $100K working-capital line cover timing shortfalls, "
+            "and the seller note retires after Year 3, lifting SBA-only coverage dramatically. A detailed "
+            "Year-1 single-factor and combined sensitivity is provided in the separate DSCR Sensitivity / "
+            "Stress-Test memorandum.")
+    h2(d, "11.8 Proof: actuals vs. model")
+    para(d, "The model is not pure projection - its economics are benchmarked to the acquired book's actual "
+            "operating results (Apr-Jun 2025), which reconcile to the model's opening steady state within "
+            "~2%. April-June average net revenue was approximately $118,400/mo at ~22 ADC; the model's "
+            "opening steady-state month is ~$121,000 (+2.2%). Patient-related COGS also reconcile to the "
+            "actuals. Payroll differs by design - Azalea's staggered W-2 roster plus benefits and go-forward "
+            "Medical Directors versus the acquired book's blended run.")
+
+    # ---- 12 Risk ----
+    d.add_page_break()
+    h1(d, "12 - Risk Factors and Mitigations")
+    para(d, "The dominant risks are the dual debt load (SBA + seller note in Years 1-3) and the census ramp "
+            "- both mitigated by validated, benchmarked economics, a CHOW that keeps the agency billing from "
+            "day one, and a deliberately over-capitalized structure relative to operating need.")
+    table(d, ["Risk", "Prob.", "Impact", "Mitigation"],
+          [["Dual debt service (Yrs 1-3)", "Med", "Med",
+            "Combined DSCR clears the 1.25x floor annually and rises 1.56x -> 5.20x; seller note retires after Year 3, lifting SBA-only coverage to ~12x"],
+           ["CHOW transition / cash timing", "Low", "Med",
+            "CHOW preserves the provider number (billing-ready day one); $672K reserve + $100K line fund any claims-processing pause"],
+           ["Slower census ramp", "Med", "High",
+            "Opening census is the validated ~22 ADC book, not a cold start; break-even ~16 ADC; capacity hires are census-gated so cost flexes with volume; liquidity covers timing shortfalls"],
+           ["Wage inflation", "Med", "Med",
+            "+10% wage shock holds at 2.63x in Year 2; 3% merit modeled; PRN pool buffers"],
+           ["CMS rate / regulatory change", "Low", "Med",
+            "Rates up or flat every year since 2010; only a conservative 2.5%/yr escalation assumed"],
+           ["Key-person dependency", "Low", "Med",
+            "Operators are owners (13.3% each, milestone-vested); Executive Director leads day-to-day; OA key-person succession provisions"],
+           ["Equity injection phased", "Low", "Low",
+            "$100K on deposit; balance committed by 7/31; SBA disbursement sequenced after full injection per SOP 50 10 8"]],
+          widths=[1.7, 0.6, 0.6, 3.6])
+    para(d, "The credit's core protection is liquidity, not optimism: $672,000 of opening cash and an undrawn "
+            "$100,000 line keep Azalea solvent through the modeled scenarios - even while carrying both the "
+            "SBA loan and the seller note at once.")
+
+    # ---- 13 Milestones ----
+    d.add_page_break()
+    h1(d, "13 - Milestones and Conclusion")
+    h2(d, "13.1 Launch & growth milestones")
+    table(d, ["Window", "Milestone", "Verification"],
+          [["Through July 2026", "Full $250K equity injection on deposit", "Bank statements (Mercury acct ****1275) + Bullard source-of-funds"],
+           ["Late July 2026", "Close Hickory CHOW; banking & insurance updated", "Purchase agreement + cert. of insurance"],
+           ["Months 1-3", "CMS-855A filed; staff retained; EMR transitioned", "855A CHOW receipt + payroll"],
+           ["Months 1-3", "License & CHAP/ACHC accreditation transfer; billing uninterrupted", "License / accreditation transfer"],
+           ["Months 4-6", "BD ramp; AR normalizes to ~45-day cycle", "CRM report + AR aging < 45 days"],
+           ["Months 7-12", "Census builds toward ~24 ADC; combined DSCR > 1.25x", "Monthly financials"],
+           ["Years 2-3", "Capacity hires triggered by ADC; census to ~54 ADC; coverage rises to ~5x", "Board reviews"]],
+          widths=[1.5, 2.9, 2.1])
+    h2(d, "13.2 Conclusion")
+    para(d, "Azalea is a well-structured SBA 7(a) opportunity: the CHOW acquisition and relaunch of an "
+            "established, Medicare-certified hospice on validated economics, led by an experienced local team. "
+            "The credit rests on three verifiable points: (1) the acquired book's actual operating results, "
+            "which the opening steady-state model reconciles to within ~2%; (2) a base case whose combined "
+            "DSCR clears the 1.25x floor and strengthens every year (1.56x -> 3.50x -> 5.20x; global 3.42x); "
+            "and (3) a deliberately over-capitalized structure - $250K cash equity, $300K of seller risk "
+            "retained in the note, and a $672K opening reserve - that keeps liquidity intact through stress "
+            "scenarios, with the working-capital line never drawn in the base case. The binding risk is a "
+            "sustained census shortfall, mitigated by a validated opening book above break-even, a "
+            "census-driven cost structure, and substantial liquidity.")
+    para(d, "")
+    para(d, "Rev 5.00 - June 2026. This plan is computed from the Azalea Hospice SBA Loan Package operating "
+            "model, the single source of truth for all financial figures. Confidential - do not distribute "
+            "without written consent.", italic=True, size=8, color=GREY)
+    footer_note(d)
+    save(d, "03_business_plan/Azalea_SBA_Business_Plan_Rev5.00.docx")
+
+
 if __name__ == "__main__":
     company_profile()
     use_of_funds()
@@ -1772,4 +2346,5 @@ if __name__ == "__main__":
     bullard_source_of_funds()
     affiliate_memo()
     cover_letter_and_qa()
+    business_plan()
     print("Done.")

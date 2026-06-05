@@ -16,7 +16,7 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 | 2 | Company Profile | **DRAFT - needs your data** | `01_company_profile/` |
 | 3 | Use of Funds / Use of Proceeds | **DRAFTED** (from model) | `02_use_of_funds/` |
 | 3a | Equity Injection & SBA Structure memo | **DRAFTED** (SOP 50 10 8) | `02_use_of_funds/` |
-| 4 | Business Plan | **COMPLETE (Rev 4.00)** - needs financial refresh | `03_business_plan/` |
+| 4 | Business Plan | **Rev 5.00 DRAFTED** (current model, editable .docx) | `03_business_plan/Azalea_SBA_Business_Plan_Rev5.00.docx` |
 | 5 | Business Debt Schedule | **DRAFTED** (no pre-close debt) | `04_business_debt_schedule/` |
 | 6 | Personal History Form (SBA 912) | needs you (personal) | `06_personal_history_resume/` + guide |
 | 7 | Personal Financial Statement (SBA 413) | needs you (personal) | `05_personal_financial_statement/` + guide |
