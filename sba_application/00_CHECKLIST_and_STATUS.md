@@ -134,3 +134,22 @@ THREE CONFLICTS (see purchase_agreement_seller_note/HICKORY_DRIVE_REVIEW_and_CON
 - B3: OA v7 still 60/25/4.9 + S-Corp + Healing Hands; Amendment No. 1 not yet executed.
 
 Submission readiness checklist: SUBMISSION_READINESS_CHECKLIST.docx
+
+## STRUCTURE RE-CUT (per John Hart decisions) - $750K startup, seller paid at close
+
+The package was re-cut from the old $1.05M / $300K-seller-note structure to the structure
+confirmed with John Hart:
+- STARTUP CHOW (not expansion); no current operating affiliate (VistaRiver sold Aug 2025, passive note).
+- SBA $500,000 + equity $250,000 = $750,000 project. Seller ($300,000) PAID IN FULL AT CLOSE - no note.
+- Uses: $300K seller payoff + $63K startup + $15K equipment + $372K working-capital reserve.
+- Equity injection = 33.3% of project (above the ~30% startup bar; 3.3x the 10% SOP 50 10 8 floor).
+- Bullard 19.9%, no PG; Geoff sole guarantor.
+- DSCR (SBA-only debt $84,357/yr): Y1 3.59x / Y2 8.06x / Y3 11.94x; global 7.86x. Net income 205K/581K/909K.
+
+Updated: Use of Funds, Equity Injection memo, Business Debt Schedule (no debt), Reconciliation memo,
+Lender Credit Memo, DSCR Sensitivity (recomputed SBA-only), Cover Letter + Q&A, Business Plan Rev 5.00
+(all 13 sections), Submission Readiness (B1 resolved). Office = 13387 Hwy 69 N, Tyler.
+
+STILL OPEN: the Excel model workbook (09_financial_model) still reflects the old dual-debt structure
+and needs the seller-note rows removed / WC reset to $372K to produce final figures. The generated
+docs use the hand-computed SBA-only numbers above.

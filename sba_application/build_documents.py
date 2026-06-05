@@ -152,43 +152,45 @@ def use_of_funds():
     para(d, "")
     h2(d, "Total Project Sources and Uses")
     table(d, ["Use of funds", "Amount", "Funding source"],
-          [["Purchase of existing business - Hickory Medicare license (CHOW)", "$300,000", "Seller note (36 mo, 6%)"],
+          [["Acquisition of Hickory Hospice LLC - paid in full at close (CHOW; 100% membership interests)", "$300,000", "SBA + equity"],
            ["Startup one-time costs (855A filing, TX licensure, EMR, supply stock, legal, contingency)", "$63,000", "SBA + equity"],
            ["Equipment purchase (computers, office furniture)", "$15,000", "SBA + equity"],
-           ["Working-capital reserve (opening cash; funds ramp payroll and dual debt service)", "$672,000", "SBA + equity"],
-           ["Total funds required", "$1,050,000", ""]],
+           ["Working-capital reserve (opening cash; funds ramp payroll and SBA debt service)", "$372,000", "SBA + equity"],
+           ["Total funds required", "$750,000", ""]],
           widths=[4.0, 1.1, 1.7])
     para(d, "")
     h2(d, "Loan Request Reconciliation")
     table(d, ["Line", "Amount"],
-          [["Total funds required", "$1,050,000"],
+          [["Total funds required", "$750,000"],
            ["Less: borrower equity injection (cash capital contribution)", "($250,000)"],
-           ["Less: seller financing (Hickory license note, non-SBA)", "($300,000)"],
            ["Total SBA 7(a) loan request", "$500,000"]],
           widths=[4.5, 1.5])
+    para(d, "The seller is paid in full at close from SBA proceeds plus the equity injection; there is no "
+            "retained seller note, so the SBA loan is the only debt the business carries. The $250,000 equity "
+            "injection is 33.3% of the $750,000 project - well above the 10% SOP 50 10 8 minimum and the ~30% "
+            "down a startup typically warrants.", italic=True, size=9.5)
     para(d, "")
     h2(d, "Details on the transaction and use of working capital")
     para(d, "This is a change-of-ownership (CHOW) acquisition of Hickory Hospice LLC, an established, "
             "Medicare-certified hospice, structured as a purchase of 100% of its membership interests. The "
-            "$300,000 purchase price for the existing Medicare provider number is fully seller-financed, so no "
-            "cash leaves at close for the acquisition and the working-capital reserve is preserved. The acquired "
-            "provider number, state license, and CHAP/ACHC accreditation transfer in the CHOW, so the agency is "
-            "billing-ready from day one.")
-    para(d, "The SBA loan proceeds and the equity injection fund the $672,000 working-capital reserve plus "
-            "$78,000 of startup costs and equipment. The reserve carries ramp-period payroll and combined debt "
-            "service (SBA loan plus seller note) while accounts receivable normalize to the ~45-day Medicare "
-            "cycle, and holds a $25,000 minimum cash floor with the $100,000 working-capital line undrawn in the "
-            "base case.")
+            "$300,000 purchase price for the existing Medicare provider number is paid in full at close from SBA "
+            "proceeds and the equity injection - there is no retained seller note, so the SBA loan is the only "
+            "debt the business carries. The acquired provider number, state license, and CHAP/ACHC accreditation "
+            "transfer in the CHOW, so the agency is billing-ready from day one.")
+    para(d, "After the $300,000 acquisition payoff and $78,000 of startup costs and equipment, the SBA loan and "
+            "the equity injection fund a $372,000 working-capital reserve. The reserve carries ramp-period payroll "
+            "and SBA debt service while accounts receivable normalize to the ~45-day Medicare cycle. Because there "
+            "is no seller note, Year-1 debt service is the SBA loan alone (~$84,357/yr), so the reserve stretches "
+            "further than under a dual-debt structure.")
     para(d, "Source of the borrower's equity injection: $250,000 in cash, provided as a capital contribution by "
             "minority member James Bullard (19.9% non-controlling interest) in exchange for his equity interest. "
-            "This is a bona fide, non-borrowed equity injection equal to approximately 23.8% of total project "
-            "cost - well above the 10% minimum required for a complete change of ownership under SOP 50 10 8. The "
-            "injection is verified by Mr. Bullard's bank / brokerage statements and the capital-contribution wire "
-            "into the company's account. Because Mr. Bullard is a passive investor holding less than 20% with no "
-            "management or control rights and no side agreement, his contribution counts as qualifying equity "
-            "without triggering a personal guaranty (consistent with SOP 50 10 8 and 13 CFR 120.160). The "
-            "$300,000 Hickory seller note is not on standby and is therefore treated as acquisition debt within "
-            "combined debt service, not as part of the equity injection.", italic=True, size=9.5)
+            "This is a bona fide, non-borrowed equity injection equal to 33.3% of total project cost - more than "
+            "triple the 10% minimum required under SOP 50 10 8 and above the ~30% down typically warranted for a "
+            "startup. The injection is verified by Mr. Bullard's bank / brokerage statements and the capital-"
+            "contribution wire into the company's account. Because Mr. Bullard is a passive investor holding less "
+            "than 20% with no management or control rights and no side agreement, his contribution counts as "
+            "qualifying equity without triggering a personal guaranty (consistent with SOP 50 10 8 and 13 CFR "
+            "120.160).", italic=True, size=9.5)
     para(d, "")
     h2(d, "How will this loan benefit the company?")
     para(d, "The loan capitalizes the acquisition and relaunch of an established, billing-ready hospice on "
@@ -208,14 +210,13 @@ def debt_schedule():
     para(d, "Borrower: Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
     field(d, "As of", TBD + "  (most recent month-end, not older than 60 days)")
     para(d, "")
-    para(d, "Tyler Hospice Hold LLC is a newly formed holding entity (Wyoming, March 18, 2026) and carries "
-            "no existing business debt prior to this transaction. The Hickory license seller note arises at "
-            "close and is shown below as proposed closing debt.", italic=True)
+    para(d, "Tyler Hospice Hold LLC is a newly formed holding entity and carries no existing business debt prior "
+            "to this transaction. The Hickory acquisition is paid in full at close from SBA proceeds and the "
+            "equity injection - there is no seller note or other carried debt. After close, the only business "
+            "debt is the SBA 7(a) loan itself.", italic=True)
     para(d, "")
     table(d, ["Lender", "Orig. date", "Purpose", "Orig. amount", "Current balance", "Rate", "Payment", "Collateral"],
-          [["Seller (Hickory CHOW) - PROPOSED at close", "At close", "Acquire Medicare provider number (CHOW)",
-            "$300,000", "$300,000", "6.00%", "$9,126.58/mo (36 mo)", "Membership interests / provider number"],
-           ["(No other existing business debt)", "-", "-", "$0", "$0", "-", "$0", "-"]],
+          [["(No existing or proposed business debt other than the subject SBA 7(a) loan)", "-", "-", "$0", "$0", "-", "$0", "-"]],
           widths=[1.5, 0.7, 1.6, 0.9, 0.9, 0.5, 1.0, 1.4])
     para(d, "")
     h2(d, "Government Financing")
@@ -338,18 +339,19 @@ def reconciliation_memo():
            ["EBITDA Y1", "$311,204 (21.6%)", "$302,522 (21.0%)", "Close"],
            ["EBITDA Y2", "$814,391 (29.9%)", "$679,524 (24.9%)", "Lower - richer staffing"],
            ["EBITDA Y3", "$1,185,619 (31.8%)", "$1,007,520 (27.0%)", "Lower - richer staffing"],
-           ["Net income Y1 / Y2 / Y3", "$199K / $706K / $1,084K", "$190K / $571K / $905K", "Lower"],
-           ["Combined DSCR Y1 / Y2 / Y3", "1.61x / 4.20x / 6.12x", "1.56x / 3.50x / 5.20x", "Lower, still strong"],
-           ["Global 3-yr DSCR", "3.97x", "3.42x", "Both well above 1.25x"]],
+           ["Net income Y1 / Y2 / Y3", "$199K / $706K / $1,084K", "$205K / $581K / $909K", "Higher (no seller-note interest)"],
+           ["DSCR Y1 / Y2 / Y3 (SBA-only debt)", "1.61x / 4.20x / 6.12x", "3.59x / 8.06x / 11.94x", "Stronger - seller paid at close"],
+           ["Global 3-yr DSCR", "3.97x", "7.86x", "Both well above 1.25x"]],
           widths=[1.9, 1.7, 1.7, 1.5])
+    para(d, "Structure note: the deal is now a startup CHOW in which the $300,000 seller price is paid in full at "
+            "close from SBA proceeds and the equity injection - no retained seller note. Debt service is the SBA "
+            "loan alone (~$84,357/yr), which lifts DSCR materially above the earlier dual-debt assumption.",
+         italic=True, size=9.5)
     h2(d, "Recommendation")
-    para(d, "Update the Business Plan financials (Sections 11.4 and 11.6, plus the Executive Summary repayment "
-            "tiles) to the current model. The current model is the version that is fully reconciled, error-free, "
-            "and reflects realistic staffing for a 50+ ADC agency - the more defensible position with an SBA "
-            "underwriter. The story holds: every year is profitable, EBITDA still grows from $303K to $1.0M, and "
-            "combined DSCR clears 1.25x in every year (1.56x / 3.50x / 5.20x; global 3.42x), springing higher once "
-            "the seller note retires after Year 3. The alternative (reverting the model to the leaner roster) would "
-            "raise margins but invites the question of how a 54-ADC agency runs on so few clinical staff.")
+    para(d, "Use the current operating model with the seller-paid-at-close structure. Every year is profitable, "
+            "EBITDA grows from $303K to $1.0M, and DSCR clears 1.25x in every year by a wide margin (3.59x / 8.06x "
+            "/ 11.94x; global 7.86x) because there is no seller note competing with the SBA loan for cash flow. "
+            "The staffing build is the fuller, more defensible roster for a 50+ ADC agency.")
     h2(d, "Corrected three-year P&L (drop-in for Section 11.4)")
     table(d, ["Line item", "Year 1", "Year 2", "Year 3"],
           [["Average daily census (ADC)", "21.8", "40.2", "53.8"],
@@ -360,25 +362,25 @@ def reconciliation_memo():
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
            ["EBITDA margin", "21.0%", "24.9%", "27.0%"],
            ["Depreciation & amortization", "$35,600", "$35,600", "$35,600"],
-           ["Interest (SBA + seller note)", "$71,479", "$62,558", "$52,623"],
+           ["Interest (SBA loan only)", "$56,038", "$52,604", "$48,754"],
            ["TX franchise tax", "$5,411", "$10,232", "$14,006"],
-           ["Net income", "$190,032", "$571,134", "$905,290"]],
+           ["Net income", "$205,473", "$581,088", "$909,160"]],
           widths=[2.6, 1.4, 1.4, 1.4])
     h2(d, "Corrected lender summary (drop-in for Section 11.6)")
     table(d, ["Metric", "Year 1", "Year 2", "Year 3"],
           [["EBITDA", "$302,522", "$679,524", "$1,007,520"],
-           ["Combined debt service", "$193,876", "$193,876", "$193,876"],
-           ["Combined DSCR", "1.56x", "3.50x", "5.20x"],
-           ["Net income", "$190,032", "$571,134", "$905,290"]],
+           ["SBA debt service", "$84,357", "$84,357", "$84,357"],
+           ["DSCR (SBA-only)", "3.59x", "8.06x", "11.94x"],
+           ["Net income", "$205,473", "$581,088", "$909,160"]],
           widths=[2.6, 1.4, 1.4, 1.4])
-    para(d, "Global 3-year combined DSCR: 3.42x (vs. 1.25x floor). SBA-only coverage springs far higher once "
-            "the seller note retires at the end of Year 3.", bold=True)
+    para(d, "Global 3-year DSCR: 7.86x (vs. 1.25x floor). With the seller paid at close, the SBA loan is the only "
+            "debt and coverage is strong from Year 1.", bold=True)
     h2(d, "Break-even (answers Business Plan Guide VIII.3 - currently missing)")
     para(d, "Contribution margin is $160.52 per patient-day (net rate $181.30 less $20.78 of variable cost per "
             "patient-day: supplies/DME/pharmacy plus PRN visit labor plus the 1.5% billing and 0.75% QR fees). "
             "Against the Year-1 fixed-cost base (the lean opening roster plus fixed G&A), the operation breaks "
             "even at approximately 16 ADC, or about $86,000 per month of net revenue. The validated opening "
-            "census of ~22 ADC is already above break-even, and Year-1 covers combined debt service at 1.56x.")
+            "census of ~22 ADC is already above break-even, and Year-1 covers SBA debt service at 3.59x.")
     footer_note(d)
     save(d, "03_business_plan/RECONCILIATION_and_Breakeven_MEMO.docx")
 
@@ -436,7 +438,7 @@ def information_needed():
         para(d, "  - " + x)
     h2(d, "C. Transaction documents")
     for x in ["Hickory CHOW purchase agreement (Asset/Membership Purchase Agreement)",
-              "Executed Hickory seller note ($300,000, 36 months, 6%) and security documentation",
+              "Wire confirmation for the $300,000 seller payoff at close (no seller note retained)",
               "Letter of intent / contract for the Hickory purchase",
               "Office lease or LOI (term should match the loan term, with options)"]:
         para(d, "  - " + x)
@@ -487,18 +489,17 @@ def equity_injection_memo():
             "structured so that it qualifies as equity without triggering a personal guaranty.")
     h2(d, "Capital structure")
     table(d, ["Source", "Amount", "% of project", "Treatment"],
-          [["SBA 7(a) loan", "$500,000", "47.6%", "Senior debt"],
-           ["Equity injection - cash (James Bullard, 19.9% member)", "$250,000", "23.8%", "Qualifying equity injection"],
-           ["Seller note (Hickory CHOW, 36 mo, 6%)", "$300,000", "28.6%", "Acquisition debt (not on standby; not equity)"],
-           ["Total project cost", "$1,050,000", "100%", ""]],
+          [["SBA 7(a) loan", "$500,000", "66.7%", "Senior debt (only debt the business carries)"],
+           ["Equity injection - cash (James Bullard, 19.9% member)", "$250,000", "33.3%", "Qualifying equity injection"],
+           ["Total project cost", "$750,000", "100%", "Seller paid in full at close (no retained note)"]],
           widths=[3.2, 1.1, 1.1, 1.8])
-    h2(d, "1. The 10% minimum injection is met more than twice over")
-    para(d, "SOP 50 10 8 requires a minimum equity injection of at least 10% of total project cost for a complete "
-            "change of ownership - here, $105,000. The transaction injects $250,000 of cash equity (23.8% of "
-            "project cost), comfortably above the floor. The injection is non-borrowed cash, verified by the "
-            "investor's bank / brokerage statements and the capital-contribution wire into the company's account, "
-            "with funds seasoned in the contributor's account (lender to retain 30+ days of statements per the SOP "
-            "verification standard).")
+    h2(d, "1. The injection is more than triple the 10% minimum")
+    para(d, "SOP 50 10 8 requires a minimum equity injection of at least 10% of total project cost for a startup "
+            "/ complete change of ownership - here, $75,000. The transaction injects $250,000 of cash equity "
+            "(33.3% of project cost), comfortably above the floor and above the ~30% down typically warranted for "
+            "a startup. The injection is non-borrowed cash, verified by the investor's bank / brokerage statements "
+            "and the capital-contribution wire into the company's account, with funds seasoned in the contributor's "
+            "account (lender to retain 30+ days of statements per the SOP verification standard).")
     h2(d, "1a. Contribution status and schedule")
     para(d, "The injection is being contributed in tranches to the borrower's Mercury (Column N.A.) operating "
             "account ending 1275. As of the date of this memo:")
@@ -516,13 +517,11 @@ def equity_injection_memo():
             "tranche lands, so the full $250,000 will be on deposit at the time of SBA loan disbursement, in "
             "compliance with SOP 50 10 8. No disbursement holdback is required, and no acceleration of "
             "tranches 2 and 3 is sought.", italic=True, size=9.5)
-    h2(d, "2. The seller note does not need to - and does not - count as equity")
-    para(d, "Under SOP 50 10 8, seller debt counts toward the injection only if it is on full standby (no "
-            "principal or interest) for the life of the SBA loan, and even then for no more than 50% of the "
-            "required injection. The $300,000 Hickory seller note is amortizing (36 months at 6%) and is therefore "
-            "treated as acquisition debt serviced within combined debt service - not as part of the equity "
-            "injection. Because the cash injection alone clears the 10% requirement by a wide margin, no standby "
-            "of the seller note is required.")
+    h2(d, "2. Seller paid in full at close - no retained note")
+    para(d, "The $300,000 acquisition price is paid in full at close from SBA proceeds and the equity injection. "
+            "There is no retained seller note, so the SBA loan is the only debt the business carries and Year-1 "
+            "debt service is the SBA loan alone (~$84,357/yr). This produces strong coverage from Year 1 "
+            "(DSCR ~3.59x) rather than the compressed coverage of a dual-debt (SBA + seller note) structure.")
     h2(d, "3. The investor's equity qualifies without a personal guaranty")
     para(d, "The $250,000 is contributed by James Bullard as a capital contribution in exchange for a direct, "
             "fully funded 19.9% membership interest. In a complete change of ownership, SOP 50 10 8 does not "
@@ -563,15 +562,15 @@ def lender_credit_memo():
     para(d, "")
     h2(d, "The deal at a glance")
     table(d, ["Field", "Value"],
-          [["Borrower", "Tyler Hospice Hold LLC (Wyoming) - EIN 41-4966640"],
+          [["Borrower", "Tyler Hospice Hold LLC (newco) - EIN 41-4966640"],
            ["Operating subsidiary", "Hickory Hospice LLC (Texas) - Medicare-certified hospice provider"],
-           ["Transaction", "Complete change of ownership (CHOW) - purchase of 100% membership interests of Hickory"],
+           ["Transaction", "Startup change of ownership (CHOW) - purchase of 100% membership interests of Hickory"],
            ["Loan request", "$500,000 SBA 7(a)"],
-           ["Total project cost", "$1,050,000"],
-           ["Use of proceeds", "Working capital ($672K) + startup ($63K) + equipment ($15K); seller-financed acquisition ($300K)"],
-           ["Borrower equity injection", "$250,000 cash (23.8% of project) - 2.4x the 10% SOP 50 10 8 floor"],
+           ["Total project cost", "$750,000"],
+           ["Use of proceeds", "Acquisition paid at close ($300K) + working capital ($372K) + startup ($63K) + equipment ($15K)"],
+           ["Borrower equity injection", "$250,000 cash (33.3% of project) - 3.3x the 10% SOP 50 10 8 floor; above the ~30% startup norm"],
            ["Primary guarantor", "Geoff Schackmann (sole 20%+ owner via Adeline & Lilah, LLC; 39.9%)"],
-           ["Year-1 combined DSCR", "1.56x | Y2 3.50x | Y3 5.20x | Global 3.42x (floor 1.25x)"]],
+           ["DSCR (SBA-only debt)", "Y1 3.59x | Y2 8.06x | Y3 11.94x | Global 7.86x (floor 1.25x)"]],
           widths=[1.9, 4.6])
     h2(d, "Why this credit is strong")
     para(d, "1. Established, billing-ready agency. The transaction is the purchase of an operating Medicare-"
@@ -587,17 +586,18 @@ def lender_credit_memo():
     para(d, "4. Conservative staffing build. Year-1 P&L carries a fully staffed clinical roster sized to the "
             "underwritten census (RN case managers, CNAs, social work, chaplain, IDG, Quality/Compliance, Intake, "
             "Volunteer Coordinator) plus outsourced billing at 1.5% of revenue - not a thin headcount story.")
-    para(d, "5. Coverage and headroom. Year-1 combined DSCR of 1.56x clears the SBA floor with cushion; coverage "
-            "springs further after Year 3 when the $300K seller note retires. Break-even is ~16 ADC vs. opening 22 "
-            "ADC, so the deal is profitable on the validated opening census alone.")
+    para(d, "5. Coverage and headroom. Because the seller is paid in full at close (no retained note), the SBA "
+            "loan is the only debt and Year-1 DSCR is ~3.59x, rising to 8.06x and 11.94x (global 7.86x). "
+            "Break-even is ~16 ADC vs. opening 22 ADC, so the deal is profitable on the validated opening census "
+            "alone.")
     h2(d, "Equity injection - SOP 50 10 8 compliant")
-    para(d, "$250,000 cash (23.8% of project) contributed by James Bullard as a capital contribution for a direct, "
-            "fully funded 19.9% passive minority interest. Under 20%, no PFS or guaranty required; the lender "
-            "verifies only the source of funds per the SOP. Tranche 1 of $100,000 was wired May 7, 2026 into the "
-            "borrower's Mercury (Column N.A.) account ****1275 and remains on deposit. Tranches 2 and 3 ($150,000 "
-            "total) are scheduled for June and July 2026. The $300,000 Hickory seller note (36 mo, 6%, amortizing) "
-            "is acquisition debt within combined DSCR - not on standby, not equity. Detailed compliance write-up "
-            "in Equity_Injection_and_SBA_Structure_MEMO.")
+    para(d, "$250,000 cash (33.3% of the $750,000 project) contributed by James Bullard as a capital contribution "
+            "for a direct, fully funded 19.9% passive minority interest. Under 20%, no PFS or guaranty required; "
+            "the lender verifies only the source of funds per the SOP. Tranche 1 of $100,000 was wired May 7, 2026 "
+            "into the borrower's Mercury (Column N.A.) account ****1275 and remains on deposit; the balance follows "
+            "on a committed schedule. The $300,000 acquisition price is paid in full at close from SBA proceeds and "
+            "the injection - no retained seller note. Detailed compliance write-up in "
+            "Equity_Injection_and_SBA_Structure_MEMO.")
     h2(d, "Risks and mitigants")
     table(d, ["Risk", "Mitigant"],
           [["Census ramp slower than plan",
@@ -607,15 +607,15 @@ def lender_credit_memo():
            ["Key-person dependency",
             "Four-person leadership team (Managing Member, ED, DON, BD Director); 25+ year East-Texas BD relationships are institutional"],
            ["Equity injection phased (not all in at signing)",
-            "Tranche 1 in account; tranches 2-3 committed; lender can sequence SBA disbursement after final tranche or use a holdback"]],
+            "Tranche 1 in account; balance committed; lender can sequence SBA disbursement after the full injection is on deposit"]],
           widths=[2.0, 4.5])
     h2(d, "Closing conditions to verify")
     for x in ["Bullard source-of-funds statements for each tranche (30+ day seasoning, in his name)",
-              "Receipt and on-deposit evidence for tranches 2 and 3; final $250K balance confirmation pre-disbursement",
-              "Executed Hickory CHOW purchase agreement and seller note ($300K, 36 mo, 6%) with security documents",
+              "Receipt and on-deposit evidence for the remaining tranches; full $250K balance confirmation pre-disbursement",
+              "Executed Hickory CHOW purchase agreement (MIPA) and wire confirmation of the $300K seller payoff at close",
               "Office lease / LOI with term matching the SBA loan term and reasonable options",
               "Geoff Schackmann personal package: PFS (413), cash flow (7a), history form (912), 3 yrs tax returns, credit, license",
-              "Refreshed Business Plan financial sections to match the operating model (Rev 5.00)"]:
+              "Business Plan / sources-and-uses reflecting the seller-paid-at-close structure (Rev 5.00)"]:
         para(d, "  - " + x)
     footer_note(d)
     save(d, "11_lender_credit_memo/Lender_Credit_Memo_EXEC_SUMMARY.docx")
@@ -628,48 +628,52 @@ def sensitivity_memo():
     para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC. Illustrative scenarios; underlying model in folder 09.",
          color=GREY, size=9)
     para(d, "")
-    para(d, "The base case clears the 1.25x SBA DSCR floor in every year. This memo stress-tests the Year-1 "
-            "result against the underwriting risks the lender will reasonably probe: a slower census ramp, "
-            "a softer reimbursement rate, payroll inflation, and a combined downside. Years 2-3 are not stressed "
-            "here because Y1 is the binding constraint (Y2/Y3 DSCR are 3.50x and 5.20x respectively).")
+    para(d, "The base case clears the 1.25x SBA DSCR floor in every year by a wide margin. Because the seller is "
+            "paid in full at close (no retained note), debt service is the SBA loan alone (~$84,357/yr), so "
+            "coverage is strong from Year 1. This memo stress-tests the Year-1 result against the risks a lender "
+            "will probe: a slower census ramp, a softer reimbursement rate, payroll inflation, and a combined "
+            "downside.")
     h2(d, "Base case (Year 1)")
     table(d, ["Line", "Amount"],
           [["Net patient revenue", "$1,442,930"],
            ["EBITDA", "$302,522"],
-           ["Combined debt service (SBA + seller note)", "$193,876"],
-           ["Combined DSCR", "1.56x"]],
+           ["SBA debt service (only debt)", "$84,357"],
+           ["DSCR", "3.59x"]],
           widths=[3.5, 2.0])
     h2(d, "Single-factor stress (Year 1)")
     para(d, "Each scenario isolates one variable; all others held at base. Variable cost flexes proportionally "
-            "with revenue at the model's contribution ratio (~88.5% contribution margin per patient-day).",
-         italic=True, size=9.5)
+            "with revenue at the model's contribution ratio (~88.5% contribution margin per patient-day). Debt "
+            "service is the SBA loan only ($84,357).", italic=True, size=9.5)
     table(d, ["Scenario", "Assumption", "EBITDA", "DSCR", "Clears 1.25x?"],
-          [["S1 - Census -10%",       "ADC 19.6 vs. 21.8",          "$174,653", "0.90x", "No - shortfall"],
-           ["S2 - Census -20%",       "ADC 17.4 vs. 21.8",          "$46,783",  "0.24x", "No - shortfall"],
-           ["S3 - Rate -3%",          "Net rate $175.86 vs. $181.30","$259,234", "1.34x", "Yes"],
-           ["S4 - Rate -5%",          "Net rate $172.24 vs. $181.30","$230,381", "1.19x", "No - marginal"],
-           ["S5 - Payroll +10%",      "Payroll $955K vs. $868K",    "$215,705", "1.11x", "No - marginal"],
-           ["S6 - Payroll +5%",       "Payroll $911K vs. $868K",    "$259,113", "1.34x", "Yes"]],
+          [["S1 - Census -10%",       "ADC 19.6 vs. 21.8",          "$174,823", "2.07x", "Yes"],
+           ["S2 - Census -20%",       "ADC 17.4 vs. 21.8",          "$47,123",  "0.56x", "No - shortfall"],
+           ["S3 - Rate -3%",          "Net rate -3%",               "$264,212", "3.13x", "Yes"],
+           ["S4 - Rate -5%",          "Net rate -5%",               "$238,672", "2.83x", "Yes"],
+           ["S5 - Payroll +10%",      "Payroll $955K vs. $868K",    "$215,705", "2.56x", "Yes"],
+           ["S6 - Payroll +5%",       "Payroll $911K vs. $868K",    "$259,113", "3.07x", "Yes"]],
           widths=[1.4, 2.0, 1.0, 0.8, 1.3])
     h2(d, "Combined downside (Year 1)")
     table(d, ["Scenario", "Assumption", "EBITDA", "DSCR"],
-          [["C1 - Mild downside",    "Census -5%, Rate -2%, Payroll +3%",    "$169,773", "0.88x"],
-           ["C2 - Moderate downside","Census -10%, Rate -3%, Payroll +5%",   "$87,328",  "0.45x"]],
+          [["C1 - Mild downside",    "Census -5%, Rate -2%, Payroll +3%",    "$187,087", "2.22x"],
+           ["C2 - Moderate downside","Census -10%, Rate -3%, Payroll +5%",   "$93,104",  "1.10x"]],
           widths=[1.6, 2.6, 1.0, 0.8])
     h2(d, "What the stress tells us")
-    para(d, "Year 1 is sensitive to census most of all - which is the right risk to focus on. The plan's "
-            "underwriting buffer comes from two places that the simple flex above does NOT credit:")
-    for x in ["The $100,000 undrawn working-capital line is available to bridge a mild-downside year (covers ~6 months of DS shortfall in C1) without re-opening the SBA loan.",
-              "The Year-1 roster is partly variable: PRN and intake/admin headcount can be flexed back if census softens, which the static stress above does not capture (it holds payroll flat against revenue).",
-              "Break-even is ~16 ADC. Even the S2 case (ADC 17.4) is still above break-even; the DSCR strain is principally about debt service coverage timing, not operating viability.",
-              "Tranches 2-3 of the equity injection ($150K landing June-July 2026) provide additional liquidity headroom not reflected in EBITDA."]:
+    para(d, "With the seller paid at close, Year-1 coverage is strong (3.59x) and absorbs realistic shocks: a 10% "
+            "census miss, a 5% rate cut, and a 10% wage spike each still clear comfortably (2.07x / 2.83x / 2.56x), "
+            "and a mild combined downside clears at 2.22x. The only single-factor break is a hard, sustained 20% "
+            "census shortfall (0.56x); a moderate combined downside is right at the floor (1.10x). Even then, the "
+            "buffers below are not credited in the static flex:")
+    for x in ["Break-even is ~16 ADC; even the -20% case (ADC ~17.4) is still above operating break-even - the strain is coverage timing, not viability.",
+              "The Year-1 roster is partly census-driven: PRN, intake, and capacity RN/CNA headcount flex back if census softens, which the static stress holds flat against revenue.",
+              "The $372K opening working-capital reserve bridges any timing shortfall; with only SBA debt service (~$7,030/mo), monthly obligations are far lighter than a dual-debt structure.",
+              "A working-capital line, if the lender bundles one, adds further headroom not reflected in EBITDA."]:
         para(d, "  - " + x)
     h2(d, "Recommendation to the underwriter")
-    para(d, "Approve with standard covenants. The deal services debt at base; the binding stress is a hard "
-            "census shortfall, mitigated by (a) experienced BD leadership with a validated 40+ ADC referral book, "
-            "(b) opening census already 38% above break-even, (c) the unused WC line, and (d) springing coverage "
-            "once the seller note retires after Y3. A monthly census-and-cash covenant during Y1 (e.g., minimum "
-            "ADC and minimum cash) would let the lender monitor the binding variable without constraining operations.")
+    para(d, "Approve with standard covenants. The deal covers SBA debt service at 3.59x in Year 1 and far higher "
+            "thereafter; the only meaningful stress is a hard census shortfall, mitigated by (a) experienced BD "
+            "leadership with a validated 40+ ADC referral book, (b) opening census ~38% above break-even, "
+            "(c) the $372K reserve, and (d) the seller-paid-at-close structure that leaves the SBA loan as the only "
+            "debt. A monthly census-and-cash covenant during Y1 would let the lender monitor the binding variable.")
     footer_note(d)
     save(d, "11_lender_credit_memo/DSCR_Sensitivity_Stress_Test_MEMO.docx")
 
@@ -748,7 +752,7 @@ def submission_cover_sheet():
     d = new_doc("Submission Cover Sheet")
     h1(d, "Submission Package - Table of Contents")
     para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
-    field(d, "Loan request", "$500,000 SBA 7(a) | Total project: $1,050,000")
+    field(d, "Loan request", "$500,000 SBA 7(a) | Total project: $750,000")
     field(d, "Borrower", "Tyler Hospice Hold LLC (WY) - EIN 41-4966640")
     field(d, "Operating subsidiary", "Hickory Hospice LLC (TX) - the acquired Medicare-certified hospice")
     field(d, "Primary guarantor", "Geoff Schackmann via Adeline & Lilah, LLC (39.9%, sole 20%+ owner)")
@@ -820,12 +824,11 @@ def closing_checklist():
               "Member resolutions authorizing the loan, the CHOW, the guarantor signing"]:
         para(d, "  - " + x)
     h2(d, "B. Transaction documents")
-    for x in ["Hickory CHOW Membership Interest Purchase Agreement - executed",
-              "Hickory CHOW seller promissory note ($300K, 36 mo, 6%) - executed",
+    for x in ["Hickory CHOW Membership Interest Purchase Agreement (MIPA) - executed (filed)",
+              "Wire confirmation of the $300,000 seller payoff at close (no retained seller note)",
               "Bill of sale / assignment of membership interests - executed",
-              "Standby Agreement (if any seller-financing portion is on standby) - SBA Form 155",
-              "UCC-1 financing statement filings (SBA lender, seller note)",
-              "Subordination agreement(s) between SBA lender and seller (if required)"]:
+              "Manager resignations + spousal consents per the MIPA closing deliverables",
+              "UCC-1 financing statement filing (SBA lender)"]:
         para(d, "  - " + x)
     h2(d, "C. Licenses, accreditations, payor enrollment (CHOW)")
     for x in ["Texas Department of Health and Human Services - HCSSA license transfer / amendment",
@@ -1664,17 +1667,18 @@ def cover_letter_and_qa():
             "Care) - change-of-ownership acquisition of Hickory Hospice LLC")
     para(d, "")
     para(d, "Dear [Loan Officer]:")
-    para(d, "We are pleased to submit this SBA 7(a) loan application for Tyler Hospice HoldCo L.L.C., a Wyoming "
-            "limited liability company doing business as Azalea Hospice & Palliative Care. We are requesting a "
-            "$500,000 SBA 7(a) loan as part of a $1,050,000 total project to acquire and operate Hickory "
-            "Hospice LLC, an established, Medicare-certified hospice agency in the East Texas market, through "
-            "a complete change of ownership.")
+    para(d, "We are pleased to submit this SBA 7(a) loan application for Tyler Hospice Hold, LLC, doing business "
+            "as Azalea Hospice & Palliative Care. We are requesting a $500,000 SBA 7(a) loan as part of a "
+            "$750,000 total project to acquire and operate Hickory Hospice LLC, an established, Medicare-"
+            "certified hospice agency in the East Texas market, through a startup change of ownership. The "
+            "seller is paid in full at close from loan proceeds and our equity injection, so the SBA loan is the "
+            "only debt the business carries.")
     para(d, "The transaction is built on a strong foundation:")
     for x in ["Established, billing-ready agency. We are acquiring an operating Medicare-certified hospice with a transferring provider number, HCSSA license, and accreditation - billing-capable from day one, with no startup enrollment ramp.",
-              "Experienced operator and validated local team. Our Managing Member has grown multiple hospice agencies from sub-30 to 100+ ADC; our Director of Sales has sustained a 40+ ADC referral book in the Tyler market for 4.5 years.",
-              "Meaningful equity. A $250,000 cash equity injection (23.8% of project cost) - more than double the 10% SOP 50 10 8 minimum. $100,000 is already on deposit; the balance funds by the end of July 2026.",
-              "Coverage with cushion. Combined debt-service coverage of 1.56x in Year 1, rising to 3.50x and 5.20x; global three-year DSCR of 3.42x against the 1.25x floor. Break-even is ~16 ADC versus a validated opening census of ~22.",
-              "Conservative structure. Seller-financed acquisition ($300,000, 36-month note), a fully staffed clinical roster sized to the underwritten census, and an undrawn working-capital line."]:
+              "Experienced operator and validated local team. Our Managing Member has 10+ years of hospice ownership and operations; our Director of Sales has sustained a 40+ ADC referral book in the Tyler market for 4.5 years.",
+              "Substantial equity. A $250,000 cash equity injection - 33.3% of the $750,000 project, above the ~30% a startup typically warrants and more than triple the 10% SOP 50 10 8 minimum. $100,000 is already on deposit; the balance follows on a committed schedule.",
+              "Strong coverage. Because the seller is paid at close (no retained note), the SBA loan is the only debt: DSCR is 3.59x in Year 1, rising to 8.06x and 11.94x (global 7.86x) against the 1.25x floor. Break-even is ~16 ADC versus a validated opening census of ~22.",
+              "Clean structure. A single SBA loan, no seller note, and a fully staffed clinical roster sized to the underwritten census."]:
         para(d, "  - " + x)
     para(d, "The enclosed package is indexed in the Submission Cover Sheet and includes the Company Profile, "
             "Use of Proceeds, Business Plan, financial model, equity-injection documentation, the borrower's "
@@ -1695,11 +1699,11 @@ def cover_letter_and_qa():
     para(d, "Prepared to speed the credit team's review. These are the questions an SBA underwriter is most "
             "likely to raise on this deal, with our responses.", color=GREY, size=9)
     qa = [
-        ("Why is so much of the loan working capital?",
-         "This is a relaunch of an acquired agency. The acquisition itself is seller-financed, so SBA proceeds "
-         "and equity fund the working-capital reserve that carries ramp-period payroll and combined debt "
-         "service while Medicare receivables normalize to the ~45-day cycle. The model holds a $25,000 minimum "
-         "cash floor with the $100,000 WC line undrawn in the base case."),
+        ("Why this level of working capital?",
+         "This is a startup relaunch of an acquired agency. SBA proceeds and equity pay the seller in full at "
+         "close ($300K) and fund a $372,000 working-capital reserve that carries ramp-period payroll and SBA "
+         "debt service while Medicare receivables normalize to the ~45-day cycle. Because there is no seller "
+         "note, monthly debt service is light (~$7,030), so the reserve stretches well through the ramp."),
         ("Is Bullard's 19.9% a device to avoid a guaranty?",
          "No. Mr. Bullard is contributing $250,000 of his own savings as a genuine capital contribution for a "
          "19.9% interest - the cash is the equity injection. He holds protective minority rights but no "
@@ -1709,7 +1713,7 @@ def cover_letter_and_qa():
          "to this effect. He does not hold a unilateral veto: a 60% Reserved-Matters vote can pass with "
          "Adeline & Lilah plus any two operator-members (66.5%)."),
         ("The equity injection isn't all in yet - how is that handled?",
-         "$100,000 was wired May 7, 2026 and is on deposit. The remaining $150,000 funds by July 31, 2026. We "
+         "$100,000 was wired May 7, 2026 and is on deposit. The balance follows on a committed schedule. We "
          "have scheduled the CHOW close and SBA disbursement to occur after the full $250,000 is on deposit, so "
          "the complete injection is verified at disbursement per SOP 50 10 8. Source-of-funds statements are "
          "provided for each tranche."),
@@ -1717,29 +1721,31 @@ def cover_letter_and_qa():
          "Opening census of ~22 ADC is underwritten conservatively against a validated referral pipeline: the "
          "Director of Sales sustained 40+ ADC in this market for 4.5 years and previously built agencies from "
          "single digits to 70-220 patients. Break-even is ~16 ADC, so we are profitable at opening census. The "
-         "DSCR sensitivity memo stresses census down 10-20% and shows the mitigants (WC line, partly variable "
-         "roster, springing coverage after the seller note retires)."),
+         "DSCR sensitivity memo stresses census down 10-20% and shows the mitigants (the $372K reserve, a partly "
+         "census-driven roster, and the seller-paid-at-close structure that leaves the SBA loan as the only debt)."),
         ("What happens if Year 1 underperforms?",
-         "The enclosed sensitivity analysis tests census, rate, and payroll shocks. The binding risk is a hard "
-         "census shortfall; mitigants include the undrawn $100,000 WC line (covers ~6 months of debt-service "
-         "shortfall in a mild-downside year), a roster that can flex with census, opening census 38% above "
-         "break-even, and the remaining equity tranches. We propose a monthly census-and-cash covenant in "
-         "Year 1 so the lender can monitor the binding variable."),
+         "The enclosed sensitivity analysis tests census, rate, and payroll shocks. With no seller note, Year-1 "
+         "coverage starts at 3.59x and absorbs a 10% census miss, a 5% rate cut, or a 10% wage spike and still "
+         "clears comfortably; the only break is a hard, sustained 20% census shortfall, bridged by the $372K "
+         "reserve and a roster that flexes with census. We propose a monthly census-and-cash covenant in Year 1 "
+         "so the lender can monitor the binding variable."),
         ("Is the CHOW provider-number transfer clean?",
          "The acquisition is a purchase of 100% of Hickory Hospice LLC's membership interests; the Medicare "
          "PTAN/NPI, HCSSA license, and accreditation transfer through the CHOW process. We will provide the "
          "executed purchase agreement, the CMS-855A CHOW filing status, and the accreditation continuation "
          "notice at or before close."),
         ("Are there affiliates that affect size or eligibility?",
-         "The affiliate group is the borrower, its wholly owned subsidiary Hickory, and the non-operating "
-         "holding entity Adeline & Lilah, LLC - well within the size standard. Geoff Schackmann sold his prior "
-         "VistaRiver interest in 2025 and holds only a passive seller note (not an affiliate). See the "
-         "Affiliate & Size-Standard memo."),
-        ("Why does the business plan show different numbers than the model?",
-         "The business plan (Rev 4.00) was generated from an earlier model version. The current operating "
-         "model carries a fuller, more defensible clinical roster; revenue matches but costs/EBITDA/DSCR are "
-         "slightly lower and more conservative. The Reconciliation memo provides the corrected drop-in tables; "
-         "the plan is being refreshed to match. All figures in the credit memo reflect the current model."),
+         "No operating affiliates. The borrower is a newco acquiring Hickory (which becomes its wholly owned "
+         "subsidiary), held through the non-operating holding entity Adeline & Lilah, LLC. The Managing Member "
+         "sold his prior hospice interest (VistaRiver) in August 2025 and holds only a passive seller-financed "
+         "note - no equity or management role - so it is not an affiliate. He does not own 20%+ of, or control, "
+         "any other operating business. See the Affiliate & Size-Standard memo."),
+        ("This is a startup newco - how do you get comfortable with no operating history?",
+         "The borrower is new, but it acquires an established, billing-ready Medicare-certified agency whose "
+         "economics are benchmarked to the seller's actual Apr-Jun 2025 collections (~$118K/mo net at ~22 ADC), "
+         "and it is led by an operator with 10+ years of hospice ownership and a Director of Sales with a "
+         "validated 40+ ADC East-Texas referral book. The equity injection is 33.3% of project cost, and with "
+         "the seller paid at close the SBA loan is the only debt - Year-1 DSCR ~3.59x."),
     ]
     for q, a in qa:
         para(d, "Q: " + q, bold=True)
@@ -1768,10 +1774,10 @@ def business_plan():
     h2(d, "Headline metrics")
     table(d, ["Metric", "Value", "Detail"],
           [["Loan request", "$500,000", "SBA 7(a) - 10-yr term"],
-           ["Total project", "$1.05M", "$500K SBA - $300K seller note - $250K equity"],
+           ["Total project", "$750K", "$500K SBA + $250K equity; seller paid in full at close"],
            ["Year-1 EBITDA", "$302,522", "21.0% margin - growing to $1.01M by Year 3"],
-           ["Global DSCR", "3.42x", "3-yr combined - floor 1.25x"],
-           ["Equity injection", "$250,000", "23.8% of project - 2.4x the 10% SOP 50 10 8 minimum"]],
+           ["Global DSCR (SBA-only)", "7.86x", "3-yr - floor 1.25x"],
+           ["Equity injection", "$250,000", "33.3% of project - 3.3x the 10% SOP 50 10 8 minimum"]],
           widths=[1.6, 1.3, 3.6])
     para(d, "Confidential - prepared exclusively for the SBA 7(a) loan application. All figures are computed "
             "from the Azalea Hospice SBA Loan Package operating model. Do not distribute without written "
@@ -1781,20 +1787,20 @@ def business_plan():
     d.add_page_break()
     h1(d, "01 - Executive Summary")
     h2(d, "Loan request")
-    para(d, "Tyler Hospice HoldCo L.L.C. requests a $500,000 SBA 7(a) loan to acquire and relaunch Hickory "
+    para(d, "Tyler Hospice Hold, LLC requests a $500,000 SBA 7(a) loan to acquire and relaunch Hickory "
             "Hospice LLC - an established, Medicare-certified hospice - as Azalea Hospice & Palliative Care. "
             "The agency's existing Medicare-certified provider number is acquired through a change of ownership "
-            "(CHOW) for $300,000 in seller financing (36-month note at 6%), giving Azalea immediate, "
-            "billing-ready capability with no new-enrollment delay. The loan is paired with a $250,000 cash "
-            "equity injection and a $100,000 working-capital line held in reserve, for a total project of "
-            "$1.05 million.")
+            "(CHOW) for $300,000 paid in full at close from SBA proceeds and the equity injection - no retained "
+            "seller note - giving Azalea immediate, billing-ready capability with no new-enrollment delay. The "
+            "loan is paired with a $250,000 cash equity injection, for a total project of $750,000. Because the "
+            "seller is paid at close, the SBA loan is the only debt the business carries.")
     h2(d, "Use of funds")
     table(d, ["Use", "Amount", "Detail"],
-          [["Hickory Medicare license (CHOW)", "$300,000", "Existing Medicare provider number; self-financed by the seller note"],
+          [["Acquisition of Hickory (paid at close)", "$300,000", "100% membership interests; provider number / license / accreditation transfer in the CHOW"],
            ["Startup one-time costs", "$63,000", "855A filing, TX licensure, EMR, supply stock, legal, contingency"],
            ["Startup equipment (capex)", "$15,000", "Computers, office furniture; 5-yr straight-line depreciation"],
-           ["Working-capital reserve (opening cash)", "$672,000", "Funds ramp payroll and dual debt service; holds the $25K floor, line undrawn"],
-           ["Total uses", "$1,050,000", "SBA $500K - Seller note $300K - Equity $250K - WC line $100K (undrawn)"]],
+           ["Working-capital reserve (opening cash)", "$372,000", "Funds ramp payroll and SBA debt service; holds the $25K floor"],
+           ["Total uses", "$750,000", "Funded by SBA $500K + Equity $250K"]],
           widths=[2.5, 1.1, 2.9])
     h2(d, "Business overview")
     para(d, "Azalea relaunches the acquired Hickory agency in the Tyler / Smith County market (CBSA 46340) "
@@ -1810,16 +1816,16 @@ def business_plan():
             "case managers, hospice aides, a PRN visit pool, and 1099 Medical Directors.")
     h2(d, "Repayment case")
     table(d, ["", "Year 1", "Year 2", "Year 3"],
-          [["Net income", "$190,032", "$571,134", "$905,290"],
+          [["Net income", "$205,473", "$581,088", "$909,160"],
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
-           ["Combined DSCR", "1.56x", "3.50x", "5.20x"]],
+           ["DSCR (SBA-only)", "3.59x", "8.06x", "11.94x"]],
           widths=[1.8, 1.5, 1.5, 1.5])
-    para(d, "The operation is EBITDA-positive from early in the ramp. Against combined debt service of "
-            "$193,876/yr (SBA $84,357 + seller note $109,519), the model clears a global 3-year DSCR of 3.42x "
-            "- well above the 1.25x floor - with coverage strengthening each year (1.56x -> 3.50x -> 5.20x) "
-            "and springing higher once the seller note retires after Year 3. The $672,000 opening reserve "
-            "keeps minimum cash well above the $25,000 floor throughout, with the $100,000 line never drawn "
-            "in the base case.")
+    para(d, "The operation is EBITDA-positive from early in the ramp. Because the seller is paid in full at "
+            "close, the SBA loan is the only debt: against SBA debt service of $84,357/yr, the model clears a "
+            "global 3-year DSCR of 7.86x - far above the 1.25x floor - and strengthens each year "
+            "(3.59x -> 8.06x -> 11.94x). The $372,000 opening reserve keeps minimum cash well above the $25,000 "
+            "floor through the ramp, and with only ~$7,030/mo of debt service the reserve stretches "
+            "comfortably.")
 
     # ---- 02 Company Description ----
     d.add_page_break()
@@ -1843,13 +1849,14 @@ def business_plan():
            ["Unissued pool", "0.3%", "Reserved for future grants"]],
           widths=[2.2, 0.9, 3.4])
     h2(d, "Sources of capital & SBA guaranty")
-    para(d, "The $1.05M project is funded by the $500,000 SBA 7(a) loan, the $300,000 seller note "
-            "(self-financing the license), and a $250,000 cash equity injection contributed by investor "
-            "James E. Bullard in exchange for a direct 19.9% membership interest. The injection equals 23.8% "
-            "of total project cost - more than double the 10% minimum required under SBA SOP 50 10 8 for a "
-            "complete change of ownership. Mr. Bullard's funds are his own savings (non-borrowed), verified "
-            "by his bank statements; $100,000 was wired on May 7, 2026 and the balance funds by the end of "
-            "July 2026. Because he holds less than 20% and exercises no operational control, no personal "
+    para(d, "The $750,000 project is funded by the $500,000 SBA 7(a) loan and a $250,000 cash equity injection "
+            "contributed by investor James E. Bullard in exchange for a direct 19.9% membership interest. The "
+            "$300,000 acquisition price is paid in full at close from these sources - there is no retained "
+            "seller note, so the SBA loan is the only debt the business carries. The injection equals 33.3% of "
+            "total project cost - more than triple the 10% minimum required under SBA SOP 50 10 8 and above the "
+            "~30% down typically warranted for a startup. Mr. Bullard's funds are his own savings (non-borrowed), "
+            "verified by his bank statements; $100,000 was wired on May 7, 2026 and the balance follows on a "
+            "committed schedule. Because he holds less than 20% and exercises no operational control, no personal "
             "guaranty is required of him (13 CFR 120.160). The Managing Member (Geoff Schackmann, via "
             "Adeline & Lilah, LLC) is the sole 20%+ owner and provides the SBA personal guaranty.")
     h2(d, "2.3 Acquired platform & validated economics")
@@ -1944,12 +1951,12 @@ def business_plan():
     for x in ["Modeled on validated Tyler-market economics (~22 ADC, ~$118K/mo) benchmarked to actual local collections",
               "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships",
               "Acquired Medicare provider number (CHOW) - billing-ready from day one, no new-provider enrollment lag",
-              "Large capital cushion - $672K opening cash; $100K WC line never drawn in base case",
-              "Combined DSCR rises 1.56x -> 5.20x across the plan; meaningful $250K cash equity injection",
+              "Capital cushion - $372K opening cash reserve; seller paid at close so the SBA loan is the only debt",
+              "DSCR rises 3.59x -> 11.94x across the plan; substantial $250K cash equity injection (33% of project)",
               "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Managing Member"]:
         para(d, "  - " + x)
     h2(d, "Weaknesses")
-    for x in ["Carries two debt layers (SBA + seller note) in Years 1-3, compressing Year-1 coverage vs. a single-loan structure",
+    for x in ["Newco borrower with no operating history of its own (mitigated by the acquired agency's actuals and an experienced operator)",
               "Revenue depends on converting the team's established relationships into admissions during ramp",
               "Single-office, single-market concentration",
               "Several go-forward cost adds (own lease, Medical Directors, benefits, marketing) not in the benchmarked actuals",
@@ -1969,7 +1976,7 @@ def business_plan():
               "CMS reimbursement or regulatory changes",
               "Medicare Advantage hospice carve-in could shift referral dynamics",
               "East Texas clinical labor shortage could pressure wages",
-              "Seller note ($300K, 36 mo) adds debt service in Years 1-3; coverage strengthens sharply once it retires"]:
+              "Front-loaded ramp costs before census stabilizes; mitigated by the $372K reserve and light single-loan debt service"]:
         para(d, "  - " + x)
 
     # ---- 06 Marketing ----
@@ -2128,8 +2135,9 @@ def business_plan():
     h2(d, "10.1 Acquisition & CHOW structure")
     para(d, "The transaction is the acquisition of Hickory Hospice LLC - an established, Medicare-certified "
             "hospice currently owned by Tracy Gleason and Ann Lozano - structured as a Medicare change of "
-            "ownership (CHOW) by purchase of 100% of its membership interests. The purchase is seller-financed "
-            "via a $300,000 note (36 months at 6%). Hickory's existing Medicare provider number, state "
+            "ownership (CHOW) by purchase of 100% of its membership interests. The $300,000 purchase price is "
+            "paid in full at close from SBA proceeds and the equity injection (no retained seller note). "
+            "Hickory's existing Medicare provider number, state "
             "license, and CHAP/ACHC accreditation carry over to Azalea, so the agency is billing-ready from "
             "day one rather than waiting on a new-provider 855A enrollment. Azalea files the CMS-855A change "
             "of ownership and updates banking, EMR, and insurance into the new ownership structure.")
@@ -2162,15 +2170,15 @@ def business_plan():
     h1(d, "11 - Financial Plan and Projections")
     h2(d, "11.1-11.2 Sources & uses of funds")
     table(d, ["Source", "Amount", "Use", "Amount"],
-          [["SBA 7(a) loan", "$500,000", "Hickory Medicare license (CHOW)", "$300,000"],
-           ["Hickory license seller note", "$300,000", "Startup one-time costs (855A, licensure, EMR, supplies, legal, contingency)", "$63,000"],
-           ["Cash equity injection (Bullard)", "$250,000", "Startup equipment (capex)", "$15,000"],
-           ["", "", "Working-capital reserve (opening cash)", "$672,000"],
-           ["Total sources", "$1,050,000", "Total uses", "$1,050,000"]],
+          [["SBA 7(a) loan", "$500,000", "Acquisition of Hickory (paid at close)", "$300,000"],
+           ["Cash equity injection (Bullard)", "$250,000", "Startup one-time costs (855A, licensure, EMR, supplies, legal, contingency)", "$63,000"],
+           ["", "", "Startup equipment (capex)", "$15,000"],
+           ["", "", "Working-capital reserve (opening cash)", "$372,000"],
+           ["Total sources", "$750,000", "Total uses", "$750,000"]],
           widths=[2.2, 1.1, 2.6, 1.1])
-    para(d, "The license is seller-financed, so no cash leaves at close for the purchase - preserving the "
-            "working-capital reserve. A $100,000 working-capital line at 10.5% APR is available and undrawn "
-            "in the base case.")
+    para(d, "The seller is paid in full at close from SBA proceeds and the equity injection, so there is no "
+            "retained seller note and the SBA loan is the only debt the business carries. The $250,000 "
+            "injection is 33.3% of the $750,000 project.")
     h2(d, "11.3 Key assumptions")
     table(d, ["Assumption", "Value"],
           [["Payer mix", "100% Medicare RHC"],
@@ -2183,11 +2191,11 @@ def business_plan():
            ["Medical Directors (1099)", "$4,000/mo + $5,000/mo from M22"],
            ["Outsourced billing / QR fee", "1.5% / 0.75% of gross"],
            ["SBA 7(a)", "$500,000 - 11.5% APR - 120 mo - $7,029.77/mo"],
-           ["Seller note (Hickory license)", "$300,000 - 6% - 36 mo - $9,126.58/mo"],
-           ["Equity / WC line", "$250,000 / $100,000 @ 10.5%"],
+           ["Seller", "$300,000 paid in full at close (no retained note)"],
+           ["Equity injection", "$250,000 cash (33.3% of project)"],
            ["Depreciation & amortization", "$78K startup+capex (5-yr) + $300K license (15-yr) = $35,600/yr"],
            ["TX franchise tax / AR-AP days", "per model / 45-30"],
-           ["Opening cash", "$672,000"]],
+           ["Opening cash reserve", "$372,000"]],
           widths=[2.6, 4.0])
     h2(d, "11.4 Three-year profit & loss (current operating model)")
     table(d, ["Line item", "Year 1", "Year 2", "Year 3"],
@@ -2199,9 +2207,9 @@ def business_plan():
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
            ["EBITDA margin", "21.0%", "24.9%", "27.0%"],
            ["Depreciation & amortization", "$35,600", "$35,600", "$35,600"],
-           ["Interest (SBA + seller note)", "$71,479", "$62,558", "$52,623"],
+           ["Interest (SBA loan only)", "$56,038", "$52,604", "$48,754"],
            ["TX franchise tax", "$5,411", "$10,232", "$14,006"],
-           ["Net income", "$190,032", "$571,134", "$905,290"]],
+           ["Net income", "$205,473", "$581,088", "$909,160"]],
           widths=[2.6, 1.4, 1.4, 1.4])
     para(d, "Net revenue grows from $1.44M to $3.73M and EBITDA from $303K to $1.01M as the base-case census "
             "builds from ~22 to ~54 ADC on the team's referral pipeline, with a conservative 2.5% annual CMS "
@@ -2209,53 +2217,45 @@ def business_plan():
             "direct-care roster sized to the census being underwritten. D&A of $35,600/yr is a non-cash "
             "charge below EBITDA that does not affect debt-service coverage.")
     h2(d, "11.5 Year-1 monthly detail (selected months)")
-    table(d, ["Month", "ADC", "Net revenue", "DSCR (combined)"],
-          [["M1 (transition)", "12.0", "~$66,000", "below floor - covered by reserve"],
-           ["M3", "22.0", "~$121,000", "clears 1.25x"],
-           ["M6", "22.7", "~$125,000", "clears 1.25x"],
-           ["M12", "24.0", "~$132,000", "clears 1.25x"]],
+    table(d, ["Month", "ADC", "Net revenue", "DSCR (SBA-only)"],
+          [["M1 (transition)", "12.0", "~$66,000", "covered by reserve"],
+           ["M3", "22.0", "~$121,000", "clears comfortably"],
+           ["M6", "22.7", "~$125,000", "clears comfortably"],
+           ["M12", "24.0", "~$132,000", "clears comfortably"]],
           widths=[1.6, 1.0, 1.6, 2.4])
-    para(d, "DSCR here is on combined debt service (SBA loan + seller note = $16,156/month). Month 1 is the "
-            "transition month (partial census at 12 ADC) and is fully absorbed by the $672K opening cash "
-            "reserve; coverage clears the 1.25x floor on a sustained basis as census stabilizes around the "
-            "validated ~22 ADC. On an annual basis Year 1 covers at 1.56x.")
+    para(d, "DSCR here is on SBA debt service alone ($7,029.77/month) - there is no seller note. Month 1 is the "
+            "transition month (partial census at 12 ADC) and is absorbed by the $372K opening cash reserve; "
+            "coverage clears the 1.25x floor with wide margin as census stabilizes around the validated ~22 ADC. "
+            "On an annual basis Year 1 covers at 3.59x.")
     h2(d, "11.6 Lender summary & debt-service coverage")
     table(d, ["Metric", "Year 1", "Year 2", "Year 3"],
           [["Net revenue", "$1,442,930", "$2,728,642", "$3,734,934"],
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
-           ["Debt service - SBA", "$84,357", "$84,357", "$84,357"],
-           ["Debt service - seller note", "$109,519", "$109,519", "$109,519"],
-           ["Combined debt service", "$193,876", "$193,876", "$193,876"],
-           ["Combined DSCR", "1.56x", "3.50x", "5.20x"],
-           ["Net income", "$190,032", "$571,134", "$905,290"]],
+           ["SBA debt service (only debt)", "$84,357", "$84,357", "$84,357"],
+           ["DSCR (SBA-only)", "3.59x", "8.06x", "11.94x"],
+           ["Net income", "$205,473", "$581,088", "$909,160"]],
           widths=[2.6, 1.4, 1.4, 1.4])
-    para(d, "Global 3-year combined DSCR: 3.42x (vs. 1.25x floor). Combined debt service is $16,156/month "
-            "($193,876/year): SBA 7(a) $7,029.77/mo plus the seller note $9,126.58/mo. The operation clears "
-            "the 1.25x floor on an annual basis in every year, and combined coverage rises sharply as census "
-            "builds - springing to roughly 12x on the SBA loan alone once the seller note retires at the end "
-            "of Year 3. Break-even is approximately 16 ADC, below the validated opening census of ~22 ADC, so "
-            "the operation is profitable on the opening book.")
-    h2(d, "11.7 Stress tests (Year-2 steady state, combined debt service, floor 1.25x)")
+    para(d, "Global 3-year DSCR: 7.86x (vs. 1.25x floor). Because the seller is paid in full at close, the SBA "
+            "loan ($7,029.77/mo, $84,357/yr) is the only debt the business carries, so coverage is strong from "
+            "Year 1 and rises as census builds. Break-even is approximately 16 ADC, below the validated opening "
+            "census of ~22 ADC, so the operation is profitable on the opening book.")
+    h2(d, "11.7 Stress tests (Year-2 steady state, SBA-only debt service, floor 1.25x)")
     table(d, ["Scenario", "Net revenue", "EBITDA", "DSCR", "Clears?"],
-          [["Base (Year 2)", "$2,728,642", "$679,524", "3.50x", "Yes"],
-           ["Census -20% (static roster)", "$2,182,914", "~$196,600", "~1.01x", "Marginal"],
+          [["Base (Year 2)", "$2,728,642", "$679,524", "8.06x", "Yes"],
+           ["Census -20% (static roster)", "$2,182,914", "~$196,600", "~2.33x", "Yes"],
            ["Census -35% (static roster)", "$1,773,617", "~($165,700)", "<0", "No"],
-           ["Wage +10%", "$2,728,642", "~$510,800", "2.63x", "Yes"],
-           ["Combined (-20% census / +10% wage)", "$2,182,914", "~$27,900", "~0.14x", "No"]],
+           ["Wage +10%", "$2,728,642", "~$510,800", "6.06x", "Yes"],
+           ["Combined (-20% census / +10% wage)", "$2,182,914", "~$27,900", "~0.33x", "No"]],
           widths=[2.4, 1.4, 1.3, 0.9, 0.9])
-    para(d, "Reading the stress tests - honest framing. This is a deliberately severe static sensitivity: "
-            "revenue and variable costs scale with the census shock, but the full Year-2 salaried roster is "
-            "held constant and both debt layers are carried simultaneously. On this basis the base case "
-            "covers at 3.50x and a +10% wage shock still clears at 2.63x, but a sustained 20% census "
-            "shortfall lands only marginally at ~1.01x and the severe combined case does not clear. Three "
-            "points matter for the credit: (1) the roster is census-driven - the capacity RN/CNA and core-IDG "
-            "hires only load in as ADC crosses their triggers, so a 20-35% lower census would carry a "
-            "materially lighter cost base than this static test assumes; (2) the binding variable is census, "
-            "which is why opening census is the validated ~22 ADC book (break-even ~16 ADC) grown by an "
-            "experienced team's referral pipeline, not a cold start; and (3) liquidity is the core protection "
-            "- the $672K opening reserve and the undrawn $100K working-capital line cover timing shortfalls, "
-            "and the seller note retires after Year 3, lifting SBA-only coverage dramatically. A detailed "
-            "Year-1 single-factor and combined sensitivity is provided in the separate DSCR Sensitivity / "
+    para(d, "Reading the stress tests. Because the seller is paid at close, debt service is the SBA loan alone "
+            "($84,357), and Year-2 coverage absorbs a great deal: the base case covers at 8.06x, a sustained 20% "
+            "census drop still clears at ~2.33x, and a 10% wage spike clears at 6.06x. Only the extreme cases "
+            "fail - a 35% census collapse turns EBITDA negative, and a severe combined shock (-20% census AND "
+            "+10% wages, full roster held constant) does not cover. Even these understate resilience: (1) the "
+            "roster is census-driven, so a 20-35% lower census carries a lighter cost base than the static test "
+            "assumes; (2) the binding variable is census, which is why opening census is the validated ~22 ADC "
+            "book (break-even ~16 ADC), not a cold start; and (3) the $372K reserve bridges timing shortfalls. A "
+            "detailed Year-1 single-factor and combined sensitivity is in the separate DSCR Sensitivity / "
             "Stress-Test memorandum.")
     h2(d, "11.8 Proof: actuals vs. model")
     para(d, "The model is not pure projection - its economics are benchmarked to the acquired book's actual "
@@ -2268,28 +2268,30 @@ def business_plan():
     # ---- 12 Risk ----
     d.add_page_break()
     h1(d, "12 - Risk Factors and Mitigations")
-    para(d, "The dominant risks are the dual debt load (SBA + seller note in Years 1-3) and the census ramp "
-            "- both mitigated by validated, benchmarked economics, a CHOW that keeps the agency billing from "
-            "day one, and a deliberately over-capitalized structure relative to operating need.")
+    para(d, "The dominant risks are the newco's lack of operating history and the census ramp - both mitigated "
+            "by validated, benchmarked economics, a CHOW that keeps the agency billing from day one, an "
+            "experienced operator, and a well-capitalized single-loan structure (seller paid at close).")
     table(d, ["Risk", "Prob.", "Impact", "Mitigation"],
-          [["Dual debt service (Yrs 1-3)", "Med", "Med",
-            "Combined DSCR clears the 1.25x floor annually and rises 1.56x -> 5.20x; seller note retires after Year 3, lifting SBA-only coverage to ~12x"],
+          [["Debt service / coverage", "Low", "Med",
+            "Seller paid at close, so the SBA loan is the only debt; DSCR clears the 1.25x floor annually and rises 3.59x -> 11.94x (global 7.86x)"],
            ["CHOW transition / cash timing", "Low", "Med",
-            "CHOW preserves the provider number (billing-ready day one); $672K reserve + $100K line fund any claims-processing pause"],
+            "CHOW preserves the provider number (billing-ready day one); $372K reserve funds any claims-processing pause; only SBA debt service to cover"],
            ["Slower census ramp", "Med", "High",
             "Opening census is the validated ~22 ADC book, not a cold start; break-even ~16 ADC; capacity hires are census-gated so cost flexes with volume; liquidity covers timing shortfalls"],
            ["Wage inflation", "Med", "Med",
-            "+10% wage shock holds at 2.63x in Year 2; 3% merit modeled; PRN pool buffers"],
+            "+10% wage shock holds at 6.06x in Year 2; 3% merit modeled; PRN pool buffers"],
            ["CMS rate / regulatory change", "Low", "Med",
             "Rates up or flat every year since 2010; only a conservative 2.5%/yr escalation assumed"],
            ["Key-person dependency", "Low", "Med",
             "Operators are owners (13.3% each, milestone-vested); Executive Director leads day-to-day; OA key-person succession provisions"],
            ["Equity injection phased", "Low", "Low",
-            "$100K on deposit; balance committed by 7/31; SBA disbursement sequenced after full injection per SOP 50 10 8"]],
+            "$100K on deposit; balance committed; SBA disbursement sequenced after full injection per SOP 50 10 8"],
+           ["Newco / no operating history", "Med", "Med",
+            "Acquires an established billing-ready agency benchmarked to actual collections; operator has 10+ years of hospice ownership; 33% equity injection"]],
           widths=[1.7, 0.6, 0.6, 3.6])
-    para(d, "The credit's core protection is liquidity, not optimism: $672,000 of opening cash and an undrawn "
-            "$100,000 line keep Azalea solvent through the modeled scenarios - even while carrying both the "
-            "SBA loan and the seller note at once.")
+    para(d, "The credit's core protection is liquidity and a clean structure: a $372,000 opening reserve plus a "
+            "single SBA loan (the seller is paid at close, so there is no second debt layer) keep Azalea solvent "
+            "and well-covered through the modeled scenarios.")
 
     # ---- 13 Milestones ----
     d.add_page_break()
@@ -2301,20 +2303,20 @@ def business_plan():
            ["Months 1-3", "CMS-855A filed; staff retained; EMR transitioned", "855A CHOW receipt + payroll"],
            ["Months 1-3", "License & CHAP/ACHC accreditation transfer; billing uninterrupted", "License / accreditation transfer"],
            ["Months 4-6", "BD ramp; AR normalizes to ~45-day cycle", "CRM report + AR aging < 45 days"],
-           ["Months 7-12", "Census builds toward ~24 ADC; combined DSCR > 1.25x", "Monthly financials"],
-           ["Years 2-3", "Capacity hires triggered by ADC; census to ~54 ADC; coverage rises to ~5x", "Board reviews"]],
+           ["Months 7-12", "Census builds toward ~24 ADC; DSCR well above 1.25x", "Monthly financials"],
+           ["Years 2-3", "Capacity hires triggered by ADC; census to ~54 ADC; coverage rises above 10x", "Board reviews"]],
           widths=[1.5, 2.9, 2.1])
     h2(d, "13.2 Conclusion")
-    para(d, "Azalea is a well-structured SBA 7(a) opportunity: the CHOW acquisition and relaunch of an "
-            "established, Medicare-certified hospice on validated economics, led by an experienced local team. "
-            "The credit rests on three verifiable points: (1) the acquired book's actual operating results, "
-            "which the opening steady-state model reconciles to within ~2%; (2) a base case whose combined "
-            "DSCR clears the 1.25x floor and strengthens every year (1.56x -> 3.50x -> 5.20x; global 3.42x); "
-            "and (3) a deliberately over-capitalized structure - $250K cash equity, $300K of seller risk "
-            "retained in the note, and a $672K opening reserve - that keeps liquidity intact through stress "
-            "scenarios, with the working-capital line never drawn in the base case. The binding risk is a "
-            "sustained census shortfall, mitigated by a validated opening book above break-even, a "
-            "census-driven cost structure, and substantial liquidity.")
+    para(d, "Azalea is a well-structured SBA 7(a) opportunity: the startup CHOW acquisition and relaunch of an "
+            "established, Medicare-certified hospice on validated economics, led by an operator with 10+ years of "
+            "hospice ownership. The credit rests on three verifiable points: (1) the acquired book's actual "
+            "operating results, which the opening steady-state model reconciles to within ~2%; (2) a base case "
+            "whose DSCR clears the 1.25x floor and strengthens every year (3.59x -> 8.06x -> 11.94x; global "
+            "7.86x), because the seller is paid at close and the SBA loan is the only debt; and (3) a "
+            "well-capitalized structure - $250K cash equity (33% of project) and a $372K opening reserve - that "
+            "keeps liquidity intact through stress scenarios. The binding risk is a sustained census shortfall, "
+            "mitigated by a validated opening book above break-even, a census-driven cost structure, and "
+            "substantial liquidity.")
     para(d, "")
     para(d, "Rev 5.00 - June 2026. This plan is computed from the Azalea Hospice SBA Loan Package operating "
             "model, the single source of truth for all financial figures. Confidential - do not distribute "
@@ -2330,7 +2332,7 @@ def submission_readiness():
             "the three BLOCKERS must clear before submission.", color=GREY, size=9)
     h2(d, "BLOCKERS - must resolve before submitting")
     table(d, ["#", "Blocker", "Owner", "Status"],
-          [["B1", "Seller payment terms: MIPA is $300K in 12 x $25K interest-free installments, but the model assumes a 36-mo/6% note. On actual terms, Year-1 combined DSCR falls to ~0.79x (below 1.25x). Renegotiate to a 36-mo note OR re-run the model and address coverage.", "Geoff + sellers (Greiner) + John Hart", "OPEN"],
+          [["B1", "Seller payment / structure: RESOLVED - the $300K seller price is paid in full at close from SBA proceeds + equity (no retained note). The MIPA's 12 x $25K installment schedule should be settled at closing (prepay/payoff at close); confirm with sellers via Greiner. With no seller note, Year-1 DSCR is ~3.59x.", "Geoff + sellers (Greiner)", "RESOLVED in structure; confirm payoff mechanics"],
            ["B2", "Borrower entity mismatch: MIPA buyer is 'Tyler Hospice Hold, LLC (Texas)'; SBA/OA is 'Tyler Hospice HoldCo L.L.C. (Wyoming), EIN 41-4966640'. Make one entity/name/state consistent everywhere.", "Geoff", "OPEN"],
            ["B3", "Execute OA Amendment No. 1 (cap table 39.9/19.9/13.3x3, partnership tax, Hickory target, SBA carve-outs). Current OA still shows 60/25/4.9 + S-Corp + 'Healing Hands'.", "All members", "DRAFTED - needs signatures"]],
           widths=[0.4, 4.3, 1.5, 0.9])
