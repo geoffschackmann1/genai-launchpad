@@ -117,3 +117,20 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`.
 
 A focused brief is in `DISCUSSION_BRIEF_for_John_Hart_lens.md` - what John will scrutinize and the few
 questions that are genuinely his to answer.
+
+## Hickory Drive review - data found + 3 conflicts (2026-06)
+
+Reviewed the Drive "9. Hickory Hospice LLC" folder + uploaded final MIPA (Rev 2.00) and OA v7
+(2026-05-19). Data captured: Hickory EIN 86-2886807; office 8746 Wurzbach Rd Ste 201-E, San
+Antonio TX 78240; SOS file 803979509; sellers Tracy Gleason + Ann M. Lozano (rep, 6203 Welles
+Creek Dr, San Antonio TX 78240); seller counsel Greiner & Associates (Jon Greiner); buyer office
+700 N Main St, Lindale TX 75771; Hickory taxed as partnership. MIPA + OA filed in package.
+
+THREE CONFLICTS (see purchase_agreement_seller_note/HICKORY_DRIVE_REVIEW_and_CONFLICTS.md):
+- B1 CRITICAL: MIPA pays $300K as 12 x $25K interest-free installments, NOT the 36-mo/6% note the
+  model assumes. On actual terms Year-1 combined DSCR ~0.79x (below 1.25x). Renegotiate or re-model.
+- B2: Borrower entity mismatch - MIPA "Tyler Hospice Hold, LLC (Texas)" vs SBA/OA "Tyler Hospice
+  HoldCo L.L.C. (Wyoming)". Reconcile to one entity/name/state.
+- B3: OA v7 still 60/25/4.9 + S-Corp + Healing Hands; Amendment No. 1 not yet executed.
+
+Submission readiness checklist: SUBMISSION_READINESS_CHECKLIST.docx

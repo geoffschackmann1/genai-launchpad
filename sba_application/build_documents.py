@@ -94,8 +94,8 @@ def company_profile():
     field(d, "Date current management assumed control", "At CHOW close (see business plan, Section 10)")
     field(d, "Federal Taxpayer Identification Number (EIN)", "41-4966640")
     field(d, "Web Address", TBD)
-    field(d, "Address", "Tyler, TX area (office lease in negotiation - candidate sites include 13387 Hwy 69 N and others)")
-    field(d, "City / County / State / Zip", "Tyler / Smith / TX / " + TBD)
+    field(d, "Address", "700 N Main Street, Lindale, TX 75771 (principal office / notice address)")
+    field(d, "City / County / State / Zip", "Lindale / Smith / TX / 75771")
     field(d, "Contact / Phone / Fax", "Geoff Schackmann, Managing Member - 480-495-5474 - geoff@azaleahospice.com")
     field(d, "Number of employees at application", "9 (Year-1 staggered roster)")
     field(d, "Number of employees when loan approved", "Scales to ~25+ FT by Year 3 on census triggers")
@@ -2323,8 +2323,58 @@ def business_plan():
     save(d, "03_business_plan/Azalea_SBA_Business_Plan_Rev5.00.docx")
 
 
+def submission_readiness():
+    d = new_doc("Submission Readiness")
+    h1(d, "Submission Readiness Checklist")
+    para(d, "Tyler Hospice HoldCo L.L.C. - SBA 7(a) Application to John Hart. Work this list top to bottom; "
+            "the three BLOCKERS must clear before submission.", color=GREY, size=9)
+    h2(d, "BLOCKERS - must resolve before submitting")
+    table(d, ["#", "Blocker", "Owner", "Status"],
+          [["B1", "Seller payment terms: MIPA is $300K in 12 x $25K interest-free installments, but the model assumes a 36-mo/6% note. On actual terms, Year-1 combined DSCR falls to ~0.79x (below 1.25x). Renegotiate to a 36-mo note OR re-run the model and address coverage.", "Geoff + sellers (Greiner) + John Hart", "OPEN"],
+           ["B2", "Borrower entity mismatch: MIPA buyer is 'Tyler Hospice Hold, LLC (Texas)'; SBA/OA is 'Tyler Hospice HoldCo L.L.C. (Wyoming), EIN 41-4966640'. Make one entity/name/state consistent everywhere.", "Geoff", "OPEN"],
+           ["B3", "Execute OA Amendment No. 1 (cap table 39.9/19.9/13.3x3, partnership tax, Hickory target, SBA carve-outs). Current OA still shows 60/25/4.9 + S-Corp + 'Healing Hands'.", "All members", "DRAFTED - needs signatures"]],
+          widths=[0.4, 4.3, 1.5, 0.9])
+    h2(d, "Geoff's personal package (sole 20%+ guarantor)")
+    for x in ["SBA Form 413 (Personal Financial Statement) - include the VistaRiver note as an asset",
+              "SBA Form 912 (Personal History)",
+              "Personal Cash Flow (7a) - complete the expense lines (income pre-filled)",
+              "3 years personal tax returns + W-2s/1099s",
+              "Credit report authorization + driver license",
+              "Spouse acknowledgement - Mary Elizabeth Burcham"]:
+        para(d, "  - " + x)
+    h2(d, "Equity injection (James Bullard, $250,000)")
+    for x in ["Mercury statement/screenshot of the $100,000 wire (5/7/2026) - drop into 10_supporting_documents/equity_injection_evidence/",
+              "Bullard bank/brokerage statements (30-day seasoning) for each tranche",
+              "June and July wires as they land; final statement showing full $250K on deposit",
+              "Signed: Subscription Agreement, Investor Attestation v2 (notarized), Source-of-Funds letter"]:
+        para(d, "  - " + x)
+    h2(d, "Acquisition / Hickory (mostly in hand from Drive)")
+    for x in ["Final executed MIPA (Rev 2.00) - confirm full signatures and Effective Date - FILED",
+              "Schedule 2.02 (ownership split Gleason/Lozano) - obtain",
+              "Tracy Gleason individual address - obtain",
+              "Hickory EIN letter (86-2886807), SOS certificate, PTAN, CHAP contract, HCSSA approval, 2021-2022 Form 1065 - collect from Drive into folder 10",
+              "Office lease/LOI for 700 N Main Street, Lindale, TX (term matching loan term)"]:
+        para(d, "  - " + x)
+    h2(d, "Entity documents")
+    for x in ["WY Certificate of Formation (or TX, per B2 resolution)",
+              "EIN assignment letter (CP-575) for Tyler Hospice HoldCo (41-4966640)",
+              "Executed Operating Agreement + Amendment No. 1",
+              "Certificate of Good Standing"]:
+        para(d, "  - " + x)
+    h2(d, "Ready to go (drafted in this package)")
+    for x in ["Company Profile, Use of Funds, Equity Injection memo, Business Debt Schedule",
+              "Business Plan Rev 5.00 (refresh financials if seller terms change per B1)",
+              "Lender Credit Memo, DSCR Sensitivity, Affiliate memo, Cover Letter + Q&A",
+              "Submission Cover Sheet / TOC, Closing Checklist, Insurance Requirements",
+              "4 Management Resumes (add personal identifiers)"]:
+        para(d, "  - " + x)
+    footer_note(d)
+    save(d, "SUBMISSION_READINESS_CHECKLIST.docx")
+
+
 if __name__ == "__main__":
     company_profile()
+    submission_readiness()
     use_of_funds()
     equity_injection_memo()
     debt_schedule()
