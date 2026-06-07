@@ -56,19 +56,16 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 - **Information Needed sheet** (`INFORMATION_NEEDED_FROM_YOU.docx`) - every remaining blank, organized.
 - **Personal-forms guide** - how to complete 413, 912, and 7a.
 
-## Capital structure - FINALIZED (SOP 50 10 8)
+## Capital structure - SUPERSEDED (see "STRUCTURE UPDATE (current)" at the bottom of this file)
 
-The equity injection and cap table are decided and built into the package:
+> The sections immediately below ("Capital structure" and "Financials") reflect EARLIER iterations
+> ($250K equity / 19.9% / $300K seller note / 1.56x DSCR). They are kept only for history. The
+> **current, authoritative structure is the "STRUCTURE UPDATE (current)" section at the end of this
+> file**: SBA $555K + equity $195K (Bullard 19.5%), seller paid at close, DSCR 3.23x/7.26x/10.76x.
 
-- **$250,000 cash equity injection** = a capital contribution by **James Bullard** for a **direct 19.9%
-  minority interest** (passive; no control, no side agreement, no convertible note). At 23.8% of project
-  cost it clears the 10% SOP 50 10 8 minimum by more than 2x.
-- Holding **under 20%**, Bullard needs **no personal guaranty and no PFS**; only source-of-funds
-  verification (his bank/brokerage statements). The convertible-note / Form 155 framing was dropped.
-- **$300,000 seller note** = amortizing acquisition debt inside combined DSCR; **not** standby, **not** equity.
-- **Geoff (Adeline & Lilah, LLC) raised 34.8% -> 39.9%**, remaining the sole 20%+ owner and sole guarantor.
-
-Full write-up: `02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx`.
+Earlier iteration (historical): $250,000 cash injection by James Bullard for 19.9%; $300,000 seller
+note; Geoff at 39.9% sole guarantor. Full current write-up:
+`02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx`.
 
 ## Financials - reconciled to the current model
 
