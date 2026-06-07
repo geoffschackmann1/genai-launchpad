@@ -155,3 +155,18 @@ reset to $372K, opening cash subtracts the license. Independently recalculated a
 3.59x / 8.06x / 11.94x (global 7.86x); min cash $264K. See MODEL_RECUT_NOTE.md. NOTE: open in Excel
 once before sending (recalcs on open); the Investor Package and Operations Dashboard workbooks still
 show the old structure.
+
+
+## STRUCTURE UPDATE (current) - Bullard 19.5% / $195K; SBA $555K
+
+Per the latest decision, Bullard funds $195,000 for a 19.5% passive interest, and the SBA loan is
+raised to $555,000 to keep the $750,000 project whole:
+- SBA $555,000 (74%) + equity $195,000 (26%) = $750,000. Seller paid in full at close (no note).
+- Cap table: A&L 39.9% / Bullard 19.5% / Silas-Dana-Brad 13.3% each / reserved 0.7%.
+- SBA-only debt service $93,637/yr; DSCR 3.23x / 7.26x / 10.76x; global 7.08x. Min cash $262,558.
+- Net income $199,308 / $574,951 / $903,362. EBITDA unchanged ($303K/$680K/$1,008K).
+- Equity injection 26% - above the 10% SOP 50 10 8 minimum, BELOW the ~30% some startup lenders
+  prefer (incl. John's LOC lender). Strong DSCR offsets; flag for lender selection.
+- Bullard stays under 20% -> no PG (Geoff sole guarantor). Excel model re-cut & verified.
+- All generated docs + the reply to John updated to these figures. The two AS_PROVIDED OA files and
+  the other two Excel workbooks still show older figures (source/secondary).

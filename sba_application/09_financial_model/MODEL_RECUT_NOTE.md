@@ -1,43 +1,42 @@
-# SBA Loan Package model - re-cut to seller-paid-at-close (startup, $750K)
+# SBA Loan Package model - re-cut to $555K SBA / $195K equity (Bullard 19.5%)
 
-`Azalea_Hospice_SBA_Loan_Package.xlsx` was re-cut from the prior dual-debt structure
-($1.05M project with a $300K retained seller note) to the structure confirmed with John Hart:
-a startup CHOW with the seller paid in full at close and no retained note.
+`Azalea_Hospice_SBA_Loan_Package.xlsx` reflects the current structure: a startup CHOW with the
+seller paid in full at close (no retained note), funded by a $555,000 SBA loan and a $195,000 cash
+equity injection from James Bullard (19.5% passive minority interest).
 
-## What changed (four input-driven edits; all formulas left live)
-1. **Inputs!B139** (opening cash): now subtracts the license cost - `= equity + loan - startup - capex - license`.
-   Opening cash $672,000 -> **$372,000** (the $300K license is now paid in cash at close).
-2. **Sources & Uses!B6** (seller-note source): set to **0** - the note is no longer a funding source.
-3. **Debt Schedule!C18** (seller-note beginning balance): set to **0** - zeroes the entire note
-   schedule, so combined debt service becomes SBA-only.
-4. **Cash Flow & BS!B34** (seller-note liability at open): set to **0** - no note on the balance sheet.
-
-Everything else (revenue, staffing, EBITDA, the license intangible asset and its 15-yr amortization,
-the SBA loan) is unchanged. Descriptive header text on Sources & Uses, Lender Summary, and Debt
-Schedule was updated to say "seller paid at close."
+## Input cells that define the structure (Inputs sheet)
+| Cell | Meaning | Value |
+|---|---|---|
+| B110 | SBA 7(a) loan principal | **$555,000** |
+| B113 | Equity injection (Bullard) | **$195,000** |
+| B120 | Hickory license / acquisition cost | $300,000 (paid at close; intangible amortized 15 yr) |
+| B139 | Opening cash = equity + loan - startup - capex - license | **$372,000** |
+| Debt Schedule C18 | Seller-note beginning balance | **0** (no note) |
+| Sources & Uses B6 | Seller-note source | **0** |
+| Cash Flow & BS B34 | Seller-note liability at open | **0** |
 
 ## Verified recalculated outputs (computed independently with the `formulas` engine)
 | Metric | Value |
 |---|---|
 | Total sources / uses | $750,000 / $750,000 (check = 0) |
+| SBA loan / equity | $555,000 (74%) / $195,000 (26%) |
 | Opening cash | $372,000 |
-| SBA debt service (only debt) | $84,357 / yr |
-| DSCR | Y1 **3.59x** / Y2 **8.06x** / Y3 **11.94x** |
-| Global 3-yr DSCR | **7.86x** |
+| SBA debt service (only debt) | $93,637 / yr ($7,803.05/mo) |
+| DSCR | Y1 **3.23x** / Y2 **7.26x** / Y3 **10.76x** |
+| Global 3-yr DSCR | **7.08x** |
 | EBITDA | $302,522 / $679,524 / $1,007,520 |
-| Net income | $205,472 / $580,772 / $908,768 |
-| **Minimum cash (any period)** | **$264,104** - well above the $25,000 floor |
+| Net income | $199,308 / $574,951 / $903,362 |
+| **Minimum cash (any period)** | **$262,558** - well above the $25,000 floor |
 | Balance-sheet check (open and M12) | 0 (balances) |
 
-The generated package documents (Business Plan Rev 5.00, credit memo, etc.) match these to within
-rounding (<0.1% on net income, from minor working-capital-line interest).
+The package documents (Business Plan Rev 5.00, credit memo, equity memo, etc.) match these figures.
 
-## IMPORTANT - two caveats
-1. **Open in Excel once before sending.** This environment could not run a spreadsheet engine to
-   refresh the file's *cached* cell values, so the workbook is set to **recalculate automatically on
-   open** (fullCalcOnLoad). Excel and Google Sheets will recompute and show the values above the
-   moment it opens. To be safe, open it once and save before forwarding to John, so the saved values
-   are baked in.
-2. **The other two workbooks still show the OLD structure.** `Azalea_Hospice_Investor_Package.xlsx`
-   and `Azalea_Hospice_Operations_Dashboard.xlsx` were NOT re-cut - they still reflect the $1.05M /
-   $300K-seller-note model. If either goes to John or an investor, it needs the same four edits.
+## Notes
+- **Equity injection is 26% of project** - above the 10% SOP 50 10 8 minimum, but **below the ~30%
+  some startup lenders (including the LOC lender John mentioned) prefer.** Still a strong, low-leverage
+  deal given DSCR 3.23x+; John can place it with lenders comfortable at this level.
+- **Open in Excel once before sending.** The workbook recalculates automatically on open
+  (fullCalcOnLoad) - this environment can't run a spreadsheet engine to bake cached values. Open and
+  save once before forwarding.
+- **The other two workbooks** (Investor Package, Operations Dashboard) still reflect the old
+  $1.05M / dual-debt structure and have NOT been re-cut.
