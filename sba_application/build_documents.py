@@ -339,7 +339,7 @@ def reconciliation_memo():
            ["EBITDA Y1", "$311,204 (21.6%)", "$302,522 (21.0%)", "Close"],
            ["EBITDA Y2", "$814,391 (29.9%)", "$679,524 (24.9%)", "Lower - richer staffing"],
            ["EBITDA Y3", "$1,185,619 (31.8%)", "$1,007,520 (27.0%)", "Lower - richer staffing"],
-           ["Net income Y1 / Y2 / Y3", "$199K / $706K / $1,084K", "$205K / $581K / $909K", "Higher (no seller-note interest)"],
+           ["Net income Y1 / Y2 / Y3", "$199K / $706K / $1,084K", "$199K / $575K / $903K", "Y1 in line; Y2-Y3 lower on richer staffing"],
            ["DSCR Y1 / Y2 / Y3 (SBA-only debt)", "1.61x / 4.20x / 6.12x", "3.23x / 7.26x / 10.76x", "Stronger - seller paid at close"],
            ["Global 3-yr DSCR", "3.97x", "7.08x", "Both well above 1.25x"]],
           widths=[1.9, 1.7, 1.7, 1.5])
@@ -362,7 +362,7 @@ def reconciliation_memo():
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
            ["EBITDA margin", "21.0%", "24.9%", "27.0%"],
            ["Depreciation & amortization", "$35,600", "$35,600", "$35,600"],
-           ["Interest (SBA loan only)", "$56,038", "$52,604", "$48,754"],
+           ["Interest (SBA loan only)", "$62,202", "$58,741", "$54,551"],
            ["TX franchise tax", "$5,411", "$10,232", "$14,006"],
            ["Net income", "$199,308", "$574,951", "$903,362"]],
           widths=[2.6, 1.4, 1.4, 1.4])
@@ -417,12 +417,12 @@ def information_needed():
         para(d, "  - " + x)
     h2(d, "B2. Equity injection verification (James Bullard, contributor)")
     para(d, "Tranche 1 of $100,000 is confirmed received - Mercury (Column N.A.) acct ****1275, May 7, 2026 wire "
-            "from JIM BULLARD; balance still held as of June 3, 2026. Tranches 2 ($TBD, June 2026) and 3 ($TBD, "
-            "July 2026) are committed and outstanding. The following remain needed; SOP 50 10 8 source-of-funds "
+            "from JIM BULLARD; balance still held as of June 3, 2026. Tranche 2 ($95,000, by July 31, 2026) is "
+            "committed and outstanding. The following remain needed; SOP 50 10 8 source-of-funds "
             "verification is required for each tranche even though Mr. Bullard is under 20% (no PFS, Form 912, "
             "tax returns, or guaranty required of him).", italic=True, size=9)
     for x in ["Mr. Bullard's bank or brokerage statements - in his own name - covering 30+ days BEFORE each wire, showing the funds available",
-              "Wire/transfer confirmations for the June and July tranches as they land",
+              "Wire/transfer confirmation for the remaining $95,000 tranche as it lands",
               "Final Mercury statement (or trailing-day balance) showing the full $195,000 has been received once Tranche 2 lands",
               "Save the screenshot/PDF of Mercury acct ****1275 showing the May 7 wire under 10_supporting_documents/equity_injection_evidence/"]:
         para(d, "  - " + x)
@@ -644,23 +644,23 @@ def sensitivity_memo():
             "with revenue at the model's contribution ratio (~88.5% contribution margin per patient-day). Debt "
             "service is the SBA loan only ($93,637).", italic=True, size=9.5)
     table(d, ["Scenario", "Assumption", "EBITDA", "DSCR", "Clears 1.25x?"],
-          [["S1 - Census -10%",       "ADC 19.6 vs. 21.8",          "$174,823", "2.07x", "Yes"],
-           ["S2 - Census -20%",       "ADC 17.4 vs. 21.8",          "$47,123",  "0.56x", "No - shortfall"],
-           ["S3 - Rate -3%",          "Net rate -3%",               "$264,212", "3.13x", "Yes"],
-           ["S4 - Rate -5%",          "Net rate -5%",               "$238,672", "2.83x", "Yes"],
-           ["S5 - Payroll +10%",      "Payroll $955K vs. $868K",    "$215,705", "2.56x", "Yes"],
-           ["S6 - Payroll +5%",       "Payroll $911K vs. $868K",    "$259,113", "3.07x", "Yes"]],
+          [["S1 - Census -10%",       "ADC 19.6 vs. 21.8",          "$174,823", "1.87x", "Yes"],
+           ["S2 - Census -20%",       "ADC 17.4 vs. 21.8",          "$47,123",  "0.50x", "No - shortfall"],
+           ["S3 - Rate -3%",          "Net rate -3%",               "$264,212", "2.82x", "Yes"],
+           ["S4 - Rate -5%",          "Net rate -5%",               "$238,672", "2.55x", "Yes"],
+           ["S5 - Payroll +10%",      "Payroll $955K vs. $868K",    "$215,705", "2.30x", "Yes"],
+           ["S6 - Payroll +5%",       "Payroll $911K vs. $868K",    "$259,113", "2.77x", "Yes"]],
           widths=[1.4, 2.0, 1.0, 0.8, 1.3])
     h2(d, "Combined downside (Year 1)")
     table(d, ["Scenario", "Assumption", "EBITDA", "DSCR"],
-          [["C1 - Mild downside",    "Census -5%, Rate -2%, Payroll +3%",    "$187,087", "2.22x"],
-           ["C2 - Moderate downside","Census -10%, Rate -3%, Payroll +5%",   "$93,104",  "1.10x"]],
+          [["C1 - Mild downside",    "Census -5%, Rate -2%, Payroll +3%",    "$187,087", "2.00x"],
+           ["C2 - Moderate downside","Census -10%, Rate -3%, Payroll +5%",   "$93,104",  "0.99x"]],
           widths=[1.6, 2.6, 1.0, 0.8])
     h2(d, "What the stress tells us")
     para(d, "With the seller paid at close, Year-1 coverage is strong (3.23x) and absorbs realistic shocks: a 10% "
-            "census miss, a 5% rate cut, and a 10% wage spike each still clear comfortably (2.07x / 2.83x / 2.56x), "
-            "and a mild combined downside clears at 2.22x. The only single-factor break is a hard, sustained 20% "
-            "census shortfall (0.56x); a moderate combined downside is right at the floor (1.10x). Even then, the "
+            "census miss, a 5% rate cut, and a 10% wage spike each still clear comfortably (1.87x / 2.55x / 2.30x), "
+            "and a mild combined downside clears at 2.00x. The only single-factor break is a hard, sustained 20% "
+            "census shortfall (0.50x); a moderate triple-downside falls below the floor (0.99x). Even then, the "
             "buffers below are not credited in the static flex:")
     for x in ["Break-even is ~16 ADC; even the -20% case (ADC ~17.4) is still above operating break-even - the strain is coverage timing, not viability.",
               "The Year-1 roster is partly census-driven: PRN, intake, and capacity RN/CNA headcount flex back if census softens, which the static stress holds flat against revenue.",
@@ -689,8 +689,8 @@ def bullard_attestation():
     h2(d, "1. Ownership and contribution")
     para(d, "I hold a 19.5% direct membership interest in the Company, acquired in exchange for a $195,000 cash "
             "capital contribution. My contribution is being made in tranches: $100,000 was wired to the Company's "
-            "operating account on May 7, 2026, with the remaining $95,000 scheduled to be contributed during "
-            "June and July 2026. The funds are my own non-borrowed cash; I have not used loan proceeds, advances, "
+            "operating account on May 7, 2026, with the remaining $95,000 scheduled to be contributed by "
+            "July 31, 2026. The funds are my own non-borrowed cash; I have not used loan proceeds, advances, "
             "or credit (including credit-card advances or unsecured personal loans) to fund any portion of the "
             "contribution.")
     h2(d, "2. No management role")
@@ -1020,7 +1020,7 @@ def interview_worksheet():
     field(d, "2.1 Bullard's full legal name (with middle name or initial)", TBD)
     field(d, "2.2 Bullard's home address", TBD)
     field(d, "2.3 Bullard's email and phone", TBD)
-    field(d, "2.4 Source of the $250K (savings / sale of asset / inheritance / business income / other)", TBD)
+    field(d, "2.4 Source of the $195K (savings / sale of asset / inheritance / business income / other)", TBD)
     field(d, "2.5 If sale or business income: brief paper trail",
           TBD + "  (e.g., 'sale of XYZ stock March 2026' or 'business distributions from ABC LLC over 2024-2025')")
     field(d, "2.6 Account institution(s) the funds are sitting in", TBD + "  (bank/brokerage name; account type)")
@@ -1095,7 +1095,7 @@ def interview_worksheet():
     field(d, "5.3 Current owner(s) of Hickory: legal name(s), address(es), ownership %",
           TBD + "  (if multiple, list each)")
     field(d, "5.4 Target closing date", TBD + "  (consider coordinating with the July equity tranche - see Equity Injection memo)")
-    field(d, "5.5 Seller note - confirm $300,000, 36 months, 6% interest, fully amortizing", "Confirm or override")
+    field(d, "5.5 Seller payoff - confirm $300,000 paid in full at close (no retained seller note)", "Confirm or override")
     field(d, "5.6 Cash at close from buyer for the acquisition",
           "Default: $0 (fully seller-financed per the model). Confirm.")
     field(d, "5.7 Earnest money / good-faith deposit", "Default: $0 / none. Confirm or specify.")
@@ -1356,7 +1356,7 @@ def bullard_attestation_v2():
     para(d, "I hold a 19.5% direct membership interest in the Company, acquired in exchange for a $195,000 "
             "cash capital contribution. My contribution is being made in two tranches: $100,000 was wired "
             "to the Company's operating account on May 7, 2026, with the remaining $95,000 scheduled to be "
-            "contributed during June and July 2026. The funds are my own non-borrowed cash, drawn from "
+            "contributed by July 31, 2026. The funds are my own non-borrowed cash, drawn from "
             "personal savings; I have not used loan proceeds, advances, or credit (including credit-card "
             "advances or unsecured personal loans) to fund any portion of the contribution.")
     h2(d, "2. No management role")
@@ -1795,7 +1795,7 @@ def business_plan():
            ["Startup one-time costs", "$63,000", "855A filing, TX licensure, EMR, supply stock, legal, contingency"],
            ["Startup equipment (capex)", "$15,000", "Computers, office furniture; 5-yr straight-line depreciation"],
            ["Working-capital reserve (opening cash)", "$372,000", "Funds ramp payroll and SBA debt service; holds the $25K floor"],
-           ["Total uses", "$750,000", "Funded by SBA $500K + Equity $250K"]],
+           ["Total uses", "$750,000", "Funded by SBA $555K + Equity $195K"]],
           widths=[2.5, 1.1, 2.9])
     h2(d, "Business overview")
     para(d, "Azalea relaunches the acquired Hickory agency in the Tyler / Smith County market (CBSA 46340) "
@@ -2155,7 +2155,7 @@ def business_plan():
            ["Late July 2026", "Close & stand-up", "Close Hickory CHOW after full injection on deposit; update banking (CMS-588 EFT), EMR, insurance; staff retention/credentialing"],
            ["Days 1-90 post-close", "855A CHOW", "File CMS-855A; CMS updates the provider number to Azalea; license & accreditation transfer confirmed; billing uninterrupted"],
            ["Days 30-120", "BD ramp", "Woodard-led weekly referral cadence; digital marketing live; AR normalizes to ~45-day Medicare cycle"],
-           ["Day 120+", "Growth", "Census builds with the referral pipeline; capacity hires triggered by ADC thresholds; combined DSCR > 1.25x and rising"]],
+           ["Day 120+", "Growth", "Census builds with the referral pipeline; capacity hires triggered by ADC thresholds; DSCR > 1.25x and rising"]],
           widths=[1.4, 1.3, 3.9])
     para(d, "SBA disbursement is sequenced to occur with the full $195,000 equity injection on deposit, in "
             "compliance with SOP 50 10 8.", italic=True, size=9.5)
@@ -2202,7 +2202,7 @@ def business_plan():
            ["EBITDA", "$302,522", "$679,524", "$1,007,520"],
            ["EBITDA margin", "21.0%", "24.9%", "27.0%"],
            ["Depreciation & amortization", "$35,600", "$35,600", "$35,600"],
-           ["Interest (SBA loan only)", "$56,038", "$52,604", "$48,754"],
+           ["Interest (SBA loan only)", "$62,202", "$58,741", "$54,551"],
            ["TX franchise tax", "$5,411", "$10,232", "$14,006"],
            ["Net income", "$199,308", "$574,951", "$903,362"]],
           widths=[2.6, 1.4, 1.4, 1.4])
@@ -2237,16 +2237,16 @@ def business_plan():
     h2(d, "11.7 Stress tests (Year-2 steady state, SBA-only debt service, floor 1.25x)")
     table(d, ["Scenario", "Net revenue", "EBITDA", "DSCR", "Clears?"],
           [["Base (Year 2)", "$2,728,642", "$679,524", "7.26x", "Yes"],
-           ["Census -20% (static roster)", "$2,182,914", "~$196,600", "~2.33x", "Yes"],
-           ["Census -35% (static roster)", "$1,773,617", "~($165,700)", "<0", "No"],
-           ["Wage +10%", "$2,728,642", "~$510,800", "6.06x", "Yes"],
-           ["Combined (-20% census / +10% wage)", "$2,182,914", "~$27,900", "~0.33x", "No"]],
+           ["Census -20% (static roster)", "$2,182,913", "$186,766", "1.99x", "Yes"],
+           ["Census -35% (static roster)", "$1,773,617", "($182,802)", "<0", "No"],
+           ["Wage +10% (fixed-cost shock)", "$2,728,642", "$501,098", "5.35x", "Yes"],
+           ["Combined (-20% census / +10% cost)", "$2,182,913", "$8,340", "0.09x", "No"]],
           widths=[2.4, 1.4, 1.3, 0.9, 0.9])
     para(d, "Reading the stress tests. Because the seller is paid at close, debt service is the SBA loan alone "
             "($93,637), and Year-2 coverage absorbs a great deal: the base case covers at 7.26x, a sustained 20% "
-            "census drop still clears at ~2.33x, and a 10% wage spike clears at 6.06x. Only the extreme cases "
+            "census drop still clears at 1.99x, and a 10% fixed-cost spike clears at 5.35x. Only the extreme cases "
             "fail - a 35% census collapse turns EBITDA negative, and a severe combined shock (-20% census AND "
-            "+10% wages, full roster held constant) does not cover. Even these understate resilience: (1) the "
+            "+10% costs, full roster held constant) is essentially uncovered (0.09x). Even these understate resilience: (1) the "
             "roster is census-driven, so a 20-35% lower census carries a lighter cost base than the static test "
             "assumes; (2) the binding variable is census, which is why opening census is the validated ~22 ADC "
             "book (break-even ~16 ADC), not a cold start; and (3) the $372K reserve bridges timing shortfalls. A "
@@ -2274,7 +2274,7 @@ def business_plan():
            ["Slower census ramp", "Med", "High",
             "Opening census is the validated ~22 ADC book, not a cold start; break-even ~16 ADC; capacity hires are census-gated so cost flexes with volume; liquidity covers timing shortfalls"],
            ["Wage inflation", "Med", "Med",
-            "+10% wage shock holds at 6.06x in Year 2; 3% merit modeled; PRN pool buffers"],
+            "+10% fixed-cost shock holds at 5.35x in Year 2; 3% merit modeled; PRN pool buffers"],
            ["CMS rate / regulatory change", "Low", "Med",
             "Rates up or flat every year since 2010; only a conservative 2.5%/yr escalation assumed"],
            ["Key-person dependency", "Low", "Med",
@@ -2282,7 +2282,7 @@ def business_plan():
            ["Equity injection phased", "Low", "Low",
             "$100K on deposit; balance committed; SBA disbursement sequenced after full injection per SOP 50 10 8"],
            ["Newco / no operating history", "Med", "Med",
-            "Acquires an established billing-ready agency benchmarked to actual collections; operator has 10+ years of hospice ownership; 33% equity injection"]],
+            "Acquires an established billing-ready agency benchmarked to actual collections; operator has 10+ years of hospice ownership; 26% equity injection"]],
           widths=[1.7, 0.6, 0.6, 3.6])
     para(d, "The credit's core protection is liquidity and a clean structure: a $372,000 opening reserve plus a "
             "single SBA loan (the seller is paid at close, so there is no second debt layer) keep Azalea solvent "
@@ -2342,7 +2342,7 @@ def submission_readiness():
     h2(d, "Equity injection (James Bullard, $195,000)")
     for x in ["Mercury statement/screenshot of the $100,000 wire (5/7/2026) - drop into 10_supporting_documents/equity_injection_evidence/",
               "Bullard bank/brokerage statements (30-day seasoning) for each tranche",
-              "June and July wires as they land; final statement showing full $250K on deposit",
+              "remaining wire as it lands; final statement showing full $195K on deposit",
               "Signed: Subscription Agreement, Investor Attestation v2 (notarized), Source-of-Funds letter"]:
         para(d, "  - " + x)
     h2(d, "Acquisition / Hickory (mostly in hand from Drive)")
