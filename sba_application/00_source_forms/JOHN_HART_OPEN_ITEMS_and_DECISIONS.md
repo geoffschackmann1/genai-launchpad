@@ -1,3 +1,8 @@
+> **STATUS — decisions now LOCKED (see `00_CHECKLIST_and_STATUS.md`).** This memo is the
+> earlier strategy/deliberation record. Final structure: startup CHOW; SBA $555,000 + equity
+> $195,000 (Bullard 19.5%, 26% injection); seller paid at close (no note); Geoff sole guarantor;
+> DSCR 3.23x/7.26x/10.76x. Read this only for the reasoning history.
+
 # John Hart (SourceFunding) - Open Items & Strategic Decisions
 
 **Lender contact identified:** John W. Hart, **SourceFunding, LLC** (a loan broker/packager who
