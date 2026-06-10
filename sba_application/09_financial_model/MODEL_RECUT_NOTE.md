@@ -43,8 +43,10 @@ The package documents (Business Plan Rev 5.00, credit memo, equity memo, etc.) m
   formula + label, Debt Schedule A2/A17 titles + C18=0, Cash Flow & BS B34=0). Their shared engine
   tabs are now byte-for-byte identical to this SBA package; audience tabs recompute via live formulas.
   Open each once in Excel before sending so cached values bake.
-- **One forward-looking note:** the Investor Package's "Investment Options" tab still presents the
-  earlier three-instrument menu (debt / convertible / preferred) with an illustrative check-size
-  ladder (25K/50K/100K/250K). That tab is a generic investor-offering tool, not the SBA capital
-  structure; the convertible framing was dropped for Bullard (straight 19.5% equity). Revise or
-  remove that tab separately if you don't want it in front of lenders.
+- **Investor Package "Investor Position" tab (retargeted).** The former three-instrument
+  "Investment Options" menu (debt / convertible / preferred) was replaced with a tab documenting
+  Bullard's closed deal: $195,000 cash for a 19.5% straight common-equity member interest (no debt,
+  no convertible, no preference). The return applies his 19.5% pro-rata share of free cash flow and
+  terminal equity value - IRR 83.6%, MOIC 5.82x, ~41% average cash-on-cash - which is below the
+  blended all-equity figure on the Returns tab because he funds the full cash injection but holds a
+  minority stake. Exit multiple and membership % are editable blue cells.

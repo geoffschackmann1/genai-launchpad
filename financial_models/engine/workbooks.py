@@ -593,7 +593,7 @@ def assemble_investor(bk: Book):
     investment_options_tab(bk)
     unit_econ_tab(bk)
     sensitivity_tab(bk)
-    _reorder(bk, ["Inputs", "Returns", "Investment Options", "Unit Economics", "Sensitivity",
+    _reorder(bk, ["Inputs", "Returns", "Investor Position", "Unit Economics", "Sensitivity",
                   "Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                   "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
@@ -621,265 +621,83 @@ def _reorder(bk: Book, order):
 
 
 # =========================================================================
-# B — INVESTOR: INVESTMENT OPTIONS  (debt / hybrid / preferred equity menu)
-# Five-year hold. Investor inputs amount + term choices; tab models
-# year-by-year cash flow, IRR, MOIC, total return for each instrument
-# and presents a side-by-side comparison.
+# B - INVESTOR: INVESTOR POSITION  (James Bullard - straight common equity)
+# Documents the closed deal: $195,000 cash for a 19.5% passive member
+# interest (no debt, no convertible, no preference). Return applies his
+# 19.5% pro-rata share of distributions and terminal equity value.
 # =========================================================================
 def investment_options_tab(bk: Book):
-    ws = bk.wb.create_sheet("Investment Options")
+    ws = bk.wb.create_sheet("Investor Position")
     ws.sheet_view.showGridLines = False
-    ws.column_dimensions["A"].width = 40
-    for col in "BCDEFGH":
+    ws.column_dimensions["A"].width = 46
+    for col in "BCDE":
         ws.column_dimensions[col].width = 16
-    bk.title_block(ws, "Investor Capital - Three Instruments | debt | convertible | preferred equity | choose by yield vs. upside", 8)
-
-    ob = "Operating Budget"
+    bk.title_block(ws, "Investor Position - James Bullard | straight common equity (member units)", 5)
+    ob, dbt, cf = "Operating Budget", "Debt Schedule", "Cash Flow & BS"
     R = bk.rows
+    r = 4
 
-    # ===================== SHARED INVESTOR INPUTS =====================
-    bk.section(ws, 4, "SHARED INPUTS (edit blue cells)", 8)
-    bk.lbl(ws, 5, "Investment amount ($)", indent=1)
-    bk.inp(ws, 5, 2, 50000, S.FMT_CUR, "Per-investor check size. Tiers $25K / $50K / $100K are common.")
-    INV = "$B$5"
-    bk.lbl(ws, 6, "Hold period (years)", indent=1)
-    bk.inp(ws, 6, 2, 5, S.FMT_INT, "Years to maturity / exit (model assumes redemption/exit at end).")
-    HOLD = "$B$6"
-    bk.lbl(ws, 7, "Exit EBITDA multiple", indent=1)
-    bk.inp(ws, 7, 2, 5.0, S.FMT_MULT, "Drives convertible and preferred equity exit value.")
-    EXM = "$B$7"
-    bk.lbl(ws, 8, "Y3 EBITDA (link)", indent=1, italic=True)
-    bk.fml(ws, 8, 2, "=" + ysum(ob, R[ob]["ebitda"], 3), S.FMT_CUR, link=True)
-    YEB = "$B$8"
-    bk.lbl(ws, 9, "Equity exit value (Y3 EBITDA x multiple - net debt)", indent=1)
-    bk.fml(ws, 9, 2, f"={EXM}*{YEB}-{yend('Debt Schedule', R['Debt Schedule']['end'], 3)}-{yend('Cash Flow & BS', R['Cash Flow & BS']['locbal'], 3)}",
+    # ---- DEAL TERMS ----
+    bk.section(ws, r, "DEAL TERMS", 5); r += 1
+    bk.lbl(ws, r, "Investor", indent=1); bk.lbl(ws, r, "James E. Bullard", c=2); r += 1
+    bk.lbl(ws, r, "Instrument", indent=1)
+    bk.lbl(ws, r, "Straight common equity (LLC member units)", c=2); r += 1
+    bk.lbl(ws, r, "Capital contribution", indent=1)
+    bk.fml(ws, r, 2, f"={bk.addr['equity']}", S.FMT_CUR, link=True); invested = f"$B${r}"; r += 1
+    bk.lbl(ws, r, "Membership interest", indent=1)
+    bk.inp(ws, r, 2, 0.195, S.FMT_PCT,
+           "Bullard's direct, fully funded passive interest. Under 20% - no SBA personal guaranty and no PFS.")
+    own = f"$B${r}"; r += 1
+    bk.lbl(ws, r, "Guaranty / preference", indent=1)
+    bk.lbl(ws, r, "None - passive minority; no debt, no convertible, no liquidation preference", c=2); r += 2
+
+    # ---- RETURN ASSUMPTIONS ----
+    bk.section(ws, r, "RETURN - 3-yr hold, exit at EBITDA multiple", 5); r += 1
+    bk.lbl(ws, r, "Exit EBITDA multiple", indent=1)
+    bk.inp(ws, r, 2, 5.0, S.FMT_MULT, "Exit enterprise value = multiple x Year-3 EBITDA.")
+    exit_mult = f"$B${r}"; r += 1
+    bk.lbl(ws, r, "Total terminal equity value (all members)", indent=1)
+    bk.fml(ws, r, 2,
+           f"={exit_mult}*{ysum(ob, R[ob]['ebitda'], 3)}-{yend(dbt, R[dbt]['end'], 3)}-{yend(cf, R[cf]['locbal'], 3)}",
            S.FMT_CUR, link=True)
-    EQV = "$B$9"
+    tot_term = f"$B${r}"; r += 1
+    bk.lbl(ws, r, "Bullard share of terminal value", indent=1)
+    bk.fml(ws, r, 2, f"={own}*{tot_term}", S.FMT_CUR); b_term = r; r += 2
 
-    # column heads (B-D are the three options)
-    hdr_row = 11
-    headers = [("OPTION A - Promissory Note", "Pure DEBT"),
-               ("OPTION B - Convertible Note", "HYBRID"),
-               ("OPTION C - Preferred Equity", "EQUITY w/ floor")]
-    for k, (nm, tag) in enumerate(headers):
-        col = 2 + k * 2  # B, D, F
-        ws.merge_cells(start_row=hdr_row, start_column=col, end_row=hdr_row, end_column=col + 1)
-        bk._set(ws, hdr_row, col, nm, S.f_section(), fill=S.fill(S.NAVY), align=S.CENTER)
-        ws.merge_cells(start_row=hdr_row + 1, start_column=col, end_row=hdr_row + 1, end_column=col + 1)
-        bk._set(ws, hdr_row + 1, col, tag, S.f_sub(), fill=S.fill(S.LIGHTBLUE), align=S.CENTER)
-    ws.row_dimensions[hdr_row].height = 22
+    # ---- EQUITY CASH FLOWS (his 19.5% pro-rata) ----
+    bk.section(ws, r, "BULLARD EQUITY CASH FLOWS", 5); r += 1
+    bk._set(ws, r, 2, "Close", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
+    _year_header(bk, ws, r, cols_from=3); r += 1
+    bk.lbl(ws, r, "Total free cash flow to equity (all members)")
+    for j, y in enumerate((1, 2, 3)):
+        bk.fml(ws, r, 3 + j, f"={ysum(cf, R[cf]['cfo'], y)}+{ysum(cf, R[cf]['prin'], y)}", S.FMT_CUR, link=True)
+    tot_fcfe = r; r += 1
+    bk.lbl(ws, r, "Bullard net cash flow (19.5% pro-rata)", bold=True)
+    bk.fml(ws, r, 2, f"=-{invested}", S.FMT_CUR, bold=True)
+    for j in range(3):
+        cl = get_column_letter(3 + j)
+        extra = f"+$B${b_term}" if j == 2 else ""
+        bk.fml(ws, r, 3 + j, f"={own}*{cl}{tot_fcfe}{extra}", S.FMT_CUR, bold=True, fill=S.fill(S.PALEBLUE))
+    necf = r; r += 2
 
-    # ===================== TERMS ROW =====================
-    r = hdr_row + 3
-    bk.section_range(ws, r, "TERMS (blue = adjust per offer)", 1, 7); r += 1
+    # ---- RETURNS ----
+    bk.section(ws, r, "BULLARD RETURNS", 5); r += 1
+    bk.lbl(ws, r, "Equity IRR (3-yr)", bold=True)
+    bk.fml(ws, r, 2, f"=IRR(B{necf}:E{necf})", S.FMT_PCT, bold=True, fill=S.fill(S.GREENFILL)); r += 1
+    bk.lbl(ws, r, "MOIC (gross multiple)", bold=True)
+    bk.fml(ws, r, 2, f"=SUM(C{necf}:E{necf})/{invested}", S.FMT_MULT, bold=True, fill=S.fill(S.GREENFILL)); r += 1
+    bk.lbl(ws, r, "Avg cash-on-cash (Y1-Y3, distributions only)", bold=True)
+    bk.fml(ws, r, 2, f"={own}*AVERAGE(C{tot_fcfe}:E{tot_fcfe})/{invested}", S.FMT_PCT, bold=True); r += 2
 
-    # --- Option A (Promissory Note) ---
-    bk.lbl(ws, r, "Interest rate (APR)", indent=1)
-    bk.inp(ws, r, 2, 0.10, S.FMT_PCT, "Senior subordinated debt: 9-12% typical given subordination to SBA.")
-    A_RATE = f"$B${r}"
-    bk.inp(ws, r, 4, 0.07, S.FMT_PCT, "Convertible coupon (lower than straight debt; equity upside compensates).")
-    B_CPN = f"$D${r}"
-    bk.inp(ws, r, 6, 0.08, S.FMT_PCT, "Preferred dividend rate, cumulative.")
-    C_DIV = f"$F${r}"; r += 1
-
-    bk.lbl(ws, r, "Term / amortization", indent=1)
-    bk.inp(ws, r, 2, 5, S.FMT_INT, "Years; monthly P+I amortization in this model.")
-    A_TERM = f"$B${r}"
-    bk.inp(ws, r, 4, 5, S.FMT_INT, "Years to maturity / conversion trigger.")
-    B_TERM = f"$D${r}"
-    bk.inp(ws, r, 6, 5, S.FMT_INT, "Years to redemption / exit.")
-    C_TERM = f"$F${r}"; r += 1
-
-    bk.lbl(ws, r, "Payment style / conversion / preference", indent=1)
-    bk.lbl(ws, r, "Monthly P+I", c=2, italic=True)
-    bk.lbl(ws, r, "Discount + valuation cap", c=4, italic=True)
-    bk.lbl(ws, r, "1x liq preference, then participate", c=6, italic=True); r += 1
-
-    # convertible-only: discount + cap
-    bk.lbl(ws, r, "(Convertible) Discount on equity round", indent=1)
-    bk.inp(ws, r, 4, 0.20, S.FMT_PCT, "Discount applied at conversion vs. exit/round price.")
-    B_DISC = f"$D${r}"; r += 1
-    bk.lbl(ws, r, "(Convertible) Valuation cap ($)", indent=1)
-    bk.inp(ws, r, 4, 3000000, S.FMT_CUR, "Implied pre-money cap; conversion uses MIN(cap, exit_val x (1-discount)).")
-    B_CAP = f"$D${r}"; r += 1
-
-    # preferred-only: participation
-    bk.lbl(ws, r, "(Preferred) Participate after preference", indent=1)
-    bk.inp(ws, r, 6, 1, S.FMT_INT, "1 = participating (1x back, then pro-rata). 0 = non-participating (greater of preference or as-converted).")
-    C_PART = f"$F${r}"; r += 1
-
-    # ===================== CASH FLOW SCHEDULE (5 yrs) =====================
-    r += 1
-    bk.section_range(ws, r, "INVESTOR CASH FLOW SCHEDULE (annual, Year 0 = close)", 1, 7); r += 1
-    # row of year labels
-    yhdr = r
-    bk._set(ws, r, 1, "Year", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.LEFT, border=S.BORDER_THIN)
-    for y in range(0, 6):
-        bk._set(ws, r, 2 + y, f"Y{y}", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
-    r += 1
-
-    # --- OPTION A: Promissory note. Monthly P+I; annual cash flow = pmt*12 within term, 0 after.
-    bk.lbl(ws, r, "OPTION A - Promissory Note", indent=1, bold=True)
-    # Annual payment = PMT × 12 if year ≤ term else 0; Y0 = −investment
-    PMT_A = f"PMT({A_RATE}/12,{A_TERM}*12,-{INV})"
-    bk.fml(ws, r, 2, f"=-{INV}", S.FMT_CUR, bold=True)
-    for y in range(1, 6):
-        cl = get_column_letter(2 + y)
-        bk.fml(ws, r, 2 + y, f"=IF({y}<={A_TERM},{PMT_A}*12,0)", S.FMT_CUR)
-    A_ROW = r; r += 1
-
-    # --- OPTION B: Convertible note. Annual coupon paid Y1..term; at maturity/exit pick GREATER of (P+remaining accrual) or equity-converted.
-    bk.lbl(ws, r, "OPTION B - Convertible Note", indent=1, bold=True)
-    # Conversion ownership %: investment / MIN(cap, exit_val × (1−discount))
-    OWN_B = f"({INV}/MIN({B_CAP},{EQV}*(1-{B_DISC})))"
-    # Equity-converted proceeds at exit
-    EQ_PROC_B = f"({OWN_B}*{EQV})"
-    # Face value at maturity = principal back
-    FACE_B = f"{INV}"
-    # Greater of two at exit year
-    bk.fml(ws, r, 2, f"=-{INV}", S.FMT_CUR, bold=True)
-    for y in range(1, 6):
-        cl = get_column_letter(2 + y)
-        # interim years: coupon if y < term, else 0
-        # exit year (y == term): coupon + MAX(face, eq_proceeds) − face_payoff
-        # Simpler: years 1..term-1 = coupon; year term = MAX(face + coupon, eq_proceeds)
-        expr = (f"=IF({y}<{B_TERM},{INV}*{B_CPN},"
-                f"IF({y}={B_TERM},MAX({INV}+{INV}*{B_CPN},{EQ_PROC_B}),0))")
-        bk.fml(ws, r, 2 + y, expr, S.FMT_CUR)
-    B_ROW = r; r += 1
-
-    # --- OPTION C: Preferred equity. Annual dividend; at exit year: 1× preference back + (if participating) pro-rata share of residual.
-    bk.lbl(ws, r, "OPTION C - Preferred Equity", indent=1, bold=True)
-    OWN_C = f"({INV}/{EQV})"   # as-converted ownership % of exit value
-    # Residual after preference returned to all preferreds (just this investor for simplicity)
-    RESIDUAL = f"MAX(0,{EQV}-{INV})"
-    PARTICIPATION = f"IF({C_PART}=1,{OWN_C}*{RESIDUAL},MAX({INV},{OWN_C}*{EQV})-{INV})"
-    bk.fml(ws, r, 2, f"=-{INV}", S.FMT_CUR, bold=True)
-    for y in range(1, 6):
-        cl = get_column_letter(2 + y)
-        # dividend every year up to and including exit; at exit year add preference + participation
-        expr = (f"=IF({y}<{C_TERM},{INV}*{C_DIV},"
-                f"IF({y}={C_TERM},{INV}*{C_DIV}+{INV}+{PARTICIPATION},0))")
-        bk.fml(ws, r, 2 + y, expr, S.FMT_CUR)
-    C_ROW = r; r += 2
-
-    # ===================== RETURNS COMPARISON =====================
-    bk.section_range(ws, r, "RETURNS COMPARISON (Y0 = -investment; subsequent years per schedule above)", 1, 8); r += 1
-    # metric rows
-    # Per-option headline rate (stated APR/coupon/dividend) for direct comparison.
-    HEADLINE = {A_ROW: A_RATE, B_ROW: B_CPN, C_ROW: C_DIV}
-    # IRR formula per option. Option A pays MONTHLY P+I, so its true investor
-    # yield is the effective annual rate (1 + APR/12)^12 − 1, NOT the annual
-    # IRR of the lumpy annual series. Options B and C pay annually; annual IRR
-    # is exact.
-    IRR_FORM = {A_ROW: lambda row: f"(1+{A_RATE}/12)^12-1",
-                B_ROW: lambda row: f"IRR(B{row}:G{row})",
-                C_ROW: lambda row: f"IRR(B{row}:G{row})"}
-    metrics = [
-        ("Headline rate (APR / coupon / pref div)", lambda row: HEADLINE[row], S.FMT_PCT, False),
-        ("Total cash to investor (Y1-Y5)", lambda row: f"SUM(C{row}:G{row})", S.FMT_CUR, False),
-        ("Total profit (cash - investment)", lambda row: f"SUM(C{row}:G{row})-{INV}", S.FMT_CUR, False),
-        ("MOIC (gross multiple)", lambda row: f"SUM(C{row}:G{row})/{INV}", S.FMT_MULT, True),
-        ("IRR / effective annual yield", lambda row: IRR_FORM[row](row), S.FMT_PCT, True),
-        ("Average annual cash yield (Y1-Y5)", lambda row: f"AVERAGE(C{row}:G{row})/{INV}", S.FMT_PCT, False),
-    ]
-    metric_total_row = None
-    metric_irr_row = None
-    for label, fn, fmt, highlight in metrics:
-        bk.lbl(ws, r, label, indent=1, bold=True)
-        for k, src_row in enumerate([A_ROW, B_ROW, C_ROW]):
-            col = 2 + k * 2
-            bk.fml(ws, r, col, "=" + fn(src_row), fmt, bold=True,
-                   fill=S.fill(S.GREENFILL) if highlight else None)
-            ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        if label.startswith("Total cash to investor"):
-            metric_total_row = r
-        if label.startswith("IRR / effective"):
-            metric_irr_row = r
-        r += 1
-    r += 1
-
-    # ===================== RISK / WHO IT'S FOR =====================
-    bk.section_range(ws, r, "RISK & FIT", 1, 7); r += 1
-    bk._set(ws, r, 1, "Profile", S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.LEFT, border=S.BORDER_THIN)
-    for k, txt in enumerate(("Lowest risk | fixed yield", "Medium risk | upside option", "Highest risk | highest upside")):
-        col = 2 + k * 2
-        ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        bk._set(ws, r, col, txt, S.f_label(bold=True), fill=S.fill(S.LIGHTBLUE), align=S.CENTER, border=S.BORDER_THIN)
-    r += 1
-    bk._set(ws, r, 1, "Security / position", S.f_label(), align=S.LEFT)
-    for k, txt in enumerate(("Senior subordinated debt; subordinate to SBA",
-                             "Debt at maturity OR equity at exit (greater)",
-                             "Equity; subordinate to all debt")):
-        col = 2 + k * 2
-        ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        bk._set(ws, r, col, txt, S.f_note(), align=S.LEFT_WRAP)
-    r += 1
-    bk._set(ws, r, 1, "Cash flow to investor", S.f_label(), align=S.LEFT)
-    for k, txt in enumerate(("Monthly P+I, predictable",
-                             "Annual coupon, lump at exit",
-                             "Annual dividend, lump at exit")):
-        col = 2 + k * 2
-        ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        bk._set(ws, r, col, txt, S.f_note(), align=S.LEFT_WRAP)
-    r += 1
-    bk._set(ws, r, 1, "Tax treatment", S.f_label(), align=S.LEFT)
-    for k, txt in enumerate(("Interest = ordinary income",
-                             "Interest = ordinary; conversion = capital gain",
-                             "Dividends + capital gain on exit")):
-        col = 2 + k * 2
-        ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        bk._set(ws, r, col, txt, S.f_note(), align=S.LEFT_WRAP)
-    r += 1
-    bk._set(ws, r, 1, "Best for", S.f_label(), align=S.LEFT)
-    for k, txt in enumerate(("Yield-focused, risk-averse passive lenders",
-                             "Investors who want yield AND a shot at equity upside",
-                             "Believers in the upside who can take equity risk")):
-        col = 2 + k * 2
-        ws.merge_cells(start_row=r, start_column=col, end_row=r, end_column=col + 1)
-        bk._set(ws, r, col, txt, S.f_note(), align=S.LEFT_WRAP)
-    r += 2
-
-    # ===================== TIER MENU (sample check sizes) =====================
-    bk.section_range(ws, r, "ILLUSTRATIVE TIERS (recompute by changing 'Investment amount' above)", 1, 7); r += 1
-    for j, h in enumerate(["Check size", "Option A: 5-yr IRR", "Option A: total cash", "Option B: IRR @5x exit", "Option B: total cash", "Option C: IRR @5x exit", "Option C: total cash"]):
-        bk._set(ws, r, 1 + j, h, S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
-    r += 1
-    # These cells use the same option formulas with substituted amount.
-    # Simplest: have each row reference its own scaled cash flows by ratio
-    # IRR is independent of scale -> use the live IRR cells; cash scales linearly with amount.
-    irr_row = A_ROW  # not used; we reference the metrics rows below
-    # Recompute total cash by ratio: amount/INV * (live total)
-    # IRR is amount-independent in all three options *given the same terms*.
-    A_LIVE_IRR = "B" + str(A_ROW + 5 - 1)   # 4th metric row (IRR) for option A column B
-    # Simpler: take IRR cells we just built
-    # metrics order: total, profit, moic, IRR, yield -> IRR is at metrics row index 3
-    # A_ROW + (3 rows up to metrics start) ... we tracked metrics with sequential r so:
-    # find IRR rows via their addresses:
-    # IRR row for opt A in col B = r_metrics_start + 3
-    # we don't track r_metrics_start here -- instead embed inline below using PMT/IRR per-row
-    # IRR and total-cash for Options B and C scale linearly with check size
-    # (terms and EQV fixed) — reference the live metrics rows above.
-    for amt in (25000, 50000, 100000, 250000):
-        bk._set(ws, r, 1, amt, S.f_input(), S.FMT_CUR, S.fill(S.INPUTFILL), S.CENTER, S.BORDER_THIN)
-        # Option A: monthly P+I → IRR ≈ EFFECT(A_RATE,12); cash = PMT × 12 × term
-        bk.fml(ws, r, 2, f"=(1+{A_RATE}/12)^12-1", S.FMT_PCT)
-        bk.fml(ws, r, 3, f"=PMT({A_RATE}/12,{A_TERM}*12,-A{r})*12*{A_TERM}", S.FMT_CUR)
-        # Option B: IRR same regardless of amount (terms fixed); cash scales A{r}/INV
-        bk.fml(ws, r, 4, f"=$D${metric_irr_row}", S.FMT_PCT)
-        bk.fml(ws, r, 5, f"=A{r}/{INV}*$D${metric_total_row}", S.FMT_CUR)
-        # Option C: same logic
-        bk.fml(ws, r, 6, f"=$F${metric_irr_row}", S.FMT_PCT)
-        bk.fml(ws, r, 7, f"=A{r}/{INV}*$F${metric_total_row}", S.FMT_CUR)
-        r += 1
-
-    r += 1
-    note = ("Conventions: Year-0 cash flow is the investor's check (negative). Subsequent years are cash "
-            "received. Option A IRR ≈ rate (slight compounding bump from monthly payments). Options B and C "
-            "IRR/cash scale linearly with check size when terms and exit value are fixed - use the tier menu "
-            "to size offers, then change 'Investment amount' to see the live cash-flow schedule update. "
-            "Conversion math: Option B holder receives MAX(principal + final coupon, equity-as-converted) at "
-            "year = term, where conversion ownership = investment ÷ MIN(cap, exit x (1 - discount)).")
-    ws.merge_cells(start_row=r, start_column=1, end_row=r + 4, end_column=8)
-    bk._set(ws, r, 1, note, S.f_note(), align=S.LEFT_WRAP)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r + 4, end_column=5)
+    bk._set(ws, r, 1,
+            "James Bullard's subscription closed as straight common equity: a $195,000 cash capital "
+            "contribution for a 19.5% non-controlling member interest (no debt, no convertible note, no "
+            "liquidation preference). Because the interest is below 20% and passive, no SBA personal "
+            "guaranty or PFS is required. Return is his 19.5% pro-rata share of free cash flow to equity "
+            "(distributed annually) plus 19.5% of terminal equity value, which exits at the EBITDA multiple "
+            "net of remaining debt. He funds the entire cash injection but holds a minority stake, so his "
+            "multiple is below the blended all-equity figure on the Returns tab. Editable cells (blue): exit "
+            "multiple and membership %.",
+            S.f_note(), align=S.LEFT_WRAP)
     return ws
