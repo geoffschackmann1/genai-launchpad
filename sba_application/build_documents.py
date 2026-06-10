@@ -1944,8 +1944,27 @@ def business_plan():
               "Dignity-led hospitality model - luxury-hospitality standards applied to end-of-life care",
               "Faith-aligned positioning - explicit Christian-values messaging resonant with the local demographic",
               "Speed of admission - same-day / next-day response, faster than national competitors' 24-72 hours",
-              "Local independent ownership - faster decisions, no corporate bureaucracy, deeper relationship investment"]:
+              "Local independent ownership - faster decisions, no corporate bureaucracy, deeper relationship investment",
+              "MVI-certified in The Perfect Visit and Perfect Phones - national co-marketing exposure that local and regional competitors lack (see 4.1)"]:
         para(d, "  - " + x)
+
+    h2(d, "4.1 MVI \u2018Perfect Visit\u2019 certification & national co-marketing (strategic upside)")
+    para(d, "Azalea is pursuing certification by MultiView Incorporated (MVI) in The Perfect Visit and Perfect "
+            "Phones - structured programs that certify an agency's patient-visit quality and its intake and "
+            "telephone responsiveness against a defined standard. MVI, led by Andrew Reid, is launching a "
+            "national, multi-platform advertising campaign that promotes hospice agencies certified in The "
+            "Perfect Visit. As a certified agency, Azalea would be featured to a national audience - the kind of "
+            "brand exposure normally reserved for the largest national operators with multi-million-dollar ad "
+            "budgets, here made accessible to a local independent through the certification.")
+    para(d, "Azalea will develop an in-tandem local marketing plan timed to the national campaign - capturing the "
+            "awareness it generates and converting it into local inquiries and referrals across the Tyler service "
+            "area. The pairing of a national demand-generation engine with a focused local conversion plan is a "
+            "differentiator no local competitor currently has, and it creates a credible path to take market "
+            "share from the regional and national incumbents listed above.")
+    para(d, "Underwriting note: this is incremental upside. The financial projections in Section 11 remain "
+            "conservative and assume no lift from the MVI certification or the national campaign; debt service is "
+            "covered on the base-case census path without it. The certification represents potential growth above "
+            "plan, not a dependency.", italic=True, size=9.5)
 
     # ---- 05 SWOT ----
     d.add_page_break()
@@ -1972,6 +1991,7 @@ def business_plan():
               "70+ SNF/ALF facilities, many underserved by incumbents",
               "Faith-based marketing to an extensive church and ministry network",
               "Palliative-care consultation line as a Year 2-3 revenue diversifier",
+              "MVI 'Perfect Visit' / 'Perfect Phones' certification + Andrew Reid's national multi-platform campaign - national lead exposure for a local independent (upside, not in the base case)",
               "CMS hospice rates have risen every year since 2010; model carries a conservative 2.5%/yr escalation"]:
         para(d, "  - " + x)
     h2(d, "Threats")
@@ -2015,6 +2035,12 @@ def business_plan():
             "senior-focused print, branded admission books and referral pads, bereavement support groups, "
             "senior health fairs, and church health-ministry workshops. The model funds $3,000/mo "
             "($36,000/yr) of marketing within fixed G&A, sustained across all three years.")
+    para(d, "National co-marketing (upside): as an agency pursuing MVI 'Perfect Visit' and 'Perfect Phones' "
+            "certification, Azalea will run an in-tandem local campaign timed to MVI's national, multi-platform "
+            "advertising of certified hospice agencies (led by Andrew Reid) - local landing pages, geo-targeted "
+            "digital, and referral-source outreach engineered to convert national awareness into Tyler-area "
+            "leads. This sits on top of the budgeted spend above and is treated as upside; the base-case "
+            "projections do not rely on it.")
     h2(d, "6.6 Census model")
     table(d, ["Period", "Base ADC", "Primary channel"],
           [["Months 1-3 (launch)", "12 -> 22", "Panel transition + team activation"],
