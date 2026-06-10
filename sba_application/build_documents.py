@@ -461,7 +461,14 @@ def personal_forms_guide():
     para(d, "Required from each owner of 20% or more (and spouse if jointly filing). Lists personal assets "
             "(cash, savings, retirement, real estate, autos, other) and liabilities (mortgages, loans, credit "
             "cards), plus a personal income/expense section. Attach supporting bank statements and a recent pay "
-            "stub. The lender uses this to assess the personal guaranty and the equity-injection source.")
+            "stub. A pre-fill worksheet (SBA_Form_413_PFS_PREFILL_Geoff.docx) is provided with the two known "
+            "items already entered - the VistaRiver note receivable and the $555,000 SBA guaranty as a contingent "
+            "liability; add your remaining values and transcribe onto the official form. Note: the $195,000 equity "
+            "injection is Bullard's cash, not Geoff's, so it is not on Geoff's PFS.")
+    h2(d, "SBA Form 1919 - Borrower Information Form (folder 01)")
+    para(d, "Required at application. A pre-fill worksheet (SBA_Form_1919_Borrower_Information_PREFILL.docx) has "
+            "the business section completed; each principal still answers the Section II citizenship and "
+            "character questions personally and truthfully.")
     h2(d, "Personal Cash Flow (template 7a, folder 07)")
     para(d, "Monthly personal income vs. personal expenses for each 20%+ owner. Demonstrates the owner can meet "
             "personal obligations independent of the business during ramp.")
@@ -764,9 +771,9 @@ def submission_cover_sheet():
           [["00", "Source forms (blank, as provided by lender)", "00_source_forms/"],
            ["01", "Company Profile", "01_company_profile/"],
            ["02", "Use of Proceeds + Equity Injection / SBA Structure memo", "02_use_of_funds/"],
-           ["03", "Business Plan (Rev 4.00) + Reconciliation/Break-even memo (drop-ins for Rev 5.00)", "03_business_plan/"],
+           ["03", "Business Plan (Rev 5.00, editable Word - current) + Reconciliation/Break-even memo", "03_business_plan/"],
            ["04", "Business Debt Schedule", "04_business_debt_schedule/"],
-           ["05", "Personal Financial Statement (SBA 413) - guidance + completed form", "05_personal_financial_statement/"],
+           ["05", "Personal Financial Statement (SBA 413) - guide + pre-fill worksheet", "05_personal_financial_statement/"],
            ["06", "Personal History (SBA 912) + Management Resumes (4)", "06_personal_history_resume/"],
            ["07", "Personal Cash Flow (SBA 7a)", "07_personal_cash_flow/"],
            ["08", "Entity documents - WY formation, EIN letter, Operating Agreement, Investor Attestation", "08_entity_documents/"],
@@ -779,13 +786,14 @@ def submission_cover_sheet():
     table(d, ["Checklist item", "Location"],
           [["1. SBA 7(a) Loan Checklist", "00_source_forms/1_SBA_7a_Loan_Checklist.docx"],
            ["2. Company Profile", "01_company_profile/Company_Profile_DRAFT.docx"],
+           ["2a. SBA Form 1919 - Borrower Information (pre-fill)", "01_company_profile/SBA_Form_1919_Borrower_Information_PREFILL.docx"],
            ["3. Use of Funds", "02_use_of_funds/Use_of_Funds_DRAFT.docx"],
            ["3a. Equity Injection / SBA Structure memo (supporting)", "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx"],
-           ["4. Business Plan", "03_business_plan/Azalea_SBA_Business_Plan_Rev4.00_2026-06-02.pdf"],
+           ["4. Business Plan (editable Word, current)", "03_business_plan/Azalea_SBA_Business_Plan_Rev5.00.docx"],
            ["4a. Reconciliation / Break-even memo (supporting)", "03_business_plan/RECONCILIATION_and_Breakeven_MEMO.docx"],
            ["5. Business Debt Schedule", "04_business_debt_schedule/Business_Debt_Schedule_DRAFT.docx"],
            ["6. Personal History (SBA 912) - Geoff Schackmann", "06_personal_history_resume/"],
-           ["7. Personal Financial Statement (SBA 413) - Geoff Schackmann", "05_personal_financial_statement/"],
+           ["7. Personal Financial Statement (SBA 413) - Geoff Schackmann (pre-fill provided)", "05_personal_financial_statement/SBA_Form_413_PFS_PREFILL_Geoff.docx"],
            ["7a. Personal Cash Flow - Geoff Schackmann", "07_personal_cash_flow/"],
            ["8. Management Resumes (4)", "06_personal_history_resume/"],
            ["Lender Credit Memo (exec summary)", "11_lender_credit_memo/Lender_Credit_Memo_EXEC_SUMMARY.docx"],
@@ -1947,7 +1955,7 @@ def business_plan():
               "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships",
               "Acquired Medicare provider number (CHOW) - billing-ready from day one, no new-provider enrollment lag",
               "Capital cushion - $372K opening cash reserve; seller paid at close so the SBA loan is the only debt",
-              "DSCR rises 3.23x -> 10.76x across the plan; substantial $195K cash equity injection (33% of project)",
+              "DSCR rises 3.23x -> 10.76x across the plan; substantial $195K cash equity injection (26% of project)",
               "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Managing Member"]:
         para(d, "  - " + x)
     h2(d, "Weaknesses")
@@ -2308,7 +2316,7 @@ def business_plan():
             "operating results, which the opening steady-state model reconciles to within ~2%; (2) a base case "
             "whose DSCR clears the 1.25x floor and strengthens every year (3.23x -> 7.26x -> 10.76x; global "
             "7.08x), because the seller is paid at close and the SBA loan is the only debt; and (3) a "
-            "well-capitalized structure - $195K cash equity (33% of project) and a $372K opening reserve - that "
+            "well-capitalized structure - $195K cash equity (26% of project) and a $372K opening reserve - that "
             "keeps liquidity intact through stress scenarios. The binding risk is a sustained census shortfall, "
             "mitigated by a validated opening book above break-even, a census-driven cost structure, and "
             "substantial liquidity.")
@@ -2369,8 +2377,152 @@ def submission_readiness():
     save(d, "SUBMISSION_READINESS_CHECKLIST.docx")
 
 
+def borrower_info_1919():
+    d = new_doc("SBA Form 1919 - Borrower Information (pre-fill)")
+    h1(d, "SBA Form 1919 - Borrower Information Form")
+    para(d, "PRE-FILL WORKSHEET - transcribe onto the current official SBA Form 1919 (OMB 3245-0178) at "
+            "signing. Business answers are pre-filled from the application; identity fields and the "
+            "character/citizenship questions in Section II must be completed and attested by each principal "
+            "personally and truthfully.", color=GREY, size=9)
+
+    h2(d, "Section I - Applicant Business Information (completed once by the business)")
+    field(d, "1. Applicant business legal name", "Tyler Hospice Hold LLC")
+    field(d, "   Trade name / dba", "Azalea Hospice & Palliative Care")
+    field(d, "2. Primary business address", "13387 Hwy 69 N, Tyler, TX " + TBD + " (zip)")
+    field(d, "3. Business EIN", "41-4966640")
+    field(d, "4. Business phone", "480-495-5474")
+    field(d, "5. Primary contact", "Geoff Schackmann, Managing Member")
+    field(d, "6. NAICS code", "621610 - Home Health Care Services (confirm hospice classification with lender)")
+    field(d, "7. Type of business entity", "Limited Liability Company (Wyoming; formed 03/18/2026)")
+    field(d, "8. Amount of SBA loan requested", "$555,000")
+    field(d, "9. Number of employees (incl. owners)", "9 at funding; scaling to ~25+ by Year 3")
+    field(d, "10. Is the Applicant a franchise?", "No")
+    para(d, "")
+    para(d, "Business eligibility questions (mark the answer; any 'Yes' requires a written explanation):", bold=True, size=10)
+    table(d, ["#", "Question", "Answer"],
+          [["1", "Is the Applicant presently suspended, debarred, proposed for debarment, declared ineligible, voluntarily excluded, or otherwise excluded from participation by any federal department or agency?", "No"],
+           ["2", "Has the Applicant, or any business owned/controlled by any of its owners, ever obtained a direct or guaranteed loan from SBA or any other federal agency that is currently delinquent or has defaulted in the last 7 years and caused a loss to the government?", "No"],
+           ["3", "Is the Applicant presently involved in any bankruptcy or insolvency proceeding?", "No - newly formed entity"],
+           ["4", "Is the Applicant or any owner presently subject to any pending civil lawsuit, judgment, or tax lien?", "No (confirm)"],
+           ["5", "Is the Applicant a party to any pending lawsuit, and if so will it materially affect operations?", "No"],
+           ["6", "Will any loan proceeds be used to pay a delinquent federal debt or to reimburse any owner for prior contributions?", "No - proceeds per Use of Proceeds (acquisition at close, startup, equipment, working capital)"],
+           ["7", "Does the Applicant or any associate have a current or prior SBA loan, or an application pending?", "No"],
+           ["8", "Is any owner of the Applicant an associate of another business with an existing SBA loan?", "No"],
+           ["9", "Has the Applicant or any associate been more than 60 days delinquent on child support?", "(Each principal to confirm)"],
+           ["10", "Does the Applicant have an Employee Stock Ownership Plan (ESOP)?", "No"]],
+          widths=[0.3, 5.5, 1.2])
+    para(d, "Business certification: by signing the official form, the authorized representative certifies the "
+            "above are true and that the business is eligible (for-profit; located in the U.S.; meets SBA size "
+            "standards; not engaged in an ineligible activity). Hospice care is an eligible business activity.",
+            italic=True, size=9)
+
+    h2(d, "Section II - Principal Information (one per principal)")
+    para(d, "Complete for: each owner of 20% or more; each officer, director, managing member; and any person "
+            "hired to manage day-to-day operations. Below is who must complete Section II and their status. "
+            "SSN, date of birth, place of birth, and the three character questions are personal attestations - "
+            "leave them for each individual to complete and sign.", italic=True, size=9)
+    table(d, ["Principal", "Title", "% owned", "20%+ owner?", "Guarantor?", "Section II required"],
+          [["Geoff Schackmann", "Managing Member (via Adeline & Lilah, LLC)", "39.9% (indirect control)", "Yes", "Yes (sole PG)", "Yes - full"],
+           ["Mary Elizabeth Burcham", "Passive member of Adeline & Lilah, LLC", "19.95% indirect", "No", "No (spouse consent only)", "Yes - as spouse/owner of A&L"],
+           ["James E. Bullard", "Passive minority investor", "19.5%", "No", "No", "Confirm with lender*"],
+           ["Silas R. Shelton", "Executive Director", "13.3%", "No", "No", "Yes - key employee (manages operations)"],
+           ["Dana L. Davenport", "Director of Nursing", "13.3%", "No", "No", "Yes - key employee"],
+           ["Bradley G. Woodard", "Director of Sales", "13.3%", "No", "No", "Yes - key employee"]],
+          widths=[1.5, 1.9, 1.2, 0.8, 1.0, 1.6])
+    para(d, "*Bullard is a passive 19.5% investor with no management role; confirm with the lender whether they "
+            "require a Section II from him. Under 20% and non-managing, many lenders do not - but some collect it "
+            "for all equity holders. No personal guaranty or PFS is required of him regardless.", italic=True, size=9)
+    para(d, "")
+    para(d, "Per-principal fields to complete on the official form:", bold=True, size=10)
+    for x in ["Full legal name; any other names used",
+              "Residential address; home phone",
+              "Social Security Number; date of birth; place of birth (city/state/country)",
+              "U.S. citizen? / Lawful Permanent Resident? (if LPR, Alien Registration Number)",
+              "Percentage of ownership and position/title",
+              "Character Q1: Are you presently subject to an indictment, criminal information, arraignment, or other means by which formal criminal charges are brought in any jurisdiction?",
+              "Character Q2: Have you been arrested in the past six months for any criminal offense?",
+              "Character Q3: For any criminal offense - other than a minor vehicle violation - have you ever: (a) been convicted; (b) pleaded guilty; (c) pleaded nolo contendere; (d) been placed on pretrial diversion; or (e) been placed on any form of parole or probation?",
+              "Are you presently suspended, debarred, or otherwise excluded by any federal agency?"]:
+        para(d, "  - " + x, size=9.5)
+    para(d, "Any 'Yes' to a character question requires a written explanation and may require additional "
+            "background processing (Form 912 and FBI clearance). Answer exactly and truthfully - this drives the "
+            "lender's CAIVRS/SAM screening.", italic=True, size=9)
+    footer_note(d)
+    save(d, "01_company_profile/SBA_Form_1919_Borrower_Information_PREFILL.docx")
+
+
+def pfs_413_prefill():
+    d = new_doc("SBA Form 413 - PFS pre-fill (Geoff Schackmann)")
+    h1(d, "SBA Form 413 - Personal Financial Statement (pre-fill worksheet)")
+    para(d, "PRE-FILL WORKSHEET for Geoff Schackmann, the sole 20%+ owner and guarantor. Transcribe onto the "
+            "current official SBA Form 413 (OMB 3245-0188). Dollar values must be supplied by Geoff and supported "
+            "by statements; the two items known from the file are pre-filled below. As of date: " + TBD + ".",
+            color=GREY, size=9)
+    para(d, "Important: the $195,000 equity injection is James Bullard's cash (a separate 19.5% member), NOT "
+            "Geoff's - so it does not appear on Geoff's PFS. Geoff's PFS supports the personal guaranty; "
+            "Bullard's source-of-funds is verified separately from his own statements.", italic=True, size=9)
+
+    field(d, "Name", "Geoff Schackmann")
+    field(d, "Residential address", TBD)
+    field(d, "Business name of applicant", "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)")
+    para(d, "")
+    h2(d, "Assets")
+    table(d, ["Asset", "Value", "Notes"],
+          [["Cash on hand and in banks", TBD, "Attach recent bank statements"],
+           ["Savings accounts", TBD, ""],
+           ["IRA / other retirement accounts", TBD, "Schedule / statement"],
+           ["Accounts and notes receivable", "see Schedule", "Includes the VistaRiver seller note (below)"],
+           ["Life insurance - cash surrender value", TBD, "Name insurer"],
+           ["Stocks and bonds", TBD, "Schedule B"],
+           ["Real estate (from Schedule C)", TBD, "Primary residence / other"],
+           ["Automobiles", TBD, "Year/make"],
+           ["Other personal property", TBD, ""],
+           ["Other assets", TBD, ""],
+           ["TOTAL ASSETS", TBD, ""]],
+          widths=[2.6, 1.6, 2.6])
+    h2(d, "Liabilities")
+    table(d, ["Liability", "Value", "Notes"],
+          [["Accounts payable", TBD, ""],
+           ["Notes payable to banks and others", TBD, "Schedule A"],
+           ["Installment account (auto)", TBD, "Monthly payment ____"],
+           ["Installment account (other)", TBD, "Monthly payment ____"],
+           ["Loans on life insurance", TBD, ""],
+           ["Mortgages on real estate (from Schedule C)", TBD, ""],
+           ["Unpaid taxes", TBD, ""],
+           ["Other liabilities", TBD, ""],
+           ["TOTAL LIABILITIES", TBD, ""],
+           ["NET WORTH (assets - liabilities)", TBD, ""]],
+          widths=[2.6, 1.6, 2.6])
+    h2(d, "Notes Receivable - pre-filled known item")
+    table(d, ["Payor", "Origin", "Original amount", "Current balance", "Status"],
+          [["VistaRiver (sale of Geoff's prior hospice interest)", "MIPA dated 08/15/2025 (in PFS support folder)", TBD, TBD, "Provide payment ledger / recent statement showing the note is current"]],
+          widths=[2.2, 2.2, 1.2, 1.2, 1.5])
+    h2(d, "Contingent Liabilities - pre-filled known item")
+    table(d, ["Type", "Amount", "Notes"],
+          [["As guarantor: SBA 7(a) loan to Tyler Hospice Hold LLC", "$555,000 (proposed)", "This transaction - Geoff is the sole personal guarantor"],
+           ["As endorser or co-maker (other)", TBD, ""],
+           ["Legal claims and judgments", TBD, ""],
+           ["Provision for federal income tax", TBD, ""],
+           ["Other special debt", TBD, ""]],
+          widths=[3.4, 1.6, 2.0])
+    h2(d, "Source of Income (annual) and Personal Information")
+    for x in ["Salary / wages; net investment income; real estate income; other income (describe)",
+              "Schedule A - notes payable to banks and others (to whom, balance, terms, security)",
+              "Schedule B - stocks and bonds",
+              "Schedule C - real estate owned (address, cost, market value, mortgage balance, payment)",
+              "Life insurance held (face amount, cash surrender value, beneficiaries)"]:
+        para(d, "  - " + x, size=9.5)
+    para(d, "Attach: most recent statements for each asset/liability line, a recent pay stub or income "
+            "documentation, and the VistaRiver note ledger. The lender uses the PFS to assess the personal "
+            "guaranty and overall credit strength.", italic=True, size=9)
+    footer_note(d)
+    save(d, "05_personal_financial_statement/SBA_Form_413_PFS_PREFILL_Geoff.docx")
+
+
 if __name__ == "__main__":
     company_profile()
+    borrower_info_1919()
+    pfs_413_prefill()
     submission_readiness()
     use_of_funds()
     equity_injection_memo()

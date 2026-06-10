@@ -49,6 +49,25 @@ models (which are formula-driven); all were hand-authored narrative/table values
    Submission Readiness "$250K on deposit" → "$195K"; three residual 3-tranche / "June and July 2026"
    references → consolidated 2-tranche ($100K received + $95K by 7/31/2026).
 
+## Build-out session (completeness pass)
+
+Added the two standard 7(a) forms that were missing, and refreshed the front-door docs:
+- **SBA Form 1919 (Borrower Information Form)** — pre-fill worksheet: business section completed
+  (legal name, EIN, NAICS 621610, entity, $555,000 request, franchise=No, 10 eligibility questions),
+  plus a Section II principal roster and the citizenship/character questions flagged for each
+  individual to attest personally. `01_company_profile/`.
+- **SBA Form 413 (PFS) pre-fill worksheet** for Geoff — full asset/liability/contingent schedule with
+  the two known items entered (VistaRiver note receivable; $555,000 SBA guaranty as a contingent
+  liability) and the clarification that the $195K injection is Bullard's cash, not Geoff's.
+  `05_personal_financial_statement/`.
+- **Master tracker rewritten** — was badly stale (header $500K/$1.05M, layered contradictory history);
+  now a single clean current-structure view with genuine outstanding items and locked decisions.
+- Cover sheet/TOC updated to point at Business Plan Rev 5.00 (editable Word) and the new forms;
+  TOC broken-link check: 0 missing paths.
+
+Additional bug fixed this pass: Business Plan said "$195K cash equity injection (33% of project)"
+in two places — $195K is 26% of the $750K project (33% was the old $250K figure). Corrected to 26%.
+
 ## Final state
 - Stale-value sweep across all 30 generated docs: **0 hits.**
 - Every DSCR figure in every doc reconciles to base-case or a correctly-computed stress.
