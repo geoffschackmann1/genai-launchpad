@@ -38,5 +38,13 @@ The package documents (Business Plan Rev 5.00, credit memo, equity memo, etc.) m
 - **Open in Excel once before sending.** The workbook recalculates automatically on open
   (fullCalcOnLoad) - this environment can't run a spreadsheet engine to bake cached values. Open and
   save once before forwarding.
-- **The other two workbooks** (Investor Package, Operations Dashboard) still reflect the old
-  $1.05M / dual-debt structure and have NOT been re-cut.
+- **All three workbooks are now re-cut and consistent.** The Investor Package and Operations
+  Dashboard received the identical 8-cell edit (Inputs B110=555000, B113=195000, B139 opening-cash
+  formula + label, Debt Schedule A2/A17 titles + C18=0, Cash Flow & BS B34=0). Their shared engine
+  tabs are now byte-for-byte identical to this SBA package; audience tabs recompute via live formulas.
+  Open each once in Excel before sending so cached values bake.
+- **One forward-looking note:** the Investor Package's "Investment Options" tab still presents the
+  earlier three-instrument menu (debt / convertible / preferred) with an illustrative check-size
+  ladder (25K/50K/100K/250K). That tab is a generic investor-offering tool, not the SBA capital
+  structure; the convertible framing was dropped for Bullard (straight 19.5% equity). Revise or
+  remove that tab separately if you don't want it in front of lenders.
