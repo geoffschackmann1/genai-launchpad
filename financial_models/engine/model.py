@@ -183,12 +183,17 @@ MED_DIRECTOR2_PM = ("med_director2", "Medical Director 2 (1099, $/mo, conditiona
 MED_DIRECTOR2_START_M = ("med_director2_start", "Medical Director 2 start month", 22, S.FMT_INT,
                           "Defaults to M22 (start of Y2Q4) when census approaches ADC ~38. Editable.")
 
+# Structure flag: the Hickory license is paid in cash at close (no seller note).
+# When True, the license consumes opening cash, the seller-note schedule is zeroed,
+# and debt service / DSCR are SBA-only. Set False to restore the seller-financed note.
+LICENSE_PAID_AT_CLOSE = True
+
 # -- Block H: capital structure (NO acquisition) --
 CAPITAL = [
-    ("sba_principal", "SBA 7(a) loan principal ($)", 500000, S.FMT_CUR, "Sized to fund ramp-period operating need + startup costs. " + FLAG),
+    ("sba_principal", "SBA 7(a) loan principal ($)", 555000, S.FMT_CUR, "Sized to pay the seller in full at close + fund startup costs and working-capital reserve. " + FLAG),
     ("sba_rate",      "SBA interest rate (APR)",      0.115, S.FMT_PCT, FLAG),
     ("sba_term_mo",   "SBA term (months)",            120,   S.FMT_INT, "10-year amortization. " + FLAG),
-    ("equity",        "Owner equity injection ($)",   250000, S.FMT_CUR, FLAG),
+    ("equity",        "Owner equity injection ($)",   195000, S.FMT_CUR, "Cash capital contribution by James Bullard (19.5% passive member). " + FLAG),
     ("loc_limit",     "Working-capital line limit ($)", 100000, S.FMT_CUR, FLAG),
     ("loc_rate",      "Working-capital line rate (APR)", 0.105, S.FMT_PCT, FLAG),
     ("min_cash",      "Minimum cash floor ($)",        25000, S.FMT_CUR, "Operating cash buffer; LOC draws to hold this floor. " + FLAG),
@@ -287,11 +292,15 @@ def compute(capture_rate=None, scenario=None):
     pmt = P * rm / (1 - (1 + rm) ** -n) if rm else P / n  # monthly payment
     sba_bal = P
 
-    # ---- Hickory license note (seller financing) ----
+    # ---- Hickory license (seller note OR paid at close) ----
     lic_P = a["license_cost"]; lic_rm = a["license_rate"] / 12
     lic_n = int(a["license_term"])
-    lic_pmt = lic_P * lic_rm / (1 - (1 + lic_rm) ** -lic_n) if lic_rm else lic_P / lic_n
-    lic_bal = lic_P
+    if LICENSE_PAID_AT_CLOSE:
+        # Paid in cash at close: no note, so no payment/balance/interest/principal.
+        lic_pmt = 0.0; lic_bal = 0.0
+    else:
+        lic_pmt = lic_P * lic_rm / (1 - (1 + lic_rm) ** -lic_n) if lic_rm else lic_P / lic_n
+        lic_bal = lic_P
 
     startup_total = sum(_val(STARTUP, k[0]) for k in STARTUP)
     capex = a["capex"]
@@ -301,8 +310,10 @@ def compute(capture_rate=None, scenario=None):
     da_license_pm = lic_P / a["license_amort_yrs"] / 12
     da_pm = da_capex_pm + da_startup_pm + da_license_pm
 
-    # License is financed by the seller note → does not consume opening cash
-    beg_cash = a["equity"] + a["sba_principal"] - startup_total - capex
+    # Opening cash. When the license is paid at close it consumes cash; when
+    # seller-financed by the note it does not.
+    license_cash = lic_P if LICENSE_PAID_AT_CLOSE else 0.0
+    beg_cash = a["equity"] + a["sba_principal"] - startup_total - capex - license_cash
     loc_bal = 0.0; re_cum = 0.0
     accum_capex = 0.0; accum_startup = 0.0; accum_license = 0.0
     prev_ar = 0.0; prev_ap = 0.0

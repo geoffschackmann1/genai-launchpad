@@ -11,6 +11,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from financial_models.engine.build import Book
 from financial_models.engine.workbooks import assemble_sba, assemble_investor, assemble_ops
+from openpyxl.workbook.properties import CalcProperties
 
 OUT = os.path.join(os.path.dirname(__file__), "output")
 os.makedirs(OUT, exist_ok=True)
@@ -41,6 +42,9 @@ def polish(bk):
     bk.wb.active = 1
     for ws in bk.wb.worksheets:
         ws.sheet_view.tabSelected = (ws is bk.wb.worksheets[1])
+    # openpyxl writes formulas without cached values; force a full recalc on open
+    # so the workbook shows correct numbers the first time it is opened.
+    bk.wb.calculation = CalcProperties(fullCalcOnLoad=True)
 
 
 def main():

@@ -16,7 +16,7 @@ from .model import (
     RATES, CENSUS_SCALARS, ADC_BASE, ADC_UPSIDE, ROSTER, PRN_VISIT, RHONDA_ANNUAL,
     RATIOS, BENEFITS, COGS_PD, GA_FIXED, GA_VAR, MED_DIRECTOR_PM,
     MED_DIRECTOR2_PM, MED_DIRECTOR2_START_M, CAPITAL,
-    STARTUP, WORKING_CAP, ACTUALS, AVG_DAYS_MONTH,
+    STARTUP, WORKING_CAP, ACTUALS, AVG_DAYS_MONTH, LICENSE_PAID_AT_CLOSE,
 )
 
 DASH = '"-"'
@@ -252,9 +252,13 @@ def inputs_tab(bk: Book):
     bk.lbl(ws, r, "Total startup one-time uses", indent=1, bold=True)
     bk.fml(ws, r, 2, f"=SUM(B{su_first}:B{su_last})", S.FMT_CUR, bold=True)
     bk.addr["startup_total"] = f"Inputs!$B${r}"; r += 1
-    bk.lbl(ws, r, "Opening cash = equity + loan - startup - capex", indent=1, bold=True)
-    bk.fml(ws, r, 2, f"={bk.addr['equity']}+{bk.addr['sba_principal']}-{bk.addr['startup_total']}-{bk.addr['capex']}",
-           S.FMT_CUR, bold=True)
+    _oc_label = ("Opening cash = equity + loan - startup - capex - license (paid at close)"
+                 if LICENSE_PAID_AT_CLOSE else "Opening cash = equity + loan - startup - capex")
+    _oc_fml = f"={bk.addr['equity']}+{bk.addr['sba_principal']}-{bk.addr['startup_total']}-{bk.addr['capex']}"
+    if LICENSE_PAID_AT_CLOSE:
+        _oc_fml += f"-{bk.addr['license_cost']}"
+    bk.lbl(ws, r, _oc_label, indent=1, bold=True)
+    bk.fml(ws, r, 2, _oc_fml, S.FMT_CUR, bold=True)
     bk.addr["opening_cash"] = f"Inputs!$B${r}"; r += 1
     bk.lbl(ws, r, "Monthly D&A (capex+startup over 5 yr, license over 15 yr)", indent=1)
     bk.fml(ws, r, 2,
@@ -599,12 +603,15 @@ def opbudget_tab(bk: Book):
 def debt_tab(bk: Book):
     ws = bk.wb.create_sheet("Debt Schedule")
     bk.widths(ws, label_w=40); bk.title_block(ws,
-        "Debt Schedule - SBA 7(a) + Hickory license seller note | Combined DSCR shown (target >= 1.25x)", 22)
+        ("Debt Schedule - SBA 7(a) only (seller paid at close) | DSCR shown (target >= 1.25x)"
+         if LICENSE_PAID_AT_CLOSE else
+         "Debt Schedule - SBA 7(a) + Hickory license seller note | Combined DSCR shown (target >= 1.25x)"), 22)
     bk.section(ws, 4, "LOAN TERMS (from Inputs)", 22)
     bk.lbl(ws, 5, "SBA monthly payment (PMT)", indent=1)
     bk.fml(ws, 5, 2, f"=PMT({bk.addr['sba_rate']}/12,{bk.addr['sba_term_mo']},-{bk.addr['sba_principal']})", S.FMT_CUR)
     bk.lbl(ws, 6, "License note monthly payment (PMT)", indent=1)
-    bk.fml(ws, 6, 2, f"=PMT({bk.addr['license_rate']}/12,{bk.addr['license_term']},-{bk.addr['license_cost']})", S.FMT_CUR)
+    bk.fml(ws, 6, 2, ("=0" if LICENSE_PAID_AT_CLOSE else
+           f"=PMT({bk.addr['license_rate']}/12,{bk.addr['license_term']},-{bk.addr['license_cost']})"), S.FMT_CUR)
     SBA_PMT = "'Debt Schedule'!$B$5"
     LIC_PMT = "'Debt Schedule'!$B$6"
     dr = bk.period_header(ws, 8)
@@ -640,11 +647,13 @@ def debt_tab(bk: Book):
     rm["end"] = r; r += 2
 
     # ---------------- Hickory license seller note (closed-form amort) -----
-    bk.section(ws, r, "HICKORY LICENSE SELLER NOTE ($300K, 6%, 36 mo)", 22); r += 1
+    bk.section(ws, r, ("HICKORY LICENSE - PAID AT CLOSE (no seller note; schedule zeroed)"
+                       if LICENSE_PAID_AT_CLOSE else
+                       "HICKORY LICENSE SELLER NOTE ($300K, 6%, 36 mo)"), 22); r += 1
     bk.lbl(ws, r, "Beginning balance")
     for i in range(NP):
         if i == 0:
-            bk.fml(ws, r, pcol(i), f"={bk.addr['license_cost']}", S.FMT_CUR, link=True)
+            bk.fml(ws, r, pcol(i), ("=0" if LICENSE_PAID_AT_CLOSE else f"={bk.addr['license_cost']}"), S.FMT_CUR, link=True)
         else:
             # prior ending balance — Ending row is r+4 below
             bk.fml(ws, r, pcol(i), f"={plet(i-1)}{r+4}", S.FMT_CUR)
@@ -675,8 +684,9 @@ def debt_tab(bk: Book):
         bk.fml(ws, r, pcol(i), f"={c}{rm['lic_end_calc']}", S.FMT_CUR, bold=True)
     rm["lic_end"] = r; r += 2
 
-    # ---------------- Combined coverage ----------------
-    bk.section(ws, r, "COMBINED DEBT SERVICE & COVERAGE", 22); r += 1
+    # ---------------- Coverage ----------------
+    bk.section(ws, r, ("DEBT SERVICE & COVERAGE (SBA only)" if LICENSE_PAID_AT_CLOSE
+                       else "COMBINED DEBT SERVICE & COVERAGE"), 22); r += 1
     bk.lbl(ws, r, "Total interest", italic=True)
     for i in range(NP):
         c = plet(i)
@@ -687,7 +697,8 @@ def debt_tab(bk: Book):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"={c}{rm['prin']}+{c}{rm['lic_prin']}", S.FMT_CUR)
     rm["total_prin"] = r; r += 1
-    bk.lbl(ws, r, "TOTAL DEBT SERVICE (P+I, combined)", bold=True)
+    bk.lbl(ws, r, ("TOTAL DEBT SERVICE (P+I)" if LICENSE_PAID_AT_CLOSE
+                   else "TOTAL DEBT SERVICE (P+I, combined)"), bold=True)
     for i in range(NP):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"={c}{rm['total_int']}+{c}{rm['total_prin']}", S.FMT_CUR, bold=True)
@@ -696,7 +707,7 @@ def debt_tab(bk: Book):
     for i in range(NP):
         bk.fml(ws, r, pcol(i), "=" + _link("Operating Budget", plet(i), ob["ebitda"]), S.FMT_CUR, link=True)
     rm["ebitda"] = r; r += 1
-    bk.lbl(ws, r, "COMBINED DSCR (period)", bold=True)
+    bk.lbl(ws, r, ("DSCR (period)" if LICENSE_PAID_AT_CLOSE else "COMBINED DSCR (period)"), bold=True)
     for i in range(NP):
         c = plet(i)
         bk.fml(ws, r, pcol(i), f"=IF({c}{rm['ds']}=0,0,{c}{rm['ebitda']}/{c}{rm['ds']})", S.FMT_MULT, bold=True,
@@ -868,7 +879,7 @@ def cashflow_tab(bk: Book):
         bk.fml(ws, r, pcol(i), f"={_link('Debt Schedule', plet(i), dbt['end'])}", S.FMT_CUR, link=True)
     rm["bs_sba"] = r; r += 1
     bk.lbl(ws, r, "Hickory license note balance", indent=1)
-    bk.fml(ws, r, 2, f"={bk.addr['license_cost']}", S.FMT_CUR, link=True)
+    bk.fml(ws, r, 2, ("=0" if LICENSE_PAID_AT_CLOSE else f"={bk.addr['license_cost']}"), S.FMT_CUR, link=True)
     for i in range(NP):
         bk.fml(ws, r, pcol(i), f"={_link('Debt Schedule', plet(i), dbt['lic_end'])}", S.FMT_CUR, link=True)
     rm["bs_lic"] = r; r += 1
