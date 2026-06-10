@@ -244,6 +244,92 @@ def stress_tab(bk: Book):
     return ws
 
 
+def mvi_upside_tab(bk: Book):
+    ws = bk.wb.create_sheet("MVI Upside")
+    ws.column_dimensions["A"].width = 36
+    for c in "BCDEF":
+        ws.column_dimensions[c].width = 15
+    bk.title_block(ws, "MVI 'Perfect Visit' Upside - illustrative growth above the conservative base case", 6)
+    ob, dbt = "Operating Budget", "Debt Schedule"
+    R = bk.rows
+    base_rev = ysum(ob, R[ob]["net"], 2)
+    base_ebitda = ysum(ob, R[ob]["ebitda"], 2)
+    base_ds = ysum(dbt, R[dbt]["ds"], 2)
+    base_ni = ysum(ob, R[ob]["ni"], 2)
+    base_tax = ysum(ob, R[ob]["tax"], 2)
+    var_y2 = (f"({ysum(ob,R[ob]['cogs_patient'],2)}+{ysum(ob,R[ob]['qr'],2)}+"
+              f"SUM('Staffing & Payroll'!{plet(12)}{R['Staffing & Payroll']['prn']}:{plet(15)}{R['Staffing & Payroll']['prn']}))")
+    r = 4
+    bk.section(ws, r, "ASSUMPTION (blue = adjust)", 6); r += 1
+    bk.lbl(ws, r, "MVI-driven census / referral uplift %", indent=1)
+    bk.inp(ws, r, 2, 0.15, S.FMT_PCT,
+           "Sustained incremental census from MVI 'Perfect Visit' certification + the national campaign. "
+           "Illustrative only - not used for underwriting.")
+    uplift = f"$B${r}"; r += 2
+
+    bk.section(ws, r, "SCENARIO RESULTS (Year-2 annualized, SBA-only debt)", 6); r += 1
+    heads = ["Metric", "Base (plan)", "+10%", "+20%", "+30%", "MVI case"]
+    for j, h in enumerate(heads):
+        bk._set(ws, r, 1 + j, h, S.f_label(bold=True), fill=S.fill(S.GREYHDR), align=S.CENTER, border=S.BORDER_THIN)
+    r += 1
+    upl = ["=0", "=0.10", "=0.20", "=0.30", f"={uplift}"]
+    bk.lbl(ws, r, "Census / referral uplift", italic=True)
+    for j, u in enumerate(upl):
+        bk.fml(ws, r, 2 + j, u, S.FMT_PCT)
+    urow = r; r += 1
+    bk.lbl(ws, r, "Net revenue")
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"={base_rev}*(1+{cl}{urow})", S.FMT_CUR)
+    rrev = r; r += 1
+    bk.lbl(ws, r, "Variable costs")
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"=-{var_y2}*(1+{cl}{urow})", S.FMT_CUR)
+    rvar = r; r += 1
+    bk.lbl(ws, r, "Fixed costs (held at plan)")
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"=-({base_rev}-{var_y2}-{base_ebitda})", S.FMT_CUR)
+    rfix = r; r += 1
+    bk.lbl(ws, r, "EBITDA", bold=True)
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"={cl}{rrev}+{cl}{rvar}+{cl}{rfix}", S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
+    reb = r; r += 1
+    bk.lbl(ws, r, "EBITDA lift vs base", italic=True)
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"={cl}{reb}-{base_ebitda}", S.FMT_CUR)
+    r += 1
+    bk.lbl(ws, r, "Net income (after D&A, interest, tax)")
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"={base_ni}+({cl}{reb}-{base_ebitda})-{base_tax}*{cl}{urow}", S.FMT_CUR)
+    r += 1
+    bk.lbl(ws, r, "SBA debt service")
+    for j in range(5):
+        bk.fml(ws, r, 2 + j, f"={base_ds}", S.FMT_CUR)
+    rds = r; r += 1
+    bk.lbl(ws, r, "DSCR (SBA-only)", bold=True)
+    for j in range(5):
+        cl = get_column_letter(2 + j)
+        bk.fml(ws, r, 2 + j, f"=IF({cl}{rds}=0,0,{cl}{reb}/{cl}{rds})", S.FMT_MULT, bold=True, fill=S.fill(S.GREENFILL))
+    r += 2
+    ws.merge_cells(start_row=r, start_column=1, end_row=r + 3, end_column=6)
+    bk._set(ws, r, 1,
+            "Illustrative upside ONLY - not used for loan underwriting. The base case (Lender Summary / Business "
+            "Plan Section 11) assumes no lift from the MVI 'Perfect Visit' / 'Perfect Phones' certification or "
+            "Andrew Reid's national advertising campaign; SBA debt service is fully covered without it. This tab "
+            "scales Year-2 census/referrals by the uplift while holding the cost base at plan (static roster); "
+            "sustained higher census would trigger the model's capacity hiring, so realized EBITDA would run "
+            "modestly below the static figures shown. Higher EBITDA also raises the equity exit value and MOIC on "
+            "the Returns tab. For a full dynamic re-run, set Census scenario = Upside on the Inputs tab.",
+            S.f_note(), align=S.LEFT_WRAP)
+    ws.sheet_view.showGridLines = False
+    return ws
+
+
 # =========================================================================
 # B — INVESTOR: helpers
 # =========================================================================
@@ -579,8 +665,9 @@ def assemble_sba(bk: Book):
     sources_uses_tab(bk)
     lender_summary_tab(bk)
     stress_tab(bk)
+    mvi_upside_tab(bk)
     # order: put summary tabs right after Inputs
-    _reorder(bk, ["Inputs", "Sources & Uses", "Lender Summary", "Stress Tests",
+    _reorder(bk, ["Inputs", "Sources & Uses", "Lender Summary", "Stress Tests", "MVI Upside",
                   "Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                   "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
@@ -593,7 +680,8 @@ def assemble_investor(bk: Book):
     investment_options_tab(bk)
     unit_econ_tab(bk)
     sensitivity_tab(bk)
-    _reorder(bk, ["Inputs", "Returns", "Investor Position", "Unit Economics", "Sensitivity",
+    mvi_upside_tab(bk)
+    _reorder(bk, ["Inputs", "Returns", "Investor Position", "Unit Economics", "Sensitivity", "MVI Upside",
                   "Revenue Model", "Staffing & Payroll", "Operating Budget", "Detailed P&L",
                   "Debt Schedule", "Cash Flow & BS", "Actuals vs Model"])
     return bk
