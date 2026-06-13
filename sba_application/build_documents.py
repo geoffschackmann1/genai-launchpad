@@ -116,9 +116,13 @@ def company_profile():
             "complete change of ownership is not required to provide a personal guaranty or Personal Financial "
             "Statement. Mr. Bullard's $195,000 cash capital contribution is the source of the equity injection "
             "for this transaction (see Use of Proceeds).", italic=True, size=9)
-    para(d, "**Operator-members (Shelton, Davenport, Woodard) hold their 13.3% interests subject to a 4-year "
-            "vesting schedule with a 1-year cliff, recorded in the Operating Agreement. Unvested interests are "
-            "subject to repurchase by the Company at $0 upon departure prior to the cliff.", italic=True, size=9)
+    para(d, "**Operator-members (Shelton, Davenport, Woodard) hold their 13.3% interests as Restricted Interests "
+            "that vest only on a dual trigger - a four-year time schedule with a one-year cliff AND performance "
+            "milestones, the lesser of the two governing - recorded in the Operating Agreement (Amendment No. 1). "
+            "Unvested interests are forfeited at $0 on departure; vested interests are subject to a Company "
+            "repurchase (call) right at fair market value for a good-leaver separation (no-cause termination, "
+            "death, disability, retirement) or the lower of cost or fair market value for a bad-leaver "
+            "separation (resignation before full vesting, or termination for cause).", italic=True, size=9)
     para(d, "Indirect chain: Geoff Schackmann holds 50% of Adeline & Lilah, LLC and serves as its sole Managing "
             "Member; he therefore controls the 39.9% A&L block in Tyler Hospice Hold LLC and is the sole 20%+ "
             "owner of record for SBA personal-guaranty purposes. Mary Elizabeth Burcham (Geoff's spouse) holds "
@@ -1179,8 +1183,10 @@ def oa_amendment():
             "Healing Hands Palliative Hospice INC to Hickory Hospice LLC, a Texas limited liability company "
             "(\"Hickory\"); (iv) calibrate Bullard's protective rights to remain consistent with U.S. Small "
             "Business Administration (\"SBA\") Standard Operating Procedure 50 10 8 for minority equity holders "
-            "in change-of-ownership transactions; and (v) coordinate Member governance with the post-closing "
-            "capital structure. The Members hereby agree to amend the Original OA as set forth below. "
+            "in change-of-ownership transactions; (v) coordinate Member governance with the post-closing "
+            "capital structure; and (vi) strengthen the operator-member Restricted Interests with dual-trigger "
+            "(time and performance) vesting and Company repurchase (call) rights on departure. The Members "
+            "hereby agree to amend the Original OA as set forth below. "
             "Capitalized terms used and not otherwise defined have the meanings given in the Original OA.")
     para(d, "")
     h2(d, "1. Restated capitalization (Exhibit A)")
@@ -1235,22 +1241,90 @@ def oa_amendment():
             "membership interests, expected to close on or about late July 2026, subject to the SBA financing "
             "and the equity-injection schedule described in Section 3.3 of the Original OA as amended.")
     para(d, "")
-    h2(d, "4. Restricted Interest sizing (updates Article V of the Original OA)")
-    para(d, "Section 5.1 of the Original OA is amended so that each Restricted Interest is sized at "
-            "**thirteen and three-tenths percent (13.3%)** (rather than four and nine-tenths percent (4.9%)). "
-            "The corresponding tranche sizing in Section 5.2 is amended as follows, preserving the original "
-            "milestone-based forfeiture structure (Breakeven / 3 consecutive Profitable months / 12 consecutive "
-            "Profitable months):")
-    table(d, ["Tranche", "Milestone", "Tranche size (of 13.3% grant)", "Company-level %"],
+    h2(d, "4. Operator Restricted Interests - sizing, vesting, and repurchase (amends and supplements Article V)")
+    para(d, "4.1 Sizing. Section 5.1 of the Original OA is amended so that the Restricted Interest of each of "
+            "Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard (each, an \"Equity Grantee\") is sized "
+            "at thirteen and three-tenths percent (13.3%) of the Company (rather than 4.9%). The milestone "
+            "tranche sizing in Section 5.2 is scaled proportionally to the 13.3% grant as follows:")
+    table(d, ["Tranche", "Performance milestone", "Tranche size (of 13.3% grant)", "Company-level %"],
           [["First", "Achieve Breakeven (1 month EBITDA >= 0)", "25% of grant", "3.325%"],
            ["Second", "3 consecutive Profitable months", "50% of grant", "6.650%"],
            ["Final", "12 consecutive Profitable months", "25% of grant", "3.325%"],
            ["Total per Equity Grantee", "", "100%", "13.300%"]],
           widths=[1.0, 2.5, 1.6, 1.5])
-    para(d, "All other provisions of Article V (including the §83(b) election requirement at §5.7, the "
-            "Termination Without Cause pro-rata credit at §5.5, and the Forfeiture on Termination for Cause "
-            "at §5.4) remain in full force and effect, with percentages scaled proportionally to the new "
-            "13.3% grant size.", italic=True, size=9.5)
+    para(d, "4.2 Vesting - dual trigger (time AND performance). Section 5.2 of the Original OA is amended so that "
+            "a Restricted Interest becomes vested and non-forfeitable (\"Vested\") only to the extent BOTH of the "
+            "following are satisfied. The Vested percentage at any time equals the LESSER of (a) and (b):")
+    para(d, "   (a) Time-vesting. Continuous Service from the Effective Date on a four-year schedule with a "
+            "one-year cliff: nothing vests before the first anniversary; twenty-five percent (25%) vests on the "
+            "first anniversary (the \"Cliff\"); and the remaining seventy-five percent (75%) vests in thirty-six "
+            "(36) equal monthly installments over months 13-48, so that 100% is time-vested on the fourth "
+            "anniversary. \"Continuous Service\" means continuous service to the Company or the Acquired Agency "
+            "as an employee, officer, or manager.")
+    para(d, "   (b) Performance-vesting. The milestone tranches in Section 4.1 (Breakeven; 3 consecutive "
+            "Profitable months; 12 consecutive Profitable months), determined under Sections 5.2-5.3 of the "
+            "Original OA.")
+    para(d, "Both conditions must be met for an interest to vest; satisfying only one does not vest it. The "
+            "balance is \"Unvested.\" This Section 4.2 supersedes and replaces the Termination Without Cause "
+            "pro-rata credit at Section 5.5 of the Original OA, which is deleted.")
+    para(d, "4.3 Separation definitions. \"Separation\" means an Equity Grantee ceasing Continuous Service for "
+            "any reason. The reason determines the buy-back price under Section 4.5:")
+    para(d, "   - \"Good-Leaver Separation\": Separation due to (i) termination by the Company without Cause; "
+            "(ii) death; (iii) Disability; (iv) Retirement; or (v) voluntary resignation on or after full "
+            "time-vesting (the fourth anniversary).")
+    para(d, "   - \"Bad-Leaver Separation\": Separation due to (i) termination by the Company for Cause (as "
+            "defined in Section 5.4 of the Original OA) at any time, or (ii) voluntary resignation before full "
+            "time-vesting (the fourth anniversary).")
+    para(d, "   - \"Retirement\" means voluntary Separation at or after age sixty-five (65) with at least three "
+            "(3) years of Continuous Service, designated as a retirement by the Manager in good faith. "
+            "\"Disability\" means inability to perform the essential functions of the role for one hundred eighty "
+            "(180) consecutive days, as determined by the Manager in good faith.")
+    para(d, "4.4 Forfeiture of Unvested Interest. Upon any Separation, the Equity Grantee's Unvested Interest is "
+            "automatically and immediately forfeited for no consideration and reverts to the Unissued Pool, "
+            "regardless of the reason for Separation. The Manager, as attorney-in-fact under Section 5.4 of the "
+            "Original OA, is authorized to execute all instruments to effect the forfeiture and any repurchase "
+            "under Section 4.5.")
+    para(d, "4.5 Company repurchase (call) right over Vested Interest. Upon any Separation, the Company shall "
+            "have the right, but not the obligation, to purchase all (but not less than all) of the Equity "
+            "Grantee's Vested Interest (the \"Call Right\"), exercisable by written notice within one hundred "
+            "twenty (120) days after the later of the Separation date and the date the Call Price is finally "
+            "determined. If the Company does not fully exercise, the other Members (excluding the Departing "
+            "Grantee) may purchase the balance pro rata within a further thirty (30) days. The purchase price "
+            "(the \"Call Price\") for the Vested Interest is:")
+    para(d, "   (a) Good-Leaver Separation: the Fair Market Value of the Vested Interest under Section 4.6.")
+    para(d, "   (b) Bad-Leaver Separation: the LOWER of (i) the Equity Grantee's cost basis in the Vested "
+            "Interest (for a Restricted Interest issued for services, the cash amount, if any, actually paid, "
+            "and otherwise zero) and (ii) Fair Market Value under Section 4.6. The Members acknowledge this may "
+            "result in a Call Price at or near zero for a Bad-Leaver Separation.")
+    para(d, "4.6 Fair Market Value. \"Fair Market Value\" of a Vested Interest means its pro-rata share of the "
+            "Company's equity value - enterprise value less all outstanding indebtedness (including the SBA Loan "
+            "and any seller financing) - determined as of the last day of the calendar month preceding "
+            "Separation by an independent qualified appraiser under the appraised-value procedure of Section 3.11 "
+            "of the Original OA, reflecting appropriate discounts for the interest's minority (non-controlling) "
+            "and illiquid (lack-of-marketability) character. The Company bears the appraisal cost unless the "
+            "Equity Grantee disputes it and a second appraisal differs by less than ten percent (10%), in which "
+            "case the disputing Equity Grantee bears the second appraisal's cost.")
+    para(d, "4.7 Payment terms; SBA subordination. The Call Price shall be paid by an unsecured, subordinated "
+            "promissory note of the Company at the Applicable Federal Rate, in equal quarterly installments over "
+            "four (4) years (prepayable without penalty; the Manager may instead elect a lump sum). "
+            "Notwithstanding the foregoing, no payment of the Call Price shall be made, and any such note is "
+            "fully subordinated, to the extent a payment would (i) violate the SBA Loan documents or any lender "
+            "covenant, (ii) occur during or cause an event of default under the SBA Loan, or (iii) reduce the "
+            "Company's liquidity or debt-service coverage below any level the SBA Loan requires. Suspended "
+            "payments accrue and resume when permitted; transfer of the Vested Interest to the Company may close "
+            "notwithstanding deferral of cash payment.")
+    para(d, "4.8 Mechanics pending repurchase. From Separation until the Call Right expires or the repurchase "
+            "closes, the Departing Grantee's Vested Interest shall be non-voting and not entitled to "
+            "distributions declared after Separation (other than tax distributions on allocated income), without "
+            "limiting the right to the Call Price. The Departing Grantee shall execute all transfer instruments "
+            "reasonably requested; the Manager's power of attorney under Section 5.4 of the Original OA extends "
+            "to all actions under this Section 4.")
+    para(d, "4.9 Tax; Section 83(b). The Section 83(b) election requirement at Section 5.7 of the Original OA "
+            "remains in full force. The vesting and repurchase terms of this Section 4 are intended to be "
+            "consistent with the Company's partnership tax treatment under Section 2 of this Amendment and any "
+            "intended profits-interest treatment under Rev. Proc. 93-27; each Equity Grantee should consult "
+            "independent tax counsel. Except as modified by this Section 4, Article V of the Original OA "
+            "(including Sections 5.4 and 5.7) remains in full force and effect.", italic=True, size=9.5)
     para(d, "")
     h2(d, "5. Bullard's protective rights - SBA calibration")
     para(d, "The parties confirm that Bullard's protective rights set forth in the Original OA (information "
@@ -2108,12 +2182,16 @@ def business_plan():
               "Bank account signatures: Managing Member (sole signer)"]:
         para(d, "  - " + x)
     h2(d, "8.3 Equity vesting (operator-members)")
-    para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement, "
-            "subject to milestone-based forfeiture conditions that lapse as the business achieves financial "
-            "performance: 25% on the first month of Breakeven (EBITDA >= 0), 50% on three consecutive "
-            "Profitable months, and the final 25% on twelve consecutive Profitable months. Each grantee files "
-            "a timely IRC Section 83(b) election. Unvested interests are forfeited on departure prior to "
-            "milestone lapse, aligning operator equity with the credit's performance.")
+    para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement that "
+            "vests only on a dual trigger: a four-year time-vesting schedule with a one-year cliff AND the "
+            "performance milestones (25% at Breakeven, 50% at three consecutive Profitable months, 25% at twelve "
+            "consecutive Profitable months), with the lesser of the two schedules governing. Each grantee files a "
+            "timely IRC Section 83(b) election. On departure, unvested interests are forfeited at $0; the Company "
+            "holds a repurchase (call) right over vested interests - at fair market value for a good-leaver "
+            "separation (termination without cause, death, disability, or retirement) and at the lower of cost or "
+            "fair market value for a bad-leaver separation (resignation before full vesting, or termination for "
+            "cause), paid via an SBA-subordinated note. This keeps operator equity aligned with the credit's "
+            "performance and ensures departed operators do not retain equity in the company.")
 
     # ---- 09 Leadership ----
     d.add_page_break()

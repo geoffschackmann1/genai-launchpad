@@ -88,7 +88,7 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`. Personal-form how-to in `05_*
   to keep the $750K project whole.
 - **Seller paid in full at close — no retained note.** Debt service is the SBA loan alone (strong DSCR).
 - **Closing timing:** SBA close/disbursement AFTER the final equity tranche so the full $195K is on deposit.
-- **Operator vesting:** 4-year vest, 1-year cliff for Shelton, Davenport, Woodard (13.3% each); $0 repurchase before cliff.
+- **Operator vesting & buy-back (Amendment No. 1 §4):** Shelton, Davenport, Woodard (13.3% each) vest on a **dual trigger** — 4-year time schedule with a 1-year cliff **AND** performance milestones (Breakeven / 3 / 12 consecutive profitable months), lesser-of governs. Unvested forfeited at $0 on departure; **Company call right** over vested units — **FMV** for a good-leaver (no-cause termination, death, disability, retirement), **lower of cost or FMV** (~$0) for a bad-leaver (resignation before full vest, or for-cause), paid via an SBA-subordinated note.
 - **Structure:** startup CHOW (not expansion) — no current operating affiliate to anchor an expansion or co-guarantee.
 - **Bullard stays passive under 20% (no PG).** If a specific lender requires a second guarantor, revisit with Bullard.
 
