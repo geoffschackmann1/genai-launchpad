@@ -102,9 +102,12 @@ def build():
         "The Company is a single-member limited liability company that is disregarded as an entity "
         "separate from its owner for U.S. federal income tax purposes under Treasury Reg. "
         "§301.7701-3, and its items of income, gain, loss, deduction, and credit are reported by "
-        "the Sole Member (which is taxed as a partnership). No election to be treated as an "
-        "association taxable as a corporation shall be made without the Sole Member's written "
-        "direction and consultation with the Company's tax advisors.")
+        "the Sole Member (which is taxed as an S corporation). At the Sole Member's election, the "
+        "Company may instead be treated as a qualified subchapter S subsidiary (QSub) under IRC "
+        "§1361(b)(3); in either case the Company's items are reflected on the Sole Member's return. "
+        "No election to be treated as an association taxable as a corporation (other than a QSub "
+        "election) shall be made without the Sole Member's written direction and consultation with "
+        "the Company's tax advisors.")
 
     art(d, "ARTICLE V - SBA LOAN GUARANTY AND COLLATERAL AUTHORIZATION")
     sec(d, "5.1", "Authorization of Guaranty and Lien.",

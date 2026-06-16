@@ -7,8 +7,9 @@ on 2026-06-16:
 
   - Entity: Tyler Hospice Hold, LLC, a Wyoming LLC (EIN 41-4966640), foreign-qualified
     in Texas; owns 100% of Hickory Hospice LLC (dba Azalea Hospice & Palliative Care).
-  - Tax: partnership under subchapter K (S-corp election removed throughout).
-  - Cap table: A&L 39.9 / Bullard 19.5 / Shelton-Davenport-Woodard 13.3 each / pool 0.7.
+  - Tax: S corporation under IRC §1361 (single class of stock; strictly pro-rata distributions).
+  - Cap table: [SMLLC] 39.9 / Bullard 19.5 / Shelton-Davenport-Woodard 13.3 each / pool 0.7.
+    The 39.9% holder is a single-member LLC (100% Geoff) so it is an eligible S-corp shareholder.
   - Operator Restricted Interests: full 13.3% at risk; 4.9% time-vested Initial Base +
     8.4% dual-trigger Earn-Up; vesting from the Effective Date; good/bad-leaver call.
   - Bullard floor 19.5%; SBA debt carve-out; Texas Shootout deferred while SBA debt out.
@@ -84,7 +85,7 @@ def rule(d):
 def captable(d):
     rows = [
         ("Member", "Consideration", "Percentage Interest"),
-        ("Adeline & Lilah, LLC (Arizona)", "Services rendered (sweat equity)", "39.9%"),
+        ("Schackmann Holdings, LLC (single-member; 100% Geoff Schackmann)", "Services rendered (sweat equity)", "39.9%"),
         ("James E. Bullard", "$195,000.00 cash (capital contribution)", "19.5%"),
         ("Silas R. Shelton", "Services (Restricted Interest)", "13.3%*"),
         ("Dana L. Davenport", "Services (Restricted Interest)", "13.3%*"),
@@ -111,10 +112,14 @@ def build():
     title(d, "TYLER HOSPICE HOLD, LLC")
     sub(d, "AMENDED AND RESTATED OPERATING AGREEMENT", size=12, color=NAVY, italic=False)
     sub(d, "A Wyoming Limited Liability Company  (EIN 41-4966640)")
-    sub(d, "Taxed as a Partnership for U.S. Federal Income Tax Purposes")
+    sub(d, "Electing S-Corporation Tax Treatment Under IRC §1361")
     sub(d, "Amendment & Restatement No. 1  |  Effective as of ________________, 2026")
     sub(d, "DRAFT FOR COUNSEL REVIEW AND EXECUTION - the parties are advised to obtain "
            "independent legal and tax advice before signing.", size=9)
+    sub(d, "DRAFTING NOTE: \"Schackmann Holdings, LLC\" is a PLACEHOLDER for the new single-member "
+           "LLC (100% owned by Geoff Schackmann) that replaces Adeline & Lilah, LLC as the 39.9% "
+           "member to preserve S-corporation eligibility; substitute the exact entity name and state "
+           "before execution.", size=9)
     rule(d)
 
     # ---------- Preamble & recitals ----------
@@ -122,7 +127,7 @@ def build():
          "This Amended and Restated Operating Agreement (this “Agreement”) of Tyler "
          "Hospice Hold, LLC, a Wyoming limited liability company (the “Company”), is "
          "effective as of the date last signed below (the “Effective Date”), by and among "
-         "Adeline & Lilah, LLC, an Arizona limited liability company (“Adeline & Lilah”); "
+         "Schackmann Holdings, LLC, a single-member limited liability company wholly owned by Geoff Schackmann (“Schackmann Holdings, LLC”); "
          "James E. Bullard (“Bullard” or the “Investor”); Silas R. Shelton "
          "(“Silas”); Dana L. Davenport (“Dana”); and Bradley Gene Woodard "
          "(“Brad”) (collectively, the “Members” and each a “Member”); and, "
@@ -137,8 +142,11 @@ def build():
             "Original Agreement was not executed or did not become effective, this Agreement "
             "constitutes the initial Operating Agreement of the Company.")
     para(d, "B.  This Agreement (i) conforms the Company's exact legal name to “Tyler Hospice "
-            "Hold, LLC”; (ii) changes the Company's federal income-tax classification from an "
-            "S corporation to a partnership; (iii) restates the capitalization table; (iv) updates "
+            "Hold, LLC”; (ii) confirms the Company's election to be taxed as an S corporation "
+            "under IRC §1361 and conforms the Company's membership to the S-corporation eligibility "
+            "rules (including holding the 39.9% interest through a single-member, disregarded LLC and "
+            "maintaining a single class of stock with strictly pro-rata distributions); (iii) restates "
+            "the capitalization table; (iv) updates "
             "the acquisition target to Hickory Hospice LLC; (v) revises the operator-member "
             "Restricted Interests so the entire interest is earned through time- and "
             "performance-based vesting; (vi) calibrates the Investor's minority-protection rights to "
@@ -226,6 +234,7 @@ def build():
         ("2.24", "“Vote” or “Prevailing Vote”", "a vote by Members holding a simple majority (greater than fifty percent (50%)) of the total Percentage Interests then outstanding. Unissued Pool interests are excluded from the denominator. Unvested Restricted Interests carry full voting rights and are included in the denominator (subject only to the post-Separation rule in Section 5.9). Unless otherwise stated, a Prevailing Vote approves any action submitted to the Members."),
         ("2.25", "“Withdrawing Member”", "has the meaning in Section 8.6."),
         ("2.26", "“Undeployed Acquisition Funds”", "Investor capital contribution funds designated by the Manager for, but not yet expended toward, the acquisition described in Section 3.14 at the time a refund is requested under Section 3.15."),
+        ("2.27", "“S-Corp Eligible Person”", "a person eligible to be a shareholder of an S corporation under IRC §1361(b)(1) - namely (a) a U.S. citizen or resident-alien individual, (b) an estate, (c) a trust described in IRC §1361(c)(2), or (d) a single-member limited liability company that is disregarded for federal tax purposes and is wholly owned by a person described in (a)-(c). No nonresident alien, partnership, multi-member LLC, or C corporation may hold a Percentage Interest."),
     ]
     for n, term, body in defs:
         sec(d, n, term + " means", body)
@@ -249,8 +258,8 @@ def build():
         "Bullard's obligation to fund shall not arise until the Manager delivers (i) a certified "
         "copy of the Company's Wyoming Certificate of Organization confirming good standing, and "
         "(ii) the Company's federal Employer Identification Number.")
-    sec(d, "3.4", "Manager (Adeline & Lilah) Capital Contribution.",
-        "Adeline & Lilah, LLC's thirty-nine and nine-tenths percent (39.9%) Percentage Interest is "
+    sec(d, "3.4", "Manager (Schackmann Holdings, LLC) Capital Contribution.",
+        "Schackmann Holdings, LLC's thirty-nine and nine-tenths percent (39.9%) Percentage Interest is "
         "issued in consideration of services rendered and to be rendered by Geoff Schackmann as "
         "Manager, including organizing and operating the Company, managing the acquisition, and "
         "building clinical and operational infrastructure.")
@@ -320,7 +329,7 @@ def build():
         "Effective Date, Bullard may request return of any Undeployed Acquisition Funds. Within "
         "thirty (30) days, the Manager shall return such funds, which shall reduce Bullard's "
         "Percentage Interest by (Returned Amount ÷ $195,000) × 19.5%, with the corresponding "
-        "percentage restored to Adeline & Lilah, LLC.")
+        "percentage restored to Schackmann Holdings, LLC.")
     sec(d, "3.16", "Coordination with SBA Closing.",
         "The change-of-ownership closing shall be scheduled on or after the date the Investor has "
         "contributed the full $195,000 under Section 3.3 (anticipated by the end of July 2026), so "
@@ -355,15 +364,18 @@ def build():
         "debts as they come due (W.S. §17-29-405), or if it would violate the SBA Loan documents "
         "or any lender covenant.")
     sec(d, "4.4", "Allocations.",
-        "Items of income, gain, loss, deduction, and credit are allocated among the Members in "
-        "proportion to their Percentage Interests, in compliance with IRC §704 and the "
-        "Regulations.")
+        "As required for an S corporation with a single class of stock under IRC §1361(b)(1)(D), all "
+        "items of income, gain, loss, deduction, and credit are allocated among the Members strictly "
+        "in proportion to their Percentage Interests, and all distributions shall be made strictly pro "
+        "rata to Percentage Interests; no Member shall receive any allocation or distribution that "
+        "differs in timing or amount per Percentage Interest from any other Member.")
     sec(d, "4.5", "Liquidating Distributions.",
         "Upon dissolution, after payment of all liabilities (including the SBA Loan and Bank "
         "Acquisition Loan), remaining assets are distributed to the Members pro rata to their "
-        "Percentage Interests. All Percentage Interests are treated identically for liquidation "
-        "purposes, so that no Member has any priority or preference over any other as to the return "
-        "of capital or liquidation proceeds, except as expressly provided herein.")
+        "Percentage Interests. All Percentage Interests constitute a single class of stock and are "
+        "treated identically for liquidation purposes in accordance with IRC §1361(b)(1)(D) and "
+        "Treasury Reg. §1.1361-1(l), so that no Member has any priority or preference over any other "
+        "as to the return of capital or liquidation proceeds, except as expressly provided herein.")
 
     # ================= ARTICLE V =================
     art(d, "ARTICLE V - RESTRICTED INTERESTS, VESTING, AND REPURCHASE")
@@ -456,15 +468,14 @@ def build():
         "a timely election under IRC §83(b) within thirty (30) days of the Effective Date by "
         "certified mail and deliver a copy to the Company within five (5) business days; failure to "
         "file by the deadline results in automatic forfeiture of the entire Restricted Interest to "
-        "the Unissued Pool. The Members acknowledge that, because the Restricted Interests carry "
-        "economic rights pari passu with all other interests (including in liquidation under Section "
-        "4.5), they are expected to be treated as capital interests issued for services with a "
-        "nominal fair market value at the Effective Date, and the Section 83(b) election is intended "
-        "to fix that value and start the holding period; if the Company and its tax advisors instead "
-        "elect to structure the grants as profits interests under Rev. Proc. 93-27 and 2001-43, the "
-        "Manager is authorized to implement a liquidation threshold (distribution “hurdle”) so "
-        "that each Equity Grantee shares only in appreciation after the grant date. Each Equity "
-        "Grantee should consult independent tax counsel; nothing herein is tax advice from the "
+        "the Unissued Pool. The Restricted Interests are restricted shares of the Company's single "
+        "class of stock issued for services; the Section 83(b) election fixes their nominal fair "
+        "market value at the Effective Date and starts the holding period, and is also intended to "
+        "ensure each Restricted Interest is treated as outstanding stock so as to preserve the "
+        "S-corporation election under IRC §1361. The differential good-leaver / bad-leaver repurchase "
+        "terms in this Article V are a bona fide buy-sell arrangement and are not intended to create a "
+        "second class of stock under Treasury Reg. §1.1361-1(l)(2)(iii). Each Equity Grantee should "
+        "consult independent tax counsel; nothing herein is tax advice from the "
         "Company or the Manager.")
     sec(d, "5.11", "Investor Not Subject to Forfeiture.",
         "Bullard's Percentage Interest is fully earned upon payment and is not subject to any "
@@ -501,7 +512,7 @@ def build():
         "(g) Make any Change of Control transaction.",
     ]:
         para(d, x, indent=True)
-    para(d, "For the avoidance of doubt, Adeline & Lilah, LLC may pass a Reserved Matter only by "
+    para(d, "For the avoidance of doubt, Schackmann Holdings, LLC may pass a Reserved Matter only by "
             "combining its 39.9% with the votes of at least two (2) Equity Grantees (66.5% total) or "
             "with Bullard's 19.5% plus at least one (1) Equity Grantee (72.7% total); Bullard holds "
             "no unilateral veto on Reserved Matters.")
@@ -525,7 +536,7 @@ def build():
         "with notice. This obligation survives departure for five (5) years.")
     sec(d, "6.6", "Key Person and Succession.",
         "On a Key Person Event affecting Geoff Schackmann (death, permanent disability, or "
-        "incapacity), the Company continues under interim management designated by Adeline & Lilah, "
+        "incapacity), the Company continues under interim management designated by Schackmann Holdings, LLC, "
         "LLC's authorized successor for up to ninety (90) days, after which the Members elect a "
         "successor Manager by majority vote. Bullard is notified within five (5) business days and "
         "votes in the successor election; during the interim period, material financial decisions "
@@ -589,7 +600,7 @@ def build():
         "on terms no more favorable.")
     sec(d, "8.5", "Permitted Family/Trust Transfers.",
         "A Member may assign, by gift or upon death, to a spouse, child, or revocable living trust, "
-        "provided (a) for a trust, the Member retains sole voting control; (b) Adeline & Lilah, LLC "
+        "provided (a) for a trust, the Member retains sole voting control; (b) Schackmann Holdings, LLC "
         "remains Manager; and (c) Bullard receives written notice within five (5) business days. No "
         "other exception applies without Bullard's written consent.")
     sec(d, "8.6", "Mandatory Buyout Upon Death, Divorce, Bankruptcy, or Incapacity.",
@@ -605,14 +616,14 @@ def build():
         "A security interest a Member grants in its interest must give the Company and other Members "
         "the option, on default, to purchase on the terms of Section 8.4.")
     sec(d, "8.8", "Tag-Along Rights.",
-        "If Adeline & Lilah proposes a Transfer constituting a Change of Control, Bullard may "
+        "If Schackmann Holdings, LLC proposes a Transfer constituting a Change of Control, Bullard may "
         "participate pro rata on the same terms, with at least twenty (20) days' notice.")
     sec(d, "8.9", "Drag-Along Rights.",
         "If Members holding more than 60% propose a bona fide arm's-length Change of Control, they "
         "may require the remaining Members to Transfer on the same per-unit terms (with "
         "representations limited to title and authority) on at least thirty (30) days' notice.")
     sec(d, "8.10", "Buy-Sell - Texas Shootout.",
-        "After the Lock-Up Period, if Schackmann (for himself and Adeline & Lilah) and Bullard "
+        "After the Lock-Up Period, if Schackmann (for himself and Schackmann Holdings, LLC) and Bullard "
         "cannot resolve a material dispute after thirty (30) days of good-faith negotiation, either "
         "may invoke the buy-sell by naming an enterprise valuation, from which buyout amounts are "
         "computed pro rata; Unvested Restricted Interests are forfeited at closing without "
@@ -637,7 +648,10 @@ def build():
         "individual with a beneficial ownership interest in any Member entity, is excluded, "
         "suspended, debarred, or otherwise ineligible to participate in any federal or state "
         "healthcare program (per the OIG LEIE or SAM.gov databases), with a duty to notify the "
-        "Manager within five (5) business days of any threatened or actual exclusion.")
+        "Manager within five (5) business days of any threatened or actual exclusion; and (e) S-Corp "
+        "Eligibility - each Member is, and shall remain, an S-Corp Eligible Person as defined in "
+        "Section 2.27, and shall notify the Manager within five (5) business days of any change that "
+        "would cause it to cease to be one.")
     sec(d, "9.2", "Investor Representation - Accredited Investor.",
         "Bullard represents that he is an “accredited investor” under Rule 501(a) of "
         "Regulation D; is acquiring his interest for investment and not with a view to distribution; "
@@ -648,7 +662,7 @@ def build():
     # ================= ARTICLE X =================
     art(d, "ARTICLE X - INDEMNIFICATION")
     sec(d, "10.1", "Indemnification of Manager.",
-        "The Company shall indemnify and hold harmless the Manager and Adeline & Lilah, LLC and "
+        "The Company shall indemnify and hold harmless the Manager and Schackmann Holdings, LLC and "
         "their respective members, managers, officers, employees, and agents from claims arising "
         "from the management or operation of the Company or good-faith actions under this Agreement, "
         "except for fraud, willful misconduct, gross negligence, improper personal benefit, or "
@@ -671,16 +685,22 @@ def build():
         "returns for the three most recent fiscal years. Each Member may inspect and copy on five "
         "(5) business days' notice.")
     sec(d, "11.2", "Tax Matters.",
-        "The Company shall be treated as a partnership for U.S. federal income tax purposes under "
-        "subchapter K of the Code. No election shall be made to treat the Company as an association "
-        "taxable as a corporation (including no election under Treasury Reg. §301.7701-3 and no "
-        "election under IRC §1361) without the prior written consent of all Members. The Manager "
-        "shall serve as the Company's partnership representative under IRC §6223 and shall cause "
-        "the timely preparation and filing of all returns (including Form 1065 and Schedule K-1 to "
-        "each Member) within seventy-five (75) days of each fiscal year-end. The Acquired Agency, as "
-        "a wholly owned single-member subsidiary, shall be a disregarded entity whose items are "
-        "reported by the Company, unless the Manager and the Members' tax advisors determine "
-        "otherwise.")
+        "The Company has elected, or shall elect, to be taxed as an S corporation for U.S. federal "
+        "income tax purposes under IRC §1361 by timely filing (or obtaining late-election relief "
+        "under Rev. Proc. 2013-30 for) IRS Form 2553, and the Members shall cooperate in executing "
+        "all documents required to make and maintain the election. The Company shall at all times "
+        "satisfy the S-corporation eligibility requirements, including: (a) every shareholder is an "
+        "eligible shareholder (a U.S. individual, an estate, an eligible trust, or a single-member "
+        "disregarded LLC owned by an eligible individual) - accordingly the 39.9% interest is held "
+        "by a single-member LLC wholly owned by Geoff Schackmann; (b) the Company maintains a single "
+        "class of stock with strictly pro-rata allocations and distributions (Sections 4.4-4.5); and "
+        "(c) the number of shareholders does not exceed the statutory limit. No Transfer or admission "
+        "may be made that would terminate the S-election (Sections 8.5, 8.11, and Article XII). The "
+        "Manager shall serve as the Company's tax representative, shall cause the timely preparation "
+        "and filing of all returns (including Form 1120-S and Schedule K-1 to each Member) within "
+        "seventy-five (75) days of each fiscal year-end. The Acquired Agency, as a wholly owned "
+        "single-member subsidiary, shall be a disregarded entity (or a qualified subchapter S "
+        "subsidiary, if the Manager so elects) whose items are reported by the Company.")
     sec(d, "11.3", "Securities Compliance.",
         "The membership interests are unregistered, issued in reliance on Section 4(a)(2) and/or Rule "
         "506(b) of Regulation D. The Company shall make required Form D and state notice filings. No "
@@ -763,11 +783,11 @@ def build():
         ("MANAGER (individually) - GEOFF SCHACKMANN",
          "Geoff Schackmann, Manager (non-Member capacity)",
          "4602 E Cheery Lynn Rd, Phoenix, Arizona 85018  |  geoff@azaleahospice.com  |  480-495-5474"),
-        ("MEMBER - ADELINE & LILAH, LLC (Interest: 39.9%)",
-         "By: Geoff Schackmann, Authorized Representative (50% member)",
+        ("MEMBER - SCHACKMANN HOLDINGS, LLC (Interest: 39.9%; single-member LLC wholly owned by Geoff Schackmann)",
+         "By: Geoff Schackmann, Sole Member and Manager",
          "4602 E Cheery Lynn Rd, Phoenix, Arizona 85018"),
-        ("CONSENT OF SECOND MEMBER OF ADELINE & LILAH, LLC",
-         "Mary Elizabeth Burcham, 50% member of Adeline & Lilah, LLC - consents to Adeline & Lilah, LLC entering into this Agreement and, as the spouse of Geoff Schackmann, acknowledges and consents to its terms.",
+        ("SPOUSAL / COMMUNITY-PROPERTY CONSENT",
+         "Mary Elizabeth Burcham, spouse of Geoff Schackmann - consents to this Agreement and to Geoff Schackmann's ownership of Schackmann Holdings, LLC and its 39.9% Membership Interest, and waives any community-property claim inconsistent with this Agreement and the Company's S-corporation eligibility.",
          "Address: ______________________________________________"),
         ("MEMBER / INVESTOR - JAMES E. BULLARD (Interest: 19.5%)",
          "James E. Bullard",
