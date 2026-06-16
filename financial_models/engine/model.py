@@ -183,27 +183,28 @@ MED_DIRECTOR2_PM = ("med_director2", "Medical Director 2 (1099, $/mo, conditiona
 MED_DIRECTOR2_START_M = ("med_director2_start", "Medical Director 2 start month", 22, S.FMT_INT,
                           "Defaults to M22 (start of Y2Q4) when census approaches ADC ~38. Editable.")
 
-# Structure flag: the Hickory license is paid in cash at close (no seller note).
-# When True, the license consumes opening cash, the seller-note schedule is zeroed,
-# and debt service / DSCR are SBA-only. Set False to restore the seller-financed note.
-LICENSE_PAID_AT_CLOSE = True
+# Structure flag: the Hickory acquisition ($300K) is financed by a concurrent bank
+# term loan (Jim Bullard's bank, 6%/3yr), NOT paid in cash at close. When False, the
+# $300K does not consume opening cash and the bank note is serviced as debt (P+I in
+# DSCR). The SBA 7(a) is sized for startup + working capital only.
+LICENSE_PAID_AT_CLOSE = False
 
-# -- Block H: capital structure (NO acquisition) --
+# -- Block H: capital structure (SBA = startup + working capital; bank loan = acquisition) --
 CAPITAL = [
-    ("sba_principal", "SBA 7(a) loan principal ($)", 555000, S.FMT_CUR, "Sized to pay the seller in full at close + fund startup costs and working-capital reserve. " + FLAG),
-    ("sba_rate",      "SBA interest rate (APR)",      0.115, S.FMT_PCT, FLAG),
-    ("sba_term_mo",   "SBA term (months)",            120,   S.FMT_INT, "10-year amortization. " + FLAG),
-    ("equity",        "Owner equity injection ($)",   195000, S.FMT_CUR, "Cash capital contribution by James Bullard (19.5% passive member). " + FLAG),
+    ("sba_principal", "SBA 7(a) loan principal ($)", 450000, S.FMT_CUR, "Sized for startup costs + working-capital reserve (the Hickory acquisition is funded by the bank term loan below). " + FLAG),
+    ("sba_rate",      "SBA interest rate (APR)",      0.105, S.FMT_PCT, "Typical 7(a) variable: Prime ~7.5% + 3.0% spread. " + FLAG),
+    ("sba_term_mo",   "SBA term (months)",            180,   S.FMT_INT, "15-year amortization. " + FLAG),
+    ("equity",        "Owner equity injection ($)",   195000, S.FMT_CUR, "Cash capital contribution by James Bullard (19.5% passive member); $180K designated as the SBA equity injection. " + FLAG),
     ("loc_limit",     "Working-capital line limit ($)", 100000, S.FMT_CUR, FLAG),
     ("loc_rate",      "Working-capital line rate (APR)", 0.105, S.FMT_PCT, FLAG),
     ("min_cash",      "Minimum cash floor ($)",        25000, S.FMT_CUR, "Operating cash buffer; LOC draws to hold this floor. " + FLAG),
     ("capex",         "Startup capex - equipment ($)", 15000, S.FMT_CUR, "Computers, office furniture; depreciated straight-line. " + FLAG),
     ("deprec_yrs",    "Depreciation / amortization life (yrs)", 5, S.FMT_INT, FLAG),
     ("tx_tax",        "TX franchise/margin tax (eff.)", 0.00375, S.FMT_PCT2, "Applied to revenue when pre-tax income positive."),
-    ("license_cost",  "Hickory Medicare license - acquisition cost ($)", 300000, S.FMT_CUR, "CHOW: acquire Hickory Hospice's existing Medicare-certified provider number (San Antonio + Tyler alternative-delivery site). Eliminates 855A enrollment gap - Azalea bills from day 1."),
-    ("license_rate",  "License note interest rate (APR)", 0.06, S.FMT_PCT, "Seller financing on the license acquisition."),
-    ("license_term",  "License note term (months)", 36, S.FMT_INT, "Monthly P+I amortization."),
-    ("license_amort_yrs", "License intangible amortization life (yrs)", 15, S.FMT_INT, "GAAP intangible amortization - non-cash, below EBITDA. No effect on DSCR."),
+    ("license_cost",  "Hickory acquisition - purchase price ($)", 300000, S.FMT_CUR, "CHOW: purchase 100% of Hickory Hospice LLC's membership interests; its Medicare-certified provider number conveys with the entity (Azalea bills from day 1). Funded by the bank term loan below."),
+    ("license_rate",  "Acquisition bank loan rate (APR)", 0.06, S.FMT_PCT, "Concurrent bank term loan (Jim Bullard's bank); Jim personally guarantees. Subordinate to the SBA loan."),
+    ("license_term",  "Acquisition bank loan term (months)", 36, S.FMT_INT, "3-year monthly P+I amortization."),
+    ("license_amort_yrs", "Acquisition intangible amortization life (yrs)", 15, S.FMT_INT, "GAAP intangible amortization - non-cash, below EBITDA. No effect on DSCR. Confirm tax treatment of a membership-interest purchase with CPA."),
 ]
 
 # -- Block H2: startup one-time uses (Sources & Uses) --

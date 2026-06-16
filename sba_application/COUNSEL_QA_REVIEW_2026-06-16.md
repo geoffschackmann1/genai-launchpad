@@ -206,3 +206,34 @@ DSCR for lender approval**, not cash survival. Financing the acquisition (2 or 3
 Once you lock items 1–2 (and ideally 3–4), I can rebuild the OA (A&R, correct entity), the MIPA
 alignment note, the financial model, and the entire SBA narrative on a single consistent structure
 in one pass.
+
+---
+
+## G. RESOLVED — decisions locked 2026-06-16
+
+| # | Decision | Answer |
+|---|---|---|
+| 1 | Entity | **Tyler Hospice Hold, LLC — Wyoming** (EIN 41-4966640), foreign-qualified in TX. **MIPA must be amended** (its TX buyer is the error). |
+| 2 | Capital structure | **SBA $450,000** (startup + working capital) + **bank loan $300,000 / 6% / 3 yr** (acquisition) + **equity $195,000** |
+| 3 | Hickory | **Corporate guarantor** of the SBA loan (lien on its assets/receivables) |
+| 4 | Bank loan | At close; **Jim Bullard personally guarantees it**; subordinate to SBA; no ownership in the bank |
+| 5 | Eligibility | **Startup, no affiliate** (VistaRiver sold 8/2025) |
+| 6 | Bullard | **19.5%, no SBA personal guaranty** (guarantees only the bank loan) |
+| — | Injection | Bullard **$195,000 total** (cap table 19.5%); **$180,000 designated** as the SBA injection; $15,000 extra WC |
+
+### Authoritative numbers (model rebuilt + workbooks regenerated 6/16)
+- **Sources $945,000** = SBA $450,000 (47.6%) + bank $300,000 (31.7%) + equity $195,000 (20.6%)
+- **Uses $945,000** = acquisition $300,000 + startup $63,000 + equipment $15,000 + WC reserve **$567,000**
+- **Debt service (Yrs 1-3) $169,211/yr** = SBA $59,692 + bank $109,519 (after Yr 3, SBA only ~$59,692)
+- **DSCR 1.79x / 4.02x / 5.95x; global 3.92x**; min cash **$444,962**; LOC never drawn
+
+### Counsel caveats carried forward
+- **Downside coverage is thinner** than the old paid-at-close structure: the $300K bank loan amortizes
+  over only 3 years (~$109.5K/yr front-loaded). A ~20% census shock pushes **Year-1 DSCR below 1.0x**
+  (about 0.29x), recovering by Year 2 (~1.18x). Base case (1.79x) is approvable and liquidity holds
+  (the $567K reserve keeps the LOC undrawn), but expect lender stress-test scrutiny on the ramp year.
+  A longer bank-loan amortization, or a smaller WC reserve, would ease the optics.
+- **Piggyback bank loan** requires SBA-lender approval + subordination/intercreditor (SBA first lien);
+  disclose Jim's guaranty of it.
+- **MIPA amendment** (buyer -> Wyoming entity) and **Hickory corporate guaranty + intercreditor** still
+  to be papered. **Two OAs** to finalize: holdco A&R (Wyoming) + a single-member OA for Hickory.
