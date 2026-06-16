@@ -66,7 +66,7 @@ def table(d, headers, rows, widths=None):
 
 def footer_note(d):
     para(d, "")
-    para(d, "Prepared for the SBA 7(a) loan application of Tyler Hospice Hold LLC "
+    para(d, "Prepared for the SBA 7(a) loan application of Tyler Hospice Hold, LLC "
             "(dba Azalea Hospice & Palliative Care). Confidential.", italic=True,
          size=8, color=GREY)
 
@@ -81,9 +81,9 @@ def save(d, subpath):
 def company_profile():
     d = new_doc("Company Profile")
     h1(d, "Company Profile")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC", color=GREY, size=9)
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC", color=GREY, size=9)
     para(d, "")
-    field(d, "Company Name", "Tyler Hospice Hold LLC")
+    field(d, "Company Name", "Tyler Hospice Hold, LLC")
     field(d, "Company Assumed Name (dba)", "Azalea Hospice & Palliative Care")
     field(d, "Brief Business Description",
           "Medicare-certified hospice and palliative care agency serving the Tyler / "
@@ -103,7 +103,7 @@ def company_profile():
     h2(d, "Company Ownership (100% must be shown)")
     table(d,
           ["#", "Name and Address", "SSN / EIN", "Ownership %", "Company Title", "Email"],
-          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member - 4602 E Cheery Lynn Rd, Phoenix, AZ 85018", TBD, "39.9%", "Managing Member of Tyler Hospice Hold LLC", "geoff@azaleahospice.com"],
+          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member - 4602 E Cheery Lynn Rd, Phoenix, AZ 85018", TBD, "39.9%", "Managing Member of Tyler Hospice Hold, LLC", "geoff@azaleahospice.com"],
            ["2", "James E. Bullard - 13910 Indiana Ave, Suite 300, Lubbock, TX 79423", TBD, "19.5%*", "Minority investor member (passive; no management or control role)", "jimbullard01@aol.com"],
            ["3", "Silas R. Shelton - 1503 Lake Park Circle, Hideaway, TX 75771", TBD, "13.3%**", "Executive Director", "silas@azaleahospice.com"],
            ["4", "Dana L. Davenport", TBD, "13.3%**", "Director of Nursing", TBD],
@@ -127,14 +127,14 @@ def company_profile():
             "death, disability, retirement) or the lower of cost or fair market value for a bad-leaver "
             "separation (resignation before full vesting, or termination for cause).", italic=True, size=9)
     para(d, "Indirect chain: Geoff Schackmann holds 50% of Adeline & Lilah, LLC and serves as its sole Managing "
-            "Member; he therefore controls the 39.9% A&L block in Tyler Hospice Hold LLC and is the sole 20%+ "
+            "Member; he therefore controls the 39.9% A&L block in Tyler Hospice Hold, LLC and is the sole 20%+ "
             "owner of record for SBA personal-guaranty purposes. Mary Elizabeth Burcham (Geoff's spouse) holds "
             "the other 50% of Adeline & Lilah, LLC as a passive member (no management role), giving her an "
-            "indirect economic interest of 19.95% in Tyler Hospice Hold LLC. As Geoff's spouse, she will sign "
+            "indirect economic interest of 19.95% in Tyler Hospice Hold, LLC. As Geoff's spouse, she will sign "
             "the customary spouse acknowledgement / consent on the personal guaranty at close. "
             "Unissued/reserved pool: 0.7%.", italic=True, size=9)
     para(d, "")
-    field(d, "Name to be used on business checking account", "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)")
+    field(d, "Name to be used on business checking account", "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)")
     field(d, "Designated signers on checking account", "Geoff Schackmann (Managing Member, sole signer)")
     para(d, "")
     h2(d, "Professional Advisors")
@@ -155,7 +155,7 @@ def company_profile():
 def use_of_funds():
     d = new_doc("Use of Funds")
     h1(d, "Use of Proceeds")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC", color=GREY, size=9)
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC", color=GREY, size=9)
     para(d, "")
     h2(d, "Total Project Sources and Uses")
     table(d, ["Use of funds", "Amount", "Funding source"],
@@ -214,10 +214,10 @@ def use_of_funds():
 def debt_schedule():
     d = new_doc("Business Debt Schedule")
     h1(d, "Schedule of Business Debts")
-    para(d, "Borrower: Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
+    para(d, "Borrower: Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
     field(d, "As of", TBD + "  (most recent month-end, not older than 60 days)")
     para(d, "")
-    para(d, "Tyler Hospice Hold LLC is a newly formed holding entity and carries no existing business debt prior "
+    para(d, "Tyler Hospice Hold, LLC is a newly formed holding entity and carries no existing business debt prior "
             "to this transaction. The Hickory acquisition is paid in full at close from SBA proceeds and the "
             "equity injection - there is no seller note or other carried debt. After close, the only business "
             "debt is the SBA 7(a) loan itself.", italic=True)
@@ -227,7 +227,7 @@ def debt_schedule():
           widths=[1.5, 0.7, 1.6, 0.9, 0.9, 0.5, 1.0, 1.4])
     para(d, "")
     h2(d, "Government Financing")
-    para(d, "Tyler Hospice Hold LLC, its owners, and affiliated companies have no prior or outstanding "
+    para(d, "Tyler Hospice Hold, LLC, its owners, and affiliated companies have no prior or outstanding "
             "government financing (no PPP, EIDL, or other federal stimulus or government loans). "
             "Confirm for each 20%+ owner and affiliate.", italic=True)
     table(d, ["Government agency", "Orig. amount", "Date of request", "Current balance", "Status"],
@@ -242,7 +242,7 @@ RESUMES = {
    name="Geoff Schackmann", title="Managing Member (39.9% via Adeline & Lilah, LLC)",
    summary="Multi-hospice operator and transaction-led growth leader with operational responsibility for "
            "Medicare-certified hospice and palliative-care agencies across multiple states. Sole member of "
-           "Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler Hospice Hold LLC is held. "
+           "Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler Hospice Hold, LLC is held. "
            "Leads transaction structuring, financing, capital allocation, and post-close integration.",
    experience=[
      ("Multi-state hospice operations", "Present", "Owner / Operator",
@@ -299,7 +299,7 @@ def management_resumes():
     for key, info in RESUMES.items():
         d = new_doc("Management Resume")
         h1(d, "Management Resume")
-        para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)",
+        para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
              color=GREY, size=9)
         para(d, "Complete one form per owner. Personal-identifier fields are left blank for the individual "
                 "to complete.", italic=True, size=9)
@@ -437,7 +437,7 @@ def information_needed():
             "deposit at disbursement (per SOP 50 10 8). No holdback or acceleration needed.", italic=True, size=9)
     h2(d, "B3. Spouse acknowledgement (Mary Elizabeth Burcham)")
     para(d, "Mary Elizabeth Burcham is Geoff's spouse and holds 50% of Adeline & Lilah, LLC (giving her a 19.95% "
-            "indirect interest in Tyler Hospice Hold LLC - under 20%, no management role). As the guarantor's "
+            "indirect interest in Tyler Hospice Hold, LLC - under 20%, no management role). As the guarantor's "
             "spouse she signs a customary spouse acknowledgement / consent, not a co-guaranty.", italic=True, size=9)
     for x in ["Mary Elizabeth Burcham's full legal name (with middle name/initial), date of birth, address",
               "Her signature on the Spouse Acknowledgement / Consent (lender provides form at close)",
@@ -495,7 +495,7 @@ def personal_forms_guide():
 def equity_injection_memo():
     d = new_doc("Equity Injection Memo")
     h1(d, "Equity Injection & Capital Structure - SOP 50 10 8 Compliance")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)",
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
          color=GREY, size=9)
     para(d, "")
     para(d, "This memo documents how the transaction satisfies the equity-injection requirements of SOP 50 10 8 "
@@ -570,12 +570,12 @@ def equity_injection_memo():
 def lender_credit_memo():
     d = new_doc("Lender Credit Memo")
     h1(d, "Credit Memo - Executive Summary")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)",
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
          color=GREY, size=9)
     para(d, "")
     h2(d, "The deal at a glance")
     table(d, ["Field", "Value"],
-          [["Borrower", "Tyler Hospice Hold LLC (newco) - EIN 41-4966640"],
+          [["Borrower", "Tyler Hospice Hold, LLC (newco) - EIN 41-4966640"],
            ["Operating subsidiary", "Hickory Hospice LLC (Texas) - Medicare-certified hospice provider"],
            ["Transaction", "Startup change of ownership (CHOW) - purchase of 100% membership interests of Hickory"],
            ["Loan request", "$555,000 SBA 7(a)"],
@@ -638,7 +638,7 @@ def lender_credit_memo():
 def sensitivity_memo():
     d = new_doc("DSCR Sensitivity Memo")
     h1(d, "DSCR Sensitivity / Stress-Test Analysis")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC. Illustrative scenarios; underlying model in folder 09.",
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC. Illustrative scenarios; underlying model in folder 09.",
          color=GREY, size=9)
     para(d, "")
     para(d, "The base case clears the 1.25x SBA DSCR floor in every year by a wide margin. Because the seller is "
@@ -695,7 +695,7 @@ def sensitivity_memo():
 def bullard_attestation():
     d = new_doc("Bullard Attestation")
     h1(d, "Investor Attestation - No Control, No Side Agreement")
-    para(d, "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care) - SBA 7(a) Application",
+    para(d, "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care) - SBA 7(a) Application",
          color=GREY, size=9)
     para(d, "")
     para(d, "The undersigned, James Bullard, in connection with the SBA 7(a) loan application of Tyler Hospice "
@@ -752,7 +752,7 @@ def bullard_attestation():
     para(d, "______________________________________________________")
     para(d, "Notary Public                                      My commission expires: _______________")
     para(d, "")
-    para(d, "Drafted for the SBA 7(a) application of Tyler Hospice Hold LLC. Have counsel review before "
+    para(d, "Drafted for the SBA 7(a) application of Tyler Hospice Hold, LLC. Have counsel review before "
             "execution. The structure described above is reflected in the Company's Operating Agreement; if "
             "the Operating Agreement has not yet been amended to match, do that first.",
          italic=True, size=8.5, color=GREY)
@@ -764,9 +764,9 @@ def bullard_attestation():
 def submission_cover_sheet():
     d = new_doc("Submission Cover Sheet")
     h1(d, "Submission Package - Table of Contents")
-    para(d, "SBA 7(a) Application - Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)", color=GREY, size=9)
     field(d, "Loan request", "$555,000 SBA 7(a) | Total project: $750,000")
-    field(d, "Borrower", "Tyler Hospice Hold LLC (WY) - EIN 41-4966640")
+    field(d, "Borrower", "Tyler Hospice Hold, LLC (WY) - EIN 41-4966640")
     field(d, "Operating subsidiary", "Hickory Hospice LLC (TX) - the acquired Medicare-certified hospice")
     field(d, "Primary guarantor", "Geoff Schackmann via Adeline & Lilah, LLC (39.9%, sole 20%+ owner)")
     field(d, "Lender contact", "John Hart")
@@ -822,16 +822,16 @@ def submission_cover_sheet():
 def closing_checklist():
     d = new_doc("Closing Checklist")
     h1(d, "SBA 7(a) Closing Checklist")
-    para(d, "Tyler Hospice Hold LLC - Azalea Hospice CHOW. Items typically required at SBA loan close.",
+    para(d, "Tyler Hospice Hold, LLC - Azalea Hospice CHOW. Items typically required at SBA loan close.",
          color=GREY, size=9)
     para(d, "This is a standard close checklist; the lender will issue a final, deal-specific list. Use this to "
             "stage documents and identify long-lead items now.")
     h2(d, "A. Borrower entity")
-    for x in ["Tyler Hospice Hold LLC - WY Certificate of Formation",
-              "Tyler Hospice Hold LLC - Operating Agreement (executed, current)",
-              "Tyler Hospice Hold LLC - EIN assignment letter (IRS CP-575)",
-              "Tyler Hospice Hold LLC - Certificate of Good Standing (WY) - recent (within 30 days of close)",
-              "Tyler Hospice Hold LLC - Foreign qualification in TX (Certificate of Authority) and TX Good Standing",
+    for x in ["Tyler Hospice Hold, LLC - WY Certificate of Formation",
+              "Tyler Hospice Hold, LLC - Operating Agreement (executed, current)",
+              "Tyler Hospice Hold, LLC - EIN assignment letter (IRS CP-575)",
+              "Tyler Hospice Hold, LLC - Certificate of Good Standing (WY) - recent (within 30 days of close)",
+              "Tyler Hospice Hold, LLC - Foreign qualification in TX (Certificate of Authority) and TX Good Standing",
               "Hickory Hospice LLC - Certificate of Formation (TX)",
               "Hickory Hospice LLC - Operating Agreement (pre- and post-CHOW)",
               "Hickory Hospice LLC - Certificate of Good Standing (TX) - recent",
@@ -859,7 +859,7 @@ def closing_checklist():
               "Certificate of insurance naming SBA lender as additional insured (premises and operations)"]:
         para(d, "  - " + x)
     h2(d, "E. Equity injection verification")
-    for x in ["Full $195,000 on deposit in Tyler Hospice Hold LLC operating account at close (per SOP 50 10 8)",
+    for x in ["Full $195,000 on deposit in Tyler Hospice Hold, LLC operating account at close (per SOP 50 10 8)",
               "Bank statements (Mercury / Column N.A. acct ****1275) showing all two tranches received",
               "Bullard source-of-funds statements (30+ day seasoning prior to each tranche, in his name)",
               "Bullard wire / capital-contribution confirmations for each tranche",
@@ -901,7 +901,7 @@ def closing_checklist():
 def insurance_requirements():
     d = new_doc("Insurance Requirements")
     h1(d, "Insurance Requirements - SBA 7(a) and Hospice Operations")
-    para(d, "Tyler Hospice Hold LLC - Azalea Hospice & Palliative Care", color=GREY, size=9)
+    para(d, "Tyler Hospice Hold, LLC - Azalea Hospice & Palliative Care", color=GREY, size=9)
     para(d, "Coverages typically required by SBA and prudent for a hospice CHOW operating at the scale "
             "underwritten. Confirm specifics with the lender at close.")
     h2(d, "Required by SBA / lender")
@@ -956,7 +956,7 @@ def personal_cash_flow():
     table(d, ["Source", "Amount", "Notes / verification"],
           [["VistaRiver Inc - promissory note payment", "$14,456.80", "Per executed Note dated Aug 15, 2025 (in folder 10). Through Aug 2030."],
            ["Salary / W-2 income (if any)", TBD, "Pay stub or W-2; list employer."],
-           ["Distributions from Tyler Hospice Hold LLC (post-close)", "$0 (ramp)", "No member distributions modeled in Y1; tax distributions only in Y2+"],
+           ["Distributions from Tyler Hospice Hold, LLC (post-close)", "$0 (ramp)", "No member distributions modeled in Y1; tax distributions only in Y2+"],
            ["Distributions from other businesses owned", TBD, "List entity, role, amount, frequency."],
            ["Rental income (net)", TBD, "If applicable."],
            ["Investment income (interest, dividends)", TBD, "From most recent 1099 / brokerage statement."],
@@ -1009,7 +1009,7 @@ def interview_worksheet():
     d = new_doc("Interview Worksheet")
     h1(d, "Interview Worksheet - Remaining Drafts")
     para(d, "Answers will feed into: Cover Letter to John Hart, Anticipated Q&A memo, Capital Contribution "
-            "Agreement (Bullard), Operating Agreement for Tyler Hospice Hold LLC, Bullard Source-of-Funds "
+            "Agreement (Bullard), Operating Agreement for Tyler Hospice Hold, LLC, Bullard Source-of-Funds "
             "Letter, Hickory CHOW Purchase Agreement starter, and Affiliate / Size-Standard memo.",
          color=GREY, size=9)
     para(d, "Reasonable defaults are pre-filled where industry standard applies - just confirm or override. "
@@ -1067,10 +1067,10 @@ def interview_worksheet():
     field(d, "3.6 Is anyone else a member or signatory of Adeline & Lilah, LLC?", TBD)
 
     # --- TYLER HOSPICE HOLD LLC / OPERATING AGREEMENT ----------------------
-    h2(d, "4. Tyler Hospice Hold LLC - Operating Agreement")
-    field(d, "4.1 Does Tyler Hospice Hold LLC have an existing Operating Agreement?",
+    h2(d, "4. Tyler Hospice Hold, LLC - Operating Agreement")
+    field(d, "4.1 Does Tyler Hospice Hold, LLC have an existing Operating Agreement?",
           "If YES, share it (we'll amend). If NO, we'll draft a fresh one. Default assumption: NO.")
-    field(d, "4.2 Tyler Hospice Hold LLC registered office (Wyoming filing address)", TBD + "  (typically a WY registered agent)")
+    field(d, "4.2 Tyler Hospice Hold, LLC registered office (Wyoming filing address)", TBD + "  (typically a WY registered agent)")
     field(d, "4.3 Tax election",
           "Default: LLC taxed as partnership (default federal treatment for multi-member LLCs). "
           "Alternative: elect S-corporation (Form 2553) - usually only beneficial above ~$150K of distributable profit "
@@ -1170,15 +1170,14 @@ def interview_worksheet():
 def oa_amendment():
     d = new_doc("OA Amendment No. 1")
     h1(d, "Amendment No. 1 to Operating Agreement")
-    para(d, "TYLER HOSPICE HOLD, LLC - A Texas Limited Liability Company", color=GREY, size=9)
+    para(d, "TYLER HOSPICE HOLD, LLC - A Wyoming Limited Liability Company", color=GREY, size=9)
     para(d, "")
     para(d, "DRAFTING NOTE: Per member direction, the agreed changes recorded in this Amendment are to be "
             "incorporated into a single Amended and Restated Operating Agreement of Tyler Hospice Hold, LLC, a "
-            "Texas limited liability company. Confirm before restatement: (i) the Texas certificate-of-formation "
-            "date and SOS file number, and (ii) that EIN 41-4966640 is the Texas entity's EIN. All prior references "
-            "to a Wyoming limited liability company, the Wyoming LLC Act, Wyoming registered office/agent, and "
-            "Wyoming governing law are to be conformed to the Texas Business Organizations Code and Texas law in "
-            "the restatement (and across the SBA package).",
+            "Wyoming limited liability company (EIN 41-4966640) that is foreign-qualified to transact business in "
+            "Texas. The exact legal name must match the Wyoming Certificate of Formation. Separately, the Hickory "
+            "Membership Interest Purchase Agreement (Rev. 2.00) - which currently names the Buyer as a Texas LLC - "
+            "must be amended so the Buyer is Tyler Hospice Hold, LLC, a Wyoming limited liability company.",
          italic=True, size=9, color=GREY)
     para(d, "")
     para(d, "DRAFT - For review and execution. Prepared for the SBA 7(a) loan application. The Members and "
@@ -1188,7 +1187,7 @@ def oa_amendment():
     para(d, "")
     field(d, "Effective Date", "_______________, 2026")
     field(d, "Original Operating Agreement (the 'Original OA')",
-          "Operating Agreement of Tyler Hospice HoldCo L.L.C., effective March 2026 (Version 5)")
+          "Operating Agreement of Tyler Hospice Hold, LLC, effective March 2026 (Version 5)")
     para(d, "")
     h2(d, "Background and recitals")
     para(d, "The Members and the Manager have determined that certain provisions of the Original OA require "
@@ -1496,7 +1495,7 @@ def oa_amendment():
 def bullard_attestation_v2():
     d = new_doc("Bullard Attestation v2")
     h1(d, "Investor Attestation - No Operational Control")
-    para(d, "Tyler Hospice HoldCo L.L.C. - SBA 7(a) Application  |  Revised to reflect OA Amendment No. 1",
+    para(d, "Tyler Hospice Hold, LLC - SBA 7(a) Application  |  Revised to reflect OA Amendment No. 1",
          color=GREY, size=9)
     para(d, "")
     para(d, "The undersigned, James E. Bullard, in connection with the SBA 7(a) loan application of Tyler "
@@ -1593,7 +1592,7 @@ def bullard_subscription():
             "independent review is recommended before signing.", italic=True, size=9, color=GREY)
     para(d, "")
     para(d, "This Subscription and Capital Contribution Agreement (this \"Agreement\") is entered into as of "
-            "_______________, 2026 (the \"Effective Date\"), by and between Tyler Hospice HoldCo L.L.C., a "
+            "_______________, 2026 (the \"Effective Date\"), by and between Tyler Hospice Hold, LLC, a "
             "Wyoming limited liability company (the \"Company\"), and James E. Bullard, an individual residing "
             "at 13910 Indiana Ave, Suite 300, Lubbock, TX 79423 (the \"Investor\"). This Agreement is the "
             "\"Subscription Agreement\" referenced in Section 11.5 of the Company's Operating Agreement, as "
@@ -1679,18 +1678,18 @@ def bullard_subscription():
 def bullard_source_of_funds():
     d = new_doc("Bullard Source of Funds")
     h1(d, "Source-of-Funds Letter - Equity Injection")
-    para(d, "SBA 7(a) Application - Tyler Hospice HoldCo L.L.C.  |  Investor: James E. Bullard",
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC  |  Investor: James E. Bullard",
          color=GREY, size=9)
     para(d, "Template for the Investor to complete with his bank/brokerage details and sign. Accompanies the "
             "statements that evidence each tranche.", italic=True, size=9, color=GREY)
     para(d, "")
     field(d, "Date", TBD)
-    para(d, "To: [SBA-participating lender] and Tyler Hospice HoldCo L.L.C.")
+    para(d, "To: [SBA-participating lender] and Tyler Hospice Hold, LLC")
     para(d, "")
-    para(d, "Re: Source of $195,000 equity injection into Tyler Hospice HoldCo L.L.C.")
+    para(d, "Re: Source of $195,000 equity injection into Tyler Hospice Hold, LLC")
     para(d, "")
     para(d, "To Whom It May Concern:")
-    para(d, "I, James E. Bullard, am contributing $195,000 in cash to Tyler Hospice HoldCo L.L.C. (the "
+    para(d, "I, James E. Bullard, am contributing $195,000 in cash to Tyler Hospice Hold, LLC (the "
             "\"Company\") in exchange for a 19.5% membership interest. I am providing this letter in support "
             "of the Company's SBA 7(a) loan application to document the source of those funds, as required "
             "by SBA SOP 50 10 8.")
@@ -1728,7 +1727,7 @@ def bullard_source_of_funds():
 def affiliate_memo():
     d = new_doc("Affiliate Memo")
     h1(d, "Affiliate and Size-Standard Memorandum")
-    para(d, "SBA 7(a) Application - Tyler Hospice HoldCo L.L.C. (dba Azalea Hospice & Palliative Care)",
+    para(d, "SBA 7(a) Application - Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
          color=GREY, size=9)
     para(d, "This memorandum identifies the borrower's affiliates for SBA size-standard and eligibility "
             "purposes (13 CFR 121.103) and documents why the borrower meets the applicable size standard.")
@@ -1800,7 +1799,7 @@ def affiliate_memo():
 def cover_letter_and_qa():
     d = new_doc("Cover Letter and QA")
     h1(d, "Cover Letter")
-    para(d, "Tyler Hospice HoldCo L.L.C. (dba Azalea Hospice & Palliative Care)  |  SBA 7(a) Application",
+    para(d, "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)  |  SBA 7(a) Application",
          color=GREY, size=9)
     para(d, "Generic version - personalize the lender name/address and the salutation once a specific lender "
             "is identified from John Hart's network.", italic=True, size=9, color=GREY)
@@ -1810,7 +1809,7 @@ def cover_letter_and_qa():
     para(d, "[Lender address]")
     para(d, "Attn: [SBA Loan Officer]")
     para(d, "")
-    para(d, "Re: SBA 7(a) loan request - $555,000 - Tyler Hospice HoldCo L.L.C. (Azalea Hospice & Palliative "
+    para(d, "Re: SBA 7(a) loan request - $555,000 - Tyler Hospice Hold, LLC (Azalea Hospice & Palliative "
             "Care) - change-of-ownership acquisition of Hickory Hospice LLC")
     para(d, "")
     para(d, "Dear [Loan Officer]:")
@@ -1838,7 +1837,7 @@ def cover_letter_and_qa():
     para(d, "Sincerely,")
     para(d, "")
     para(d, "Geoff Schackmann")
-    para(d, "Managing Member, Tyler Hospice HoldCo L.L.C.")
+    para(d, "Managing Member, Tyler Hospice Hold, LLC")
     para(d, "480-495-5474  |  geoff@azaleahospice.com")
 
     d.add_page_break()
@@ -1908,7 +1907,7 @@ def business_plan():
     # ---- Cover ----
     h1(d, "AZALEA HOSPICE & PALLIATIVE CARE")
     para(d, "Business Plan - SBA 7(a) Application", bold=True, size=13, color=NAVY)
-    para(d, "Tyler Hospice HoldCo L.L.C., operating as Azalea Hospice & Palliative Care", color=GREY, size=10)
+    para(d, "Tyler Hospice Hold, LLC, operating as Azalea Hospice & Palliative Care", color=GREY, size=10)
     para(d, "dba Azalea Hospice & Palliative Care - EIN 41-4966640 - Wyoming holding company operating "
             "Hickory Hospice LLC (Texas)", size=9, color=GREY)
     para(d, "Rev. 5.00 - June 2026  (supersedes Rev 4.00 dated 2026-06-02; financials reconciled to the "
@@ -1978,7 +1977,7 @@ def business_plan():
     d.add_page_break()
     h1(d, "02 - Company Description")
     h2(d, "2.1 Legal structure")
-    para(d, "Tyler Hospice HoldCo L.L.C. is a Wyoming LLC (formed 2026; EIN 41-4966640), authorized to do "
+    para(d, "Tyler Hospice Hold, LLC is a Wyoming LLC (formed 2026; EIN 41-4966640), authorized to do "
             "business in Texas. As the borrower and holding entity, it owns 100% of Hickory Hospice LLC - a "
             "Texas HCSSA-licensed, Medicare-certified hospice - which operates as Azalea Hospice & Palliative "
             "Care. The transaction is a change of ownership (CHOW) of Hickory's existing provider number "
@@ -2238,7 +2237,7 @@ def business_plan():
            ["Bradley G. Woodard", "Director of Sales", "13.3%", "Executive Director"],
            ["James E. Bullard", "Passive minority investor", "19.5%", "No operational role"]],
           widths=[2.4, 1.9, 0.9, 1.6])
-    para(d, "Tyler Hospice HoldCo L.L.C. (Wyoming holding company) owns 100% of Hickory Hospice LLC (Texas "
+    para(d, "Tyler Hospice Hold, LLC (Wyoming holding company) owns 100% of Hickory Hospice LLC (Texas "
             "operating subsidiary), which does business as Azalea Hospice & Palliative Care. The Executive "
             "Director leads operations; the Director of Nursing leads the clinical team; the Director of Sales "
             "leads business development. Mr. Bullard is a passive investor with protective minority rights but "
@@ -2508,12 +2507,12 @@ def business_plan():
 def submission_readiness():
     d = new_doc("Submission Readiness")
     h1(d, "Submission Readiness Checklist")
-    para(d, "Tyler Hospice HoldCo L.L.C. - SBA 7(a) Application to John Hart. Work this list top to bottom; "
+    para(d, "Tyler Hospice Hold, LLC - SBA 7(a) Application to John Hart. Work this list top to bottom; "
             "the three BLOCKERS must clear before submission.", color=GREY, size=9)
     h2(d, "BLOCKERS - must resolve before submitting")
     table(d, ["#", "Blocker", "Owner", "Status"],
           [["B1", "Seller payment / structure: RESOLVED - the $300K seller price is paid in full at close from SBA proceeds + equity (no retained note). The MIPA's 12 x $25K installment schedule should be settled at closing (prepay/payoff at close); confirm with sellers via Greiner. With no seller note, Year-1 DSCR is ~3.23x.", "Geoff + sellers (Greiner)", "RESOLVED in structure; confirm payoff mechanics"],
-           ["B2", "Borrower entity mismatch: MIPA buyer is 'Tyler Hospice Hold, LLC (Texas)'; SBA/OA is 'Tyler Hospice HoldCo L.L.C. (Wyoming), EIN 41-4966640'. Make one entity/name/state consistent everywhere.", "Geoff", "OPEN"],
+           ["B2", "Borrower entity mismatch: MIPA buyer is 'Tyler Hospice Hold, LLC (Texas)'; SBA/OA is 'Tyler Hospice Hold, LLC (Wyoming), EIN 41-4966640'. Make one entity/name/state consistent everywhere.", "Geoff", "OPEN"],
            ["B3", "Execute OA Amendment No. 1 (cap table 39.9/19.5/13.3x3 with operators' full 13.3% forfeitable until vested - 4.9% time-vested base + 8.4% dual-trigger earn-up, partnership tax, Hickory target, SBA carve-outs). Current OA still shows 60/25/4.9 + S-Corp + 'Healing Hands'.", "All members", "DRAFTED - needs signatures"]],
           widths=[0.4, 4.3, 1.5, 0.9])
     h2(d, "Geoff's personal package (sole 20%+ guarantor)")
@@ -2563,7 +2562,7 @@ def borrower_info_1919():
             "personally and truthfully.", color=GREY, size=9)
 
     h2(d, "Section I - Applicant Business Information (completed once by the business)")
-    field(d, "1. Applicant business legal name", "Tyler Hospice Hold LLC")
+    field(d, "1. Applicant business legal name", "Tyler Hospice Hold, LLC")
     field(d, "   Trade name / dba", "Azalea Hospice & Palliative Care")
     field(d, "2. Primary business address", "13387 Hwy 69 N, Tyler, TX " + TBD + " (zip)")
     field(d, "3. Business EIN", "41-4966640")
@@ -2641,7 +2640,7 @@ def pfs_413_prefill():
 
     field(d, "Name", "Geoff Schackmann")
     field(d, "Residential address", TBD)
-    field(d, "Business name of applicant", "Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care)")
+    field(d, "Business name of applicant", "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)")
     para(d, "")
     h2(d, "Assets")
     table(d, ["Asset", "Value", "Notes"],
@@ -2676,7 +2675,7 @@ def pfs_413_prefill():
           widths=[2.2, 2.2, 1.2, 1.2, 1.5])
     h2(d, "Contingent Liabilities - pre-filled known item")
     table(d, ["Type", "Amount", "Notes"],
-          [["As guarantor: SBA 7(a) loan to Tyler Hospice Hold LLC", "$555,000 (proposed)", "This transaction - Geoff is the sole personal guarantor"],
+          [["As guarantor: SBA 7(a) loan to Tyler Hospice Hold, LLC", "$555,000 (proposed)", "This transaction - Geoff is the sole personal guarantor"],
            ["As endorser or co-maker (other)", TBD, ""],
            ["Legal claims and judgments", TBD, ""],
            ["Provision for federal income tax", TBD, ""],
