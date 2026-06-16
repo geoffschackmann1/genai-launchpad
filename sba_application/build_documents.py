@@ -116,10 +116,12 @@ def company_profile():
             "complete change of ownership is not required to provide a personal guaranty or Personal Financial "
             "Statement. Mr. Bullard's $195,000 cash capital contribution is the source of the equity injection "
             "for this transaction (see Use of Proceeds).", italic=True, size=9)
-    para(d, "**Operator-members (Shelton, Davenport, Woodard) hold their 13.3% interests as Restricted Interests "
-            "that vest only on a dual trigger - a four-year time schedule with a one-year cliff AND performance "
-            "milestones, the lesser of the two governing - recorded in the Operating Agreement (Amendment No. 1). "
-            "Unvested interests are forfeited at $0 on departure; vested interests are subject to a Company "
+    para(d, "**Operator-members (Shelton, Davenport, Woodard) hold their 13.3% interests as Restricted Interests. "
+            "Each starts with a 4.9% Initial Vested Base (vested at inception, reflecting the operator's original "
+            "interest) and earns up to a fully-vested 13.3% through an 8.4% Earn-Up Portion that vests only on a "
+            "dual trigger - a four-year time schedule with a one-year cliff AND performance milestones, the lesser "
+            "of the two governing - recorded in the Operating Agreement (Amendment No. 1). "
+            "Unvested Earn-Up interests are forfeited at $0 on departure; vested interests are subject to a Company "
             "repurchase (call) right at fair market value for a good-leaver separation (no-cause termination, "
             "death, disability, retirement) or the lower of cost or fair market value for a bad-leaver "
             "separation (resignation before full vesting, or termination for cause).", italic=True, size=9)
@@ -550,9 +552,9 @@ def equity_injection_memo():
            ["  - Geoff Schackmann (50% of A&L; sole Manager)", "19.95% indirect; controls A&L block", "Yes (by control)", "Required - provided as the sole 20%+ controlling owner"],
            ["  - Mary Elizabeth Burcham (50% of A&L; passive)", "19.95% indirect", "No (under 20%; no control)", "Not required; signs spouse acknowledgement/consent at close"],
            ["James Bullard (passive investor, direct)", "19.5%", "No", "Not required (source-of-funds verification only)"],
-           ["Silas R. Shelton", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"],
-           ["Dana L. Davenport", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"],
-           ["Bradley G. Woodard", "13.3% (4-yr vest, 1-yr cliff)", "No", "Not required"]],
+           ["Silas R. Shelton", "13.3% (4.9% vested base; earn-up to 13.3%)", "No", "Not required"],
+           ["Dana L. Davenport", "13.3% (4.9% vested base; earn-up to 13.3%)", "No", "Not required"],
+           ["Bradley G. Woodard", "13.3% (4.9% vested base; earn-up to 13.3%)", "No", "Not required"]],
           widths=[2.8, 1.6, 0.8, 2.0])
     para(d, "All equity owners are disclosed regardless of percentage, and all are U.S. citizens or lawful "
             "permanent residents (to be verified by the lender per SOP 50 10 8). The controlling owner (Geoff "
@@ -1076,9 +1078,10 @@ def interview_worksheet():
           "Default: MANAGER-MANAGED with Adeline & Lilah, LLC as sole Manager. This matches the SBA narrative "
           "(passive minority + sole Manager with control). Confirm.")
     field(d, "4.5 Vesting for operator-members (Silas, Dana, Bradley, 13.3% each)",
-          "RECOMMENDATION: 4-year vest with 1-year cliff, accelerating on the lender's release of the SBA loan "
-          "or change of control. Protects the deal if any operator leaves. If you prefer fully vested at close, "
-          "say so. Default if you skip: 4-year / 1-year cliff.")
+          "RECOMMENDATION: each operator starts at a 4.9% Initial Vested Base and earns up to a fully-vested 13.3% "
+          "via an 8.4% Earn-Up Portion that vests on a dual trigger (4-year time schedule with a 1-year cliff AND "
+          "performance milestones, lesser of the two). Protects the deal if any operator leaves. If you prefer "
+          "fully vested at close, say so. Default if you skip: 4.9% vested base + 8.4% dual-trigger earn-up.")
     field(d, "4.6 Distribution policy",
           "Default: (a) mandatory quarterly tax distributions sized to cover members' tax on allocated income at "
           "the highest applicable rate; (b) other distributions at Manager's discretion. Confirm.")
@@ -1184,8 +1187,10 @@ def oa_amendment():
             "(\"Hickory\"); (iv) calibrate Bullard's protective rights to remain consistent with U.S. Small "
             "Business Administration (\"SBA\") Standard Operating Procedure 50 10 8 for minority equity holders "
             "in change-of-ownership transactions; (v) coordinate Member governance with the post-closing "
-            "capital structure; and (vi) strengthen the operator-member Restricted Interests with dual-trigger "
-            "(time and performance) vesting and Company repurchase (call) rights on departure. The Members "
+            "capital structure; and (vi) strengthen the operator-member Restricted Interests so that each operator "
+            "starts at a 4.9% vested base and earns up to a fully-vested 13.3% through an 8.4% earn-up portion "
+            "subject to dual-trigger (time and performance) vesting, with Company repurchase (call) rights on "
+            "departure. The Members "
             "hereby agree to amend the Original OA as set forth below. "
             "Capitalized terms used and not otherwise defined have the meanings given in the Original OA.")
     para(d, "")
@@ -1202,9 +1207,11 @@ def oa_amendment():
            ["Unissued Pool", "Reserved", "0.7%"],
            ["TOTAL", "", "100.0%"]],
           widths=[2.8, 2.6, 1.2])
-    para(d, "*Restricted Interests of Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard are subject "
-            "to the Forfeiture Conditions of Article V of the Original OA as modified by Section 4 of this "
-            "Amendment.", italic=True, size=9)
+    para(d, "*Each Restricted Interest of Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard is issued "
+            "and outstanding at 13.3% but comprises a 4.9% Initial Vested Base (Vested at the Effective Date) and an "
+            "8.4% Earn-Up Portion that is subject to the Forfeiture Conditions of Article V of the Original OA as "
+            "modified by Section 4 of this Amendment; each Equity Grantee thus starts at 4.9% Vested and may earn up "
+            "to a fully-Vested 13.3%.", italic=True, size=9)
     para(d, "")
     h2(d, "2. Tax treatment (replaces Section 11.2 of the Original OA)")
     para(d, "Section 11.2 of the Original OA is hereby deleted and replaced in its entirety with the following:")
@@ -1242,30 +1249,47 @@ def oa_amendment():
             "and the equity-injection schedule described in Section 3.3 of the Original OA as amended.")
     para(d, "")
     h2(d, "4. Operator Restricted Interests - sizing, vesting, and repurchase (amends and supplements Article V)")
-    para(d, "4.1 Sizing. Section 5.1 of the Original OA is amended so that the Restricted Interest of each of "
-            "Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard (each, an \"Equity Grantee\") is sized "
-            "at thirteen and three-tenths percent (13.3%) of the Company (rather than 4.9%). The milestone "
-            "tranche sizing in Section 5.2 is scaled proportionally to the 13.3% grant as follows:")
-    table(d, ["Tranche", "Performance milestone", "Tranche size (of 13.3% grant)", "Company-level %"],
-          [["First", "Achieve Breakeven (1 month EBITDA >= 0)", "25% of grant", "3.325%"],
-           ["Second", "3 consecutive Profitable months", "50% of grant", "6.650%"],
-           ["Final", "12 consecutive Profitable months", "25% of grant", "3.325%"],
-           ["Total per Equity Grantee", "", "100%", "13.300%"]],
+    para(d, "4.1 Sizing and components. Section 5.1 of the Original OA is amended so that the Restricted Interest "
+            "of each of Silas R. Shelton, Dana L. Davenport, and Bradley Gene Woodard (each, an \"Equity Grantee\") "
+            "is sized at thirteen and three-tenths percent (13.3%) of the Company, issued and outstanding as of the "
+            "Effective Date and held subject to this Section 4. Each Equity Grantee's Restricted Interest comprises "
+            "two components:")
+    para(d, "   (a) Initial Vested Base - four and nine-tenths percent (4.9%), corresponding to the Equity "
+            "Grantee's original Percentage Interest under the Original OA, which is Vested and non-forfeitable as of "
+            "the Effective Date (but remains subject to the Company repurchase (call) right under Section 4.5); and")
+    para(d, "   (b) Earn-Up Portion - the remaining eight and four-tenths percent (8.4%), which is initially "
+            "Unvested and becomes Vested only as the Equity Grantee satisfies both the time and performance "
+            "conditions of Section 4.2, so that each Equity Grantee starts at 4.9% Vested and may earn up to a "
+            "fully-Vested 13.3%.")
+    para(d, "The milestone tranche sizing in Section 5.2 is amended to apply to the Earn-Up Portion as follows:")
+    table(d, ["Tranche", "Performance milestone", "Tranche size (of 8.4% Earn-Up)", "Company-level %"],
+          [["First", "Achieve Breakeven (1 month EBITDA >= 0)", "25% of Earn-Up", "2.100%"],
+           ["Second", "3 consecutive Profitable months", "50% of Earn-Up", "4.200%"],
+           ["Final", "12 consecutive Profitable months", "25% of Earn-Up", "2.100%"],
+           ["Earn-Up subtotal", "", "100% of Earn-Up", "8.400%"],
+           ["Initial Vested Base", "Vested at Effective Date", "-", "4.900%"],
+           ["Total per Equity Grantee", "", "", "13.300%"]],
           widths=[1.0, 2.5, 1.6, 1.5])
-    para(d, "4.2 Vesting - dual trigger (time AND performance). Section 5.2 of the Original OA is amended so that "
-            "a Restricted Interest becomes vested and non-forfeitable (\"Vested\") only to the extent BOTH of the "
-            "following are satisfied. The Vested percentage at any time equals the LESSER of (a) and (b):")
+    para(d, "4.2 Vesting of the Earn-Up Portion - dual trigger (time AND performance). The Initial Vested Base "
+            "(Section 4.1(a)) is Vested as of the Effective Date. Section 5.2 of the Original OA is amended so that "
+            "the Earn-Up Portion (Section 4.1(b)) becomes vested and non-forfeitable (\"Vested\") only to the extent "
+            "BOTH of the following are satisfied. The Vested percentage of the Earn-Up Portion at any time equals "
+            "the LESSER of (a) and (b):")
     para(d, "   (a) Time-vesting. Continuous Service from the Effective Date on a four-year schedule with a "
-            "one-year cliff: nothing vests before the first anniversary; twenty-five percent (25%) vests on the "
-            "first anniversary (the \"Cliff\"); and the remaining seventy-five percent (75%) vests in thirty-six "
-            "(36) equal monthly installments over months 13-48, so that 100% is time-vested on the fourth "
+            "one-year cliff, applied to the Earn-Up Portion: nothing in the Earn-Up Portion vests before the first "
+            "anniversary; twenty-five percent (25%) of the Earn-Up Portion vests on the first anniversary (the "
+            "\"Cliff\"); and the remaining seventy-five percent (75%) vests in thirty-six (36) equal monthly "
+            "installments over months 13-48, so that 100% of the Earn-Up Portion is time-vested on the fourth "
             "anniversary. \"Continuous Service\" means continuous service to the Company or the Acquired Agency "
             "as an employee, officer, or manager.")
     para(d, "   (b) Performance-vesting. The milestone tranches in Section 4.1 (Breakeven; 3 consecutive "
             "Profitable months; 12 consecutive Profitable months), determined under Sections 5.2-5.3 of the "
             "Original OA.")
-    para(d, "Both conditions must be met for an interest to vest; satisfying only one does not vest it. The "
-            "balance is \"Unvested.\" This Section 4.2 supersedes and replaces the Termination Without Cause "
+    para(d, "Both conditions must be met for any portion of the Earn-Up Portion to vest; satisfying only one does "
+            "not vest it. The unvested balance of the Earn-Up Portion is \"Unvested.\" The Initial Vested Base "
+            "under Section 4.1(a) is not Unvested and is not subject to the forfeiture under Section 4.4. A "
+            "Grantee's total Vested Interest at any time equals the Initial Vested Base (4.9%) plus the then-Vested "
+            "portion of the Earn-Up Portion. This Section 4.2 supersedes and replaces the Termination Without Cause "
             "pro-rata credit at Section 5.5 of the Original OA, which is deleted.")
     para(d, "4.3 Separation definitions. \"Separation\" means an Equity Grantee ceasing Continuous Service for "
             "any reason. The reason determines the buy-back price under Section 4.5:")
@@ -1409,15 +1433,15 @@ def oa_amendment():
     para(d, "")
     para(d, "MEMBER — EQUITY GRANTEE (RESTRICTED INTEREST):")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "Silas R. Shelton  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Silas R. Shelton  |  Interest after Amendment: 13.3% Restricted Interest (4.9% Vested base; 8.4% Earn-Up subject to Forfeiture Conditions)")
     para(d, "Address: 1503 Lake Park Circle, Hideaway, TX 75771")
     para(d, "")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "Dana L. Davenport  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Dana L. Davenport  |  Interest after Amendment: 13.3% Restricted Interest (4.9% Vested base; 8.4% Earn-Up subject to Forfeiture Conditions)")
     para(d, "Address: ____________________________________  [REQUIRED]")
     para(d, "")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "Bradley Gene Woodard  |  Interest after Amendment: 13.3% (subject to Forfeiture Conditions)")
+    para(d, "Bradley Gene Woodard  |  Interest after Amendment: 13.3% Restricted Interest (4.9% Vested base; 8.4% Earn-Up subject to Forfeiture Conditions)")
     para(d, "Address: 421 W Cumberland Rd, Apt 403, Tyler, TX 75703")
     para(d, "")
     footer_note(d)
@@ -1711,7 +1735,8 @@ def affiliate_memo():
             "[Confirm: list any business in which Mr. Bullard holds 50%+, or confirm none known.]")
     h2(d, "Operator-members - employment, not affiliation")
     para(d, "Silas R. Shelton, Dana L. Davenport, and Bradley G. Woodard hold 13.3% each (Restricted "
-            "Interests, milestone-vested) and serve in operating roles. None controls the borrower. Their "
+            "Interests; a 4.9% vested base earning up to a fully-vested 13.3% on a dual trigger) and serve in "
+            "operating roles. None controls the borrower. Their "
             "prior or current employers are relevant to non-compete / non-solicit and transition questions "
             "(addressed separately), not to affiliation. Mr. Woodard has confirmed he has no non-compete "
             "with his current employer.")
@@ -1920,9 +1945,9 @@ def business_plan():
     table(d, ["Member / source", "Interest", "Role & structure"],
           [["Adeline & Lilah, LLC (AZ)", "39.9%", "Managing Member - owned 50% Geoff Schackmann / 50% Mary Elizabeth Burcham; Geoff serves as Manager and provides the SBA personal guaranty"],
            ["James E. Bullard", "19.5%", "Passive minority investor - $195,000 cash capital contribution; protective minority rights only, no operational control; under 20%, no guaranty"],
-           ["Silas R. Shelton", "13.3%", "Executive Director - Restricted Interest, milestone-vested"],
-           ["Dana L. Davenport", "13.3%", "Director of Nursing - Restricted Interest, milestone-vested"],
-           ["Bradley G. Woodard", "13.3%", "Director of Sales - Restricted Interest, milestone-vested"],
+           ["Silas R. Shelton", "13.3%", "Executive Director - Restricted Interest (4.9% vested base, earn-up to 13.3%)"],
+           ["Dana L. Davenport", "13.3%", "Director of Nursing - Restricted Interest (4.9% vested base, earn-up to 13.3%)"],
+           ["Bradley G. Woodard", "13.3%", "Director of Sales - Restricted Interest (4.9% vested base, earn-up to 13.3%)"],
            ["Unissued pool", "0.7%", "Reserved for future grants"]],
           widths=[2.2, 0.9, 3.4])
     h2(d, "Sources of capital & SBA guaranty")
@@ -2182,10 +2207,12 @@ def business_plan():
               "Bank account signatures: Managing Member (sole signer)"]:
         para(d, "  - " + x)
     h2(d, "8.3 Equity vesting (operator-members)")
-    para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement that "
-            "vests only on a dual trigger: a four-year time-vesting schedule with a one-year cliff AND the "
-            "performance milestones (25% at Breakeven, 50% at three consecutive Profitable months, 25% at twelve "
-            "consecutive Profitable months), with the lesser of the two schedules governing. Each grantee files a "
+    para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement. It "
+            "comprises a 4.9% Initial Vested Base (vested at inception, reflecting the operator's original interest) "
+            "and an 8.4% Earn-Up Portion that vests only on a dual trigger: a four-year time-vesting schedule with a "
+            "one-year cliff AND the performance milestones (25% at Breakeven, 50% at three consecutive Profitable "
+            "months, 25% at twelve consecutive Profitable months), with the lesser of the two schedules governing - "
+            "so each operator starts at 4.9% vested and earns up to a fully-vested 13.3%. Each grantee files a "
             "timely IRC Section 83(b) election. On departure, unvested interests are forfeited at $0; the Company "
             "holds a repurchase (call) right over vested interests - at fair market value for a good-leaver "
             "separation (termination without cause, death, disability, or retirement) and at the lower of cost or "
@@ -2441,7 +2468,7 @@ def submission_readiness():
     table(d, ["#", "Blocker", "Owner", "Status"],
           [["B1", "Seller payment / structure: RESOLVED - the $300K seller price is paid in full at close from SBA proceeds + equity (no retained note). The MIPA's 12 x $25K installment schedule should be settled at closing (prepay/payoff at close); confirm with sellers via Greiner. With no seller note, Year-1 DSCR is ~3.23x.", "Geoff + sellers (Greiner)", "RESOLVED in structure; confirm payoff mechanics"],
            ["B2", "Borrower entity mismatch: MIPA buyer is 'Tyler Hospice Hold, LLC (Texas)'; SBA/OA is 'Tyler Hospice HoldCo L.L.C. (Wyoming), EIN 41-4966640'. Make one entity/name/state consistent everywhere.", "Geoff", "OPEN"],
-           ["B3", "Execute OA Amendment No. 1 (cap table 39.9/19.5/13.3x3, partnership tax, Hickory target, SBA carve-outs). Current OA still shows 60/25/4.9 + S-Corp + 'Healing Hands'.", "All members", "DRAFTED - needs signatures"]],
+           ["B3", "Execute OA Amendment No. 1 (cap table 39.9/19.5/13.3x3 with operators at a 4.9% vested base earning up to 13.3%, partnership tax, Hickory target, SBA carve-outs). Current OA still shows 60/25/4.9 + S-Corp + 'Healing Hands'.", "All members", "DRAFTED - needs signatures"]],
           widths=[0.4, 4.3, 1.5, 0.9])
     h2(d, "Geoff's personal package (sole 20%+ guarantor)")
     for x in ["SBA Form 413 (Personal Financial Statement) - include the VistaRiver note as an asset",
