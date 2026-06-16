@@ -1170,7 +1170,16 @@ def interview_worksheet():
 def oa_amendment():
     d = new_doc("OA Amendment No. 1")
     h1(d, "Amendment No. 1 to Operating Agreement")
-    para(d, "TYLER HOSPICE HOLDCO L.L.C. - A Wyoming Limited Liability Company", color=GREY, size=9)
+    para(d, "TYLER HOSPICE HOLD, LLC - A Texas Limited Liability Company", color=GREY, size=9)
+    para(d, "")
+    para(d, "DRAFTING NOTE: Per member direction, the agreed changes recorded in this Amendment are to be "
+            "incorporated into a single Amended and Restated Operating Agreement of Tyler Hospice Hold, LLC, a "
+            "Texas limited liability company. Confirm before restatement: (i) the Texas certificate-of-formation "
+            "date and SOS file number, and (ii) that EIN 41-4966640 is the Texas entity's EIN. All prior references "
+            "to a Wyoming limited liability company, the Wyoming LLC Act, Wyoming registered office/agent, and "
+            "Wyoming governing law are to be conformed to the Texas Business Organizations Code and Texas law in "
+            "the restatement (and across the SBA package).",
+         italic=True, size=9, color=GREY)
     para(d, "")
     para(d, "DRAFT - For review and execution. Prepared for the SBA 7(a) loan application. The Members and "
             "Manager are not represented by counsel as to this Amendment; each is advised to obtain independent "
@@ -1216,6 +1225,11 @@ def oa_amendment():
             "cliff) and an 8.4% Earn-Up Portion subject to dual-trigger vesting, all under the Forfeiture Conditions "
             "of Article V of the Original OA as modified by Section 4 of this Amendment; no portion is Vested at the "
             "Effective Date and each Equity Grantee may earn up to a fully-Vested 13.3%.", italic=True, size=9)
+    para(d, "The definition of \"Unissued Pool\" in Section 2.19 of the Original OA is conformed to mean the "
+            "seven-tenths of one percent (0.7%) reserved as shown in the restated Exhibit A above, plus any "
+            "Percentage Interests subsequently forfeited and reverted to it, available for future grants at the "
+            "Manager's discretion. All references in the Original OA to the Unissued Pool as \"0.3%\" are amended "
+            "accordingly.", italic=True, size=9)
     para(d, "")
     h2(d, "2. Tax treatment (replaces Section 11.2 of the Original OA)")
     para(d, "Section 11.2 of the Original OA is hereby deleted and replaced in its entirety with the following:")
@@ -1230,7 +1244,7 @@ def oa_amendment():
             "references in this Agreement to S-Corporation status, IRC §1361, IRC §1362, Form 2553, "
             "\"S-Corp Eligible Person,\" \"S-Corp Eligibility Certification,\" or similar S-Corporation "
             "concepts (including the definition at Section 2.23 and references in Sections 4.5, 8.5, 8.11, "
-            "9.1(d), 9.1(e), 11.4(b), 12.4, and 12.5) shall be of no further force or effect. References to "
+            "9.1(e), 11.4(b), 12.4, and 12.5) shall be of no further force or effect. References to "
             "members of any Member entity being \"S-Corp Eligible Persons\" or having to certify eligibility "
             "under §12.4 are deleted. The eligibility certifications in Article XII shall be limited to "
             "(i) accredited-investor status under Regulation D, and (ii) representations and warranties "
@@ -1281,7 +1295,10 @@ def oa_amendment():
             "three-tenths percent (13.3%) becomes vested and non-forfeitable (\"Vested\") only as set out below; any "
             "portion not yet Vested is \"Unvested\" and remains subject to forfeiture under Section 4.4. "
             "\"Continuous Service\" means continuous service to the Company or the Acquired Agency as an employee, "
-            "officer, or manager.")
+            "officer, or manager. All vesting under this Section 4 is measured from the \"Vesting Commencement "
+            "Date,\" which is the Effective Date of this Amendment; Continuous Service rendered before the Effective "
+            "Date is not credited toward vesting, and each \"anniversary\" referenced below means an anniversary of "
+            "the Vesting Commencement Date.")
     para(d, "   (a) Initial Base - time-vesting only. The Initial Base (Section 4.1(a)) vests on Continuous Service "
             "alone on a four-year schedule with a one-year cliff: nothing vests before the first anniversary; "
             "twenty-five percent (25%) of the Initial Base vests on the first anniversary (the \"Cliff\"); and the "
@@ -1392,10 +1409,21 @@ def oa_amendment():
             "full of the SBA Loan and any successor or refinancing loan that includes SBA guarantee, this "
             "deferral shall lapse and Section 8.10 shall again be operative without restriction.\"")
     para(d, "")
-    h2(d, "6. Reserved Matters arithmetic (clarification to Section 2.20 of the Original OA)")
-    para(d, "For the avoidance of doubt and reflecting the restated cap table in Section 1 of this Amendment, "
+    h2(d, "6. Reserved Matters and voting - conforming amendments (amends Sections 2.20 and 6.2 of the Original OA)")
+    para(d, "6.1 Superseded examples and parentheticals. The illustrative examples and parentheticals in the "
+            "Original OA that assume the pre-Amendment capitalization are superseded by the restated Exhibit A in "
+            "Section 1 of this Amendment and are of no further force or effect, including (i) the example in "
+            "Section 2.20 stating that Adeline & Lilah, LLC holds 60.0% and controls 60 of 100 votes; (ii) the "
+            "parenthetical in Section 6.2 stating that Adeline & Lilah, LLC holds exactly 60.0% and therefore "
+            "controls all Reserved Matters votes and that Bullard's consent is not required; and (iii) the dilution "
+            "examples in Sections 3.10 and 3.14 that assume Bullard holds 25.0%. The sixty percent (60%) "
+            "Reserved-Matters threshold in Section 6.2 continues in effect and is measured against the restated "
+            "Percentage Interests (with the Unissued Pool excluded from the denominator under Section 2.20); the "
+            "parties acknowledge that no single Member holds sixty percent (60%) after this Amendment.")
+    para(d, "6.2 Reserved Matters arithmetic. For the avoidance of doubt and reflecting the restated cap table, "
             "the parties acknowledge that:")
-    for x in ["The Unissued Pool (0.7%) is excluded from the denominator for voting purposes under Section 2.20.",
+    for x in ["Unvested Restricted Interests carry full voting rights and are included in the denominator for all votes and consents (subject only to the post-Separation non-voting rule in Section 4.8); accordingly each Equity Grantee votes its full 13.3% even while a portion remains Unvested.",
+              "The Unissued Pool (0.7%) is excluded from the denominator for voting purposes under Section 2.20.",
               "Adeline & Lilah, LLC alone holds 39.9% and cannot unilaterally pass a 60% Reserved Matter.",
               "Adeline & Lilah, LLC may pass a Reserved Matter by combining its 39.9% with the votes of any two (2) Equity Grantees (totaling 66.5%), or with Bullard's 19.5% plus the vote of at least one (1) Equity Grantee (totaling 72.7%).",
               "Bullard does not hold a unilateral veto on Reserved Matters; a Reserved Matter may be passed without his vote if Adeline & Lilah, LLC and at least two (2) Equity Grantees concur."]:
@@ -1415,9 +1443,13 @@ def oa_amendment():
             "the Original OA (and which, after giving effect to this Amendment, holds 39.9% of Percentage "
             "Interests), and James E. Bullard, as the Member whose rights under Sections 4.2, 4.5, 3.15, 6.7, "
             "6.8, 6.9, and Article VIII are subject to consent rights under Section 11.4(a), each consent to "
-            "the amendments set forth herein. The Members ratify and confirm the Original OA as modified by "
-            "this Amendment. All provisions of the Original OA not specifically modified by this Amendment "
-            "remain in full force and effect.")
+            "the amendments set forth herein. Because this Amendment affects S-Corporation status and tax matters, "
+            "it is also approved by the written consent of all Members under Section 11.4(b) of the Original OA, "
+            "evidenced by the signatures of all Members below; and because it reduces the Percentage Interest of "
+            "Adeline & Lilah, LLC (from 60.0% to 39.9%) and of James E. Bullard (from 25.0% to 19.5%), each such "
+            "Member gives its express written consent to that reduction under Section 11.4(c). The Members ratify "
+            "and confirm the Original OA as modified by this Amendment. All provisions of the Original OA not "
+            "specifically modified by this Amendment remain in full force and effect.")
     para(d, "")
     h2(d, "9. Counterparts; electronic signatures")
     para(d, "This Amendment may be executed in counterparts and by electronic signature (including DocuSign "
