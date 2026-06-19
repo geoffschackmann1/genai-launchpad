@@ -96,14 +96,14 @@ def company_profile():
     field(d, "Web Address", TBD)
     field(d, "Address", "13387 Hwy 69 N, Tyler, TX (principal office)")
     field(d, "City / County / State / Zip", "Tyler / Smith / TX / " + TBD + " (zip)")
-    field(d, "Contact / Phone / Fax", "Geoff Schackmann, Managing Member - 480-495-5474 - geoff@azaleahospice.com")
+    field(d, "Contact / Phone / Fax", "Geoff Schackmann, Manager - 480-495-5474 - geoff@azaleahospice.com")
     field(d, "Number of employees at application", "9 (Year-1 staggered roster)")
     field(d, "Number of employees when loan approved", "Scales to ~25+ FT by Year 3 on census triggers")
     para(d, "")
     h2(d, "Company Ownership (100% must be shown)")
     table(d,
           ["#", "Name and Address", "SSN / EIN", "Ownership %", "Company Title", "Email"],
-          [["1", "Adeline & Lilah, LLC (AZ) - members: Geoff Schackmann 50%, Mary Elizabeth Burcham 50%; Geoff serves as Managing Member - 4602 E Cheery Lynn Rd, Phoenix, AZ 85018", TBD, "39.9%", "Managing Member of Tyler Hospice Hold, LLC", "geoff@azaleahospice.com"],
+          [["1", "Geoff Schackmann (individual) - 4602 E Cheery Lynn Rd, Phoenix, AZ 85018", TBD, "39.9%", "Manager of Tyler Hospice Hold, LLC", "geoff@azaleahospice.com"],
            ["2", "James E. Bullard - 13910 Indiana Ave, Suite 300, Lubbock, TX 79423", TBD, "19.5%*", "Minority investor member (passive; no management or control role)", "jimbullard01@aol.com"],
            ["3", "Silas R. Shelton - 1503 Lake Park Circle, Hideaway, TX 75771", TBD, "13.3%**", "Executive Director", "silas@azaleahospice.com"],
            ["4", "Dana L. Davenport", TBD, "13.3%**", "Director of Nursing", TBD],
@@ -111,7 +111,7 @@ def company_profile():
           widths=[0.3, 2.4, 1.0, 0.8, 1.4, 1.2])
     para(d, "*James Bullard holds a direct, fully funded minority equity interest of 19.5% - below the 20% "
             "threshold - as a passive investor. He has no management authority, no voting control, and no side "
-            "agreement granting him control of the business; the Managing Member (Adeline & Lilah, LLC) retains "
+            "agreement granting him control of the business; the Manager (Geoff Schackmann) retains "
             "control. Consistent with SOP 50 10 8 and 13 CFR 120.160, an equity holder of less than 20% in a "
             "complete change of ownership is not required to provide a personal guaranty or Personal Financial "
             "Statement. Mr. Bullard's $195,000 cash capital contribution is the source of the equity injection "
@@ -126,16 +126,17 @@ def company_profile():
             "repurchase (call) right at fair market value for a good-leaver separation (no-cause termination, "
             "death, disability, retirement) or the lower of cost or fair market value for a bad-leaver "
             "separation (resignation before full vesting, or termination for cause).", italic=True, size=9)
-    para(d, "Indirect chain: Geoff Schackmann holds 50% of Adeline & Lilah, LLC and serves as its sole Managing "
-            "Member; he therefore controls the 39.9% A&L block in Tyler Hospice Hold, LLC and is the sole 20%+ "
-            "owner of record for SBA personal-guaranty purposes. Mary Elizabeth Burcham (Geoff's spouse) holds "
-            "the other 50% of Adeline & Lilah, LLC as a passive member (no management role), giving her an "
-            "indirect economic interest of 19.95% in Tyler Hospice Hold, LLC. As Geoff's spouse, she will sign "
-            "the customary spouse acknowledgement / consent on the personal guaranty at close. "
+    para(d, "Ownership: Geoff Schackmann owns the 39.9% interest in Tyler Hospice Hold, LLC directly, as an "
+            "individual, and serves as Manager; he is the sole 20%+ owner of record and the sole personal "
+            "guarantor for SBA purposes. The 39.9% interest is community property under Arizona law; Mary "
+            "Elizabeth Burcham (Geoff's spouse) accordingly holds a community-property interest of approximately "
+            "19.95% in Tyler Hospice Hold, LLC. She is passive and non-managing, her community-property interest "
+            "is under 20%, and as the owner's spouse she will sign a spousal / community-property consent on the "
+            "Operating Agreement and on Geoff's personal guaranty at close (not a co-guaranty). "
             "Unissued/reserved pool: 0.7%.", italic=True, size=9)
     para(d, "")
     field(d, "Name to be used on business checking account", "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)")
-    field(d, "Designated signers on checking account", "Geoff Schackmann (Managing Member, sole signer)")
+    field(d, "Designated signers on checking account", "Geoff Schackmann (Manager, sole signer)")
     para(d, "")
     h2(d, "Professional Advisors")
     field(d, "CPA Name / Firm / Phone", TBD)
@@ -144,8 +145,7 @@ def company_profile():
     para(d, "")
     h2(d, "Affiliated Companies")
     table(d, ["Affiliate", "Relationship", "# Employees"],
-          [["Hickory Hospice LLC (TX)", "Wholly owned operating subsidiary (the acquired agency)", "Operating staff"],
-           ["Adeline & Lilah, LLC (AZ)", "Holding entity for Managing Member's interest", "0"]],
+          [["Hickory Hospice LLC (TX)", "Wholly owned operating subsidiary (the acquired agency)", "Operating staff"]],
           widths=[2.2, 3.6, 1.0])
     footer_note(d)
     save(d, "01_company_profile/Company_Profile_DRAFT.docx")
@@ -240,7 +240,7 @@ def debt_schedule():
             "amortizes over 3 years, after which only the SBA loan remains.", italic=True)
     para(d, "")
     table(d, ["Lender", "Orig. date", "Purpose", "Orig. amount", "Current balance", "Rate", "Payment", "Collateral"],
-          [["SBA 7(a) loan (subject loan)", "At close", "Startup + working capital", "$450,000", "$450,000", "~10.5%", "$4,974/mo", "Blanket lien; corporate guaranty of Hickory; PG of Geoff Schackmann; entity guaranty of Adeline & Lilah, LLC"],
+          [["SBA 7(a) loan (subject loan)", "At close", "Startup + working capital", "$450,000", "$450,000", "~10.5%", "$4,974/mo", "Blanket lien; corporate guaranty of Hickory; PG of Geoff Schackmann (sole 39.9% owner)"],
            ["Acquisition term loan - [bank]", "At close", "Hickory purchase (100% membership interests)", "$300,000", "$300,000", "6%", "$9,127/mo (36 mo)", "Subordinate to SBA; guaranteed by J. Bullard"]],
           widths=[1.5, 0.7, 1.4, 0.8, 0.8, 0.5, 0.9, 1.6])
     para(d, "Combined debt service in Years 1-3 is ~$169,211/yr ($14,101/mo): SBA $59,692/yr ($4,974/mo) + bank "
@@ -260,10 +260,10 @@ def debt_schedule():
 # ================================================================ 6/8. MANAGEMENT RESUMES
 RESUMES = {
  "Geoff_Schackmann": dict(
-   name="Geoff Schackmann", title="Managing Member (39.9% via Adeline & Lilah, LLC)",
+   name="Geoff Schackmann", title="Manager (39.9% direct individual owner)",
    summary="Multi-hospice operator and transaction-led growth leader with operational responsibility for "
-           "Medicare-certified hospice and palliative-care agencies across multiple states. Sole member of "
-           "Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler Hospice Hold, LLC is held. "
+           "Medicare-certified hospice and palliative-care agencies across multiple states. Direct individual "
+           "owner of a 39.9% interest in Tyler Hospice Hold, LLC and its Manager. "
            "Leads transaction structuring, financing, capital allocation, and post-close integration.",
    experience=[
      ("Multi-state hospice operations", "Present", "Owner / Operator",
@@ -433,12 +433,13 @@ def information_needed():
               "Insurance agent name / firm / phone",
               "Confirm business checking account name and signers"]:
         para(d, "  - " + x)
-    h2(d, "B. For Geoff Schackmann (sole 20%+ controlling owner via Adeline & Lilah, LLC at 39.9%)")
-    para(d, "Note: Geoff controls A&L's 39.9% block as its sole Manager and is the sole 20%+ owner for SBA "
-            "guaranty purposes. James Bullard (19.5% direct) and Mary Elizabeth Burcham (19.95% indirect via "
-            "her 50% of A&L) are each under 20% with no management role, so neither needs PFS, Form 912, or "
-            "tax returns. Bullard's source of funds is verified separately (Section B2); Mary Elizabeth signs a "
-            "spouse acknowledgement at close (Section B3).", italic=True, size=9)
+    h2(d, "B. For Geoff Schackmann (sole 20%+ owner - direct individual 39.9% interest)")
+    para(d, "Note: Geoff owns the 39.9% interest directly as an individual and is the Manager and the sole 20%+ "
+            "owner for SBA guaranty purposes. James Bullard (19.5% direct) and Mary Elizabeth Burcham (~19.95% "
+            "Arizona community-property interest as Geoff's spouse) are each under 20% with no management role, so "
+            "neither needs PFS, Form 912, or tax returns. Bullard's source of funds is verified separately "
+            "(Section B2); Mary Elizabeth signs a spousal / community-property consent at close (Section B3).",
+         italic=True, size=9)
     for x in ["SSN, date of birth, place of birth, home address (and prior address with dates)",
               "Personal Financial Statement (SBA Form 413) - assets, liabilities, income",
               "Personal cash flow statement (template 7a)",
@@ -463,12 +464,13 @@ def information_needed():
         para(d, "  - " + x)
     para(d, "Timing: SBA closing/disbursement will occur AFTER the July 2026 tranche so the full $195,000 is on "
             "deposit at disbursement (per SOP 50 10 8). No holdback or acceleration needed.", italic=True, size=9)
-    h2(d, "B3. Spouse acknowledgement (Mary Elizabeth Burcham)")
-    para(d, "Mary Elizabeth Burcham is Geoff's spouse and holds 50% of Adeline & Lilah, LLC (giving her a 19.95% "
-            "indirect interest in Tyler Hospice Hold, LLC - under 20%, no management role). As the guarantor's "
-            "spouse she signs a customary spouse acknowledgement / consent, not a co-guaranty.", italic=True, size=9)
+    h2(d, "B3. Spousal / community-property consent (Mary Elizabeth Burcham)")
+    para(d, "Mary Elizabeth Burcham is Geoff's spouse. Geoff's 39.9% interest is community property under Arizona "
+            "law, giving her a community-property interest of approximately 19.95% in Tyler Hospice Hold, LLC - "
+            "under 20%, passive, no management role. As the owner's spouse she signs a spousal / community-property "
+            "consent on the Operating Agreement and on Geoff's personal guaranty, not a co-guaranty.", italic=True, size=9)
     for x in ["Mary Elizabeth Burcham's full legal name (with middle name/initial), date of birth, address",
-              "Her signature on the Spouse Acknowledgement / Consent (lender provides form at close)",
+              "Her signature on the spousal / community-property consent (lender provides form at close)",
               "If the lender requires it (varies by lender, not by SBA): a brief PFS for the marital household. Confirm with John Hart whether his bank requires this for the spouse of the sole guarantor."]:
         para(d, "  - " + x)
     h2(d, "C. Transaction documents")
@@ -580,17 +582,16 @@ def equity_injection_memo():
             "an investor taking less than 20% to dodge a guaranty while using a side agreement to control the "
             "business. Mr. Bullard is a passive investor: he holds no management authority, no voting control, and "
             "no side agreement, option, or convertible instrument that would give him control or push his interest "
-            "to 20% or more. Control of the business rests entirely with the Managing Member, Adeline & Lilah, LLC "
-            "(Geoff Schackmann, 39.9%), who provides the unconditional personal guaranty as the sole 20%+ owner.")
+            "to 20% or more. Control of the business rests entirely with the Manager, Geoff Schackmann "
+            "(direct individual 39.9% owner), who provides the unconditional personal guaranty as the sole 20%+ owner.")
     h2(d, "4. Guaranty and disclosure summary")
-    para(d, "SBA 7(a) loan guarantors: Geoff Schackmann (personal guaranty, controlling Manager); Adeline & "
-            "Lilah, LLC (entity guaranty, 39.9% owner of the borrower); and Hickory Hospice LLC (corporate "
+    para(d, "SBA 7(a) loan guarantors: Geoff Schackmann (personal guaranty, controlling Manager and sole 39.9% "
+            "owner); and Hickory Hospice LLC (corporate "
             "guaranty plus a lien on its assets and receivables, as the operating subsidiary). Bullard does NOT "
             "guarantee the SBA loan; he guarantees only the separate bank acquisition loan.", italic=True, size=9.5)
     table(d, ["Owner / interest holder", "Interest", "20%+?", "Guaranty / PFS / Form 912"],
-          [["Adeline & Lilah, LLC (entity holding 39.9%)", "39.9% direct", "Yes", "Entity guaranty of the SBA loan"],
-           ["  - Geoff Schackmann (50% of A&L; sole Manager)", "19.95% indirect; controls A&L block", "Yes (by control)", "Personal guaranty of the SBA loan - sole 20%+ controlling owner"],
-           ["  - Mary Elizabeth Burcham (50% of A&L; passive)", "19.95% indirect", "No (under 20%; no control)", "Not required; signs spouse acknowledgement/consent at close"],
+          [["Geoff Schackmann (direct individual owner; Manager)", "39.9% direct", "Yes", "Personal guaranty of the SBA loan - sole 20%+ owner"],
+           ["  - Mary Elizabeth Burcham (spouse; AZ community property)", "~19.95% community-property interest", "No (under 20%; passive, no control)", "Not required; signs spousal/community-property consent at close"],
            ["Hickory Hospice LLC (operating subsidiary)", "100% owned by borrower", "n/a", "Corporate guaranty + lien on assets / receivables"],
            ["James Bullard (passive investor, direct)", "19.5%", "No", "No SBA guaranty (guarantees only the bank acquisition loan); source-of-funds verification only"],
            ["Silas R. Shelton", "13.3% (fully forfeitable; 4-yr vest, 1-yr cliff)", "No", "Not required"],
@@ -599,9 +600,9 @@ def equity_injection_memo():
           widths=[2.8, 1.6, 0.8, 2.0])
     para(d, "All equity owners are disclosed regardless of percentage, and all are U.S. citizens or lawful "
             "permanent residents (to be verified by the lender per SOP 50 10 8). The controlling owner (Geoff "
-            "Schackmann, via Adeline & Lilah, LLC) provides the personal guaranty. His spouse, Mary Elizabeth "
-            "Burcham, signs a spouse acknowledgement/consent rather than a co-guaranty, as her independent "
-            "indirect interest is under 20% and she holds no management role.", italic=True, size=9)
+            "Schackmann, direct individual 39.9% owner) provides the personal guaranty. His spouse, Mary Elizabeth "
+            "Burcham, signs a spousal / community-property consent rather than a co-guaranty, as her "
+            "community-property interest is under 20% and she holds no management role.", italic=True, size=9)
     footer_note(d)
     save(d, "02_use_of_funds/Equity_Injection_and_SBA_Structure_MEMO.docx")
 
@@ -623,14 +624,14 @@ def lender_credit_memo():
            ["Total project cost", "$945,000 (SBA $450K + bank $300K + equity $195K)"],
            ["Use of proceeds", "Hickory acquisition ($300K, bank loan) + working-capital reserve ($567K) + startup ($63K) + equipment ($15K)"],
            ["Borrower equity injection", "$195,000 cash (20.6% of project; $180K SBA equity injection + $15K working capital) - above the 10% SOP 50 10 8 floor"],
-           ["SBA loan guarantors", "Geoff Schackmann (PG); Adeline & Lilah, LLC (39.9% entity guaranty); Hickory Hospice LLC (corporate guaranty + lien)"],
+           ["SBA loan guarantors", "Geoff Schackmann (PG; sole 39.9% direct owner); Hickory Hospice LLC (corporate guaranty + lien)"],
            ["DSCR (combined SBA + bank debt)", "Y1 1.79x | Y2 4.02x | Y3 5.95x | Global 3.92x (floor 1.25x)"]],
           widths=[1.9, 4.6])
     h2(d, "Why this credit is strong")
     para(d, "1. Established, billing-ready agency. The transaction is the purchase of an operating Medicare-"
             "certified hospice with a transferring provider number, state license, and CHAP/ACHC accreditation - "
             "no payor-enrollment ramp risk and no startup CHAP/ACHC cycle. The agency is billing-capable on day one.")
-    para(d, "2. Experienced multi-hospice operator. The Managing Member has operated Medicare-certified hospice "
+    para(d, "2. Experienced multi-hospice operator. The Manager has operated Medicare-certified hospice "
             "agencies across multiple states with documented census growth from sub-30 to 100+ ADC under existing "
             "provider numbers, plus prior CHOW transactions with successful post-close enrollment and integration.")
     para(d, "3. Validated East-Texas BD pipeline. The Director of Sales sustained a 40+ ADC referral book in the "
@@ -661,7 +662,7 @@ def lender_credit_memo():
            ["Medicare CoP / survey risk",
             "Existing CHAP/ACHC accreditation transfers; DON-led IDG; QAPI program; experienced clinical leadership"],
            ["Key-person dependency",
-            "Four-person leadership team (Managing Member, ED, DON, BD Director); 25+ year East-Texas BD relationships are institutional"],
+            "Four-person leadership team (Manager, ED, DON, BD Director); 25+ year East-Texas BD relationships are institutional"],
            ["Equity injection phased (not all in at signing)",
             "Tranche 1 in account; balance committed; lender can sequence SBA disbursement after the full injection is on deposit"]],
           widths=[2.0, 4.5])
@@ -671,7 +672,7 @@ def lender_credit_memo():
               "Executed Hickory CHOW purchase agreement (MIPA), amended so the Buyer is 'Tyler Hospice Hold, LLC, a Wyoming limited liability company'",
               "Bank acquisition-loan documents + intercreditor / subordination agreement subordinating the bank loan to the SBA 7(a) loan (SBA-lender approval of the piggyback financing); Bullard's PG of the bank loan",
               "Wire confirmation of the $300K Hickory acquisition (funded by the bank acquisition loan)",
-              "Corporate guaranty of Hickory Hospice LLC + lien on its assets/receivables; entity guaranty of Adeline & Lilah, LLC",
+              "Corporate guaranty of Hickory Hospice LLC + lien on its assets/receivables; personal guaranty of Geoff Schackmann (sole 39.9% owner) + spousal/community-property consent of Mary Elizabeth Burcham",
               "Office lease / LOI with term matching the SBA loan term and reasonable options",
               "Geoff Schackmann personal package: PFS (413), cash flow (7a), history form (912), 3 yrs tax returns, credit, license",
               "Business Plan / sources-and-uses reflecting the dual-debt (SBA + subordinate bank loan) structure (Rev 5.00)"]:
@@ -764,8 +765,8 @@ def bullard_attestation():
     h2(d, "2. No management role")
     para(d, "I hold no officer, director, manager, or employee position with the Company. I do not participate "
             "in the day-to-day management or operation of the Company or any of its subsidiaries, including "
-            "Hickory Hospice LLC. The Managing Member is Adeline & Lilah, LLC (Geoff Schackmann, sole member), "
-            "who has sole authority over management, hiring, financial decisions, and Company operations.")
+            "Hickory Hospice LLC. The Manager is Geoff Schackmann (individually), the Company's sole 39.9% "
+            "owner, who has sole authority over management, hiring, financial decisions, and Company operations.")
     h2(d, "3. No voting control or governance rights beyond ordinary minority interest")
     para(d, "My equity interest entitles me only to economic returns and customary minority-member rights under "
             "the Company's Operating Agreement and applicable state law. I have no veto, no class of preferred "
@@ -775,7 +776,7 @@ def bullard_attestation():
     h2(d, "4. No side agreement, option, or convertible instrument")
     para(d, "There is no written or oral side agreement, voting agreement, proxy, option, warrant, convertible "
             "note, profits-interest plan, earnout, employment arrangement, or other instrument between me and "
-            "the Company, the Managing Member, or any other equity holder that would (i) increase my equity "
+            "the Company, the Manager, or any other equity holder that would (i) increase my equity "
             "interest to 20% or more, (ii) give me voting or management control of the Company, or (iii) entitle "
             "me to direct or restrict the Company's operations, financing, or strategic decisions.")
     h2(d, "5. Independent affiliation")
@@ -822,7 +823,7 @@ def submission_cover_sheet():
     field(d, "Loan request", "$450,000 SBA 7(a) + $300,000 subordinate bank acquisition loan | Total project: $945,000")
     field(d, "Borrower", "Tyler Hospice Hold, LLC (WY) - EIN 41-4966640")
     field(d, "Operating subsidiary", "Hickory Hospice LLC (TX) - the acquired Medicare-certified hospice")
-    field(d, "Primary guarantor", "Geoff Schackmann via Adeline & Lilah, LLC (39.9%, sole 20%+ owner)")
+    field(d, "Primary guarantor", "Geoff Schackmann (direct individual 39.9% owner, sole 20%+ owner)")
     field(d, "Lender contact", "John Hart")
     para(d, "")
     h2(d, "How this package is organized")
@@ -925,15 +926,14 @@ def closing_checklist():
               "Updated Operating Agreement reflecting current cap table - executed"]:
         para(d, "  - " + x)
     h2(d, "F. Guarantors (SBA 7(a) loan)")
-    for x in ["Personal guaranty of Geoff Schackmann (SBA Form 148 or lender form) - signed",
-              "Entity guaranty of Adeline & Lilah, LLC (39.9% owner of the borrower) - signed",
+    for x in ["Personal guaranty of Geoff Schackmann (sole 39.9% direct owner) (SBA Form 148 or lender form) - signed",
               "Corporate guaranty of Hickory Hospice LLC (operating subsidiary) + lien on its assets/receivables - signed",
               "SBA Form 413 (Personal Financial Statement) - signed, dated within 90 days",
               "SBA Form 912 (Personal History) - signed; CAIVRS / SAM cleared",
               "Three years personal tax returns + most recent year's W-2s and 1099s",
               "Credit report (lender pulls; have driver license ready)",
               "Life insurance on guarantor, collaterally assigned to lender (if required for loan size)",
-              "Spouse acknowledgement / consent - Mary Elizabeth Burcham, signed and dated"]:
+              "Spousal / community-property consent - Mary Elizabeth Burcham, signed and dated"]:
         para(d, "  - " + x)
     h2(d, "G. Insurance (at close)")
     for x in ["Business / general liability - certificate naming SBA lender",
@@ -1112,18 +1112,19 @@ def interview_worksheet():
     field(d, "2.13 Governing law for the Capital Contribution Agreement",
           "Default: Wyoming (entity's state of formation) - confirm")
 
-    # --- ADELINE & LILAH / GEOFF ------------------------------------------
-    h2(d, "3. Adeline & Lilah, LLC and Geoff (for OA, Cap Contribution recitals)")
-    field(d, "3.1 Adeline & Lilah, LLC's principal office address",
-          "Default: 2942 N 24th St STE 115 PMB, Phoenix, AZ 85016 (from VistaRiver note) - confirm")
-    field(d, "3.2 Adeline & Lilah, LLC's state of formation", "Default: Arizona - confirm")
+    # --- GEOFF (DIRECT OWNER) ---------------------------------------------
+    h2(d, "3. Geoff Schackmann - direct individual owner (for OA, Cap Contribution recitals)")
+    field(d, "3.1 Geoff's home / mailing address for the OA and SBA file",
+          "Default: 4602 E Cheery Lynn Rd, Phoenix, AZ 85018 - confirm")
+    field(d, "3.2 Geoff's state of residence / domicile", "Default: Arizona (community-property state) - confirm")
     field(d, "3.3 Geoff's home address", TBD)
     field(d, "3.4 Geoff's email and phone for SBA file", TBD)
-    field(d, "3.5 Spouse's name (if any) and whether she is a member of Adeline & Lilah, LLC",
-          "From the VistaRiver MIPA Adeline & Lilah, LLC appears to have two owners: Geoff (50%) and Mary Elizabeth "
-          "Burcham (50%). Confirm relationship and whether Mary Elizabeth signs guarantor docs / spouse "
-          "acknowledgement.")
-    field(d, "3.6 Is anyone else a member or signatory of Adeline & Lilah, LLC?", TBD)
+    field(d, "3.5 Spouse's name and community-property treatment",
+          "Geoff's 39.9% interest is held directly by Geoff as an individual and is community property under "
+          "Arizona law. Spouse: Mary Elizabeth Burcham (~19.95% community-property interest, passive, under 20%). "
+          "Confirm she signs the spousal / community-property consent (not a co-guaranty).")
+    field(d, "3.6 Anyone other than Geoff holding or signing for his 39.9% interest?",
+          "Default: none - Geoff holds the 39.9% directly as an individual. Confirm.")
 
     # --- TYLER HOSPICE HOLD LLC / OPERATING AGREEMENT ----------------------
     h2(d, "4. Tyler Hospice Hold, LLC - Operating Agreement")
@@ -1131,12 +1132,14 @@ def interview_worksheet():
           "If YES, share it (we'll amend). If NO, we'll draft a fresh one. Default assumption: NO.")
     field(d, "4.2 Tyler Hospice Hold, LLC registered office (Wyoming filing address)", TBD + "  (typically a WY registered agent)")
     field(d, "4.3 Tax election",
-          "Default: LLC taxed as partnership (default federal treatment for multi-member LLCs). "
-          "Alternative: elect S-corporation (Form 2553) - usually only beneficial above ~$150K of distributable profit "
-          "per owner-employee. Confirm or specify.")
+          "DECIDED: the Company elects S-corporation tax treatment under IRC Section 1361 (IRS Form 2553); it is "
+          "NOT taxed as a partnership. Files Form 1120-S; maintains a single class of stock with pro-rata "
+          "distributions. Hickory Hospice LLC is a disregarded entity (or QSub) of the S-corp. CPA item: Form 2553 "
+          "is not yet filed - with a 3/18/2026 formation the on-time election window was ~6/1/2026, so the CPA may "
+          "need Rev. Proc. 2013-30 late-election relief. Confirm CPA is handling.")
     field(d, "4.4 Manager-managed vs. member-managed",
-          "Default: MANAGER-MANAGED with Adeline & Lilah, LLC as sole Manager. This matches the SBA narrative "
-          "(passive minority + sole Manager with control). Confirm.")
+          "Default: MANAGER-MANAGED with Geoff Schackmann (individually) as sole Manager. This matches the SBA "
+          "narrative (passive minority + sole Manager with control). Confirm.")
     field(d, "4.5 Vesting for operator-members (Silas, Dana, Bradley, 13.3% each)",
           "RECOMMENDATION: each operator's full 13.3% Restricted Interest is at risk and forfeitable until vested - "
           "a 4.9% Initial Base that time-vests (4-year schedule, 1-year cliff, continuous service alone) plus an "
@@ -1151,7 +1154,7 @@ def interview_worksheet():
           "Default: no mandatory capital calls; voluntary additional contributions require Manager approval and "
           "do not dilute non-contributing members. Confirm.")
     field(d, "4.8 Officers / titles (if any) and who holds them",
-          "Default: Managing Member = Geoff (via Adeline & Lilah); Executive Director = Silas; Director of "
+          "Default: Manager = Geoff Schackmann (individually); Executive Director = Silas; Director of "
           "Nursing = Dana; Director of Sales = Bradley. Confirm.")
     field(d, "4.9 Books, records, fiscal year",
           "Default: calendar year, accrual basis, books at the principal office. Confirm.")
@@ -1159,7 +1162,7 @@ def interview_worksheet():
           "RECOMMENDATION: Company has option to repurchase unvested interest at $0 and vested interest at book "
           "value over 36 months. If you want a different price formula (e.g., trailing-12 EBITDA multiple), say so.")
     field(d, "4.11 Drag-along (Manager can force sale)",
-          "Default: Manager (Adeline & Lilah) holding 39.9% may not unilaterally drag; needs members holding "
+          "Default: Manager (Geoff Schackmann) holding 39.9% may not unilaterally drag; needs members holding "
           ">=51% combined to trigger drag of remaining members. Confirm.")
     field(d, "4.12 Governing law", "Default: Wyoming - confirm")
 
@@ -1253,8 +1256,8 @@ def oa_amendment():
     h2(d, "Background and recitals")
     para(d, "The Members and the Manager have determined that certain provisions of the Original OA require "
             "amendment to: (i) align the capitalization table with the structure on which the Company's SBA 7(a) "
-            "financing is being arranged; (ii) align federal income tax treatment with the multi-member ownership "
-            "of Adeline & Lilah, LLC; (iii) update the change-of-ownership acquisition target reference from "
+            "financing is being arranged; (ii) confirm the Company's election to be taxed as an S corporation "
+            "under IRC Section 1361; (iii) update the change-of-ownership acquisition target reference from "
             "Healing Hands Palliative Hospice INC to Hickory Hospice LLC, a Texas limited liability company "
             "(\"Hickory\"); (iv) calibrate Bullard's protective rights to remain consistent with U.S. Small "
             "Business Administration (\"SBA\") Standard Operating Procedure 50 10 8 for minority equity holders "
@@ -1271,7 +1274,7 @@ def oa_amendment():
             "Interests, including those held subject to Forfeiture Conditions, are issued effective as of the "
             "Effective Date of this Amendment, replacing any prior Exhibit A.")
     table(d, ["Member", "Consideration", "Percentage Interest"],
-          [["Adeline & Lilah, LLC", "Services rendered (sweat equity)", "39.9%"],
+          [["Geoff Schackmann (individual)", "Services rendered (sweat equity)", "39.9%"],
            ["James E. Bullard", "$195,000 cash (capital contribution, two tranches)", "19.5%"],
            ["Silas R. Shelton", "Services rendered (Restricted Interest)", "13.3%*"],
            ["Dana L. Davenport", "Services rendered (Restricted Interest)", "13.3%*"],
@@ -1293,27 +1296,27 @@ def oa_amendment():
     para(d, "")
     h2(d, "2. Tax treatment (replaces Section 11.2 of the Original OA)")
     para(d, "Section 11.2 of the Original OA is hereby deleted and replaced in its entirety with the following:")
-    para(d, "11.2  Tax Matters. The Company shall be treated as a partnership for U.S. federal income tax "
-            "purposes under subchapter K of the Internal Revenue Code. No election shall be made by or on "
-            "behalf of the Company to be treated as an association taxable as a corporation (including no "
-            "election under Treasury Reg. §301.7701-3 and no election under IRC §1361) without the prior "
-            "written consent of all Members. The Manager shall serve as the Company's partnership "
-            "representative under IRC §6223 for partnership audit purposes. The Manager shall cause the "
-            "preparation and timely filing of all federal, state, and local tax returns (including Form 1065 "
-            "and Schedule K-1 to each Member) within seventy-five (75) days of each fiscal year-end. All "
-            "references in this Agreement to S-Corporation status, IRC §1361, IRC §1362, Form 2553, "
-            "\"S-Corp Eligible Person,\" \"S-Corp Eligibility Certification,\" or similar S-Corporation "
-            "concepts (including the definition at Section 2.23 and references in Sections 4.5, 8.5, 8.11, "
-            "9.1(e), 11.4(b), 12.4, and 12.5) shall be of no further force or effect. References to "
-            "members of any Member entity being \"S-Corp Eligible Persons\" or having to certify eligibility "
-            "under §12.4 are deleted. The eligibility certifications in Article XII shall be limited to "
-            "(i) accredited-investor status under Regulation D, and (ii) representations and warranties "
-            "regarding OIG / SAM exclusion as set forth in Section 9.1(d).",
+    para(d, "11.2  Tax Matters. The Company shall elect, and the Manager is authorized and directed to cause the "
+            "Company to elect, to be treated as an S corporation for U.S. federal income tax purposes under IRC "
+            "Section 1361 et seq. by timely filing IRS Form 2553 (and any corresponding state elections). The "
+            "Company shall maintain a single class of stock as required by IRC Section 1361(b)(1)(D), and all "
+            "distributions shall be made pro rata in proportion to the Members' Percentage Interests. The Manager "
+            "shall cause the preparation and timely filing of all federal, state, and local tax returns "
+            "(including Form 1120-S and Schedule K-1 to each Member) within seventy-five (75) days of each fiscal "
+            "year-end. Each Member represents that it is an eligible S corporation shareholder under IRC "
+            "Section 1361(b)(1)(B) (an \"S-Corp Eligible Person\") and shall provide the S-Corp Eligibility "
+            "Certification required under Article XII. No Member shall transfer any interest, or take any action, "
+            "that would terminate or jeopardize the Company's S-corporation status without the prior written "
+            "consent of the Manager.",
          italic=True, size=10)
-    para(d, "Effect on Adeline & Lilah, LLC. The Members acknowledge that Adeline & Lilah, LLC is a multi-member "
-            "Arizona limited liability company taxed as a partnership for federal purposes. This Section 2 of "
-            "the Amendment removes the prior incompatibility between the S-Corporation election in the Original "
-            "OA and Adeline & Lilah, LLC's multi-member status.", italic=True, size=9.5)
+    para(d, "Direct individual ownership. The Members acknowledge that Geoff Schackmann holds his 39.9% interest "
+            "directly as an individual (a U.S.-citizen natural person and an eligible S corporation shareholder), "
+            "so there is no intervening multi-member holding entity that would conflict with the Company's "
+            "S-corporation election.", italic=True, size=9.5)
+    para(d, "CPA item - election timing. IRS Form 2553 has not yet been filed. With a Company formation date of "
+            "March 18, 2026, the on-time S-corporation election window closed on or about June 1, 2026; because "
+            "that window may have passed, the Company's CPA may need to obtain late-election relief under Rev. "
+            "Proc. 2013-30. This is flagged as a CPA action item.", italic=True, size=9.5)
     para(d, "")
     h2(d, "3. Acquisition target (updates Sections 1.2, 3.14, and 3.15 of the Original OA)")
     para(d, "All references in the Original OA to \"Healing Hands Palliative Hospice INC\" are hereby replaced "
@@ -1434,9 +1437,11 @@ def oa_amendment():
             "to all actions under this Section 4.")
     para(d, "4.9 Tax; Section 83(b). The Section 83(b) election requirement at Section 5.7 of the Original OA "
             "remains in full force. The vesting and repurchase terms of this Section 4 are intended to be "
-            "consistent with the Company's partnership tax treatment under Section 2 of this Amendment and any "
-            "intended profits-interest treatment under Rev. Proc. 93-27; each Equity Grantee should consult "
-            "independent tax counsel. Except as modified by this Section 4, Article V of the Original OA "
+            "consistent with the Company's S-corporation tax treatment under Section 2 of this Amendment "
+            "(including the single-class-of-stock and pro-rata-distribution requirements of IRC Section 1361); "
+            "each Equity Grantee should consult "
+            "independent tax counsel, including as to maintaining S-corporation eligibility. Except as modified "
+            "by this Section 4, Article V of the Original OA "
             "(including Sections 5.4 and 5.7) remains in full force and effect.", italic=True, size=9.5)
     para(d, "")
     h2(d, "5. Bullard's protective rights - SBA calibration")
@@ -1474,8 +1479,8 @@ def oa_amendment():
     para(d, "6.1 Superseded examples and parentheticals. The illustrative examples and parentheticals in the "
             "Original OA that assume the pre-Amendment capitalization are superseded by the restated Exhibit A in "
             "Section 1 of this Amendment and are of no further force or effect, including (i) the example in "
-            "Section 2.20 stating that Adeline & Lilah, LLC holds 60.0% and controls 60 of 100 votes; (ii) the "
-            "parenthetical in Section 6.2 stating that Adeline & Lilah, LLC holds exactly 60.0% and therefore "
+            "Section 2.20 stating that Geoff Schackmann holds 60.0% and controls 60 of 100 votes; (ii) the "
+            "parenthetical in Section 6.2 stating that Geoff Schackmann holds exactly 60.0% and therefore "
             "controls all Reserved Matters votes and that Bullard's consent is not required; and (iii) the dilution "
             "examples in Sections 3.10 and 3.14 that assume Bullard holds 25.0%. The sixty percent (60%) "
             "Reserved-Matters threshold in Section 6.2 continues in effect and is measured against the restated "
@@ -1485,9 +1490,9 @@ def oa_amendment():
             "the parties acknowledge that:")
     for x in ["Unvested Restricted Interests carry full voting rights and are included in the denominator for all votes and consents (subject only to the post-Separation non-voting rule in Section 4.8); accordingly each Equity Grantee votes its full 13.3% even while a portion remains Unvested.",
               "The Unissued Pool (0.7%) is excluded from the denominator for voting purposes under Section 2.20.",
-              "Adeline & Lilah, LLC alone holds 39.9% and cannot unilaterally pass a 60% Reserved Matter.",
-              "Adeline & Lilah, LLC may pass a Reserved Matter by combining its 39.9% with the votes of any two (2) Equity Grantees (totaling 66.5%), or with Bullard's 19.5% plus the vote of at least one (1) Equity Grantee (totaling 72.7%).",
-              "Bullard does not hold a unilateral veto on Reserved Matters; a Reserved Matter may be passed without his vote if Adeline & Lilah, LLC and at least two (2) Equity Grantees concur."]:
+              "Geoff Schackmann alone holds 39.9% and cannot unilaterally pass a 60% Reserved Matter.",
+              "Geoff Schackmann may pass a Reserved Matter by combining his 39.9% with the votes of any two (2) Equity Grantees (totaling 66.5%), or with Bullard's 19.5% plus the vote of at least one (1) Equity Grantee (totaling 72.7%).",
+              "Bullard does not hold a unilateral veto on Reserved Matters; a Reserved Matter may be passed without his vote if Geoff Schackmann and at least two (2) Equity Grantees concur."]:
         para(d, "  - " + x)
     para(d, "")
     h2(d, "7. Closing schedule coordination (new Section 3.16 of the Original OA)")
@@ -1500,14 +1505,14 @@ def oa_amendment():
             "date, the SBA Loan disbursement, and Bullard's tranche schedule accordingly.\"")
     para(d, "")
     h2(d, "8. Effect on prior consents; ratification")
-    para(d, "Adeline & Lilah, LLC, as the Member holding sixty percent (60.0%) of Percentage Interests under "
-            "the Original OA (and which, after giving effect to this Amendment, holds 39.9% of Percentage "
+    para(d, "Geoff Schackmann, as the Member holding sixty percent (60.0%) of Percentage Interests under "
+            "the Original OA (and who, after giving effect to this Amendment, holds 39.9% of Percentage "
             "Interests), and James E. Bullard, as the Member whose rights under Sections 4.2, 4.5, 3.15, 6.7, "
             "6.8, 6.9, and Article VIII are subject to consent rights under Section 11.4(a), each consent to "
             "the amendments set forth herein. Because this Amendment affects S-Corporation status and tax matters, "
             "it is also approved by the written consent of all Members under Section 11.4(b) of the Original OA, "
             "evidenced by the signatures of all Members below; and because it reduces the Percentage Interest of "
-            "Adeline & Lilah, LLC (from 60.0% to 39.9%) and of James E. Bullard (from 25.0% to 19.5%), each such "
+            "Geoff Schackmann (from 60.0% to 39.9%) and of James E. Bullard (from 25.0% to 19.5%), each such "
             "Member gives its express written consent to that reduction under Section 11.4(c). The Members ratify "
             "and confirm the Original OA as modified by this Amendment. All provisions of the Original OA not "
             "specifically modified by this Amendment remain in full force and effect.")
@@ -1519,17 +1524,21 @@ def oa_amendment():
     para(d, "")
     para(d, "SIGNATURES", bold=True)
     para(d, "")
-    para(d, "MANAGER (individually) — GEOFF SCHACKMANN:")
+    para(d, "MANAGER — GEOFF SCHACKMANN (individually):")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "Geoff Schackmann, Manager (non-Member capacity)")
+    para(d, "Geoff Schackmann, Manager")
     para(d, "Address: 4602 E Cheery Lynn Rd, Phoenix, AZ 85018  |  geoff@azaleahospice.com")
     para(d, "")
-    para(d, "MEMBER — ADELINE & LILAH, LLC:")
+    para(d, "MEMBER — GEOFF SCHACKMANN (individually):")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "By: Geoff Schackmann, Authorized Representative  |  Interest after Amendment: 39.9%")
+    para(d, "Geoff Schackmann  |  Interest after Amendment: 39.9% (direct individual owner)")
     para(d, "")
+    para(d, "SPOUSAL / COMMUNITY-PROPERTY CONSENT — MARY ELIZABETH BURCHAM:")
     para(d, "_______________________________________     Date: ____________")
-    para(d, "By: Mary Elizabeth Burcham, Authorized Representative (50% member of Adeline & Lilah, LLC)")
+    para(d, "Mary Elizabeth Burcham, spouse of Geoff Schackmann. I consent to this Amendment and to my spouse's "
+            "management of the 39.9% interest, which is community property under Arizona law (my community-property "
+            "interest is approximately 19.95%, under 20%, passive and non-managing). This is a consent only and "
+            "not a guaranty.")
     para(d, "")
     para(d, "MEMBER — INVESTOR:")
     para(d, "_______________________________________     Date: ____________")
@@ -1573,8 +1582,8 @@ def bullard_attestation_v2():
     h2(d, "2. No management role")
     para(d, "I hold no officer, director, manager, or employee position with the Company. I do not "
             "participate in the day-to-day management or operation of the Company or any of its subsidiaries, "
-            "including Hickory Hospice LLC. The Manager (Geoff Schackmann, individually) and the Member "
-            "Adeline & Lilah, LLC have sole authority over management, hiring and firing, financial "
+            "including Hickory Hospice LLC. The Manager, Geoff Schackmann (individually, the sole 39.9% owner), "
+            "has sole authority over management, hiring and firing, financial "
             "decisions, vendor relationships, clinical operations, and all other Company operations.")
     h2(d, "3. Protective minority rights only")
     para(d, "My equity interest entitles me to certain customary minority-investor protective rights set "
@@ -1585,7 +1594,7 @@ def bullard_attestation_v2():
             "rights on future issuances; (d) voting rights on a limited set of fundamental Reserved Matters "
             "(sale of substantially all assets, merger, additional equity issuances, certain non-SBA debt "
             "above $500,000, amendment of the Operating Agreement, dissolution, and Change of Control); "
-            "(e) tag-along rights on a Change of Control transfer by Adeline & Lilah, LLC; and (f) a Texas "
+            "(e) tag-along rights on a Change of Control transfer by Geoff Schackmann; and (f) a Texas "
             "Shootout buy-sell provision deferred until the SBA Loan is paid in full.")
     para(d, "These Protective Rights are economic in nature and are limited to fundamental Company events. "
             "They do not confer authority over day-to-day operations, hiring or firing, vendor selection, "
@@ -1602,14 +1611,14 @@ def bullard_attestation_v2():
     para(d, "Except for the Operating Agreement as amended and restated and the Subscription Agreement "
             "between the Company and me, there is no written or oral side agreement, voting agreement, "
             "proxy, option, warrant, convertible note, profits-interest plan, earnout, employment "
-            "arrangement, or other instrument between me and the Company, the Manager, Adeline & Lilah, "
-            "LLC, or any other Member that would (i) increase my equity interest to 20% or more, "
+            "arrangement, or other instrument between me and the Company, the Manager (Geoff Schackmann), "
+            "or any other Member that would (i) increase my equity interest to 20% or more, "
             "(ii) give me day-to-day management or operational control of the Company, or (iii) entitle "
             "me to direct or override the Manager's decisions in the ordinary course of business.")
     h2(d, "6. Reserved-matters arithmetic")
     para(d, "I acknowledge that the Operating Agreement's Reserved Matters provisions require a 60% "
-            "supermajority vote. Adeline & Lilah, LLC (39.9%) may pass any Reserved Matter without my vote "
-            "by combining its interest with at least two of the three Equity Grantees (Silas, Dana, "
+            "supermajority vote. Geoff Schackmann (39.9%) may pass any Reserved Matter without my vote "
+            "by combining his interest with at least two of the three Equity Grantees (Silas, Dana, "
             "Bradley), whose combined interest of 39.9% gives a total of 66.5%. I therefore do not hold "
             "a unilateral veto on Reserved Matters.")
     h2(d, "7. Compliance with SBA requirements")
@@ -1680,7 +1689,7 @@ def bullard_subscription():
             "tranche when due and fails to cure within ten (10) business days of written notice, the Company's "
             "sole remedy shall be to reduce the Investor's Percentage Interest proportionally to the amount "
             "actually funded (funded amount / $195,000 x 19.5%), with the unfunded balance reverting to "
-            "Adeline & Lilah, LLC, and the Investor shall have no further obligation as to the unfunded "
+            "Geoff Schackmann, and the Investor shall have no further obligation as to the unfunded "
             "portion. The tranche amounts of $75,000 for Tranches 2 and 3 may be adjusted by mutual written "
             "agreement so long as the full $195,000 is funded on or before July 31, 2026.")
     h2(d, "3. Source of funds")
@@ -1801,13 +1810,11 @@ def affiliate_memo():
     h2(d, "Ownership and control analysis")
     para(d, "Under 13 CFR 121.103, affiliation arises principally through control - common ownership of more "
             "than 50%, common management, or identity of interest. The borrower's controlling party is Geoff "
-            "Schackmann, through Adeline & Lilah, LLC (39.9%) and as Manager. Affiliation is therefore "
+            "Schackmann, who owns 39.9% directly as an individual and serves as Manager. Affiliation is therefore "
             "assessed primarily through Mr. Schackmann's other controlled entities.")
     table(d, ["Entity", "Relationship to borrower", "Geoff's interest / role", "Affiliate?"],
           [["Hickory Hospice LLC (TX)", "Acquisition target / future wholly owned operating subsidiary",
             "100% after CHOW close", "Yes - consolidated as subsidiary"],
-           ["Adeline & Lilah, LLC (AZ)", "Holding entity for Geoff's interest in the borrower",
-            "50% member + Manager", "Yes - upstream holder; no operations"],
            ["VistaRiver Inc (OR)", "Geoff sold his 33.33% in Aug 2025; holds only a seller note",
             "0% equity; passive note holder only; no officer/manager/employee role",
             "No - passive creditor, no control"],
@@ -1847,9 +1854,10 @@ def affiliate_memo():
             "(addressed separately), not to affiliation. Mr. Woodard has confirmed he has no non-compete "
             "with his current employer.")
     h2(d, "Conclusion")
-    para(d, "After giving effect to the CHOW, the borrower's affiliate group consists of the borrower, its "
-            "wholly owned subsidiary Hickory Hospice LLC, and the upstream holding entity Adeline & Lilah, "
-            "LLC (non-operating). Combined average annual receipts are well below the applicable size "
+    para(d, "After giving effect to the CHOW, the borrower's affiliate group consists of the borrower and its "
+            "wholly owned subsidiary Hickory Hospice LLC. Geoff Schackmann owns his 39.9% interest directly as "
+            "an individual, so there is no intervening holding entity. Combined average annual receipts are well "
+            "below the applicable size "
             "standard. VistaRiver Inc is not an affiliate (passive creditor relationship only). The borrower "
             "is a small business concern eligible for SBA 7(a) financing, subject to the lender's confirmation "
             "of the current size threshold and the two open confirmations noted above.")
@@ -1885,15 +1893,15 @@ def cover_letter_and_qa():
             "piggyback structure).")
     para(d, "The transaction is built on a strong foundation:")
     for x in ["Established, billing-ready agency. We are acquiring an operating Medicare-certified hospice with a transferring provider number, HCSSA license, and accreditation - billing-capable from day one, with no startup enrollment ramp.",
-              "Experienced operator and validated local team. Our Managing Member has 10+ years of hospice ownership and operations; our Director of Sales has sustained a 40+ ADC referral book in the Tyler market for 4.5 years.",
+              "Experienced operator and validated local team. Our Manager has 10+ years of hospice ownership and operations; our Director of Sales has sustained a 40+ ADC referral book in the Tyler market for 4.5 years.",
               "Substantial equity. A $195,000 cash equity injection - 20.6% of the $945,000 project ($180,000 designated as the SBA equity injection, $15,000 additional working capital), above the 10% SOP 50 10 8 minimum. $100,000 is already on deposit; the balance follows on a committed schedule.",
               "Coverage. Combined debt service in Years 1-3 is ~$169,211/yr (SBA $59,692 + bank $109,519), covered at 1.79x in Year 1 and rising to 4.02x and 5.95x (global 3.92x) against the 1.25x floor; after Year 3 the bank loan is fully amortized and only the SBA loan remains. Break-even is ~16 ADC versus a validated opening census of ~22.",
               "Structure. A senior SBA loan funding startup and a $567,000 working-capital reserve, paired with a subordinate, investor-guaranteed bank acquisition loan, and a fully staffed clinical roster sized to the underwritten census."]:
         para(d, "  - " + x)
     para(d, "The enclosed package is indexed in the Submission Cover Sheet and includes the Company Profile, "
             "Use of Proceeds, Business Plan, financial model, equity-injection documentation, the borrower's "
-            "operating agreement (as amended), and a lender credit memorandum with a DSCR sensitivity "
-            "analysis. The sole 20%+ owner and guarantor is Geoff Schackmann (through Adeline & Lilah, LLC); "
+            "operating agreement (as amended and restated), and a lender credit memorandum with a DSCR sensitivity "
+            "analysis. The sole 20%+ owner and guarantor is Geoff Schackmann (direct individual 39.9% owner); "
             "his personal financial information is provided separately.")
     para(d, "We would welcome the opportunity to walk you through the deal and answer any questions. Thank you "
             "for your consideration.")
@@ -1901,7 +1909,7 @@ def cover_letter_and_qa():
     para(d, "Sincerely,")
     para(d, "")
     para(d, "Geoff Schackmann")
-    para(d, "Managing Member, Tyler Hospice Hold, LLC")
+    para(d, "Manager, Tyler Hospice Hold, LLC")
     para(d, "480-495-5474  |  geoff@azaleahospice.com")
 
     d.add_page_break()
@@ -1919,12 +1927,13 @@ def cover_letter_and_qa():
         ("Is Bullard's 19.5% a device to avoid the SBA guaranty?",
          "No. Mr. Bullard is contributing $195,000 of his own savings as a genuine capital contribution for a "
          "19.5% interest - the cash is the equity injection. He holds protective minority rights but no "
-         "day-to-day operational control; the Manager (Geoff Schackmann via Adeline & Lilah, LLC) controls the "
+         "day-to-day operational control; the Manager (Geoff Schackmann, direct individual 39.9% owner) controls the "
          "business. He provides no SBA guaranty (under 20%, non-controlling), but he does personally guarantee "
-         "the separate $300,000 bank acquisition loan, so he carries real risk in the deal. Per OA Amendment "
-         "No. 1, Bullard's consent is not required for SBA-loan actions, and the Texas Shootout buy-sell is "
+         "the separate $300,000 bank acquisition loan, so he carries real risk in the deal. Per the Amended & "
+         "Restated Operating Agreement, Bullard's consent is not required for SBA-loan actions, and the Texas "
+         "Shootout buy-sell is "
          "suspended while the SBA loan is outstanding. He has signed an attestation to this effect. He does not "
-         "hold a unilateral veto: a 60% Reserved-Matters vote can pass with Adeline & Lilah plus any two "
+         "hold a unilateral veto: a 60% Reserved-Matters vote can pass with Geoff plus any two "
          "operator-members (66.5%)."),
         ("The equity injection isn't all in yet - how is that handled?",
          "$100,000 was wired May 7, 2026 and is on deposit. The balance follows on a committed schedule. We "
@@ -1953,7 +1962,8 @@ def cover_letter_and_qa():
          "notice at or before close."),
         ("Are there affiliates that affect size or eligibility?",
          "No operating affiliates. The borrower is a newco acquiring Hickory (which becomes its wholly owned "
-         "subsidiary), held through the non-operating holding entity Adeline & Lilah, LLC. The Managing Member "
+         "subsidiary); its controlling owner, Geoff Schackmann, holds his 39.9% interest directly as an "
+         "individual, so there is no intervening holding entity. Geoff "
          "sold his prior hospice interest (VistaRiver) in August 2025 and holds only a passive seller-financed "
          "note - no equity or management role - so it is not an affiliate. He does not own 20%+ of, or control, "
          "any other operating business. See the Affiliate & Size-Standard memo."),
@@ -2031,7 +2041,7 @@ def business_plan():
             "pipeline to ~40 ADC in Year 2 and ~54 ADC in Year 3. Revenue is 100% Medicare RHC per-diem at a "
             "blended net rate of $181/patient-day (escalating 2.5%/year).")
     h2(d, "Management team")
-    para(d, "Azalea is led by an already-seated team: Geoff Schackmann (Managing Member - multi-hospice "
+    para(d, "Azalea is led by an already-seated team: Geoff Schackmann (Manager - multi-hospice "
             "operator), Silas Shelton (Executive Director), Dana Davenport (Director of Nursing), and Bradley "
             "Woodard (Director of Sales - 25+ years East-Texas hospice business development), supported by RN "
             "case managers, hospice aides, a PRN visit pool, and 1099 Medical Directors.")
@@ -2059,11 +2069,13 @@ def business_plan():
             "Care. The transaction is a change of ownership (CHOW) of Hickory's existing provider number "
             "(purchase of 100% of membership interests), so Azalea runs on a licensed, billing-ready platform "
             "from day one - preserving the existing number rather than awaiting a new-provider 855A "
-            "enrollment, with CHAP/ACHC accreditation transferring in the CHOW. The Company is taxed as a "
-            "partnership for federal income tax purposes.")
+            "enrollment, with CHAP/ACHC accreditation transferring in the CHOW. The Company elects S-corporation "
+            "tax treatment under IRC Section 1361 (IRS Form 2553) for federal income tax purposes (filing Form "
+            "1120-S, single class of stock, pro-rata distributions); Hickory Hospice LLC is a disregarded entity "
+            "(or QSub) of the S-corp.")
     h2(d, "2.2 Ownership & capitalization")
     table(d, ["Member / source", "Interest", "Role & structure"],
-          [["Adeline & Lilah, LLC (AZ)", "39.9%", "Managing Member - owned 50% Geoff Schackmann / 50% Mary Elizabeth Burcham; Geoff serves as Manager and provides the SBA personal guaranty"],
+          [["Geoff Schackmann (individual)", "39.9%", "Manager - direct individual owner; 39.9% interest is Arizona community property (spouse Mary Elizabeth Burcham ~19.95% community-property interest, passive, under 20%); Geoff provides the SBA personal guaranty"],
            ["James E. Bullard", "19.5%", "Passive minority investor - $195,000 cash capital contribution; protective minority rights only, no operational control; under 20%, no guaranty"],
            ["Silas R. Shelton", "13.3%", "Executive Director - Restricted Interest (fully forfeitable; 4.9% time-vested base + 8.4% dual-trigger earn-up)"],
            ["Dana L. Davenport", "13.3%", "Director of Nursing - Restricted Interest (fully forfeitable; 4.9% time-vested base + 8.4% dual-trigger earn-up)"],
@@ -2083,8 +2095,8 @@ def business_plan():
             "wired on May 7, 2026 and the balance follows on a committed schedule. Because he holds less than 20% "
             "and exercises no operational control, no SBA personal guaranty is required of him (13 CFR 120.160); "
             "he guarantees only the separate bank acquisition loan. The SBA 7(a) loan is guaranteed by Geoff "
-            "Schackmann (personal guaranty, controlling Manager and sole 20%+ owner via Adeline & Lilah, LLC), by "
-            "Adeline & Lilah, LLC (entity guaranty, 39.9% owner), and by Hickory Hospice LLC (corporate guaranty "
+            "Schackmann (personal guaranty, controlling Manager and sole 20%+ owner - direct individual 39.9% "
+            "owner) and by Hickory Hospice LLC (corporate guaranty "
             "plus a lien on its assets and receivables, as the operating subsidiary).")
     h2(d, "2.3 Acquired platform & validated economics")
     para(d, "Rather than projecting speculative new-admit growth, the financial model is benchmarked to "
@@ -2199,7 +2211,7 @@ def business_plan():
               "Acquired Medicare provider number (CHOW) - billing-ready from day one, no new-provider enrollment lag",
               "Capital cushion - $567K opening cash reserve; LOC never drawn (min cash ~$445K through the ramp)",
               "DSCR rises 1.79x -> 5.95x across the plan (combined SBA + bank debt); the front-loaded bank loan retires after Year 3; substantial $195K cash equity injection (20.6% of project)",
-              "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Managing Member"]:
+              "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Manager"]:
         para(d, "  - " + x)
     h2(d, "Weaknesses")
     for x in ["Newco borrower with no operating history of its own (mitigated by the acquired agency's actuals and an experienced operator)",
@@ -2207,7 +2219,7 @@ def business_plan():
               "Single-office, single-market concentration",
               "Several go-forward cost adds (own lease, Medical Directors, benefits, marketing) not in the benchmarked actuals",
               "Sensitivity to a sustained census shortfall (see Section 11.7 and the DSCR Sensitivity memo)",
-              "Managing Member's attention is split across other interests during launch"]:
+              "Manager's attention is split across other interests during launch"]:
         para(d, "  - " + x)
     h2(d, "Opportunities")
     for x in ["Growing 65+ population (60,000+ Medicare-eligible) with above-average utilization",
@@ -2312,8 +2324,8 @@ def business_plan():
             "model as expenses (no compensation is omitted, per SBA requirements).")
     h2(d, "8.1 Ownership & reporting structure")
     table(d, ["Entity / person", "Role", "Interest", "Reports to"],
-          [["Adeline & Lilah, LLC - Geoff Schackmann", "Managing Member (holding co.)", "39.9%", "-"],
-           ["Silas R. Shelton", "Executive Director", "13.3%", "Managing Member"],
+          [["Geoff Schackmann", "Manager (direct individual owner)", "39.9%", "-"],
+           ["Silas R. Shelton", "Executive Director", "13.3%", "Manager"],
            ["Dana L. Davenport", "Director of Nursing", "13.3%", "Executive Director"],
            ["Bradley G. Woodard", "Director of Sales", "13.3%", "Executive Director"],
            ["James E. Bullard", "Passive minority investor", "19.5%", "No operational role"]],
@@ -2325,11 +2337,11 @@ def business_plan():
             "no management authority or signing power.")
     h2(d, "8.2 Decision authority")
     for x in ["Operating within budget ($0-$10K): Executive Director (Shelton)",
-              "Above $10K or out-of-budget: Managing Member (Schackmann, via Adeline & Lilah)",
+              "Above $10K or out-of-budget: Manager (Schackmann, individually)",
               "Clinical / regulatory: Director of Nursing (Davenport), escalated to Executive Director + Medical Director",
-              "Hiring / firing senior staff: Executive Director, with Managing Member concurrence",
-              "Strategic / capital / acquisition: Managing Member",
-              "Bank account signatures: Managing Member (sole signer)"]:
+              "Hiring / firing senior staff: Executive Director, with Manager concurrence",
+              "Strategic / capital / acquisition: Manager",
+              "Bank account signatures: Manager (sole signer)"]:
         para(d, "  - " + x)
     h2(d, "8.3 Equity vesting (operator-members)")
     para(d, "Each operator-member's 13.3% interest is a Restricted Interest under the Operating Agreement. "
@@ -2349,11 +2361,11 @@ def business_plan():
     # ---- 09 Leadership ----
     d.add_page_break()
     h1(d, "09 - Leadership Team")
-    h2(d, "Geoff Schackmann - Managing Member (via Adeline & Lilah, LLC, 39.9%)")
+    h2(d, "Geoff Schackmann - Manager (direct individual owner, 39.9%)")
     para(d, "Multi-hospice operator and transaction-led growth leader with operational responsibility for "
-            "Medicare-certified hospice and palliative-care agencies across multiple states. Co-owner and "
-            "Managing Member of Adeline & Lilah, LLC (AZ), the holding entity through which equity in Tyler "
-            "Hospice Hold, LLC is held. Direct experience includes change-of-ownership (CHOW) transactions and "
+            "Medicare-certified hospice and palliative-care agencies across multiple states. Direct individual "
+            "owner of a 39.9% interest in Tyler "
+            "Hospice Hold, LLC and its Manager. Direct experience includes change-of-ownership (CHOW) transactions and "
             "post-CHOW enrollment oversight, census growth from sub-30 to 100+ ADC under existing Medicare "
             "provider numbers, multi-site clinical operations under Texas HCSSA and Oregon hospice licensure, "
             "CHAP and Joint Commission accreditation, acquisition due diligence (clinical, financial, "
@@ -2409,9 +2421,10 @@ def business_plan():
             "speculative new-admit forecasts, so the opening ramp toward ~22 ADC carries materially less "
             "uncertainty, and growth above that level is driven by the team's own referral pipeline.")
     h2(d, "10.3 Affiliate disclosure")
-    para(d, "The borrower's affiliate group consists of the borrower, its wholly owned operating subsidiary "
-            "Hickory Hospice LLC, and the non-operating holding entity Adeline & Lilah, LLC - well within the "
-            "applicable SBA size standard. The Managing Member previously held a 33.33% interest in VistaRiver "
+    para(d, "The borrower's affiliate group consists of the borrower and its wholly owned operating subsidiary "
+            "Hickory Hospice LLC - well within the "
+            "applicable SBA size standard. The controlling owner (Geoff Schackmann, direct individual 39.9% "
+            "owner) previously held a 33.33% interest in VistaRiver "
             "Inc, which he sold in August 2025; he retains only a passive seller-note receivable (no equity, "
             "officer, manager, or employee role), so VistaRiver is not an SBA affiliate. A separate Affiliate "
             "and Size-Standard memorandum is included in the application package.")
@@ -2610,7 +2623,7 @@ def submission_readiness():
     table(d, ["#", "Blocker", "Owner", "Status"],
           [["B1", "Acquisition financing / structure: the $300K Hickory purchase is funded by a separate 3-year bank term loan (6%) from a bank the investor uses, personally guaranteed by James Bullard and subordinate to the SBA loan (piggyback). Needs: bank term sheet/commitment, intercreditor/subordination agreement, and SBA-lender approval of the piggyback. The MIPA's 12 x $25K installment schedule should be settled at closing (prepay/payoff at close from the bank loan); confirm with the sellers (Tracy Gleason / Ann Lozano). Combined Year-1 DSCR is ~1.79x.", "Geoff + sellers (Gleason/Lozano) + acquisition-loan bank", "OPEN - secure bank loan + intercreditor + SBA approval"],
            ["B2", "Borrower entity RESOLVED: Tyler Hospice Hold, LLC, a Wyoming LLC (EIN 41-4966640), foreign-qualified in TX. The MIPA (which names a Texas buyer) must be amended so the Buyer is the Wyoming entity. Confirm exact charter name against the WY Certificate of Formation.", "Geoff + counsel", "RESOLVED - amend MIPA buyer name"],
-           ["B3", "Execute the Amended & Restated Operating Agreement (holdco) and the single-member OA for Hickory - both DRAFTED in 08_entity_documents (cap table 39.9/19.5/13.3x3/0.7, partnership tax, full-13.3%-forfeitable vesting, SBA carve-outs, Hickory corporate guaranty). These supersede the as-provided OA v7 (60/25/4.9 + S-Corp) and the interim Amendment No. 1.", "All members", "DRAFTED - needs signatures"]],
+           ["B3", "Execute the Amended & Restated Operating Agreement (holdco) and the single-member OA for Hickory - both DRAFTED in 08_entity_documents (cap table 39.9/19.5/13.3x3/0.7 with Geoff Schackmann holding the 39.9% directly as an individual; S-corporation tax election under IRC Sec. 1361 / Form 2553; full-13.3%-forfeitable vesting; SBA carve-outs; Hickory corporate guaranty). These supersede the as-provided OA v7 (60/25/4.9) and the interim Amendment No. 1. CPA item: Form 2553 not yet filed; with a 3/18/2026 formation the on-time window was ~6/1/2026, so Rev. Proc. 2013-30 late-election relief may be needed.", "All members", "DRAFTED - needs signatures"]],
           widths=[0.4, 4.3, 1.5, 0.9])
     h2(d, "Geoff's personal package (sole 20%+ guarantor)")
     for x in ["SBA Form 413 (Personal Financial Statement) - include the VistaRiver note as an asset",
@@ -2618,7 +2631,7 @@ def submission_readiness():
               "Personal Cash Flow (7a) - complete the expense lines (income pre-filled)",
               "3 years personal tax returns + W-2s/1099s",
               "Credit report authorization + driver license",
-              "Spouse acknowledgement - Mary Elizabeth Burcham"]:
+              "Spousal / community-property consent - Mary Elizabeth Burcham"]:
         para(d, "  - " + x)
     h2(d, "Equity injection (James Bullard, $195,000)")
     for x in ["Mercury statement/screenshot of the $100,000 wire (5/7/2026) - drop into 10_supporting_documents/equity_injection_evidence/",
@@ -2664,7 +2677,7 @@ def borrower_info_1919():
     field(d, "2. Primary business address", "13387 Hwy 69 N, Tyler, TX " + TBD + " (zip)")
     field(d, "3. Business EIN", "41-4966640")
     field(d, "4. Business phone", "480-495-5474")
-    field(d, "5. Primary contact", "Geoff Schackmann, Managing Member")
+    field(d, "5. Primary contact", "Geoff Schackmann, Manager")
     field(d, "6. NAICS code", "621610 - Home Health Care Services (confirm hospice classification with lender)")
     field(d, "7. Type of business entity", "Limited Liability Company (Wyoming; formed 03/18/2026)")
     field(d, "8. Amount of SBA loan requested", "$450,000 (plus a separate $300,000 bank acquisition term loan, subordinate to the SBA loan)")
@@ -2695,8 +2708,8 @@ def borrower_info_1919():
             "SSN, date of birth, place of birth, and the three character questions are personal attestations - "
             "leave them for each individual to complete and sign.", italic=True, size=9)
     table(d, ["Principal", "Title", "% owned", "20%+ owner?", "Guarantor?", "Section II required"],
-          [["Geoff Schackmann", "Managing Member (via Adeline & Lilah, LLC)", "39.9% (indirect control)", "Yes", "Yes (sole PG)", "Yes - full"],
-           ["Mary Elizabeth Burcham", "Passive member of Adeline & Lilah, LLC", "19.95% indirect", "No", "No (spouse consent only)", "Yes - as spouse/owner of A&L"],
+          [["Geoff Schackmann", "Manager (direct individual owner)", "39.9% direct", "Yes", "Yes (sole PG)", "Yes - full"],
+           ["Mary Elizabeth Burcham", "Spouse (AZ community-property interest; passive)", "~19.95% community property", "No", "No (spousal/community-property consent only)", "Yes - as spouse / community-property holder"],
            ["James E. Bullard", "Passive minority investor", "19.5%", "No", "No", "Confirm with lender*"],
            ["Silas R. Shelton", "Executive Director", "13.3%", "No", "No", "Yes - key employee (manages operations)"],
            ["Dana L. Davenport", "Director of Nursing", "13.3%", "No", "No", "Yes - key employee"],

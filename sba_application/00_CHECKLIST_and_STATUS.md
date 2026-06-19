@@ -24,11 +24,20 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
   ($100K wired 5/7/2026; $95K committed by 7/31/2026). **$180,000 designated as the SBA equity injection; $15,000 additional WC.**
   Under 20% → no SBA PG, no PFS, source-of-funds verification only (Bullard guarantees only the bank loan).
   20.6% injection is above the 10% SOP 50 10 8 minimum.
-- **Cap table:** Adeline & Lilah 39.9% / Bullard 19.5% / Shelton-Davenport-Woodard 13.3% each / reserved 0.7% = 100%.
-- **SBA loan guarantors:** Geoff Schackmann (personal guaranty, controlling Manager / sole 20%+ owner via Adeline &
-  Lilah, LLC, 39.9%); Adeline & Lilah, LLC (entity guaranty, 39.9% owner); Hickory Hospice LLC (corporate guaranty
-  + lien on its assets/receivables, as operating subsidiary). Mary Elizabeth Burcham (spouse, 19.95% indirect,
-  passive) signs spouse consent only. Bullard guarantees only the separate bank acquisition loan.
+- **Cap table:** Geoff Schackmann (individual) 39.9% / Bullard 19.5% / Shelton-Davenport-Woodard 13.3% each / reserved 0.7% = 100%.
+- **Ownership:** Geoff Schackmann owns the 39.9% interest **directly, as an individual**, and is the **Manager**
+  (no Adeline & Lilah holding layer). The 39.9% is **Arizona community property**; spouse **Mary Elizabeth Burcham**
+  holds a **~19.95% community-property interest** (under 20%, passive, non-managing) and signs a **spousal /
+  community-property consent** only (on the OA and on Geoff's personal guaranty) — no PFS, no guaranty.
+- **Tax:** the Company **elects S-corporation tax treatment under IRC §1361 (IRS Form 2553)** — NOT a partnership.
+  Files **Form 1120-S**, single class of stock, pro-rata distributions. Hickory Hospice LLC is a **disregarded
+  entity (or QSub)** of the S-corp. CPA item: Form 2553 not yet filed; with a 3/18/2026 formation the on-time
+  window was ~6/1/2026, so the CPA may need **Rev. Proc. 2013-30** late-election relief.
+- **SBA loan guarantors:** Geoff Schackmann (personal guaranty, controlling Manager / sole 20%+ owner —
+  **direct individual 39.9% owner**); Hickory Hospice LLC (corporate guaranty
+  + lien on its assets/receivables, as operating subsidiary). Mary Elizabeth Burcham (spouse, ~19.95%
+  community-property interest, passive) signs spousal / community-property consent only. Bullard guarantees only
+  the separate bank acquisition loan.
 - **Combined debt service (Yrs 1-3) $169,211/yr** = SBA $59,692 ($4,974/mo) + bank $109,519 ($9,127/mo) = $14,101/mo.
   After Year 3, SBA only (~$59,692/yr). Per-year interest — SBA: $46,633/$45,325/$43,757; bank: $15,441/$9,638/$3,478.
 - **Coverage (combined debt):** DSCR Y1 1.79x / Y2 4.02x / Y3 5.95x; global 3-yr 3.92x (floor 1.25x). Min cash trough $444,962; LOC never drawn.
@@ -76,8 +85,10 @@ deliverable. `00_source_forms/` holds the blank forms exactly as the lender prov
 3. **Personal cash flow values** (pre-fill is started).
 4. **Company contacts:** CPA, attorney, insurance agent; office zip + phone; web address.
 5. **Entity docs:** WY formation certificate + EIN confirmation letter; **execute the Amended & Restated OA (holdco)
-   and the single-member OA for Hickory** (cap table 39.9/19.5/13.3×3/0.7, partnership tax, full-13.3%-forfeitable
-   vesting, SBA carve-outs, Hickory corporate guaranty). These supersede the as-provided OA v7 (60/25/4.9 + S-Corp).
+   and the single-member OA for Hickory** (cap table 39.9/19.5/13.3×3/0.7 with **Geoff holding the 39.9% directly
+   as an individual**; **S-corp tax election under IRC §1361 / Form 2553**; full-13.3%-forfeitable
+   vesting, SBA carve-outs, Hickory corporate guaranty). These supersede the as-provided OA v7 (60/25/4.9).
+   CPA item: Form 2553 not yet filed — Rev. Proc. 2013-30 late-election relief may be needed (formation 3/18/2026).
 6. **Transaction docs:** Hickory MIPA is on file (Rev 2.00); confirm final signed version + office lease/LOI (loan-term).
    **Amend the MIPA so the Buyer is "Tyler Hospice Hold, LLC, a Wyoming limited liability company"** (Rev 2.00 names a Texas LLC).
    **Bank acquisition-loan package:** term sheet/commitment, note, security agreement; intercreditor/subordination
@@ -94,9 +105,13 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`. Personal-form how-to in `05_*
 
 ## Decisions locked
 
-- **PFS + tax returns: Geoff Schackmann only** (sole 20%+ controlling owner/guarantor via Adeline & Lilah, 39.9%).
-- **Adeline & Lilah ownership:** Geoff 50% / Mary Elizabeth Burcham 50%. Mary Elizabeth = 19.95% indirect,
-  passive, under 20% → spouse consent only, no PFS/guaranty.
+- **PFS + tax returns: Geoff Schackmann only** (sole 20%+ owner/guarantor — direct individual 39.9% owner).
+- **Ownership of the 39.9%:** Geoff Schackmann holds it **directly, as an individual** (no Adeline & Lilah holding
+  layer), and is the Manager. The interest is **Arizona community property**; spouse Mary Elizabeth Burcham =
+  ~19.95% community-property interest, passive, under 20% → spousal / community-property consent only, no PFS/guaranty.
+- **Tax: S corporation.** The Company elects S-corp treatment under IRC §1361 (Form 2553); files Form 1120-S, single
+  class of stock, pro-rata distributions. Hickory is a disregarded entity/QSub. NOT a partnership. CPA item:
+  Form 2553 not yet filed (on-time window ~6/1/2026 vs 3/18/2026 formation) → may need Rev. Proc. 2013-30 relief.
 - **Equity injection:** $195,000 cash from James Bullard for **19.5%** passive interest (no convertible note;
   Form 155 framing dropped). Phased $100K (received 5/7/2026) + $95K (by 7/31/2026). $180K designated as the SBA
   equity injection; $15K additional WC. SBA loan is $450K (startup + working capital only).
@@ -120,6 +135,9 @@ Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`. Personal-form how-to in `05_*
 - **Borrower entity RESOLVED:** Tyler Hospice Hold, LLC, a **Wyoming** LLC (EIN 41-4966640), foreign-qualified in TX.
   The Hickory MIPA (Rev. 2.00) must be amended so the Buyer is "Tyler Hospice Hold, LLC, a Wyoming limited liability company" (B2). Confirm exact name vs WY Certificate of Formation.
 - **Execute the Amended & Restated OA (holdco) + single-member OA (Hickory)** so the cap table/tax/structure match the application (B3); these supersede the interim Amendment No. 1.
+- **S-corp election (Form 2553) — CPA item.** The Company elects S-corp treatment under IRC §1361. Form 2553 is not
+  yet filed; with a 3/18/2026 formation the on-time election window was ~6/1/2026, so the CPA likely needs
+  **Rev. Proc. 2013-30** late-election relief. Confirm CPA is engaged and the election (or relief request) is filed.
 - **NAICS confirmation** for hospice (621610 used; confirm with lender).
 
 History of superseded structures (for reference only): the package previously modeled $1.05M with a $300K

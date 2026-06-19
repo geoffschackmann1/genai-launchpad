@@ -1,5 +1,7 @@
 # Overnight Work Summary — 2026-06-16
 
+> **UPDATE (later 6/16):** Two structural changes were made after this summary was written and now govern: (1) **tax = S corporation** (IRC §1361 / Form 2553 / 1120-S, single class of stock, pro-rata distributions), not a partnership; and (2) the **39.9% interest is owned directly by Geoff Schackmann as an individual** (Adeline & Lilah, LLC removed). Mary Elizabeth Burcham holds a ~19.95% Arizona community-property interest (under 20%, passive, spousal consent only). All dollar figures, percentages, DSCR, financing, and vesting below are unchanged. See COUNSEL_QA / tracker.
+
 Completed the three tasks requested: (1) the operating agreement, scrutinized and finalized;
 (2) the SBA financial model; (3) the full SBA loan package for John Hart. Everything builds
 clean, ties out to the dollar, and is committed and pushed to `claude/happy-hopper-z2ubs`.
