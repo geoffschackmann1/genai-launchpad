@@ -8,8 +8,8 @@ on 2026-06-16:
   - Entity: Tyler Hospice Hold, LLC, a Wyoming LLC (EIN 41-4966640), foreign-qualified
     in Texas; owns 100% of Hickory Hospice LLC (dba Azalea Hospice & Palliative Care).
   - Tax: S corporation under IRC §1361 (single class of stock; strictly pro-rata distributions).
-  - Cap table: [SMLLC] 39.9 / Bullard 19.5 / Shelton-Davenport-Woodard 13.3 each / pool 0.7.
-    The 39.9% holder is a single-member LLC (100% Geoff) so it is an eligible S-corp shareholder.
+  - Cap table: Geoff Schackmann 39.9 / Bullard 19.5 / Shelton-Davenport-Woodard 13.3 each / pool 0.7.
+    Geoff holds the 39.9% directly as an individual (an eligible S-corp shareholder).
   - Operator Restricted Interests: full 13.3% at risk; 4.9% time-vested Initial Base +
     8.4% dual-trigger Earn-Up; vesting from the Effective Date; good/bad-leaver call.
   - Bullard floor 19.5%; SBA debt carve-out; Texas Shootout deferred while SBA debt out.
@@ -85,7 +85,7 @@ def rule(d):
 def captable(d):
     rows = [
         ("Member", "Consideration", "Percentage Interest"),
-        ("Schackmann Holdings, LLC (single-member; 100% Geoff Schackmann)", "Services rendered (sweat equity)", "39.9%"),
+        ("Geoff Schackmann (individual)", "Services rendered (sweat equity)", "39.9%"),
         ("James E. Bullard", "$195,000.00 cash (capital contribution)", "19.5%"),
         ("Silas R. Shelton", "Services (Restricted Interest)", "13.3%*"),
         ("Dana L. Davenport", "Services (Restricted Interest)", "13.3%*"),
@@ -116,10 +116,8 @@ def build():
     sub(d, "Amendment & Restatement No. 1  |  Effective as of ________________, 2026")
     sub(d, "DRAFT FOR COUNSEL REVIEW AND EXECUTION - the parties are advised to obtain "
            "independent legal and tax advice before signing.", size=9)
-    sub(d, "DRAFTING NOTE: \"Schackmann Holdings, LLC\" is a PLACEHOLDER for the new single-member "
-           "LLC (100% owned by Geoff Schackmann) that replaces Adeline & Lilah, LLC as the 39.9% "
-           "member to preserve S-corporation eligibility; substitute the exact entity name and state "
-           "before execution.", size=9)
+    sub(d, "Geoff Schackmann holds the 39.9% Membership Interest directly, as an individual (an "
+           "eligible S-corporation shareholder), replacing the former Adeline & Lilah, LLC holder.", size=9)
     rule(d)
 
     # ---------- Preamble & recitals ----------
@@ -127,12 +125,12 @@ def build():
          "This Amended and Restated Operating Agreement (this “Agreement”) of Tyler "
          "Hospice Hold, LLC, a Wyoming limited liability company (the “Company”), is "
          "effective as of the date last signed below (the “Effective Date”), by and among "
-         "Schackmann Holdings, LLC, a single-member limited liability company wholly owned by Geoff Schackmann (“Schackmann Holdings, LLC”); "
+         "Geoff Schackmann, an individual (“Geoff Schackmann”); "
          "James E. Bullard (“Bullard” or the “Investor”); Silas R. Shelton "
          "(“Silas”); Dana L. Davenport (“Dana”); and Bradley Gene Woodard "
-         "(“Brad”) (collectively, the “Members” and each a “Member”); and, "
-         "in his individual non-Member capacity, Geoff Schackmann, as Manager (“Schackmann” "
-         "or the “Manager”).")
+         "(“Brad”) (collectively, the “Members” and each a “Member”). Geoff "
+         "Schackmann, who is a Member, also serves as the Company's manager (in that capacity, the "
+         "“Manager”).")
     para(d, "RECITALS", bold=True)
     para(d, "A.  The Company and the Members entered into (or agreed to the form of) that certain "
             "Operating Agreement of the Company (styled “Tyler Hospice HoldCo L.L.C.,” Version "
@@ -144,8 +142,8 @@ def build():
     para(d, "B.  This Agreement (i) conforms the Company's exact legal name to “Tyler Hospice "
             "Hold, LLC”; (ii) confirms the Company's election to be taxed as an S corporation "
             "under IRC §1361 and conforms the Company's membership to the S-corporation eligibility "
-            "rules (including holding the 39.9% interest through a single-member, disregarded LLC and "
-            "maintaining a single class of stock with strictly pro-rata distributions); (iii) restates "
+            "rules (the 39.9% interest is held directly by Geoff Schackmann, an eligible individual, and "
+            "the Company maintains a single class of stock with strictly pro-rata distributions); (iii) restates "
             "the capitalization table; (iv) updates "
             "the acquisition target to Hickory Hospice LLC; (v) revises the operator-member "
             "Restricted Interests so the entire interest is earned through time- and "
@@ -258,8 +256,8 @@ def build():
         "Bullard's obligation to fund shall not arise until the Manager delivers (i) a certified "
         "copy of the Company's Wyoming Certificate of Organization confirming good standing, and "
         "(ii) the Company's federal Employer Identification Number.")
-    sec(d, "3.4", "Manager (Schackmann Holdings, LLC) Capital Contribution.",
-        "Schackmann Holdings, LLC's thirty-nine and nine-tenths percent (39.9%) Percentage Interest is "
+    sec(d, "3.4", "Manager (Geoff Schackmann) Capital Contribution.",
+        "Geoff Schackmann's thirty-nine and nine-tenths percent (39.9%) Percentage Interest is "
         "issued in consideration of services rendered and to be rendered by Geoff Schackmann as "
         "Manager, including organizing and operating the Company, managing the acquisition, and "
         "building clinical and operational infrastructure.")
@@ -329,7 +327,7 @@ def build():
         "Effective Date, Bullard may request return of any Undeployed Acquisition Funds. Within "
         "thirty (30) days, the Manager shall return such funds, which shall reduce Bullard's "
         "Percentage Interest by (Returned Amount ÷ $195,000) × 19.5%, with the corresponding "
-        "percentage restored to Schackmann Holdings, LLC.")
+        "percentage restored to Geoff Schackmann.")
     sec(d, "3.16", "Coordination with SBA Closing.",
         "The change-of-ownership closing shall be scheduled on or after the date the Investor has "
         "contributed the full $195,000 under Section 3.3 (anticipated by the end of July 2026), so "
@@ -495,8 +493,8 @@ def build():
     sec(d, "6.2", "Reserved Matters Requiring Member Approval.",
         "The Manager shall not, without the prior written consent of Members holding at least sixty "
         "percent (60%) of outstanding Percentage Interests, take any of the following actions; the "
-        "parties acknowledge that, after the restatement, no single Member holds 60% and Adeline & "
-        "Lilah, LLC (39.9%) cannot unilaterally pass a Reserved Matter:")
+        "parties acknowledge that, after the restatement, no single Member holds 60% and Geoff "
+        "Schackmann (39.9%) cannot unilaterally pass a Reserved Matter:")
     for x in [
         "(a) Sell all or substantially all of the Company's assets;",
         "(b) Merge or consolidate the Company with any other entity;",
@@ -512,8 +510,8 @@ def build():
         "(g) Make any Change of Control transaction.",
     ]:
         para(d, x, indent=True)
-    para(d, "For the avoidance of doubt, Schackmann Holdings, LLC may pass a Reserved Matter only by "
-            "combining its 39.9% with the votes of at least two (2) Equity Grantees (66.5% total) or "
+    para(d, "For the avoidance of doubt, Geoff Schackmann may pass a Reserved Matter only by "
+            "combining his 39.9% with the votes of at least two (2) Equity Grantees (66.5% total) or "
             "with Bullard's 19.5% plus at least one (1) Equity Grantee (72.7% total); Bullard holds "
             "no unilateral veto on Reserved Matters.")
     sec(d, "6.3", "Meetings and Votes.",
@@ -536,7 +534,7 @@ def build():
         "with notice. This obligation survives departure for five (5) years.")
     sec(d, "6.6", "Key Person and Succession.",
         "On a Key Person Event affecting Geoff Schackmann (death, permanent disability, or "
-        "incapacity), the Company continues under interim management designated by Schackmann Holdings, LLC, "
+        "incapacity), the Company continues under interim management designated by Geoff Schackmann, "
         "LLC's authorized successor for up to ninety (90) days, after which the Members elect a "
         "successor Manager by majority vote. Bullard is notified within five (5) business days and "
         "votes in the successor election; during the interim period, material financial decisions "
@@ -600,7 +598,7 @@ def build():
         "on terms no more favorable.")
     sec(d, "8.5", "Permitted Family/Trust Transfers.",
         "A Member may assign, by gift or upon death, to a spouse, child, or revocable living trust, "
-        "provided (a) for a trust, the Member retains sole voting control; (b) Schackmann Holdings, LLC "
+        "provided (a) for a trust, the Member retains sole voting control; (b) Geoff Schackmann "
         "remains Manager; and (c) Bullard receives written notice within five (5) business days. No "
         "other exception applies without Bullard's written consent.")
     sec(d, "8.6", "Mandatory Buyout Upon Death, Divorce, Bankruptcy, or Incapacity.",
@@ -616,14 +614,14 @@ def build():
         "A security interest a Member grants in its interest must give the Company and other Members "
         "the option, on default, to purchase on the terms of Section 8.4.")
     sec(d, "8.8", "Tag-Along Rights.",
-        "If Schackmann Holdings, LLC proposes a Transfer constituting a Change of Control, Bullard may "
+        "If Geoff Schackmann proposes a Transfer constituting a Change of Control, Bullard may "
         "participate pro rata on the same terms, with at least twenty (20) days' notice.")
     sec(d, "8.9", "Drag-Along Rights.",
         "If Members holding more than 60% propose a bona fide arm's-length Change of Control, they "
         "may require the remaining Members to Transfer on the same per-unit terms (with "
         "representations limited to title and authority) on at least thirty (30) days' notice.")
     sec(d, "8.10", "Buy-Sell - Texas Shootout.",
-        "After the Lock-Up Period, if Schackmann (for himself and Schackmann Holdings, LLC) and Bullard "
+        "After the Lock-Up Period, if Schackmann (for himself and Geoff Schackmann) and Bullard "
         "cannot resolve a material dispute after thirty (30) days of good-faith negotiation, either "
         "may invoke the buy-sell by naming an enterprise valuation, from which buyout amounts are "
         "computed pro rata; Unvested Restricted Interests are forfeited at closing without "
@@ -662,7 +660,7 @@ def build():
     # ================= ARTICLE X =================
     art(d, "ARTICLE X - INDEMNIFICATION")
     sec(d, "10.1", "Indemnification of Manager.",
-        "The Company shall indemnify and hold harmless the Manager and Schackmann Holdings, LLC and "
+        "The Company shall indemnify and hold harmless the Manager and Geoff Schackmann and "
         "their respective members, managers, officers, employees, and agents from claims arising "
         "from the management or operation of the Company or good-faith actions under this Agreement, "
         "except for fraud, willful misconduct, gross negligence, improper personal benefit, or "
@@ -692,7 +690,7 @@ def build():
         "satisfy the S-corporation eligibility requirements, including: (a) every shareholder is an "
         "eligible shareholder (a U.S. individual, an estate, an eligible trust, or a single-member "
         "disregarded LLC owned by an eligible individual) - accordingly the 39.9% interest is held "
-        "by a single-member LLC wholly owned by Geoff Schackmann; (b) the Company maintains a single "
+        "directly by Geoff Schackmann, an eligible individual; (b) the Company maintains a single "
         "class of stock with strictly pro-rata allocations and distributions (Sections 4.4-4.5); and "
         "(c) the number of shareholders does not exceed the statutory limit. No Transfer or admission "
         "may be made that would terminate the S-election (Sections 8.5, 8.11, and Article XII). The "
@@ -780,14 +778,11 @@ def build():
             "Agreement effective as of the date set forth above.")
     para(d, "")
     blocks = [
-        ("MANAGER (individually) - GEOFF SCHACKMANN",
-         "Geoff Schackmann, Manager (non-Member capacity)",
+        ("MEMBER AND MANAGER - GEOFF SCHACKMANN (Interest: 39.9%)",
+         "Geoff Schackmann, individually, as a Member and as the Company's Manager",
          "4602 E Cheery Lynn Rd, Phoenix, Arizona 85018  |  geoff@azaleahospice.com  |  480-495-5474"),
-        ("MEMBER - SCHACKMANN HOLDINGS, LLC (Interest: 39.9%; single-member LLC wholly owned by Geoff Schackmann)",
-         "By: Geoff Schackmann, Sole Member and Manager",
-         "4602 E Cheery Lynn Rd, Phoenix, Arizona 85018"),
         ("SPOUSAL / COMMUNITY-PROPERTY CONSENT",
-         "Mary Elizabeth Burcham, spouse of Geoff Schackmann - consents to this Agreement and to Geoff Schackmann's ownership of Schackmann Holdings, LLC and its 39.9% Membership Interest, and waives any community-property claim inconsistent with this Agreement and the Company's S-corporation eligibility.",
+         "Mary Elizabeth Burcham, spouse of Geoff Schackmann - consents to this Agreement and to Geoff Schackmann's direct ownership of the 39.9% Membership Interest, and waives any community-property claim inconsistent with this Agreement and the Company's S-corporation eligibility (single eligible shareholder).",
          "Address: ______________________________________________"),
         ("MEMBER / INVESTOR - JAMES E. BULLARD (Interest: 19.5%)",
          "James E. Bullard",
