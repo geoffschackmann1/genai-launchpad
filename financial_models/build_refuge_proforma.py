@@ -252,6 +252,38 @@ def build():
     r = note(ws, r, "No LOC assumed in the base case. If any month dips below plan, levers: delay a monthly seller "
                     "payment (negotiate cure language), draw on Jim's bank relationship, or accelerate the SBA scenario below.")
 
+    # ================= Census & Collections =================
+    ws = sheet(wb, "Census & Collections")
+    r = title(ws, 1, "CENSUS -> PATIENT DAYS -> REVENUE -> CASH (one-month collection lag)")
+    r = note(ws, r, "Revenue is EARNED as patients are seen; cash is COLLECTED one month later "
+                    "(see patients in July, money lands in August). Expenses paid in-month (conservative: "
+                    "no AP lag credit). Recommended offer structure overlaid.")
+    pdays = [R["pd"][i] for i in range(N)]
+    coll = [0.0] + [net[i - 1] for i in range(1, N)]
+    opex = [net[i] - ebitda[i] for i in range(N)]
+    r = month_header(ws, r + 1)
+    r = row(ws, r, "Average daily census (ADC)", adc, total=False)
+    r = row(ws, r, "Total patient days", pdays)
+    r = row(ws, r, "Gross revenue (earned)", gross)
+    r = row(ws, r, "NET REVENUE (earned)", net, bold=True, fill=LT)
+    r = row(ws, r, "Cash COLLECTED (prior month's net)", coll, bold=True, fill=AMB)
+    r = row(ws, r, "Operating expenses (cash, in-month)", [-x for x in opex])
+    r = row(ws, r, "Net operating cash", [coll[i] - opex[i] for i in range(N)], bold=True)
+    r = row(ws, r, "Seller payments (down excl.)", [-p for p in seller_pay], indent=True)
+    r = row(ws, r, "Refi principal+interest (M7+)", [-(refi_pmt if i > 5 else 0.0) for i in range(N)], indent=True)
+    endc3, beg3 = [], CASH - down
+    for i in range(N):
+        c = beg3 + coll[i] - opex[i] - seller_pay[i] - (refi_pmt if i > 5 else 0.0)
+        endc3.append(c); beg3 = c
+    r = row(ws, r, "ENDING CASH (1-mo lag view)", endc3, bold=True, fill=GRN, total=False)
+    r += 1
+    ws.cell(r, 1, f"Min cash ${min(endc3):,.0f} ({MONTHS[endc3.index(min(endc3))]})  |  End Jun-27 "
+                  f"${endc3[-1]:,.0f}  |  vs 45-day-AR view min ${minc:,.0f} - the one-month lag is the "
+                  f"better case; the 45-day view is the conservative floor.").font = boldF
+    r += 2
+    r = note(ws, r, "Six-month picture: net revenue earned Jul-Dec ~$667K; collected by Dec 31 ~$542K "
+                    "(December's revenue lands in January). EBITDA positive every month from M1.")
+
     # ================= SBA Scenario =================
     ws = sheet(wb, "SBA Scenario")
     r = title(ws, 1, "SCENARIO: SBA 7(a) $450,000 lands Month 3 (Sep-26)")
