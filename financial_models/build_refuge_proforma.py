@@ -284,6 +284,53 @@ def build():
     r = note(ws, r, "Six-month picture: net revenue earned Jul-Dec ~$667K; collected by Dec 31 ~$542K "
                     "(December's revenue lands in January). EBITDA positive every month from M1.")
 
+    # ================= Sensitivity =================
+    from financial_models.refuge_sensitivity import (scenario as sens, GRID,
+                                                     breakeven_adc, max_seller_monthly)
+    ws = sheet(wb, "Sensitivity")
+    r = title(ws, 1, "SENSITIVITY - census capture x payroll inflation (interview-locked axes)")
+    r = note(ws, r, "Cost refinements applied to ALL cases: G&A -$2,004/mo (rent $2,000; credit-card fees cut); "
+                    "health insurance 90-day waiting period; med director contracted (not inflated). "
+                    "Floor: >=$25K safe | <$25K flag | <$0 FAIL. Offer overlay: $100K down + $25K x4 (M3-6) + Jan balloon.")
+    r += 1
+    heads = ["Scenario", "6-mo EBITDA", "Min cash (1-mo lag)", "Trough mo", "Min cash (45-day AR)", "Verdict"]
+    for j, h in enumerate(heads):
+        c = ws.cell(r, 1 + j, h); c.font = hdrF; c.fill = fillH
+    r += 1
+    for label, cpt, pmm, dfr in GRID:
+        s = sens(cpt, pmm, dfr)
+        e6 = sum(s["ebitda"][:6])
+        v = "FAIL" if s["min1"] < 0 else ("flag" if s["min1"] < 25_000 else "safe")
+        vals = [label, e6, s["min1"], s["min1_m"], s["min45"], v]
+        for j, val in enumerate(vals):
+            c = ws.cell(r, 1 + j, val)
+            if isinstance(val, (int, float)) and j in (1, 2, 4): money(c)
+            c.border = box
+            if v == "FAIL": c.fill = PatternFill("solid", fgColor=RED)
+            elif v == "flag": c.fill = PatternFill("solid", fgColor=AMB)
+        r += 1
+    r += 1
+    r = title(ws, r, "WHERE THE CLIFF IS", 11)
+    for line in [
+        "Safe ($25K floor) down to 82% census capture (steady ADC ~18.7). Never-negative down to 80% (ADC ~18.1).",
+        "If payroll runs +10%, the safe threshold rises to 90% capture; owner deferral buys it back to ~80%.",
+        f"Breakeven ADC (steady state): {breakeven_adc():.1f} patients; at payroll +10%: {breakeven_adc(1.10):.1f}.",
+        "Below ~80% capture the BUSINESS is EBITDA-negative at steady state - no offer structure fixes that;",
+        "the mitigation is the census ramp itself (marketing, referral push), not deal terms.",
+    ]:
+        ws.cell(r, 1, "  - " + line); r += 1
+    r += 1
+    r = title(ws, r, "MAX AFFORDABLE SELLER MONTHLY (M3-6, after $100K down; $25K floor)", 11)
+    for label, cpt, pmm, dfr in [("Base (100%)", 1.0, 1.0, False), ("Census 85%", 0.85, 1.0, False),
+                                 ("Census 70%", 0.70, 1.0, False)]:
+        mx = max_seller_monthly(cpt, pmm, dfr)
+        ws.cell(r, 1, f"  - {label}: ${mx:,.0f}/mo" + ("  (offer's $25K has ~$20K headroom)" if cpt == 1.0 else
+                      ("  (offer's $25K still fits)" if mx >= 25_000 else "  (payments would need pause/cure)")))
+        r += 1
+    r += 1
+    r = note(ws, r, "Interview-locked mitigations: hires track census (natural hedge); owner salary deferral "
+                    "~$12K/mo available M1-6; LOI cure/pause language on monthlies recommended for the <85% case.")
+
     # ================= SBA Scenario =================
     ws = sheet(wb, "SBA Scenario")
     r = title(ws, 1, "SCENARIO: SBA 7(a) $450,000 lands Month 3 (Sep-26)")
