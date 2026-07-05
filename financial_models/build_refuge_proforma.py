@@ -328,6 +328,51 @@ def build():
     ]:
         ws.cell(r, 1, "  - " + line); r += 1
 
+    # ================= Sept $500K Refi =================
+    from financial_models.refuge_sensitivity import scenario as sensR
+    ws = sheet(wb, "Sep Refi $500K")
+    r = title(ws, 1, "SEPTEMBER REFI: $500,000 @ 6% / 36 months - sellers paid in full end-September")
+    r = note(ws, r, "Close on the counter's front end ($125K down Jul + $25K Aug), then refinance the entire "
+                    "$500K in September: pay the sellers off (~$355,500 incl. ~$5,500 interest) and keep the "
+                    "~$144,500 surplus as working capital. No January balloon. Loan service $15,211/mo "
+                    "($182,532/yr) starting October for 36 months.")
+    sR = sensR()
+    netR, opexR = sR["net"], sR["ebitda"] and sR["opex"]
+    lp36 = pmt(500_000, 0.06, 36)
+    surplus = 500_000 - 355_500
+    cashR, beg = [], CASH - 125_000
+    for i in range(N):
+        mo = i + 1
+        coll = netR[i - 1] if i >= 1 else 0.0
+        c = beg + coll - opexR[i]
+        if mo == 2: c -= 25_000
+        if mo == 3: c += surplus
+        if mo >= 4: c -= lp36
+        cashR.append(c); beg = c
+    acq = [-125_000 if i == 0 else (-25_000 if i == 1 else (surplus if i == 2 else (-lp36 if i >= 3 else 0.0))) for i in range(N)]
+    r = month_header(ws, r + 1)
+    r = row(ws, r, "Cash collected (1-mo lag)", [0.0] + netR[:-1])
+    r = row(ws, r, "Operating expenses (refined costs)", [-x for x in opexR])
+    r = row(ws, r, "Acquisition / loan cash flows", acq, indent=True)
+    r = row(ws, r, "ENDING CASH", cashR, bold=True, fill=GRN, total=False)
+    r += 1
+    r = title(ws, r, "READ", 11)
+    for line in [
+        f"Min cash ${min(cashR):,.0f} (Aug) expected-case; ~$14,000 (Aug) on the conservative 45-day view - August "
+        f"is still the pinch (fix: ask to skip the August $25K since they're paid in full in September; that "
+        f"lifts the trough to ~$72K / ~$39K).",
+        f"After the September surplus lands, cash jumps to ~$219K and climbs to ~$313K by June - every 12-month "
+        f"stress case stays positive (worst: ~$33K at census 85% + payroll +10%).",
+        f"THE TRADE-OFF: $15,211/mo for 36 months is heavy amortization. Steady-state DSCR is 1.87x in the base "
+        f"case but falls BELOW 1.0x at 85% census (0.73x) - in a slow-ramp world the note is not self-supporting "
+        f"from operations and the ~$144K surplus becomes the shock absorber for years 2-3.",
+        "Versus the January-balloon plan: sellers paid 4 months earlier (a strong negotiating chip), no "
+        "balloon/refi-timing risk, cheaper rate (6% vs ~9%) - in exchange for locked-in heavy payments for 3 years.",
+        "If the SBA $450K also lands, combined service is ~$242K/yr vs steady EBITDA ~$342K/yr (1.41x) - workable "
+        "but disclose the piggyback to the SBA lender.",
+    ]:
+        ws.cell(r, 1, "  - " + line); r += 1
+
     # ================= Sensitivity =================
     from financial_models.refuge_sensitivity import (scenario as sens, GRID,
                                                      breakeven_adc, max_seller_monthly)
