@@ -284,6 +284,50 @@ def build():
     r = note(ws, r, "Six-month picture: net revenue earned Jul-Dec ~$667K; collected by Dec 31 ~$542K "
                     "(December's revenue lands in January). EBITDA positive every month from M1.")
 
+    # ================= Seller Counter (Jul 5) =================
+    from financial_models.refuge_sensitivity import scenario as sens2
+    ws = sheet(wb, "Seller Counter (Jul 5)")
+    r = title(ws, 1, "SELLER COUNTER 7/5: $125K down + $25K/mo AUG-DEC (5 pmts) + Jan balloon @6%")
+    r = note(ws, r, "Jorge/Dennis counter accepts our price and hybrid structure but starts monthlies in August "
+                    "(inside the collections-lag window) and adds a 5th payment. Seller receives $250K (50%) "
+                    "pre-balloon. Balloon ~$260,000 (incl. ~$10,000 interest), refi-funded in January.")
+    sC = sens2()          # refined base costs
+    netC, opexC = sC["net"], sC["opex"]
+    paysC = [0, 25000, 25000, 25000, 25000, 25000] + [0] * 6
+    paysT = [0, 0, 25000, 25000, 25000, 25000] + [0] * 6
+    def path(pays, down=125_000):
+        balv, acc = PRICE - down, 0.0
+        for i in range(6):
+            acc += balv * SELLER_RATE / 12; balv -= pays[i]
+        bl = balv + acc; rp = pmt(bl, REFI_RATE, REFI_TERM)
+        out, beg = [], CASH - down
+        for i in range(12):
+            coll = netC[i - 1] if i >= 1 else 0.0
+            c = beg + coll - opexC[i] - pays[i] - (rp if i + 1 > 6 else 0.0)
+            out.append(c); beg = c
+        return out, bl
+    ecC, blC = path(paysC)
+    ecT, blT = path(paysT)
+    r = month_header(ws, r + 1)
+    r = row(ws, r, "Cash collected (1-mo lag)", [0.0] + netC[:-1])
+    r = row(ws, r, "Operating expenses (refined costs)", [-x for x in opexC])
+    r = row(ws, r, "Seller payments - COUNTER (Aug start)", [-p for p in paysC], indent=True)
+    r = row(ws, r, "ENDING CASH - counter as-is", ecC, bold=True, fill=AMB, total=False)
+    r = row(ws, r, "Seller payments - TWEAK (Sep start)", [-p for p in paysT], indent=True)
+    r = row(ws, r, "ENDING CASH - with Sep-start tweak", ecT, bold=True, fill=GRN, total=False)
+    r += 1
+    r = title(ws, r, "VERDICT", 11)
+    for line in [
+        f"Counter as-is: min cash ${min(ecC):,.0f} (Aug) expected-case; ${10_718:,.0f} (Sep) on the conservative "
+        f"45-day view - passes the $25K floor only on expected collections; FAILS at 85% census (-$12K).",
+        f"One-month tweak (first payment September, 4 pmts, balloon ${blT:,.0f}): min cash ${min(ecT):,.0f} expected / "
+        f"~$35.7K conservative - safe on BOTH views, survives payroll +10%, and the combined downside is "
+        f"rescued by owner deferral. Seller still gets $225K (45%) by December and full payout in January.",
+        "Recommendation: accept the counter with the single September-start adjustment (or accept as-is only "
+        "with a 30-day cure/grace clause on the monthlies).",
+    ]:
+        ws.cell(r, 1, "  - " + line); r += 1
+
     # ================= Sensitivity =================
     from financial_models.refuge_sensitivity import (scenario as sens, GRID,
                                                      breakeven_adc, max_seller_monthly)
