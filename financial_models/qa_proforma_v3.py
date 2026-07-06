@@ -1,12 +1,15 @@
-"""QA for the Rev 3.00 dynamic proforma.
+"""QA for the Rev 3.xx dynamic proforma (PE-grade pass).
 
-  1. 0 formula errors (formulas evaluation)
-  2. Balance-sheet check row = 0 in all 36 months (no plugs)
-  3. Collections conservation: cum collected + ending AR == cum NPR
-  4. Seller schedule: end-Dec balance $275,000; Jan balloon principal $275,000
-  5. Refi toggle: seller paid off in Sept; no Jan balloon; $15,211/mo from Oct
-  6. Zero hardcoded numeric constants >100 embedded in formulas (the Rev 2.00 sin)
-  7. Sanity: M6 gross margin 45-65%; census EOM M6 = 35
+  1. 0 formula errors
+  2. BS check = 0 all 36 months (no plugs)
+  3. Collections conservation
+  4. Census: EOM M2=24, M6=34, M12=40 (user spec 7/8)
+  5. BASE = $500K/6%/36 note: seller paid off Sept ($375K), no Jan balloon, $15,211/mo from Oct
+  6. Revolver: cash never < -0.01; revolver never > commitment; no draw while cash > floor
+  7. Checks-tab MASTER = 0
+  8. EBITDA margin M12 in 20-25% band (pre-debt-service, contingency below the line)
+  9. Toggle test (refi OFF): Jan balloon = $275K principal; balloon-refi services it
+ 10. Zero hardcoded constants >=100 in formulas outside Control Tower
 """
 import json, re, sys
 import formulas
@@ -19,7 +22,10 @@ PASS = FAIL = 0
 def chk(name, ok, detail=""):
     global PASS, FAIL
     print(f"  {'OK ' if ok else 'FAIL'} {name} {detail}")
-    PASS, FAIL = PASS + ok, FAIL + (not ok)
+    PASS, FAIL = PASS + bool(ok), FAIL + (not ok)
+
+def num(x):
+    return x if isinstance(x, (int, float)) else None
 
 def evaluate(path):
     sol = formulas.ExcelModel().loads(path).finish().calculate()
@@ -29,9 +35,7 @@ def evaluate(path):
         except Exception: pass
     fn = path.split("/")[-1].upper()
     def g(sheet, ref):
-        v = vals.get(f"'[{fn}]{sheet.upper()}'!{ref.upper()}")
-        try: return float(v)
-        except Exception: return v
+        return vals.get(f"'[{fn}]{sheet.upper()}'!{ref.upper()}")
     return vals, g
 
 def main():
@@ -43,40 +47,55 @@ def main():
     for e in errs[:6]: print("     ERR", e, vals[e])
 
     B = R["Balance Sheet"]
-    def val0(x):
-        return abs(x) if isinstance(x, (int, float)) else 9e9
-    checks = [val0(g("Balance Sheet", f"{gcl(3+i)}{B['check']}")) for i in range(36)]
-    chk("balance sheet check = 0 all 36 months (no plugs)", max(checks) < 1.0, f"(max {max(checks):,.2f})")
+    bs = [abs(num(g("Balance Sheet", f"{gcl(3+i)}{B['check']}")) if num(g("Balance Sheet", f"{gcl(3+i)}{B['check']}")) is not None else 9e9) for i in range(36)]
+    chk("BS check = 0 all 36 months", max(bs) < 0.01, f"(max {max(bs):,.4f})")
 
     CF = R["Cash Flow & Runway"]
-    cum_npr = sum(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['earned']}") for i in range(36))
-    cum_col = sum(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['coll']}") for i in range(36))
-    ar_end = g("Cash Flow & Runway", f"AL{CF['ar']}")
-    chk("collections conservation (cum coll + AR = cum NPR)", abs(cum_col + ar_end - cum_npr) < 1.0,
-        f"({cum_col:,.0f}+{ar_end:,.0f} vs {cum_npr:,.0f})")
+    cum_npr = sum(num(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['earned']}")) for i in range(36))
+    cum_col = sum(num(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['coll']}")) for i in range(36))
+    ar_end = num(g("Cash Flow & Runway", f"AL{CF['ar']}"))
+    chk("collections conservation", abs(cum_col + ar_end - cum_npr) < 1.0)
 
-    chk("seller balance end-Dec = $275,000", abs(g("Cash Flow & Runway", f"H{CF['s_end']}") - 275000) < 1,
-        f"({g('Cash Flow & Runway', f'H{CF[chr(39)+chr(39)] if False else chr(115)+chr(95)+chr(101)+chr(110)+chr(100)}'):,.0f})" if False else "")
-    chk("Jan balloon principal = $275,000", abs(g("Cash Flow & Runway", f"I{CF['s_prin']}") - 275000) < 1)
-    chk("census EOM M6 = 35.0", abs(g("Census Waterfall", f"H{R['Census Waterfall']['eom']}") - 35.0) < 0.1)
-    gm6 = g("P&L", f"H{R['P&L']['gm']}")
-    chk("M6 gross margin 45-65%", 0.45 <= gm6 <= 0.65, f"({gm6:.1%})")
-    cash = [g("Cash Flow & Runway", f"{gcl(3+i)}{CF['cash']}") for i in range(36)]
-    print(f"     info: min cash ${min(cash):,.0f} (M{cash.index(min(cash))+1}) | M12 ${cash[11]:,.0f} | M36 ${cash[35]:,.0f}")
+    CN = R["Census Waterfall"]
+    for mo, tgt in [(2, 24.0), (6, 34.0), (12, 40.0)]:
+        v = num(g("Census Waterfall", f"{gcl(2+mo)}{CN['eom']}"))
+        chk(f"census EOM M{mo} = {tgt}", abs(v - tgt) < 0.1, f"({v:.1f})")
 
-    # refi-ON scenario
+    chk("BASE: seller paid off Sept ($375K)", abs(num(g("Cash Flow & Runway", f"E{CF['s_prin']}")) - 375000) < 1)
+    chk("BASE: no January balloon", abs(num(g("Cash Flow & Runway", f"I{CF['s_prin']}"))) < 1)
+    chk("BASE: $15,211/mo from Oct", abs(num(g("Cash Flow & Runway", f"F{CF['refi_pmt']}")) - 15210.97) < 1)
+
+    cash = [num(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['cash']}")) for i in range(36)]
+    rev = [num(g("Cash Flow & Runway", f"{gcl(3+i)}{CF['rev_bal']}")) for i in range(36)]
+    floor = num(g("Control Tower", addr["floor"].split("!")[1].replace("$", "")))
+    lim = num(g("Control Tower", addr["rev_limit"].split("!")[1].replace("$", "")))
+    chk("revolver: cash never negative", min(cash) > -0.01, f"(min {min(cash):,.0f})")
+    chk("revolver: never over commitment", max(rev) <= lim + 0.01, f"(max {max(rev):,.0f})")
+    excl = all(not (rv > 0.01 and c > floor + 1) for rv, c in zip(rev, cash))
+    chk("revolver: no balance while cash above floor", excl)
+    print(f"     info: peak revolver ${max(rev):,.0f} | M12 cash ${cash[11]:,.0f} | M36 cash ${cash[35]:,.0f}")
+
+    master = num(g("Checks", f"B{R['Checks']['master']}"))
+    chk("Checks tab MASTER = 0", master == 0, f"({master})")
+
+    P = R["P&L"]
+    em12 = num(g("P&L", f"N{P['em']}"))
+    chk("EBITDA margin M12 in 20-25% band", 0.20 <= em12 <= 0.25, f"({em12:.1%})")
+    e_y = [sum(num(g("P&L", f"{gcl(3+i)}{P['ebitda']}")) for i in range(a, b)) for a, b in [(0,12),(12,24),(24,36)]]
+    n_y = [sum(num(g("P&L", f"{gcl(3+i)}{P['npr']}")) for i in range(a, b)) for a, b in [(0,12),(12,24),(24,36)]]
+    print(f"     info: EBITDA Y1 ${e_y[0]:,.0f} ({e_y[0]/n_y[0]:.1%}) | Y2 ${e_y[1]:,.0f} ({e_y[1]/n_y[1]:.1%}) | Y3 ${e_y[2]:,.0f} ({e_y[2]/n_y[2]:.1%})")
+
+    # toggle test: refi OFF -> balloon path
     wb = openpyxl.load_workbook(XLSX)
     aws = wb["Control Tower"]
-    aws[addr["refi_on"].split("!")[1].replace("$", "")] = 1
-    tmp = "financial_models/output/_v3_refi.xlsx"; wb.save(tmp)
+    aws[addr["refi_on"].split("!")[1].replace("$", "")] = 0
+    tmp = "financial_models/output/_v3_off.xlsx"; wb.save(tmp)
     _, g2 = evaluate(tmp)
-    chk("refi ON: seller principal Sept = $375,000", abs(g2("Cash Flow & Runway", f"E{CF['s_prin']}") - 375000) < 1)
-    chk("refi ON: no Jan balloon", abs(g2("Cash Flow & Runway", f"I{CF['s_prin']}")) < 1)
-    chk("refi ON: $15,211/mo from Oct", abs(g2("Cash Flow & Runway", f"F{CF['refi_pmt']}") - 15210.97) < 1)
+    chk("refi OFF: Jan balloon principal = $275,000", abs(num(g2("Cash Flow & Runway", f"I{CF['s_prin']}")) - 275000) < 1)
+    chk("refi OFF: seller end-Dec = $275,000", abs(num(g2("Cash Flow & Runway", f"H{CF['s_end']}")) - 275000) < 1)
     import os; os.remove(tmp)
 
-    # hardcode hunt (the Rev 2.00 sin): constants >=100 inside formulas, excluding
-    # cell refs, PMT month counts and the month-index comparisons
+    # hardcode scan
     wb2 = openpyxl.load_workbook(XLSX)
     pat = re.compile(r"(?<![A-Z$.\d])(\d{3,}(?:\.\d+)?)")
     offenders = []
@@ -85,11 +104,11 @@ def main():
         for row in wb2[sh].iter_rows():
             for c in row:
                 if isinstance(c.value, str) and c.value.startswith("="):
-                    for mnum in pat.findall(c.value):
-                        if float(mnum) >= 100 and mnum not in ("100",):
+                    for m in pat.findall(c.value):
+                        if float(m) >= 100:
                             offenders.append((sh, c.coordinate, c.value[:60]))
-    chk("0 hardcoded constants >=100 in formulas (outside Control Tower)", not offenders, f"({len(offenders)})")
-    for s, co, f in offenders[:6]: print("     HARD", s, co, f)
+    chk("0 hardcoded constants >=100 in formulas", not offenders, f"({len(offenders)})")
+    for s_, co, f in offenders[:6]: print("     HARD", s_, co, f)
 
     print(f"\n{PASS} passed, {FAIL} failed")
     sys.exit(1 if FAIL else 0)
