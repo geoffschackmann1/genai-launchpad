@@ -968,6 +968,49 @@ def dashboard(bk: OB):
     r += 1
     bk.lbl(ws, r, "MASTER CHECK (from Checks tab; 0 = OK)", bold=True)
     bk.fml(ws, r, 2, f"='Checks'!B{bk.rows['Checks']['master']}", S.FMT_NUM, bold=True, fill=S.fill(S.LIGHTBLUE))
+    r += 2
+
+    # ---- SOURCES & USES (close + refi month) ----
+    bk.section(ws, r, "SOURCES & USES (close through refinance month)", span=4); r += 1
+    su0 = r
+    bk.lbl(ws, r, "Sources: equity on deposit"); bk.fml(ws, r, 2, f"={A['cash0']}", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "Sources: refinance note proceeds")
+    bk.fml(ws, r, 2, f"=IF({A['refi_on']}=1,{A['refi_amt']},0)", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "TOTAL SOURCES", bold=True); bk.fml(ws, r, 2, f"=B{su0}+B{su0+1}", S.FMT_CUR, bold=True); r += 1
+    bk.lbl(ws, r, "Uses: down payment at close"); bk.fml(ws, r, 2, f"={A['down']}", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "Uses: seller payoff at refi (principal + accrued interest)")
+    CFr = bk.rows["Cash Flow & Runway"]
+    bk.fml(ws, r, 2,
+           f"=IF({A['refi_on']}=1,SUMPRODUCT(('Cash Flow & Runway'!$C${CFr['_hdr']}:$AL${CFr['_hdr']}={A['refi_mo']})"
+           f"*('Cash Flow & Runway'!$C${CFr['s_prin']}:$AL${CFr['s_prin']}"
+           f"+'Cash Flow & Runway'!$C${CFr['s_intpaid']}:$AL${CFr['s_intpaid']})),0)", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "Uses: pre-opening / startup spend"); bk.fml(ws, r, 2, f"={A['startup']}", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "Uses: net working capital retained (residual)", bold=True)
+    bk.fml(ws, r, 2, f"=B{su0+2}-B{su0+3}-B{su0+4}-B{su0+5}", S.FMT_CUR, bold=True); r += 1
+    bk.lbl(ws, r, "CHECK: sources - uses = 0 by construction; residual must be > 0", italic=True)
+    bk.fml(ws, r, 2, f"=IF(B{r-1}>0,0,1)", S.FMT_NUM); r += 2
+
+    # ---- EBITDA BRIDGE Y1 -> Y3 (IC waterfall attribution) ----
+    bk.section(ws, r, "EBITDA BRIDGE - Year 1 to Year 3 (attribution walk)", span=4); r += 1
+    C_ = bk.rows["Census Waterfall"]; OBr = bk.rows["Operating Budget"]; STr = bk.rows["Staffing"]
+    pd1 = f"SUM('Census Waterfall'!C{C_['pd']}:N{C_['pd']})"
+    pd3 = f"SUM('Census Waterfall'!AA{C_['pd']}:AL{C_['pd']})"
+    npr1 = f"SUM('P&L'!C{P['npr']}:N{P['npr']})"; npr3 = f"SUM('P&L'!AA{P['npr']}:AL{P['npr']})"
+    gp1 = f"SUM('P&L'!C{P['gp']}:N{P['gp']})"; gp3 = f"SUM('P&L'!AA{P['gp']}:AL{P['gp']})"
+    ind1 = f"(SUM('Staffing'!C{STr['ind_tot']}:N{STr['ind_tot']})+SUM('Operating Budget'!C{OBr['fac']}:N{OBr['fac']})+SUM('Operating Budget'!C{OBr['ga']}:N{OBr['ga']}))"
+    ind3 = f"(SUM('Staffing'!AA{STr['ind_tot']}:AL{STr['ind_tot']})+SUM('Operating Budget'!AA{OBr['fac']}:AL{OBr['fac']})+SUM('Operating Budget'!AA{OBr['ga']}:AL{OBr['ga']}))"
+    b0 = r
+    bk.lbl(ws, r, "Year 1 EBITDA"); bk.fml(ws, r, 2, f"=SUM('P&L'!C{P['ebitda']}:N{P['ebitda']})", S.FMT_CUR, bold=True); r += 1
+    bk.lbl(ws, r, "+ Census / volume effect (added PDs at Y1 contribution/PD)")
+    bk.fml(ws, r, 2, f"=({pd3}-{pd1})*({gp1}/{pd1})", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "+ Rate / margin-per-PD effect (Y3 PDs x change in contribution/PD)")
+    bk.fml(ws, r, 2, f"={pd3}*({gp3}/{pd3}-{gp1}/{pd1})", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "- Overhead growth (indirect labor + facility + G&A)")
+    bk.fml(ws, r, 2, f"=-({ind3}-{ind1})", S.FMT_CUR); r += 1
+    bk.lbl(ws, r, "Year 3 EBITDA (bridge total)", bold=True)
+    bk.fml(ws, r, 2, f"=B{b0}+B{b0+1}+B{b0+2}+B{b0+3}", S.FMT_CUR, bold=True); r += 1
+    bk.lbl(ws, r, "Year 3 EBITDA (actual, tie check = 0)", italic=True)
+    bk.fml(ws, r, 2, f"=SUM('P&L'!AA{P['ebitda']}:AL{P['ebitda']})-B{r-1}", S.FMT_CUR); r += 1
     return ws
 
 
