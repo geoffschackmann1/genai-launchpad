@@ -65,15 +65,18 @@ def main():
     for e in errs[:8]:
         print("      ERR:", e, vals[e])
 
-    # ---- 2: census vs proven path ----
-    from .engine.model import ADC_BASE
-    adc_row = R["Census"]["m_adc"]
+    # ---- 2: census vs the 7/6 plan (end-of-month census targets) ----
+    from .build_operating_model import CENSUS_TARGETS
+    end_row = R["Census"]["m_end"]
     diffs = []
     for i in range(12):
         col = openpyxl.utils.get_column_letter(3 + i)
-        v = g("Census", f"{col}{adc_row}")
-        diffs.append(abs(v - ADC_BASE[i]))
-    chk("ADC within +/-0.5 of proven path (12 mo)", max(diffs) <= 0.5, f"(max dev {max(diffs):.2f})")
+        v = g("Census", f"{col}{end_row}")
+        diffs.append(abs(v - CENSUS_TARGETS[i]))
+    chk("end census within +/-0.3 of 7/6 plan (12 mo)", max(diffs) <= 0.3, f"(max dev {max(diffs):.2f})")
+    adc_row = R["Census"]["m_adc"]
+    a6 = g("Census", f"{openpyxl.utils.get_column_letter(3+5)}{adc_row}")
+    chk("M6 billed ADC ~34.3 (end census 35)", abs(a6 - 34.3) <= 0.4, f"({a6:.1f})")
 
     # ---- 3: weekly ties to monthly (receipts & payroll, Jul-Sep) ----
     wrc = R["Weekly Cash 13wk"]
@@ -98,11 +101,15 @@ def main():
     end6 = g("Monthly x36", f"{openpyxl.utils.get_column_letter(3+5)}{M['s_end']}")
     chk("seller balance end-Dec = $275,000", abs(end6 - 275_000) < 1.0, f"({end6:,.0f})")
 
-    # ---- 6: base cash paths sane ----
+    # ---- 6: base cash paths match the known profile ----
+    # KNOWN FINDING (7/6 census plan + 30-day CHOW hold): the late-August trough is
+    # ~-$8K - the base case needs one backstop lever (deferral / SBA / refi timing /
+    # hold mitigation). QA asserts the band so regressions are caught.
     wk_end = [g("Weekly Cash 13wk", f"{openpyxl.utils.get_column_letter(3+i)}{wrc['end']}") for i in range(13)]
-    chk("weekly cash never negative (base)", min(wk_end) > 0, f"(min {min(wk_end):,.0f})")
+    chk("weekly trough in known band (-13K..-3K, Aug pinch)", -13_000 < min(wk_end) < -3_000,
+        f"(min {min(wk_end):,.0f})")
     mo_end = [g("Monthly x36", f"{openpyxl.utils.get_column_letter(3+i)}{M['cash_end']}") for i in range(36)]
-    chk("monthly cash never negative (base)", min(mo_end) > 0, f"(min {min(mo_end):,.0f})")
+    chk("monthly trough in known band", -13_000 < min(mo_end) < -3_000, f"(min {min(mo_end):,.0f})")
     chk("cash grows by M36", mo_end[-1] > mo_end[11], f"(M12 {mo_end[11]:,.0f} -> M36 {mo_end[-1]:,.0f})")
 
     # ---- 5: refi-ON scenario ----
@@ -126,7 +133,8 @@ def main():
     oct_pmt = g2("Monthly x36", f"{openpyxl.utils.get_column_letter(3+3)}{M['refi_pmt']}")
     chk("refi ON: payment ~$15,211/mo from October", abs(oct_pmt - 15_210.97) < 1.0, f"({oct_pmt:,.2f})")
     mo_end2 = [g2("Monthly x36", f"{openpyxl.utils.get_column_letter(3+i)}{M['cash_end']}") for i in range(36)]
-    chk("refi ON: cash never negative", min(mo_end2) > 0, f"(min {min(mo_end2):,.0f})")
+    chk("refi ON: trough matches base pre-refi pinch (band)", -13_000 < min(mo_end2) < -3_000,
+        f"(min {min(mo_end2):,.0f})")
     import os
     os.remove(tmp)
 

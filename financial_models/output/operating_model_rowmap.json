@@ -82,7 +82,8 @@
    "pc": 8,
    "fees": 9,
    "seller": 10,
-   "end": 11
+   "sba": 11,
+   "end": 12
   },
   "Actuals vs Budget": {},
   "Investor Summary": {}

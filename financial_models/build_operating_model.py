@@ -27,14 +27,30 @@ WEEK_LABELS = [f"W{i+1}" for i in range(NW)]
 WEEK_MONTH = [1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3]      # calendar-ish map
 PAY_WEEKS = {3: 1, 5: 1, 7: 2, 9: 2, 11: 3, 13: 3}         # week -> month whose half-payroll pays
 
-# ---- calibrated census defaults (reproduce the proven ADC path; max dev 0.22) ----
+# ---- calibrated census defaults (Geoff's 7/6 plan) ----
+# Full panel migrates wks 1-2 (open ~24-25); net growth +1.7/mo M1-2 (end M2 27.4),
+# +4..+6 across M3-4 (end M4 32.4 mid), +3..+5 across M5-6 (end M6 35.0 mid);
+# then to 50 by M24 and 56 by M36 (the validated growth plan, from the higher base).
 ALOS_D = 82.0
-WK_ADMITS = [6.5, 4.55, 4.9, 3.74, 2.45, 2.34, 2.4, 2.47, 2.44, 2.2, 2.24, 2.17, 2.1]
-MO_ADMITS = [0, 0, 0, 8.1, 8.43, 8.6, 8.62, 8.69, 8.76, 8.94, 8.95, 9.02,
-             11.06, 11.87, 12.67, 13.47, 14.28, 15.08, 15.88, 16.69, 17.49, 18.29, 19.1, 19.9,
+WK_ADMITS = [12.0, 8.02, 5.62, 4.26, 2.76, 2.61, 2.65, 2.68, 2.61, 3.04, 3.0, 3.05, 3.1]
+MO_ADMITS = [0, 0, 0, 13.58, 13.31, 13.79, 13.78, 14.17, 14.41, 14.7, 15.1, 15.33,
+             15.63, 16.03, 16.26, 16.56, 16.95, 17.19, 17.48, 17.88, 18.11, 18.41, 18.81, 19.04,
              19.04, 19.22, 19.41, 19.59, 19.78, 19.96, 20.15, 20.33, 20.52, 20.7, 20.89, 21.08]
-# M1-M3 come from the weekly engine; M13+ follow the validated growth plan
-# (ADC 24 -> 50 in yr 2, -> 56 by end of yr 3), which the capacity-hire roster was built for.
+# End-of-month census the defaults reproduce (used by QA):
+CENSUS_TARGETS = [25.29, 27.4, 29.9, 32.4, 33.7, 35.0, 35.8, 36.7, 37.5, 38.3, 39.2, 40.0,
+                  40.8, 41.7, 42.5, 43.3, 44.2, 45.0, 45.8, 46.7, 47.5, 48.3, 49.2, 50.0,
+                  50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0]
+# Hire-month overrides: capacity hires re-timed to when the NEW census crosses their
+# ADC triggers; IDG conversions/quality hires pulled forward to match (engine converted
+# at census ~30-37, which this plan reaches in months 4-9).
+START_OVERRIDES = {
+    "Capacity hire - 2nd CNA": 2, "Capacity hire - 3rd RN": 4, "Capacity hire - 3rd CNA": 5,
+    "Capacity hire - 4th RN": 11, "Capacity hire - 4th CNA": 13, "Capacity hire - 5th RN": 23,
+    "Capacity hire - 5th CNA": 25, "Capacity hire - 6th CNA": 33, "Capacity hire - 6th RN": 35,
+    "FT Social Worker (MSW)": 6, "FT LVN - visits / on-call": 8, "FT Chaplain": 10,
+    "Quality / Compliance Manager": 8, "Intake / Admissions Coordinator": 10,
+    "Volunteer Coordinator": 12,
+}
 
 GA_LINES = [   # label, monthly $, freq months, pay day-of-month
     ("Facility rent", 2000, 1, 1),
@@ -175,7 +191,7 @@ def assumptions(bk: OB):
     item("defer_end", "Deferral window ends (month #)", 6, S.FMT_INT)
     item("med_dir", "Medical director ($/mo, contracted)", 4000.0, S.FMT_CUR)
     item("med_dir2", "2nd medical director ($/mo)", 5000.0, S.FMT_CUR)
-    item("med_dir2_mo", "2nd med director start month", 22, S.FMT_INT)
+    item("med_dir2_mo", "2nd med director start month", 18, S.FMT_INT)
     item("rhonda", "Bookkeeping/admin support (annual)", float(RHONDA_ANNUAL), S.FMT_CUR)
     r += 1
 
@@ -409,11 +425,12 @@ def payroll(bk: OB):
     OWNERS = ("Brad Woodard", "Dana Davenport", "Silas Shelton")
     for (name, role, sal, start, grp, _o) in ROSTER:
         # Capacity hires are census-triggered (ADC 25-55). Default hire months match
-        # the growth plan's census path; if admissions lag, push these months out.
+        # the 7/6 census plan; if admissions lag, push these months out.
         capacity = name.startswith("Capacity hire")
+        start_eff = START_OVERRIDES.get(name, int(start))
         bk.lbl(ws, r, f"{name} - {role[:30]}" + ("  [census-triggered - slip if ramp lags]" if capacity else ""))
         bk.inp(ws, r, 2, float(sal), S.FMT_CUR)
-        bk.inp(ws, r, 3, int(start), S.FMT_INT)
+        bk.inp(ws, r, 3, start_eff, S.FMT_INT)
         bk.inp(ws, r, 4, "D" if grp == "direct" else "I", None)
         bk.inp(ws, r, 5, int(3), S.FMT_INT)
         is_owner = any(o in name for o in OWNERS)
@@ -756,12 +773,20 @@ def weekly(bk: OB):
         else:
             bk.fml(ws, r, WC0 + i, "=0", S.FMT_CUR)
     R["seller"] = r; r += 1
+    bk.lbl(ws, r, "SBA proceeds (if toggled, lands 1st week of funding month)")
+    MONTH_FIRST_WEEK = {1: 1, 2: 5, 3: 10}
+    for i in range(NW):
+        wk = i + 1
+        conds = [f"AND({A['sba_on']}=1,{A['sba_mo']}={mo},{wk}={fw})" for mo, fw in MONTH_FIRST_WEEK.items()]
+        f = f"=IF(OR({','.join(conds)}),{A['sba_amt']},0)"
+        bk.fml(ws, r, WC0 + i, f, S.FMT_CUR)
+    R["sba"] = r; r += 1
     bk.lbl(ws, r, "ENDING CASH", bold=True)
     for i in range(NW):
         prev = f"{wlet(i-1)}{r}" if i else f"{A['cash0']}"
         c = wlet(i)
         bk.fml(ws, r, WC0 + i,
-               f"={prev}+{c}{R['rcpt']}+{c}{R['pay']}+{c}{R['vend']}+{c}{R['pc']}+{c}{R['fees']}+{c}{R['seller']}",
+               f"={prev}+{c}{R['rcpt']}+{c}{R['pay']}+{c}{R['vend']}+{c}{R['pc']}+{c}{R['fees']}+{c}{R['seller']}+{c}{R['sba']}",
                S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
     R["end"] = r
     ws.conditional_formatting.add(f"C{r}:O{r}", CellIsRule(operator="lessThan",
