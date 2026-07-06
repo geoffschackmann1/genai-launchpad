@@ -134,6 +134,7 @@ def control_tower(bk: OB):
     item("hi_pct", "% Medicare days at HIGH rate", 0.15, S.FMT_PCT, "transfer panel mostly days 61+")
     item("bill_fee", "Billing company fee (% of gross, Acct 6510-Z)", 0.015, S.FMT_PCT)
     item("rate_esc", "CMS rate escalation (annual, yrs 2-3)", 0.025, S.FMT_PCT)
+    item("ga_esc", "Opex inflation on fixed G&A/facility (annual, yrs 2-3)", 0.03, S.FMT_PCT)
 
     sec("COLLECTIONS TIMING  (cash engine)")
     item("col_m0", "% collected same month", 0.0, S.FMT_PCT)
@@ -432,7 +433,7 @@ def opbudget(bk: OB):
         R[key] = r; r += 1
     bk.lbl(ws, r, "Mobile communications - clinical (5120)")
     for i in range(NM):
-        bk.fml(ws, r, MC0 + i, f"={A['mobile']}", S.FMT_CUR)
+        bk.fml(ws, r, MC0 + i, f"={A['mobile']}*(1+{A['ga_esc']})^{yr(i)}", S.FMT_CUR)
     R["mobile"] = r; r += 1
     bk.lbl(ws, r, "TOTAL DIRECT PATIENT CARE", bold=True)
     for i in range(NM):
@@ -450,7 +451,7 @@ def opbudget(bk: OB):
     for key, label in [("util", "Utilities (6150)"), ("maint", "Maintenance & repairs (6060)"), ("alarm", "Alarm (6010)")]:
         bk.lbl(ws, r, label)
         for i in range(NM):
-            bk.fml(ws, r, MC0 + i, f"={A[key]}", S.FMT_CUR)
+            bk.fml(ws, r, MC0 + i, f"={A[key]}*(1+{A['ga_esc']})^{yr(i)}", S.FMT_CUR)
         R[key] = r; r += 1
     bk.lbl(ws, r, "TOTAL FACILITY", bold=True)
     for i in range(NM):
@@ -461,7 +462,7 @@ def opbudget(bk: OB):
     bk.section(ws, r, "G&A (MAX(fixed, % of NPR); legal starts M4)"); r += 1
     bk.lbl(ws, r, "EMR - base + per active patient (6530-Z)")
     for i in range(NM):
-        bk.fml(ws, r, MC0 + i, f"={A['emr_base']}+'Census Waterfall'!{mlet(i)}{C['eom']}*{A['emr_pp']}", S.FMT_CUR)
+        bk.fml(ws, r, MC0 + i, f"=({A['emr_base']}+'Census Waterfall'!{mlet(i)}{C['eom']}*{A['emr_pp']})*(1+{A['ga_esc']})^{yr(i)}", S.FMT_CUR)
     R["ga_emr"] = r; r += 1
     ga_keys = ["ga_emr"]
     for key, label, acct, fixed, pct, start in GA_LINES:
@@ -469,7 +470,7 @@ def opbudget(bk: OB):
             continue
         bk.lbl(ws, r, f"{label} ({acct})")
         for i in range(NM):
-            base = f"MAX({A[key+'_f']},{npr(i)}*{A[key+'_p']})"
+            base = f"MAX({A[key+'_f']}*(1+{A['ga_esc']})^{yr(i)},{npr(i)}*{A[key+'_p']})"
             f = f"=IF({i+1}>={start},{base},0)" if start > 1 else f"={base}"
             bk.fml(ws, r, MC0 + i, f, S.FMT_CUR)
         R[key] = r; ga_keys.append(key); r += 1
@@ -482,7 +483,7 @@ def opbudget(bk: OB):
     key, label, acct, fixed, pct, start = CONT
     bk.lbl(ws, r, f"{label} ({acct})")
     for i in range(NM):
-        bk.fml(ws, r, MC0 + i, f"=MAX({A[key+'_f']},{npr(i)}*{A[key+'_p']})", S.FMT_CUR)
+        bk.fml(ws, r, MC0 + i, f"=MAX({A[key+'_f']}*(1+{A['ga_esc']})^{yr(i)},{npr(i)}*{A[key+'_p']})", S.FMT_CUR)
     R["cont"] = r; r += 1
     return ws
 
@@ -947,6 +948,17 @@ def dashboard(bk: OB):
                    f"'Cash Flow & Runway'!{mlet(i)}{CF['cash']}/('Staffing'!{mlet(i)}{ST['payroll_cash']}"
                    f"+'Operating Budget'!{mlet(i)}{OB_['dpc']}+'Operating Budget'!{mlet(i)}{OB_['fac']}"
                    f"+'Operating Budget'!{mlet(i)}{OB_['ga']})*{A['days_mo']})"), S.FMT_NUM1)
+    row("Medicare payments per beneficiary (TTM est.)",
+        lambda i: ("=\"-\"" if i < 11 else
+                   f"=SUM('P&L'!{mlet(i-11)}{P['npr']}:{mlet(i)}{P['npr']})*{A['mix_mcare']}"
+                   f"/MAX(1,SUM('Census Waterfall'!{mlet(i-11)}{C['admits']}:{mlet(i)}{C['admits']}))"),
+        S.FMT_CUR)
+    row("Medicare cap cushion per beneficiary (TTM, + = safe)",
+        lambda i: ("=\"-\"" if i < 11 else
+                   f"={A['cap_limit']}*(1+{A['rate_esc']})^{yr(i)}"
+                   f"-SUM('P&L'!{mlet(i-11)}{P['npr']}:{mlet(i)}{P['npr']})*{A['mix_mcare']}"
+                   f"/MAX(1,SUM('Census Waterfall'!{mlet(i-11)}{C['admits']}:{mlet(i)}{C['admits']}))"),
+        S.FMT_CUR, bold=True)
     r += 1
     bk.lbl(ws, r, "Breakeven ADC (fixed costs / contribution per PD / days)", bold=True)
     bk.fml(ws, r, 2,

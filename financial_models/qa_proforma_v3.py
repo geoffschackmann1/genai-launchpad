@@ -95,6 +95,22 @@ def main():
     chk("refi OFF: seller end-Dec = $275,000", abs(num(g2("Cash Flow & Runway", f"H{CF['s_end']}")) - 275000) < 1)
     import os; os.remove(tmp)
 
+    # downside case (case=2): integrity + revolver behavior
+    wb3 = openpyxl.load_workbook(XLSX)
+    aws3 = wb3["Control Tower"]
+    aws3[addr["case"].split("!")[1].replace("$", "")] = 2
+    tmp2 = "financial_models/output/_v3_down.xlsx"; wb3.save(tmp2)
+    _, g3 = evaluate(tmp2)
+    m3 = num(g3("Checks", f"B{R['Checks']['master']}"))
+    chk("DOWNSIDE case: master check still 0", m3 == 0, f"({m3})")
+    cash3 = [num(g3("Cash Flow & Runway", f"{gcl(3+i)}{CF['cash']}")) for i in range(36)]
+    rev3 = [num(g3("Cash Flow & Runway", f"{gcl(3+i)}{CF['rev_bal']}")) for i in range(36)]
+    chk("DOWNSIDE: cash never negative (revolver absorbs)", min(cash3) > -0.01, f"(min {min(cash3):,.0f})")
+    chk("DOWNSIDE: revolver within commitment", max(rev3) <= lim + 0.01,
+        f"(peak ${max(rev3):,.0f} of ${lim:,.0f})")
+    print(f"     info: DOWNSIDE peak revolver ${max(rev3):,.0f} | M12 cash ${cash3[11]:,.0f} | M36 ${cash3[35]:,.0f}")
+    import os as _os; _os.remove(tmp2)
+
     # hardcode scan
     wb2 = openpyxl.load_workbook(XLSX)
     pat = re.compile(r"(?<![A-Z$.\d])(\d{3,}(?:\.\d+)?)")
