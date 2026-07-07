@@ -1,0 +1,79 @@
+# GenAI Launchpad — Cursor Project Rules
+
+## What This Project Is
+An event-driven AI workflow platform. Clients POST events to a FastAPI endpoint;
+a Celery worker picks them up asynchronously and runs them through a chain of Nodes.
+Results are stored back to PostgreSQL. The stack is FastAPI + Celery + Redis + PostgreSQL + Pydantic-AI.
+
+## Architecture at a Glance
+```
+POST /events/<workflow>
+  → FastAPI validates schema → stores Event to DB → queues Celery task → 202 Accepted
+  → Celery worker: fetches event → runs Workflow → stores TaskContext back to DB
+  → Workflow: chains Nodes sequentially; Routers branch dynamically
+```
+
+## Key Directories
+| Path | Purpose |
+|------|---------|
+| `app/api/` | FastAPI endpoints — one file per workflow |
+| `app/schemas/` | Pydantic event schemas — validated on ingest |
+| `app/workflows/` | Workflow classes + their node subdirectories |
+| `app/core/nodes/` | Base classes: Node, AgentNode, BaseRouter, ConcurrentNode |
+| `app/prompts/` | Jinja2 prompt templates (`.j2`) with YAML frontmatter |
+| `app/services/` | Shared services (PromptManager, etc.) |
+| `app/worker/` | Celery config and task definition |
+| `app/database/` | SQLAlchemy models, session, repository |
+| `docker/` | Docker Compose stack |
+| `tests/` | Unit and integration tests |
+| `docs/` | Architecture docs and workflow guides |
+
+## How to Add a New Workflow (the core pattern)
+1. `app/schemas/<name>_schema.py` — define `MyEventSchema(BaseModel)`
+2. `app/workflows/<name>_workflow_nodes/` — one file per node
+3. `app/workflows/<name>_workflow.py` — wire nodes into `WorkflowSchema`
+4. `app/workflows/workflow_registry.py` — add `MY_WORKFLOW = MyWorkflow` to enum
+5. `app/api/<name>_endpoint.py` — POST endpoint, mirrors `support_endpoint.py`
+6. `app/api/router.py` — mount the new endpoint
+7. `requests/events/<name>_event.json` — test payload
+8. `app/prompts/<name>.j2` — prompt templates if using AgentNode
+
+## Node Types
+- **`Node`** — plain async node, pure Python logic
+- **`AgentNode`** — LLM call via Pydantic-AI; implement `get_agent_config()` + `process()`
+- **`BaseRouter`** — branches workflow; set `self.routes` + `self.fallback` in `__init__`
+- **`ConcurrentNode`** — runs `concurrent_nodes` in parallel via `asyncio.gather`
+
+## State Passing Between Nodes
+```python
+self.save_output(MyOutputModel(...))        # store in task_context.nodes["MyNode"]
+self.get_output(OtherNode)                  # retrieve by class reference
+```
+
+## AgentNode Config
+```python
+def get_agent_config(self) -> AgentConfig:
+    return AgentConfig(
+        model_provider=ModelProvider.ANTHROPIC,
+        model_name="claude-3-5-sonnet-latest",
+        output_type=MyPydanticOutputModel,
+        system_prompt=PromptManager.get_prompt("my_template"),
+    )
+```
+
+## Code Conventions
+- No comments unless the WHY is non-obvious
+- All node outputs are Pydantic `BaseModel` subclasses
+- Prompt templates: static content in system prompt, dynamic content in a separate user-turn template
+- Never modify `app/core/` or `app/worker/tasks.py` — they are framework code
+- LLM provider set via env vars (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, etc.) in `docker/.env`
+
+## Running the Stack
+```bash
+make start       # start Docker stack
+make stop        # stop Docker stack
+make logs        # tail all logs
+make test        # run test suite
+make lint        # run ruff linter
+make migrate     # apply DB migrations
+```
