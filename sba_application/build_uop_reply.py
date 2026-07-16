@@ -45,11 +45,15 @@ def reply_email():
         "Medicare only license at $300K. Purchase agreement signed 7/14, structured 49% at closing and 51% in January "
         "per the CMS 36 month rule.",
         "BULLET: Loan ask simplified to ONE SBA 7(a) loan of $500,000. The piggyback bank loan is gone. The seller "
-        "carries $375K at 6% short term and the SBA loan takes that note out in September plus ramp working capital.",
+        "carries $375K at 6% ($31,250 a month from September), and the SBA loan funds in January at the 51% transfer, "
+        "paying the ~$258K balloon plus ramp working capital. January is the base case on purpose: funding at the 100% "
+        "transfer avoids the seller guaranty rules that come with lending into a partial change of ownership. If one of "
+        "your lenders can fund September anyway, the note is prepayable without penalty and we save four installments.",
         "BULLET: Working capital reserve cut from $672K to $235K. John, this is your 6/3 note answered: the license "
         "bills immediately and the seller carries the acquisition until takeout, so the reserve is a bridge, not a "
         "parking lot. The attached workbook breaks the $235K into components with a month by month draw schedule, "
-        "and I'm fine with the bank controlling disbursements against census milestones.",
+        "and I'm fine with the bank controlling disbursements against census milestones. Until the loan funds in "
+        "January we bridge on equity plus a small line; peak interim need in the base case is about $183K.",
         "BULLET: Equity injection is now $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
         "(first $100K wired in May) plus $55K from me.",
         "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "

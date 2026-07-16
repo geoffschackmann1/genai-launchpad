@@ -1,13 +1,15 @@
-"""AZALEA HOSPICE PROFORMA - REVISION 3.00 DYNAMIC.
+"""AZALEA HOSPICE PROFORMA - REVISION 3.10 DYNAMIC (January-takeout base case).
 
 Clean rebuild of the Rev 2.00 SBA budget per its own Handoff Brief (build order:
 Control Tower -> Census Waterfall -> Revenue -> Staffing -> Operating Budget ->
 P&L -> Balance Sheet (no plugs) -> Cash Flow & Runway -> 3-Year Summary), with:
   - the GRANULAR COA-backed P&L structure (account codes preserved),
   - EVERY calculated cell a formula; only Control Tower cells are values,
-  - deal terms defaulted to the CURRENT Refuge structure ($500K; $125K down;
-    $25K/mo Sep-Dec; Jan balloon @6% funded by balloon refi; toggles for the
-    Sept $500K/6%/36 refi and the SBA $450K),
+  - deal terms defaulted to the EXECUTED MIPA (7/14/2026): $500K; $125K down;
+    $31,250/mo Sep-Dec; Jan balloon (~$258K) taken out by the SBA/bank note,
+    modeled at the conservative 6%/36 basis. BASE = January takeout (partial-CHOW
+    seller-guaranty rules block a September SBA close); the Sept $500K/6%/36
+    refi remains as an UPSIDE toggle (refi_on=1),
   - census defaulted to the 7/6 plan (open ~25 transfers; 27.4 EOM M2; 32.4 M4;
     35 M6; -> 50 by M24 -> 56 by M36),
   - post-audit cost settings kept (benefits 22%, workers comp 3%, stepped rent,
@@ -80,14 +82,14 @@ def control_tower(bk: OB):
     item("startup", "Pre-opening / startup spend from capital", 0.0, S.FMT_CUR, "0 = funded elsewhere")
     item("price", "Refuge license purchase price (100% membership CHOW)", 500000.0, S.FMT_CUR, "Acct 1980 intangible")
     item("down", "Down payment at closing (Month 1)", 125000.0, S.FMT_CUR)
-    item("s_pmt", "Seller monthly payment", 25000.0, S.FMT_CUR)
+    item("s_pmt", "Seller monthly payment (MIPA 7/14/2026)", 31250.0, S.FMT_CUR, "$31,250/mo Sep-Dec per executed MIPA")
     item("s_first", "First seller payment month", 3, S.FMT_INT, "3 = September")
     item("s_last", "Last seller payment month", 6, S.FMT_INT, "6 = December")
     item("s_rate", "Seller note simple interest (APR)", 0.06, S.FMT_PCT)
     item("balloon_mo", "Balloon month (36-month rule / January)", 7, S.FMT_INT)
-    item("bref_rate", "Balloon refinance rate (APR)", 0.09, S.FMT_PCT, "funds the Jan balloon when full-refi toggle is OFF")
-    item("bref_term", "Balloon refinance term (months)", 120, S.FMT_INT)
-    item("refi_on", "FULL-REFI TOGGLE (1 = $500K/6%/36 note - BASE CASE)", 1, S.FMT_INT, "base: sellers paid off Sept; company services $15,211/mo x36")
+    item("bref_rate", "Balloon takeout note rate (APR)", 0.06, S.FMT_PCT, "BASE CASE: SBA/bank funds the Jan balloon; modeled at the conservative 6%/36 basis")
+    item("bref_term", "Balloon takeout note term (months)", 36, S.FMT_INT)
+    item("refi_on", "SEPT-REFI TOGGLE (1 = $500K/6%/36 funds Sept - UPSIDE)", 0, S.FMT_INT, "BASE = 0: seller carried to Jan balloon per MIPA (partial-CHOW guaranty rules); 1 = September takeout upside")
     item("refi_mo", "Full-refi funding month", 3, S.FMT_INT, "3 = September")
     item("refi_amt", "Full-refi amount", 500000.0, S.FMT_CUR)
     item("refi_rate", "Full-refi rate (APR)", 0.06, S.FMT_PCT)
@@ -1029,7 +1031,7 @@ def build():
     dashboard(bk)
     summary(bk)
     avb(bk)
-    out = "financial_models/output/Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx"
+    out = "financial_models/output/Azalea_Hospice_Proforma_Rev3.10_DYNAMIC.xlsx"
     bk.wb.save(out)
     import json
     with open("financial_models/output/proforma_v3_rowmap.json", "w") as f:

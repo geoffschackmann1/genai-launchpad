@@ -4,8 +4,14 @@
 Three generations of models now live in this repo. They intentionally differ; this note says
 which to use for which purpose, and why their numbers don't match.
 
-## 1. `Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx`  ← AUTHORITATIVE (planning / investor)
-Built by `build_proforma_v3.py`; QA `qa_proforma_v3.py` (20/20).
+## 1. `Azalea_Hospice_Proforma_Rev3.10_DYNAMIC.xlsx`  ← AUTHORITATIVE (planning / investor / SBA)
+Built by `build_proforma_v3.py`; QA `qa_proforma_v3.py` (24/24). **Rev 3.10 (2026-07-16): BASE CASE
+is now the JANUARY TAKEOUT** per the executed MIPA (7/14/2026) — $31,250/mo Sep–Dec (equity-funded),
+~$258,489.46 balloon retired by the SBA/bank note at the 51% transfer 1/15/2027, modeled at 6%/36
+($7,957/mo from Feb). The Sept $500K/6%/36 refi is the UPSIDE toggle (refi_on=1) — a September SBA
+close would require seller guaranties under partial-CHOW rules. Base peak revolver $182,753;
+**downside (slow census) now needs a ~$375K facility vs the $250K base commitment — disclosed gap**
+(mitigants: census recovery, owner deferral, September takeout).
 - **Basis:** granular COA P&L (account codes), post-audit costs (benefits **22%**, workers comp
   **3%**, leadership at Control-Tower salaries: Silas $150K, Dana $120K, Brad $120K, Rhonda $60K),
   CMS rate build (high/low RHC split, ~$172 blended net), monthly ×36.

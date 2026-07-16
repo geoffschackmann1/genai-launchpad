@@ -42,7 +42,7 @@ def tab_structure(wb):
     sty(ws, "B5", 500000, fmt=MONEY)
     sty(ws, "A6", "   of which: equity down payment at close (~8/1/2026, 49% interest)")
     sty(ws, "B6", 125000, fmt=MONEY)
-    sty(ws, "A7", "   of which: seller-financed balance at 6% (SBA takeout Sept 2026)")
+    sty(ws, "A7", "   of which: seller-financed balance at 6% (SBA takeout at the 51% transfer, 1/15/2027)")
     sty(ws, "B7", "=B5-B6", fmt=MONEY)
     sty(ws, "A8", "Working capital reserve (detail + draw timeline on next tab)")
     sty(ws, "B8", "='Working Capital Detail'!B24", fmt=MONEY)
@@ -65,7 +65,7 @@ def tab_structure(wb):
 
     sty(ws, "A18", "FINANCE STRUCTURE", B, fill=FILL)
     sty(ws, "A19", "Source"); sty(ws, "B19", "Amount", B); sty(ws, "C19", "% of project", B)
-    sty(ws, "A20", "SBA 7(a) loan (retires seller balance Sept 2026 + working capital)")
+    sty(ws, "A20", "SBA 7(a) loan (funds Jan 2027: seller balloon takeout + working capital)")
     sty(ws, "B20", 500000, fmt=MONEY); sty(ws, "C20", "=B20/$B$10", fmt=PCT)
     sty(ws, "A21", "Borrower equity injection - James Bullard ($195,000; $100K wired 5/7/2026)")
     sty(ws, "B21", 195000, fmt=MONEY); sty(ws, "C21", "=B21/$B$10", fmt=PCT)
@@ -80,6 +80,7 @@ def tab_structure(wb):
     sty(ws, "A26", "PROPOSED SBA LOAN TERMS & DEBT SERVICE", B, fill=FILL)
     sty(ws, "A27", "Loan amount"); sty(ws, "B27", "=B20", fmt=MONEY)
     sty(ws, "A28", "Interest rate (est. Prime + spread; lender to confirm)"); sty(ws, "B28", 0.105, fmt="0.00%")
+    sty(ws, "A27", "Loan amount (funds ~1/15/2027, concurrent with the 51% transfer)")
     sty(ws, "A29", "Term (years)"); sty(ws, "B29", 10)
     sty(ws, "A30", "Monthly payment"); sty(ws, "B30", "=-PMT(B28/12,B29*12,B27)", fmt=MONEY)
     sty(ws, "A31", "Annual debt service"); sty(ws, "B31", "=B30*12", fmt=MONEY)
@@ -91,8 +92,10 @@ def tab_structure(wb):
         sty(ws, f"A{r}", yr); sty(ws, f"B{r}", e, fmt=MONEY)
         sty(ws, f"C{r}", "=$B$31", fmt=MONEY)
         sty(ws, f"D{r}", f"=B{r}/C{r}", fmt="0.00x")
-    sty(ws, "A39", "Note: the Rev 3.00 proforma conservatively models debt service at a 36-month")
-    sty(ws, "A40", "amortization ($15,211/mo). Actual 7(a) terms above cut that by more than half.")
+    sty(ws, "A39", "BASE CASE: SBA funds January 2027 at the 51% transfer (a clean 100% change of ownership;")
+    sty(ws, "A40", "no seller guaranties required). September funding is an UPSIDE if a lender can paper the")
+    sty(ws, "A41", "partial-CHOW guaranty rules. The Rev 3.10 proforma conservatively models the takeout at a")
+    sty(ws, "A42", "36-month amortization ($7,957/mo from Feb); actual 7(a) terms above are the cheaper case.")
 
 
 def tab_wc(wb):
@@ -105,7 +108,9 @@ def tab_wc(wb):
     sty(ws, "A2", "Responds to SourceFunding note of 6/3: components + draw schedule. Borrower consents to "
                   "lender-controlled disbursement tied to census milestones.", Font(italic=True, size=9))
     sty(ws, "A3", "Purpose: fund operations through the Medicare payment lag (NOE-to-cash ~30-60 days) while census "
-                  "ramps to break-even (~17-18 patients, crossed month 2-3 per the Rev 3.00 proforma).", Font(italic=True, size=9))
+                  "ramps to break-even (~17-18 patients, crossed month 2-3 per the Rev 3.10 proforma). BASE CASE: the "
+                  "SBA loan funds ~1/15/2027; amounts shown before then are bridged on an interim LOC (peak need "
+                  "~$183K base / ~$375K downside) and repaid from the reserve at SBA funding.", Font(italic=True, size=9))
 
     # months across: M1..M12 (Aug 2026 - Jul 2027)
     labels = ["Aug-26", "Sep-26", "Oct-26", "Nov-26", "Dec-26", "Jan-27",
@@ -158,10 +163,12 @@ def tab_wc(wb):
     sty(ws, f"A{r}", "Notes:", B)
     for note in [
         "Amounts are the projected cash-flow SHORTFALL each month (operating costs less collections), not gross costs;",
-        "gross monthly operating costs and collections are in the attached Rev 3.00 proforma (36 monthly periods).",
+        "gross monthly operating costs and collections are in the attached Rev 3.10 proforma (36 monthly periods).",
         "Draws taper to zero by month 9-10 as Medicare collections catch and pass payroll; reserve is a bridge, not a cushion.",
-        "Prior structure carried a $672,000 reserve; the current structure needs $235,000 because the acquisition is",
-        "seller-financed to September (SBA takeout), the license is billing-ready day one, and equity covers the down payment.",
+        "Prior structure carried a $672,000 reserve; the current structure needs $235,000 because the license is",
+        "billing-ready day one and equity covers the down payment plus the seller installments through December.",
+        "Base case peak interim-LOC need before SBA funding is ~$183K; the documented slow-census downside needs a",
+        "~$375K facility - disclosed, with mitigants (census recovery levers, owner deferral, September takeout upside).",
     ]:
         sty(ws, f"A{r+1}", note, Font(size=9)); r += 1
 
@@ -183,20 +190,26 @@ def tab_seller(wb):
     sty(ws, "E4", "Funded by", B, fill=FILL)
     events = [
         ("Down payment (49% interest transfers)", "~8/1/2026", 125000, "=500000-C5", "Equity injection"),
-        ("SBA 7(a) funds - full note takeout (principal)", "Sept 2026", "=D5", "=D5-C6", "SBA loan proceeds"),
-        ("Accrued interest at takeout (est. 1 month at 6%)", "Sept 2026", "=ROUND(D5*0.06/12,0)", 0, "SBA loan proceeds"),
+        ("Monthly installment ($31,250 incl. 6% interest)", "9/1/2026", 31250, "", "Equity injection"),
+        ("Monthly installment", "10/1/2026", 31250, "", "Equity injection"),
+        ("Monthly installment", "11/1/2026", 31250, "", "Equity injection"),
+        ("Monthly installment", "12/1/2026", 31250, "", "Equity injection"),
+        ("Final payment per MIPA amortization (Exhibit C)", "1/15/2027", 258489.46, 0, "SBA 7(a) proceeds"),
     ]
     for i, (ev, dt, pay, bal, src) in enumerate(events):
         r = 5 + i
         sty(ws, f"A{r}", ev); sty(ws, f"B{r}", dt)
-        sty(ws, f"C{r}", pay, fmt=MONEY); sty(ws, f"D{r}", bal, fmt=MONEY); sty(ws, f"E{r}", src)
-    sty(ws, "A9", "Remaining 51% of membership interests transfer 1/15/2027 - the first date past 36 months from the")
-    sty(ws, "A10", "company's CMS certification effective date (1/8/2024), as required by 42 CFR 424.550(b).")
-
-    sty(ws, "A12", "If SBA funding is later than September (contract fallback per MIPA):", B)
-    sty(ws, "A13", "Monthly installment (from 9/1/2026)"); sty(ws, "B13", 31250, fmt=MONEY)
-    sty(ws, "A14", "Final payment 1/15/2027 (per MIPA amortization)"); sty(ws, "B14", 258489.46, fmt="#,##0.00")
-    sty(ws, "A15", "The note is prepayable at any time without penalty, so SBA takeout can occur any month.")
+        sty(ws, f"C{r}", pay, fmt="#,##0.00" if pay == 258489.46 else MONEY)
+        if bal != "": sty(ws, f"D{r}", bal, fmt=MONEY)
+        sty(ws, f"E{r}", src)
+    sty(ws, "A12", "BASE CASE: the SBA 7(a) loan funds ~1/15/2027, concurrent with the transfer of the remaining 51%")
+    sty(ws, "A13", "of membership interests - the first date past 36 months from the company's CMS certification")
+    sty(ws, "A14", "effective date (1/8/2024) per 42 CFR 424.550(b). Funding at the 100% transfer avoids the seller-")
+    sty(ws, "A15", "guaranty requirements that apply to SBA loans made during a partial change of ownership.")
+    sty(ws, "A17", "UPSIDE - September takeout (note is prepayable without penalty):", B)
+    sty(ws, "A18", "If a lender can fund September 2026, payoff is $375,000 + ~$1,875 accrued interest, saving four")
+    sty(ws, "A19", "installments and ~$8,500 of seller interest. Requires the lender to paper seller guaranties under")
+    sty(ws, "A20", "the partial-change-of-ownership rules, so it is presented as upside, not base.")
 
 
 if __name__ == "__main__":
