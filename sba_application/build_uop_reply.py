@@ -30,33 +30,54 @@ def reply_email():
     _p(doc, "To: John Hart; Mary Brownmiller | From: gs@h-care.us | Re: SBA Follow up & Questions", bold=True)
     for para in [
         "John and Mary,",
-        "Structure update, and I think you'll both like it. The deal has moved to a stronger asset and a simpler ask.",
-        "We are acquiring Refuge Hospice, a Texas license certified for both Medicare and Medicaid, ready to bill day "
-        "one. Purchase agreement is at $500,000. The seller is carrying the balance short term: $125K down at closing "
-        "for 49%, $31,250 a month from September at 6%, balance in January when the 36 month CMS rule lets the other "
-        "51% transfer. The note is prepayable without penalty.",
-        "The ask: one SBA 7(a) loan of $500,000. It takes out the seller note in September and funds working capital "
-        "for the ramp. Equity injection is $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
-        "(first $100K wired in May), $55K from me. No piggyback bank loan anymore.",
-        "John, your note on the $672K working capital reserve landed. The new structure needs $235,000, not $672,000, "
-        "because the license bills immediately and the seller carries the acquisition until the SBA takeout. The "
-        "attached workbook breaks the $235K into components with a month by month draw schedule. Draws taper to zero "
-        "around month nine as Medicare collections catch payroll. I have no issue with the bank controlling "
-        "disbursements against census milestones and said so in the schedule.",
+        "First, an apology for the quiet stretch. The delay was on the acquisition side: the license we were "
+        "originally acquiring did not make it through the process, and rather than force a weak asset into the file "
+        "I moved the acquisition to a stronger one. That took a few weeks to negotiate and paper, and it changed some "
+        "numbers, so I wanted to come back to you with a complete, consistent package instead of pieces.",
+        "The new target is Refuge Hospice, a Texas license certified for BOTH Medicare and Medicaid, ready to bill "
+        "day one. The price went from $300K to $500K, and that increase is the certification, not deal creep. Texas "
+        "has effectively frozen new Medicaid hospice enrollment and CMS put a national moratorium on new hospice "
+        "enrollments in May, so dual certified licenses are scarce and trade at a premium. More importantly for the "
+        "credit, Medicaid certification adds nursing facility room and board billing, which widens the referral base "
+        "and directly increases revenue over a Medicare only license. Better asset, better collateral, better top line.",
+        "WHAT'S CHANGED since my last package:",
+        "BULLET: Target: Refuge Hospice, LLC ($500K, Medicare + Medicaid, CMS certified 1/8/2024) replaces the prior "
+        "Medicare only license at $300K. Purchase agreement signed 7/14, structured 49% at closing and 51% in January "
+        "per the CMS 36 month rule.",
+        "BULLET: Loan ask simplified to ONE SBA 7(a) loan of $500,000. The piggyback bank loan is gone. The seller "
+        "carries $375K at 6% short term and the SBA loan takes that note out in September plus ramp working capital.",
+        "BULLET: Working capital reserve cut from $672K to $235K. John, this is your 6/3 note answered: the license "
+        "bills immediately and the seller carries the acquisition until takeout, so the reserve is a bridge, not a "
+        "parking lot. The attached workbook breaks the $235K into components with a month by month draw schedule, "
+        "and I'm fine with the bank controlling disbursements against census milestones.",
+        "BULLET: Equity injection is now $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
+        "(first $100K wired in May) plus $55K from me.",
+        "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "
+        "options. One housekeeping item: the tenant is named for the earlier entity and will be assigned to the "
+        "correct operating entity before closing. The landlord relationship is friendly.",
+        "WHAT'S ATTACHED:",
+        "BULLET: Use of proceeds workbook in your format: loan structure, the $235K working capital detail with draw "
+        "timeline, and the seller note takeout schedule.",
+        "BULLET: Your checklist forms, filled: Company Profile, Use of Proceeds, and Business Debt Schedule (seller "
+        "note on it, per Mary's note).",
+        "BULLET: Item by item checklist status so you can see exactly what's in hand and what's still coming.",
+        "BULLET: Financial projections, monthly for 36 months with written assumptions, officer salaries split out.",
+        "BULLET: Business plan addendum covering the target change (full updated plan to follow this week).",
+        "BULLET: The executed lease and the purchase agreement.",
         "Mary, on your priority list: my 2022, 2023 and 2024 personal returns are ready to send (2025 is with the "
-        "preparer). Personal financial statement, cash flow and resume are in progress this week. I'll pull the credit "
-        "report on Credit Karma like you suggested. The seller note is on the debt schedule. Also attached is the "
-        "fully executed office lease for our Tyler location: 24 months plus two 12 month options, signed June 29.",
-        "One item I want to be straight about: the lease tenant reads Hickory Hospice, LLC dba Azalea Hospice, the "
-        "entity from the earlier deal that we set up. Since the operating company will now be Refuge Hospice, LLC "
-        "under Tyler Hospice Hold, we will assign or amend the lease to the right entity before closing, and the "
-        "landlord relationship is friendly. Flag it for the lender file however you prefer.",
-        "Is your lender's acquisition promotion still live, and would this profile qualify for an exception under the "
-        "$1.5M threshold? Happy to jump on a call this week.",
-        "Thanks,",
+        "preparer). Personal financial statement, cash flow and resume are in progress this week, and I'll pull the "
+        "credit report on Credit Karma like you suggested.",
+        "John, is your lender's acquisition promotion still live, and would this profile qualify for an exception "
+        "under the $1.5M threshold? Happy to jump on a call this week.",
+        "Thanks for sticking with me through the pivot. The file is stronger for it.",
         "Geoff",
     ]:
-        _p(doc, para)
+        if para.startswith("BULLET: "):
+            p = doc.add_paragraph(style="List Bullet")
+            r = p.add_run(para[8:])
+            r.font.size = Pt(11)
+        else:
+            _p(doc, para, bold=para.startswith(("WHAT'S CHANGED", "WHAT'S ATTACHED")))
     path = OUT + "8_Reply_Email_John_Mary_DRAFT.docx"
     doc.save(path)
     print("wrote", path)
