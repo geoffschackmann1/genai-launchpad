@@ -53,8 +53,9 @@ def reply_email():
         "BULLET: Equity injection is now $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
         "(first $100K wired in May) plus $55K from me.",
         "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "
-        "options. One housekeeping item: the tenant is named for the earlier entity and will be assigned to the "
-        "correct operating entity before closing. The landlord relationship is friendly.",
+        "options. One housekeeping item: the tenant on the lease is Hickory Hospice, LLC, the entity from the "
+        "earlier deal, and it will be assigned to the correct operating entity before closing. The landlord "
+        "relationship is friendly.",
         "WHAT'S ATTACHED:",
         "BULLET: Use of proceeds workbook in your format: loan structure, the $235K working capital detail with draw "
         "timeline, and the seller note takeout schedule.",
