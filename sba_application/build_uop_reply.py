@@ -79,7 +79,7 @@ def reply_email():
             r.font.size = Pt(11)
         else:
             _p(doc, para, bold=para.startswith(("WHAT'S CHANGED", "WHAT'S ATTACHED")))
-    path = OUT + "8_Reply_Email_John_Mary_DRAFT.docx"
+    path = OUT + "8 Reply Email John Mary DRAFT.docx"
     doc.save(path)
     print("wrote", path)
 
@@ -138,7 +138,7 @@ def lease_summary():
     ]:
         _p(doc, x, size=10)
 
-    path = OUT + "9_Lease_Summary_and_Flags.docx"
+    path = OUT + "9 Lease Summary and Flags.docx"
     doc.save(path)
     print("wrote", path)
 

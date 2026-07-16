@@ -87,7 +87,7 @@ def company_profile():
         "AccountSigners": "Geoff Schackmann",
         "Affiliated Companies if applicable 1": "None. Prior hospice interest (VistaRiver) sold Aug 2025; passive note receivable only.",
     }
-    fill_pdf(SRC + "2_Company_Profile_FORM.pdf", OUT + "2_Company_Profile_FILLED.pdf", v, checkboxes=("LLC",))
+    fill_pdf(SRC + "2_Company_Profile_FORM.pdf", OUT + "2 Company Profile FILLED.pdf", v, checkboxes=("LLC",))
 
 
 def use_of_proceeds():
@@ -107,7 +107,7 @@ def use_of_proceeds():
         "Benefits1": "capital through the Medicare payment lag so the agency reaches ~40 patients/day by month 12; creates ~30 East Texas",
         "Benefits2": "healthcare jobs by year 2. Projected EBITDA $263K year 1 / $680K year 2 (before debt service).",
     }
-    fill_pdf(SRC + "3_Use_of_Funds_FORM.pdf", OUT + "3_Use_of_Proceeds_FILLED.pdf", v)
+    fill_pdf(SRC + "3_Use_of_Funds_FORM.pdf", OUT + "3 Use of Proceeds FILLED.pdf", v)
 
 
 def debt_schedule():
@@ -127,7 +127,7 @@ def debt_schedule():
         "TotalPayment": "$31,250",
         "GovtAgency1": "None (no PPP, EIDL, or other government financing - company or affiliates)",
     }
-    fill_pdf(SRC + "5_Business_Debt_Schedule_FORM.pdf", OUT + "5_Business_Debt_Schedule_FILLED.pdf", v)
+    fill_pdf(SRC + "5_Business_Debt_Schedule_FORM.pdf", OUT + "5 Business Debt Schedule FILLED.pdf", v)
 
 
 def _h(doc, text, level=1):
@@ -217,7 +217,7 @@ def checklist_memo():
         _p(doc, q, bold=True)
         _p(doc, a)
 
-    path = OUT + "1_Checklist_STATUS_RESPONSE.docx"
+    path = OUT + "1 Checklist STATUS RESPONSE.docx"
     doc.save(path)
     print("wrote", path)
 
@@ -249,7 +249,7 @@ def cover_email():
         "Geoff",
     ]:
         _p(doc, para)
-    path = OUT + "0_Cover_Email_DRAFT.docx"
+    path = OUT + "0 Cover Email DRAFT.docx"
     doc.save(path)
     print("wrote", path)
 
@@ -284,7 +284,7 @@ def refuge_addendum():
     ]:
         _h(doc, h, level=1)
         _p(doc, body)
-    path = OUT + "4_Business_Plan_ADDENDUM_Refuge.docx"
+    path = OUT + "4 Business Plan ADDENDUM Refuge.docx"
     doc.save(path)
     print("wrote", path)
 
@@ -319,7 +319,7 @@ def assumptions_narrative():
     ]:
         _h(doc, h, level=1)
         _p(doc, body)
-    path = OUT + "6_Projection_Assumptions_Narrative.docx"
+    path = OUT + "6 Projection Assumptions Narrative.docx"
     doc.save(path)
     print("wrote", path)
 
@@ -335,5 +335,5 @@ if __name__ == "__main__":
     assumptions_narrative()
     import shutil
     shutil.copy("financial_models/output/Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx",
-                OUT + "7_Financial_Projections_Rev3.00.xlsx")
-    print("wrote", OUT + "7_Financial_Projections_Rev3.00.xlsx")
+                OUT + "7 Financial Projections Rev3.00.xlsx")
+    print("wrote", OUT + "7 Financial Projections Rev3.00.xlsx")

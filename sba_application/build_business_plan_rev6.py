@@ -31,7 +31,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 NAVY = RGBColor(0x1F, 0x38, 0x64)
 GREY = RGBColor(0x60, 0x60, 0x60)
 
-OUT = "03_business_plan/Azalea_SBA_Business_Plan_Rev6.00.docx"
+OUT = "03_business_plan/Azalea SBA Business Plan Rev6.00.docx"
 
 
 # ------------------------------------------------------------------ helpers

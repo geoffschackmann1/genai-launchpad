@@ -4,12 +4,12 @@ Responds to John's 6/3 preliminary structure sheet and his core ask: break the w
 capital into components with an anticipated draw timeline. Old structure had $672K WC;
 current structure carries $235K, fully detailed here. Layout mirrors John's template.
 All calculation cells are formulas. Output:
-sba_application/13_checklist_response_2026-07-16/UOP_Azalea_Refuge_Rev1.00.xlsx
+sba_application/13_checklist_response_2026-07-16/UOP Azalea Refuge Rev1.00.xlsx
 """
 import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
-OUT = "sba_application/13_checklist_response_2026-07-16/UOP_Azalea_Refuge_Rev1.00.xlsx"
+OUT = "sba_application/13_checklist_response_2026-07-16/UOP Azalea Refuge Rev1.00.xlsx"
 
 H = Font(bold=True, size=12, color="1F3B2D")
 B = Font(bold=True)
