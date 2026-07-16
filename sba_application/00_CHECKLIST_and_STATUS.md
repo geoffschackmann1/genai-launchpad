@@ -1,7 +1,14 @@
 # Azalea Hospice — SBA 7(a) Application — Master Tracker
 
+> **STRUCTURE SUPERSEDED 2026-07-16 — see `13_checklist_response_2026-07-16/`.** Hickory failed its
+> site survey; the target is now **Refuge Hospice, LLC** (TX, CCN eff. 1/8/2024, Medicare+Medicaid,
+> $500K per MIPA Rev 1.00). New request: **single SBA 7(a) $500,000** (retires the $375K seller
+> balance Sept 2026 + working capital) + **$250,000 equity** (Bullard $195K + Schackmann $55K) =
+> $750,000 project. The $300K piggyback bank loan is gone. Projections basis: Rev 3.00 proforma.
+> The structure block below is retained for history only.
+
 **Borrower:** Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care) | EIN 41-4966640
-**Lender contact:** John Hart (SourceFunding) | **SBA loan request:** $450,000 SBA 7(a) + $300,000 subordinate bank acquisition loan | **Total project:** $945,000
+**Lender contact:** John Hart (SourceFunding) | **SBA loan request (superseded):** $450,000 SBA 7(a) + $300,000 subordinate bank acquisition loan | **Total project:** $945,000
 
 This folder is the single home for the whole application. Each numbered subfolder holds one
 deliverable. `00_source_forms/` holds the blank forms exactly as the lender provided them.
