@@ -48,27 +48,38 @@ def reply_email():
         "carries $375K at 6% ($31,250 a month from September), and the SBA loan funds in January at the 51% transfer, "
         "paying the ~$258K balloon plus ramp working capital. January is the base case on purpose: funding at the 100% "
         "transfer avoids the seller guaranty rules that come with lending into a partial change of ownership. If one of "
-        "your lenders can fund September anyway, the note is prepayable without penalty and we save four installments.",
+        "your lenders can fund September anyway, the note is prepayable without penalty and we save four installments. "
+        "On the interim line: base case peak need is about $183K, and the slow census downside needs up to $375K of "
+        "availability, so I want to size the LOC conversation accordingly rather than have it surface in underwriting.",
         "BULLET: Working capital reserve cut from $672K to $235K. John, this is your 6/3 note answered: the license "
         "bills immediately and the seller carries the acquisition until takeout, so the reserve is a bridge, not a "
         "parking lot. The attached workbook breaks the $235K into components with a month by month draw schedule, "
         "and I'm fine with the bank controlling disbursements against census milestones. Until the loan funds in "
-        "January we bridge on equity plus a small line; peak interim need in the base case is about $183K.",
+        "January we bridge on equity plus the interim line.",
         "BULLET: Equity injection is now $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
         "(first $100K wired in May) plus $55K from me.",
         "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "
         "options. One housekeeping item: the tenant on the lease is Hickory Hospice, LLC, the entity from the "
         "earlier deal, and it will be assigned to the correct operating entity before closing. The landlord "
         "relationship is friendly.",
-        "WHAT'S ATTACHED:",
-        "BULLET: Use of proceeds workbook in your format: loan structure, the $235K working capital detail with draw "
-        "timeline, and the seller note takeout schedule.",
-        "BULLET: Your checklist forms, filled: Company Profile, Use of Proceeds, and Business Debt Schedule (seller "
-        "note on it, per Mary's note).",
-        "BULLET: Item by item checklist status so you can see exactly what's in hand and what's still coming.",
-        "BULLET: Financial projections, monthly for 36 months with written assumptions, officer salaries split out.",
-        "BULLET: Business plan addendum covering the target change (full updated plan to follow this week).",
-        "BULLET: The executed lease and the purchase agreement.",
+        "WHAT'S ATTACHED (11 files):",
+        "BULLET: 1. UOP Azalea Refuge Rev1.00.xlsx - your structure sheet redone: loan structure, the $235K working "
+        "capital components with the month by month draw schedule, and the seller note timeline.",
+        "BULLET: 2. 2 Company Profile FILLED.pdf - your form, filled.",
+        "BULLET: 3. 3 Use of Proceeds FILLED.pdf - your form, filled.",
+        "BULLET: 4. 5 Business Debt Schedule FILLED.pdf - seller note on it, per Mary's note.",
+        "BULLET: 5. 1 Checklist STATUS RESPONSE.docx - item by item status on your whole checklist, plus answers to "
+        "the ten COVID questions.",
+        "BULLET: 6. 7 Financial Projections Rev3.10.xlsx - monthly for 36 months, officer salaries split out.",
+        "BULLET: 7. 6 Projection Assumptions Narrative.docx - the written assumptions behind the numbers.",
+        "BULLET: 8. Azalea SBA Business Plan Rev6.00.docx - the full updated plan in editable Word, rewritten for "
+        "Refuge.",
+        "BULLET: 9. 4 Business Plan ADDENDUM Refuge.docx - one page summary of the target change for quick reads.",
+        "BULLET: 10. 10 Executed Lease Gary House 6.29.26.pdf - fully executed office lease.",
+        "BULLET: 11. The signed Refuge purchase agreement (MIPA).",
+        "Coming separately through your secure upload: my 2022, 2023 and 2024 personal returns, then the personal "
+        "financial statement, personal history form, cash flow statement, credit report and driver license as I "
+        "finish them this week.",
         "Mary, on your priority list: my 2022, 2023 and 2024 personal returns are ready to send (2025 is with the "
         "preparer). Personal financial statement, cash flow and resume are in progress this week, and I'll pull the "
         "credit report on Credit Karma like you suggested.",
