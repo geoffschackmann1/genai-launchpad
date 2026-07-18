@@ -22,6 +22,9 @@ Rev 5.00 (build_documents.py::business_plan()).
 Run:  python3 sba_application/build_business_plan_rev6.py
 """
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import docfmt
 
 from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
@@ -129,13 +132,18 @@ def business_plan_rev6():
           [["SBA loan request", "$500,000", "Single SBA 7(a) loan - funds ~1/15/2027 at the 51% transfer, refinancing the interim bank note (~$461,676 payoff) and funding ramp working capital"],
            ["Purchase price", "$500,000", "Refuge Hospice, LLC - dual Medicare + Medicaid certification (CMS CCN effective 1/8/2024); MIPA dated 7/14/2026"],
            ["Total project", "$750,000", "$500K SBA loan + $250K cash equity injection"],
-           ["Year-1 EBITDA", "$262,951", "13.6% margin, before debt service - growing to $975,925 (28.0%) by Year 3; month-12 margin 22.3%"],
-           ["Break-even census", "~17-18 patients", "Crossed in month 2-3 of the ramp"],
+           ["Year-1 EBITDA", "$299,195", "15.5% margin, before debt service - growing to $985,429 (28.2%) by Year 3; month-12 margin 22.3%"],
+           ["Break-even census", "~17-18 patients", "Crossed in month 2 of the ramp"],
            ["Equity injection", "$250,000", "33% of project (Bullard $195K + Schackmann $55K) - well above the 10% SOP 50 10 8 minimum"]],
           widths=[1.6, 1.3, 3.6])
     para(d, "Confidential - prepared exclusively for the SBA 7(a) loan application. All figures are computed "
             "from the Rev 4.10 dynamic proforma (Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx). Do not "
             "distribute without written consent.", italic=True, size=8, color=GREY)
+
+    # ---- Table of Contents ----
+    d.add_page_break()
+    h1(d, "Table of Contents")
+    docfmt.toc(d, levels="1-2")
 
     # ---- 01 Executive Summary ----
     d.add_page_break()
@@ -791,6 +799,7 @@ def business_plan_rev6():
 
     out = os.path.join(BASE, OUT)
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    docfmt.finalize(d, "Azalea Hospice - SBA Business Plan Rev 6.01")
     d.save(out)
     print("  wrote", OUT)
 

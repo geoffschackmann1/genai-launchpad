@@ -11,6 +11,9 @@ Fills the lender's fillable PDFs and writes the annotated checklist + cover emai
 Output: sba_application/13_checklist_response_2026-07-16/
 """
 import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))
+import docfmt
 
 from docx import Document
 from docx.shared import Pt, RGBColor
@@ -57,16 +60,16 @@ def company_profile():
         "CompanyState": "TX",
         "CompanyZip": "75706",
         "Company Assumed Name if applicable": "Azalea Hospice & Palliative Care (dba)",
-        "Brief Business Description 1": "Medicare- and Medicaid-certified hospice agency serving Tyler / Smith County and surrounding East Texas.",
+        "Brief Business Description 1": "Medicare- and Medicaid-certified hospice serving Tyler / Smith County, East Texas.",
         "Brief Business Description 2": "Acquiring 100% of Refuge Hospice, LLC (TX; CMS CCN effective 1/8/2024), operating as Azalea Hospice.",
-        "Brief Business Description 3": "Ownership note: 0.7% is a reserved employee pool, completing 100% with the five members below.",
-        "OtherEntityType": "Wyoming LLC (foreign-qualified TX); S-corp election, IRC Sec. 1361 / Form 2553",
+        "Brief Business Description 3": "Wyoming LLC foreign-qualified in TX; S-corp election (Form 2553). 0.7% reserved pool completes 100%.",
+        "OtherEntityType": "WY LLC; S-corp election",
         "Date Business Formed": "3/18/2026",
         "Date Incorporated": "3/18/2026 (Wyoming)",
         "Date current management assumed control": "3/18/2026",
         "Federal taxpayer identification number": "41-4966640",
         "Number of employees at time of application": "0 (pre-close)",
-        "When loan is approved": "~14 by month 6",
+        "When loan is approved": "14 by mo 6",
         "Person1Name": "Geoffery Michael Schackmann",
         "Person1Ownership": "39.9%",
         "Person1Title": "Manager",
@@ -85,14 +88,14 @@ def company_profile():
         "Person5Title": "Member",
         "BankAccountName": "Tyler Hospice Hold, LLC dba Azalea Hospice & Palliative Care",
         "AccountSigners": "Geoff Schackmann",
-        "Affiliated Companies if applicable 1": "None. Prior hospice interest (VistaRiver) sold Aug 2025; passive note receivable only.",
+        "Affiliated Companies if applicable 1": "None (prior interest sold Aug 2025)",
     }
     fill_pdf(SRC + "2_Company_Profile_FORM.pdf", OUT + "2 Company Profile FILLED.pdf", v, checkboxes=("LLC",))
 
 
 def use_of_proceeds():
     v = {
-        "BusinessPurchase": "$500,000 (seller paid in full Sept 2026 via interim bank note)",
+        "BusinessPurchase": "$500,000",
         "WorkingCapital": "$235,000",
         "ClosingCosts": "$15,000",
         "TotalProjectCost": "$750,000",
@@ -113,19 +116,19 @@ def use_of_proceeds():
 def debt_schedule():
     v = {
         "BorrowerNameDS": "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
-        "AsOfDate": "as of SBA closing 1/2027",
-        "LenderDS1": "Interim bank acquisition note - Bullard-relationship Texas bank (name TBD at term sheet)",
+        "AsOfDate": "1/15/2027",
+        "LenderDS1": "Bank note (TX)",
         "Date1": "Sept 2026",
-        "Purpose1": "Paid sellers of Refuge Hospice, LLC in full (acquisition); to be refinanced by SBA 7(a)",
+        "Purpose1": "Refuge acquisition",
         "OriginalAmt1": "$500,000",
-        "Balance1": "~$461,676 at SBA closing",
+        "Balance1": "~$461,676",
         "Rate1": "6.00%",
-        "Payment1": "$15,211/mo",
-        "Security1": "Business assets + Bullard guaranty (bank terms TBD); REFINANCED by the SBA 7(a) loan at the 51% transfer 1/15/2027",
+        "Payment1": "$15,211",
+        "Security1": "Biz assets; SBA refi",
         "OriginalAmtTotal": "$500,000",
         "CurrentBalanceTotal": "~$461,676",
         "TotalPayment": "$15,211",
-        "GovtAgency1": "None (no PPP, EIDL, or other government financing - company or affiliates)",
+        "GovtAgency1": "NONE (company or affiliates)",
     }
     fill_pdf(SRC + "5_Business_Debt_Schedule_FORM.pdf", OUT + "5 Business Debt Schedule FILLED.pdf", v)
 
@@ -219,6 +222,7 @@ def checklist_memo():
         _p(doc, a)
 
     path = OUT + "1 Checklist STATUS RESPONSE.docx"
+    docfmt.finalize(doc, "Azalea Hospice - SBA Checklist Status")
     doc.save(path)
     print("wrote", path)
 
@@ -252,6 +256,7 @@ def cover_email():
     ]:
         _p(doc, para)
     path = OUT + "0 Cover Email DRAFT.docx"
+    docfmt.finalize(doc, "Azalea Hospice - Cover Email Draft")
     doc.save(path)
     print("wrote", path)
 
@@ -289,6 +294,7 @@ def refuge_addendum():
         _h(doc, h, level=1)
         _p(doc, body)
     path = OUT + "4 Business Plan ADDENDUM Refuge.docx"
+    docfmt.finalize(doc, "Azalea Hospice - Business Plan Addendum")
     doc.save(path)
     print("wrote", path)
 
@@ -298,7 +304,7 @@ def assumptions_narrative():
     doc.styles["Normal"].font.name = "Calibri"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Projection Assumptions Narrative", 0)
-    _p(doc, "Accompanies Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx (36 monthly periods; every calculation "
+    _p(doc, "Accompanies Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx (36 monthly periods; every calculation "
             "cell is a live formula; all inputs on the Control Tower tab) | 7/16/2026", bold=True)
     for h, body in [
         ("Census (the revenue driver)", "End-of-month census of 24 patients by month 2, 34 by month 6, and 40 by month 12, "
@@ -326,6 +332,7 @@ def assumptions_narrative():
         _h(doc, h, level=1)
         _p(doc, body)
     path = OUT + "6 Projection Assumptions Narrative.docx"
+    docfmt.finalize(doc, "Azalea Hospice - Projection Assumptions")
     doc.save(path)
     print("wrote", path)
 

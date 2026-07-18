@@ -1,12 +1,15 @@
 """Fill Todd Plummer's PL/GL insurance application + reply email.
 
 Named insured: Refuge Hospice, LLC dba Azalea Hospice & Palliative Care (EIN 92-1541610),
-parent Tyler Hospice Hold, LLC. Effective 8/1/2026. Numbers basis: Rev 3.10 year one
-(gross revenue ~$1.93M; W2 payroll ~$924K; ~12 staff at launch to ~18-20 by month 12).
+parent Tyler Hospice Hold, LLC. Effective 8/1/2026. Numbers basis: Rev 4.10 year one
+(gross revenue ~$1.93M; W2 payroll $972,167; ~12 staff at launch to ~18-20 by month 12).
 Fields are numbered sequentially through the form (mapped by page coordinates 7/16).
 Output: sba_application/14_insurance_2026-07-16/
 """
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import docfmt
 
 from docx import Document
 from docx.shared import Pt, RGBColor
@@ -21,7 +24,7 @@ TEXT = {
     "1": "Refuge Hospice, LLC dba Azalea Hospice & Palliative Care (parent: Tyler Hospice Hold, LLC)",
     "2": "13387 Hwy 69 N, Tyler, TX 75706",
     "3": "azaleahospice.com",
-    "4": "Est. 2023 (confirming); CCN 1/8/24",
+    "4": "2023 (confirming)",
     "5": "92-1541610",
     "13": "100% of membership interests being acquired by Tyler Hospice Hold, LLC (WY): 49% on ~8/1/2026, remaining 51% on 1/15/2027 per the CMS 36-month rule (42 CFR 424.550(b)). Operations under Tyler Hospice Hold management from 8/1/2026.",
     "21": "70",   # patient's home
@@ -56,16 +59,16 @@ TEXT = {
     "159": "Contracted physicians (medical director) must carry $1M/$3M professional liability; PRN 1099 clinicians must evidence individual PL coverage.",
     "161": "Zero-tolerance abuse policy: two-person visit protocols where indicated, background/registry checks, mandatory reporting training at hire and annually; policy reviewed annually.",
     # ---- page 5
-    "174": "NONE - new operation under new ownership/management",
+    "174": "NONE (startup)",
     "199": "N/A - requesting retroactive date = policy inception",
     # ---- page 6: GL locations
     "207": "Azalea Hospice & Palliative Care (administrative office)",
     "208": "13387 Hwy 69 N, Tyler, TX 75706",
-    "209": "Administrative office - no patient care on premises",
+    "209": "Admin office - no patient care",
     "210": "1,607",
-    "211": "Refuge Hospice (transitional admin suite)",
-    "212": "8746 Wurzbach Rd, Suite 201E, San Antonio, TX 78240",
-    "213": "Administrative suite during service-area transition",
+    "211": "Refuge Hospice suite",
+    "212": "8746 Wurzbach #201E San Antonio",
+    "213": "Transitional admin suite",
     "214": "~1,000",
     "228": "100",
     "232": "100",
@@ -73,9 +76,9 @@ TEXT = {
     "251": "100",
     "253": "100",
     # ---- page 7: autos
-    "274": "8 (staff personal autos used for patient-home visits)",
+    "274": "8",
     "288": "0",
-    "289": "Annually at hire and renewal",
+    "289": "Annually",
     # ---- page 9: additional insureds
     "323": "Fair Investments, Ltd., PO Box 689, Tyler, TX 75710",
     "324": "Landlord (per lease requirement)",
@@ -248,16 +251,16 @@ def email():
         "Estimated annual gross revenues: $1,933,000 (first 12 months projection; census ramps from ~12 to 40 "
         "patients over the year).",
         "Number of employees: about 12 at August 1, growing to 18 to 20 by month 12.",
-        "Estimated annual payroll: about $924,000 (W2, first 12 months). Contracted 1099s on top of that: "
-        "physician medical director, PRN nurses and aides, and a PRN chaplain.",
+        "Estimated annual payroll: $972,000 (W2, first 12 months, from the staffing model). Contracted 1099s on top "
+        "of that: physician medical director (~$48K/yr), PRN nurses and aides (~$30K/yr), and a PRN chaplain.",
         "WORKERS COMP - ANNUAL PAYROLL BY CLASS (first 12 months):",
-        "BULLET: Registered Nurses (case managers, on-call): $220,000",
-        "BULLET: Hospice Aides / CNAs: $144,000",
-        "BULLET: Medical Social Worker: $60,000",
-        "BULLET: Clinical leadership, RNs (Director of Nursing, ADON/Intake): $180,000",
-        "BULLET: Clerical / administrative (Executive Director, Volunteer & Bereavement Coordinator): $200,000",
+        "BULLET: Registered Nurses (case managers, on-call): $276,667",
+        "BULLET: Hospice Aides / CNAs: $148,000",
+        "BULLET: Medical Social Worker: $70,000",
+        "BULLET: Clinical leadership, RNs (Director of Nursing, ADON/Intake): $170,000",
+        "BULLET: Clerical / administrative (Executive Director, Volunteer & Bereavement Coordinator): $187,500",
         "BULLET: Outside marketing / community liaison (Director of Sales): $120,000",
-        "BULLET: Total: $924,000",
+        "BULLET: Total: $972,167",
         "A few things to flag so there are no surprises:",
         "BULLET: Care is delivered in patients' homes, nursing facilities and ALFs. Our offices are administrative "
         "only, no patient care on premises. The Tyler office is a leased single story historic house (1,607 sq ft), "
@@ -283,6 +286,7 @@ def email():
             r.font.size = Pt(11)
         else:
             _p(doc, para, bold=para.endswith(":") and para.isupper() is False and (para.startswith(("BUSINESS", "WORKERS"))))
+    docfmt.finalize(doc, "Azalea Hospice - Insurance Application Reply")
     path = OUT + "Reply Email Todd Plummer DRAFT.docx"
     doc.save(path)
     print("wrote", path)

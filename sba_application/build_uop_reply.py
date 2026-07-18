@@ -2,6 +2,10 @@
 
 Output: sba_application/13_checklist_response_2026-07-16/{8_Reply_Email_John_Mary_DRAFT,9_Lease_Summary_and_Flags}.docx
 """
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import docfmt
 from docx import Document
 from docx.shared import Pt, RGBColor
 
@@ -94,6 +98,7 @@ def reply_email():
         else:
             _p(doc, para, bold=para.startswith(("WHAT'S CHANGED", "WHAT'S ATTACHED")))
     path = OUT + "8 Reply Email John Mary DRAFT.docx"
+    docfmt.finalize(doc, "Azalea Hospice - Reply to SourceFunding")
     doc.save(path)
     print("wrote", path)
 
@@ -153,6 +158,7 @@ def lease_summary():
         _p(doc, x, size=10)
 
     path = OUT + "9 Lease Summary and Flags.docx"
+    docfmt.finalize(doc, "Azalea Hospice - Lease Summary")
     doc.save(path)
     print("wrote", path)
 
