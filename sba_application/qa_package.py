@@ -74,7 +74,7 @@ REQUIRED = {
 REQUIRED_XLSX = {
     PKG + "UOP Azalea Refuge Rev2.00.xlsx": ["461676", "250000", "500000", "6%", "EQUITY INJECTION", "1/15/2027"],
     "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx":
-        ["REAL-CASH DISCIPLINE", "UNFUNDED NEED", "Revision 4.10", "AZALEA HOSPICE"],
+        ["Working-capital policy", "ADDITIONAL FUNDING REQUIREMENT", "Revision 4.10", "AZALEA HOSPICE"],
 }
 STALE = ["$262,951", "$680,224", "$975,925", "$100,941", "$472,928", "$746,549",
          "$258,489", "$78,710", "$936,793", "$924,000", "$142,524", "$182,532",

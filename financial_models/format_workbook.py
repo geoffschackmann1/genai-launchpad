@@ -47,8 +47,8 @@ def cover(wb, R):
     put("B4", "Revision 4.10  |  July 2026  |  Tyler Hospice Hold, LLC (EIN 41-4966640)", 10, italic=True, color=GREY)
     put("B6", "Prepared for the SBA 7(a) application (SourceFunding / The Brownmiller Group) and company planning.", 9, italic=True, color=GREY)
     put("B7", "36 monthly periods (Jul-2026 to Jun-2029). Every calculated cell is a live formula; all inputs on the Control Tower.", 9, italic=True, color=GREY)
-    put("B8", "REAL-CASH DISCIPLINE: no revolver or assumed facility anywhere in this model. Cash shortfalls, if any, are shown", 9, bold=True)
-    put("B9", "as UNFUNDED NEED - the amount of additional capital required - never plugged by a balancing facility.", 9, bold=True)
+    put("B8", "Working-capital policy: the model assumes no revolving credit facility. Any cash shortfall is presented", 9, bold=True)
+    put("B9", "explicitly as an additional funding requirement rather than absorbed by an assumed facility.", 9, bold=True)
 
     S3 = R["3-Year Summary"]
     CF = R["Cash Flow & Runway"]
@@ -69,7 +69,7 @@ def cover(wb, R):
         r += 1
     singles = [
         ("Minimum cash across 36 months (base case)", f"='Cash Flow & Runway'!B{CF['mincash']}", '$#,##0;($#,##0);"-"'),
-        ("Peak additional capital required (base case)", f"='Cash Flow & Runway'!B{CF['peakneed']}", '$#,##0;($#,##0);"-"'),
+        ("Peak additional funding requirement (base case)", f"='Cash Flow & Runway'!B{CF['peakneed']}", '$#,##0;($#,##0);"-"'),
         ("Month-36 ending cash", f"='Cash Flow & Runway'!AL{CF['cash']}", '$#,##0;($#,##0);"-"'),
         ("Master integrity check (0 = clean)", f"='Checks'!B{R['Checks']['master']}", "0"),
     ]
@@ -86,7 +86,7 @@ def cover(wb, R):
     for line in [
         "Aug 2026 - Equity ($250,000: J. Bullard $195K + G. Schackmann $55K) funds the $125,000 license down payment (49%)",
         "Sep 2026 - Interim bank note ($500,000, 6%, 36-mo) pays the sellers in full; surplus to working capital",
-        "Oct-Dec  - Bank note service $15,211/month; owner salaries deferred until break-even census (accrued, repaid Jan)",
+        "Oct-Dec  - Bank note service of $15,211/month; management salary deferral until break-even census (repaid January)",
         "Jan 2027 - SBA 7(a) $500,000 funds at the 51% transfer (42 CFR 424.550(b)) and refinances the bank note",
         "Feb 2027 - Single SBA payment of $6,747/month (10.5%, 10-year); recurring coverage 3.8x / 8.6x / 12.2x",
     ]:
@@ -97,16 +97,16 @@ def cover(wb, R):
     ws[f"B{r}"].fill = FILL; ws[f"C{r}"].fill = FILL
     r += 1
     toc = [
-        ("Control Tower", "Every model input - deal terms, census, rates, staffing, toggles (scenario, refi, SBA, deferral)"),
+        ("Control Tower", "All model inputs - deal terms, census, rates, staffing, and scenario settings"),
         ("Census Waterfall", "Admissions, discharge waterfall, ADC, patient days"),
         ("Revenue Model", "CMS rate build, payer mix, net patient revenue"),
-        ("Staffing", "FTEs (census-driven with 1-month hire lag), payroll, PRN supplement, owner-deferral schedule"),
+        ("Staffing", "FTEs (census-driven with staged hiring), payroll, PRN supplement, management salary deferral schedule"),
         ("Operating Budget", "Direct patient care, facility, G&A, contingency"),
         ("P&L", "Accrual P&L with account codes; EBITDA and margins"),
-        ("Cash Flow & Runway", "Collections engine, all debt schedules, ending cash, UNFUNDED NEED"),
-        ("Balance Sheet", "No-plug balance sheet; check row = 0 in every month"),
-        ("Checks", "Integrity tests + viability metrics; master check"),
-        ("Dashboard", "KPIs a lender reads first: DSCR, DSO, cap cushion, margins"),
+        ("Cash Flow & Runway", "Collections timing, all debt schedules, ending cash, funding requirement (if any)"),
+        ("Balance Sheet", "Fully articulated balance sheet; check row equals zero in every month"),
+        ("Checks", "Model integrity tests and funding-requirement metrics"),
+        ("Dashboard", "Key indicators: DSCR, DSO, Medicare cap cushion, margins"),
         ("3-Year Summary", "Annual rollup and global DSCR"),
         ("Actuals vs Budget", "Enter actuals monthly; variances compute"),
     ]
@@ -115,7 +115,7 @@ def cover(wb, R):
         put(f"D{r}", desc, 9, color=GREY)
         r += 1
     r += 1
-    put(f"B{r}", "Confidential - prepared for lender and investor diligence. Figures QA-verified by automated test harness (23 checks).", 8.5, italic=True, color=GREY)
+    put(f"B{r}", "Confidential - prepared for lender and investor diligence. All figures verified by an automated 23-point test harness.", 8.5, italic=True, color=GREY)
     thin = Side(style="medium", color=GREEN)
     for col in "BCD":
         ws[f"{col}5"].border = Border(bottom=thin)

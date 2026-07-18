@@ -73,7 +73,7 @@ def yr(i):  # 0-based month -> escalation exponent
 # =====================================================================
 def control_tower(bk: OB):
     ws = bk.sheet("Control Tower", tab="1F3864")
-    bk.title(ws, "CONTROL TOWER - every number in the model flows from this tab. Yellow = input; everything else is formulas.")
+    bk.title(ws, "CONTROL TOWER - all model inputs. Yellow cells are inputs; all other cells in the workbook are formulas.")
     bk.widths(ws, label=52, n=4, w=13)
     ws.column_dimensions["D"].width = 70
     r = 4
@@ -98,12 +98,12 @@ def control_tower(bk: OB):
     item("balloon_mo", "Balloon month (36-month rule / January)", 7, S.FMT_INT)
     item("bref_rate", "Balloon takeout note rate (APR)", 0.06, S.FMT_PCT, "BASE CASE: SBA/bank funds the Jan balloon; modeled at the conservative 6%/36 basis")
     item("bref_term", "Balloon takeout note term (months)", 36, S.FMT_INT)
-    item("refi_on", "BANK-REFI TOGGLE (1 = $500K/6%/36 funds Sept - BASE)", 1, S.FMT_INT, "BASE = 1: Bullard-relationship bank refi (confirmed) pays seller Sept; 0 = seller carried to Jan balloon per MIPA")
+    item("refi_on", "INTERIM BANK NOTE (1 = $500K/6%/36 funds Sept - base case)", 1, S.FMT_INT, "Base case: interim bank note retires the seller balance in September; 0 = seller carried to the January balloon per the MIPA")
     item("refi_mo", "Full-refi funding month", 3, S.FMT_INT, "3 = September")
     item("refi_amt", "Full-refi amount", 500000.0, S.FMT_CUR)
     item("refi_rate", "Full-refi rate (APR)", 0.06, S.FMT_PCT)
     item("refi_term", "Full-refi term (months)", 36, S.FMT_INT)
-    item("sba_on", "SBA TOGGLE (1 = SBA 7(a) funds & REFINANCES the bank note) - BASE", 1, S.FMT_INT, "SBA proceeds pay off the bank-refi balance at funding month")
+    item("sba_on", "SBA 7(a) LOAN (1 = funds and refinances the bank note - base case)", 1, S.FMT_INT, "SBA proceeds retire the bank-note balance at the funding month")
     item("sba_mo", "SBA funding month", 7, S.FMT_INT, "7 = January (51% transfer / 42 CFR 424.550(b) date)")
     item("sba_amt", "SBA amount", 500000.0, S.FMT_CUR)
     item("sba_rate", "SBA rate (APR)", 0.105, S.FMT_PCT)
@@ -152,8 +152,8 @@ def control_tower(bk: OB):
     item("col_m1", "% collected month +1", 1.0, S.FMT_PCT)
     item("col_m2", "% collected month +2", 0.0, S.FMT_PCT)
 
-    sec("CLINICAL LABOR  (Acct 4000; benefits/WC per audit)")
-    item("benefits", "Benefits & payroll tax load (employed)", 0.22, S.FMT_PCT, "post-audit: bottom of 22-28% band")
+    sec("CLINICAL LABOR  (Acct 4000; benefits and workers compensation loads)")
+    item("benefits", "Benefits & payroll tax load (employed)", 0.22, S.FMT_PCT, "industry range 22-28%; modeled at 22%")
     item("wcomp", "Workers comp (% of employed payroll)", 0.03, S.FMT_PCT)
     item("sal_esc", "Salary escalation (annual, yrs 2-3)", 0.03, S.FMT_PCT)
     item("rn_sal", "RN Case Manager salary", 80000.0, S.FMT_CUR)
@@ -168,7 +168,7 @@ def control_tower(bk: OB):
     item("medd", "Medical director stipend ($/mo, Acct 4020-0-6-M)", 4000.0, S.FMT_CUR)
     item("medd_start", "Medical director start month", 1, S.FMT_INT)
 
-    sec("PRN PER-VISIT SUPPLEMENT  (1099; fires when FTE capacity < required visits)")
+    sec("PRN PER-VISIT SUPPLEMENT  (1099; applies when FTE capacity is below required visits)")
     item("rn_req", "RN required visits / patient / month", 2.0, S.FMT_NUM1, "CoP 418.56 - q14 days")
     item("rn_cap", "RN visits capacity / FTE / month", 24.0, S.FMT_NUM1)
     item("rn_prn", "RN PRN rate ($/visit)", 85.0, S.FMT_RATE)
@@ -194,7 +194,7 @@ def control_tower(bk: OB):
     item("volber", "Volunteer + Bereavement Coordinator salary", 50000.0, S.FMT_CUR)
     item("volber_start", "  start month", 1, S.FMT_INT)
     item("qapi", "QAPI / Compliance salary (per 1.0 FTE)", 70000.0, S.FMT_CUR)
-    item("qapi_adc", "QAPI 0.5 FTE fires at ADC >=", 40.0, S.FMT_NUM1)
+    item("qapi_adc", "QAPI 0.5 FTE begins at ADC >=", 40.0, S.FMT_NUM1)
 
     sec("DIRECT PATIENT CARE - per patient-day  (Acct 5050-5120)")
     item("dme_pd", "DME rental ($/PD, 5050)", 9.0, S.FMT_RATE)
@@ -211,7 +211,7 @@ def control_tower(bk: OB):
     item("maint", "Maintenance & repairs ($/mo, 6060)", 100.0, S.FMT_CUR)
     item("alarm", "Alarm system ($/mo, 6010)", 100.0, S.FMT_CUR)
 
-    sec("G&A  (MAX(fixed, % of net revenue) per audit pattern)")
+    sec("G&A  (greater of fixed amount or % of net revenue)")
     item("emr_base", "EMR base platform ($/mo)", 0.0, S.FMT_CUR)
     item("emr_pp", "EMR per active patient ($/patient/mo)", 75.0, S.FMT_CUR)
     for key, label, acct, fixed, pct, start in GA_LINES + [CONT]:
@@ -224,18 +224,18 @@ def control_tower(bk: OB):
             bk.lbl(ws, r, f"starts month {start}", c=4, italic=True)
         r += 1
 
-    sec("REAL-CASH DISCIPLINE (no revolver / no invented capital - shortfalls are SHOWN)")
-    item("defer_on", "OWNER-DEFERRAL TOGGLE (1 = Silas/Dana/Brad defer to break-even)", 1, S.FMT_INT, "wages accrue on P&L; cash paid once prior-month ADC >= threshold; accrual repaid at repay month")
+    sec("WORKING-CAPITAL POLICY (no revolving facility assumed; any funding requirement is stated explicitly)")
+    item("defer_on", "MANAGEMENT SALARY DEFERRAL (1 = active)", 1, S.FMT_INT, "three owner-operators defer salary until break-even census; wages accrue on the P&L and are repaid at the repayment month")
     item("be_adc", "Deferral release: prior-month ADC threshold", 18.0, S.FMT_NUM1, "~break-even census")
     item("defer_repay_mo", "Deferred-comp repayment month", 7, S.FMT_INT, "7 = January (post-collections catch-up)")
     item("hire_lag", "CLINICAL HIRE LAG (1 = staff to prior-month census)", 1, S.FMT_INT, "PRN 1099 supplement covers the gap at per-visit rates")
     item("rn_core", "Day-1 core RN FTE (floor)", 1.0, S.FMT_NUM2)
     item("cna_core", "Day-1 core CNA FTE (floor)", 1.0, S.FMT_NUM2)
-    item("seller_defer", "SELLER-DEFERRAL CONTINGENCY (1 = installments roll to Jan balloon)", 0, S.FMT_INT, "documented fallback - NOT base")
-    item("note_amt", "Investor notes raised (10% IO qtrly, 3-yr) - REAL ONLY", 0.0, S.FMT_CUR, "0 = none assumed; set only when checks clear")
+    item("seller_defer", "SCENARIO: seller installment deferral (1 = installments roll to Jan balloon)", 0, S.FMT_INT, "contingency scenario; excluded from the base case")
+    item("note_amt", "Investor notes (10% interest-only quarterly, 3-yr)", 0.0, S.FMT_CUR, "included only when subscribed; $0 in the base case")
     item("note_mo", "Investor notes landing month", 4, S.FMT_INT)
     item("note_rate", "Investor note rate (APR, interest-only quarterly)", 0.10, S.FMT_PCT)
-    item("floor", "Cash warning threshold (reporting/formatting only)", 25000.0, S.FMT_CUR, "no facility behind it - display only")
+    item("floor", "Cash reporting threshold (display only)", 25000.0, S.FMT_CUR, "presentation threshold; no credit facility is assumed")
     item("tx_tax", "TX franchise/margin tax (% of NPR if profitable)", 0.00375, S.FMT_PCT2)
     item("cap_limit", "Medicare aggregate cap / beneficiary (FY2026)", 33900.0, S.FMT_CUR, "monitor on Medicare CAP logic")
     return ws
@@ -320,7 +320,7 @@ def revenue(bk: OB):
 # =====================================================================
 def staffing(bk: OB):
     ws = bk.sheet("Staffing", tab="548235")
-    bk.title(ws, "STAFFING - FTEs step with census (caseload formulas); PRN 1099 supplement fires when FTE capacity < required visits.")
+    bk.title(ws, "STAFFING - FTEs scale with census on caseload ratios; PRN 1099 supplement covers visits above FTE capacity.")
     bk.widths(ws)
     A = bk.addr; C = bk.rows["Census Waterfall"]; R = bk.rows["Staffing"]
     adcref = lambda i: f"'Census Waterfall'!{mlet(i)}{C['adc']}"
@@ -392,7 +392,7 @@ def staffing(bk: OB):
             bk.fml(ws, r, MC0 + i,
                    f"=IF({i+1}>={A[key+'_start']},{A[key]}/12*(1+{A['sal_esc']})^{yr(i)}*{padj},0)", S.FMT_CUR)
         R[key] = r; r += 1
-    bk.lbl(ws, r, "QAPI / Compliance 0.5 FTE (fires at ADC threshold)")
+    bk.lbl(ws, r, "QAPI / Compliance 0.5 FTE (begins at ADC threshold)")
     for i in range(NM):
         bk.fml(ws, r, MC0 + i,
                f"=IF({adcref(i)}>={A['qapi_adc']},0.5*{A['qapi']}/12*(1+{A['sal_esc']})^{yr(i)}*{padj},0)", S.FMT_CUR)
@@ -436,8 +436,8 @@ def staffing(bk: OB):
                S.FMT_CUR)
     R["payroll_cash"] = r; r += 1
 
-    bk.section(ws, r, "OWNER DEFERRAL (Silas/Dana/Brad wages accrue until prior-month ADC >= threshold; expense unchanged)"); r += 1
-    bk.lbl(ws, r, "Deferral active this month (1 = accruing, not paying)")
+    bk.section(ws, r, "MANAGEMENT SALARY DEFERRAL (owner-operator wages accrue until break-even census; P&L expense unchanged)"); r += 1
+    bk.lbl(ws, r, "Deferral active this month (1 = wages accruing)")
     for i in range(NM):
         prior_adc = "0" if i == 0 else adcref(i - 1)
         bk.fml(ws, r, MC0 + i,
@@ -466,7 +466,7 @@ def staffing(bk: OB):
 # =====================================================================
 def opbudget(bk: OB):
     ws = bk.sheet("Operating Budget", tab="7F7F7F")
-    bk.title(ws, "OPERATING BUDGET - direct patient care per PD; facility (stepped rent); G&A = MAX(fixed, % of NPR) per audit pattern.")
+    bk.title(ws, "OPERATING BUDGET - direct patient care per patient-day; facility (stepped rent); G&A at the greater of fixed or % of revenue.")
     bk.widths(ws)
     A = bk.addr; C = bk.rows["Census Waterfall"]; V = bk.rows["Revenue Model"]; R = bk.rows["Operating Budget"]
     r = 4
@@ -595,7 +595,7 @@ def pl(bk: OB):
 # =====================================================================
 def debt_and_cash(bk: OB):
     ws = bk.sheet("Cash Flow & Runway", tab="C00000")
-    bk.title(ws, "CASH FLOW - collections timing + CHOW hold; payroll in month; DPC net-30; full debt schedules with toggles. Direct method.")
+    bk.title(ws, "CASH FLOW - collections timing and payment hold; payroll in month; patient-care costs net-30; complete debt schedules. Direct method.")
     bk.widths(ws)
     A = bk.addr
     V = bk.rows["Revenue Model"]; ST = bk.rows["Staffing"]; OB_ = bk.rows["Operating Budget"]
@@ -657,7 +657,7 @@ def debt_and_cash(bk: OB):
         bk.fml(ws, r, MC0 + i, f"={mlet(i)}{R['s_beg']}-{mlet(i)}{R['s_prin']}", S.FMT_CUR)
     R["s_end"] = r; r += 1
 
-    bk.section(ws, r, "DEBT - BALLOON REFI (auto when full-refi OFF) / FULL REFI / SBA (toggles)"); r += 1
+    bk.section(ws, r, "DEBT - BALLOON REFINANCING / INTERIM BANK NOTE / SBA 7(a) (per scenario settings)"); r += 1
     bk.lbl(ws, r, "Balloon refi amount")
     bk.fml(ws, r, 2,
            f"=IF(OR({A['refi_on']}=1,{A['sba_on']}=1),0,SUMPRODUCT(($C${R['_hdr']}:$AL${R['_hdr']}={A['balloon_mo']})"
@@ -727,7 +727,7 @@ def debt_and_cash(bk: OB):
     for i in range(NM):
         bk.fml(ws, L["ni"], MC0 + i, f"={mlet(i)}{L['pretax']}-{mlet(i)}{L['tax']}", S.FMT_CUR, bold=True)
 
-    bk.section(ws, L["_sec_cash"], "CASH (direct method; NO revolver - shortfalls are shown, not plugged)")
+    bk.section(ws, L["_sec_cash"], "CASH (direct method; no revolving facility assumed)")
     bk.lbl(ws, L["cin"], "Cash collections")
     for i in range(NM):
         bk.fml(ws, L["cin"], MC0 + i, f"={mlet(i)}{R['coll']}", S.FMT_CUR, link=True)
@@ -765,7 +765,7 @@ def debt_and_cash(bk: OB):
              f"+IF({i+1}={A['note_mo']},{A['note_amt']},0)"
              f"-{mlet(i)}{R['bref_pmt']}-{mlet(i)}{R['refi_pmt']}-{mlet(i)}{R['sba_pmt']}-{mlet(i)}{R['note_int']}")
         bk.fml(ws, L["cfin"], MC0 + i, f, S.FMT_CUR)
-    bk.lbl(ws, L["cash"], "ENDING CASH (may go NEGATIVE - that is the point)", bold=True)
+    bk.lbl(ws, L["cash"], "ENDING CASH", bold=True)
     for i in range(NM):
         prev = f"{mlet(i-1)}{L['cash']}" if i else f"{A['cash0']}-{A['startup']}"
         c = mlet(i)
@@ -775,7 +775,7 @@ def debt_and_cash(bk: OB):
                fill=S.fill(S.LIGHTBLUE))
     ws.conditional_formatting.add(f"C{L['cash']}:AL{L['cash']}", CellIsRule(operator="lessThan",
         formula=["0"], fill=S.fill("F4CCCC")))
-    bk.lbl(ws, L["unfunded"], "UNFUNDED NEED (cash below $0 - additional capital required)", bold=True)
+    bk.lbl(ws, L["unfunded"], "ADDITIONAL FUNDING REQUIREMENT (amount by which cash is below zero)", bold=True)
     for i in range(NM):
         bk.fml(ws, L["unfunded"], MC0 + i, f"=MAX(0,-{mlet(i)}{L['cash']})", S.FMT_CUR, bold=True)
     bk.lbl(ws, L["dscr"], "DSCR (EBITDA / recurring debt service)")
@@ -786,7 +786,7 @@ def debt_and_cash(bk: OB):
         bk.fml(ws, L["dscr"], MC0 + i, f"=IF({ds}>0,'P&L'!{c}{P['ebitda']}/{ds},\"-\")", S.FMT_MULT)
     bk.lbl(ws, L["mincash"], "Minimum cash (36 months)", bold=True)
     bk.fml(ws, L["mincash"], 2, f"=MIN(C{L['cash']}:AL{L['cash']})", S.FMT_CUR, bold=True)
-    bk.lbl(ws, L["peakneed"], "PEAK ADDITIONAL CAPITAL REQUIRED (raise this much, or $0 = fully funded)", bold=True)
+    bk.lbl(ws, L["peakneed"], "PEAK ADDITIONAL FUNDING REQUIREMENT ($0 = fully funded)", bold=True)
     bk.fml(ws, L["peakneed"], 2, f"=MAX(C{L['unfunded']}:AL{L['unfunded']})", S.FMT_CUR, bold=True,
            fill=S.fill(S.LIGHTBLUE))
     return ws
@@ -795,7 +795,7 @@ def debt_and_cash(bk: OB):
 # =====================================================================
 def balance_sheet(bk: OB):
     ws = bk.sheet("Balance Sheet", tab="7F7F7F")
-    bk.title(ws, "BALANCE SHEET - no plug cells; the check row must be zero in every month.")
+    bk.title(ws, "BALANCE SHEET - fully articulated (no balancing entries); the check row equals zero in every month.")
     bk.widths(ws)
     A = bk.addr
     CF = bk.rows["Cash Flow & Runway"]; OB_ = bk.rows["Operating Budget"]; R = bk.rows["Balance Sheet"]
@@ -842,7 +842,7 @@ def balance_sheet(bk: OB):
 # =====================================================================
 def summary(bk: OB):
     ws = bk.sheet("3-Year Summary", tab="BF8F00")
-    bk.title(ws, "3-YEAR SUMMARY - annual rollup; GLOBAL DSCR is the operative SBA test (per audit).")
+    bk.title(ws, "3-YEAR SUMMARY - annual rollup with per-year and global (3-year) debt-service coverage.")
     ws.column_dimensions["A"].width = 44
     for c in "BCDE":
         ws.column_dimensions[c].width = 15
@@ -881,8 +881,8 @@ def summary(bk: OB):
     bk.lbl(ws, r, "Minimum cash across 36 months", bold=True)
     bk.fml(ws, r, 2, f"='Cash Flow & Runway'!B{CF['mincash']}", S.FMT_CUR, bold=True)
     r += 2
-    bk.lbl(ws, r, "Note: Y1 DSCR is structurally thin for a hospice startup (license maturation + Medicare "
-                  "payment cycle). Per the audit: lead with Global DSCR; do not force Y1 to 1.25x.", italic=True)
+    bk.lbl(ws, r, "Note: Year-1 coverage reflects the startup ramp (license maturation and the Medicare payment "
+                  "cycle); the global 3-year DSCR is the appropriate coverage measure for the ramp period.", italic=True)
     return ws
 
 
@@ -919,7 +919,7 @@ def avb(bk: OB):
 # =====================================================================
 def checks(bk: OB):
     ws = bk.sheet("Checks", tab="FF0000")
-    bk.title(ws, "CHECKS - every integrity test in one place. MASTER must read 0 / OK.")
+    bk.title(ws, "CHECKS - model integrity tests. The master check reads 0 when all tests pass.")
     bk.widths(ws)
     B = bk.rows["Balance Sheet"]; CF = bk.rows["Cash Flow & Runway"]; A = bk.addr
     r = 4
@@ -935,7 +935,7 @@ def checks(bk: OB):
          lambda i: f"=IF(ABS('Balance Sheet'!{mlet(i)}{B['check']})>0.01,1,0)", "bs")
     crow("Seller balance negative (-> 1)",
          lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['s_end']}<-0.01,1,0)", "sneg")
-    crow("Cash below zero (VIABILITY - reported, not integrity)",
+    crow("Months with cash below zero (funding-requirement indicator)",
          lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['cash']}<-0.01,1,0)", "neg")
     r += 1
     bk.lbl(ws, r, "Collections conservation: cum collected + AR - cum NPR (should be 0)", bold=True)
@@ -948,16 +948,16 @@ def checks(bk: OB):
                       f"-SUM('Staffing'!C{ST_['defer_repay']}:AL{ST_['defer_repay']})"
                       f"-'Staffing'!AL{ST_['defer_bal']}"), S.FMT_CUR, bold=True)
     dcons = r; r += 1
-    bk.lbl(ws, r, "MASTER INTEGRITY CHECK (0 = OK; cash viability reported separately)", bold=True)
+    bk.lbl(ws, r, "MASTER INTEGRITY CHECK (0 = all tests pass)", bold=True)
     rows = bk.rows["Checks"]
     parts = "+".join(f"SUM(C{rows[k]}:AL{rows[k]})" for k in ("bs", "sneg"))
     bk.fml(ws, r, 2, f"={parts}+IF(ABS(B{cons})>1,1,0)+IF(ABS(B{dcons})>1,1,0)", S.FMT_NUM, bold=True,
            fill=S.fill(S.LIGHTBLUE))
     bk.rows["Checks"]["master"] = r; r += 1
-    bk.lbl(ws, r, "MONTHS WITH CASH BELOW ZERO (viability count)", bold=True)
+    bk.lbl(ws, r, "MONTHS WITH CASH BELOW ZERO", bold=True)
     bk.fml(ws, r, 2, f"=SUM(C{rows['neg']}:AL{rows['neg']})", S.FMT_NUM, bold=True)
     bk.rows["Checks"]["negmonths"] = r; r += 1
-    bk.lbl(ws, r, "PEAK ADDITIONAL CAPITAL REQUIRED", bold=True)
+    bk.lbl(ws, r, "PEAK ADDITIONAL FUNDING REQUIREMENT", bold=True)
     bk.fml(ws, r, 2, f"='Cash Flow & Runway'!B{CF['peakneed']}", S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
     bk.rows["Checks"]["peakneed"] = r
     return ws
@@ -965,7 +965,7 @@ def checks(bk: OB):
 
 def dashboard(bk: OB):
     ws = bk.sheet("Dashboard", tab="00B050")
-    bk.title(ws, "KPI DASHBOARD - the rows a lender / investment committee reads first. All live links.")
+    bk.title(ws, "KPI DASHBOARD - key operating and coverage indicators. All cells are live links.")
     bk.widths(ws)
     A = bk.addr
     C = bk.rows["Census Waterfall"]; V = bk.rows["Revenue Model"]; P = bk.rows["P&L"]
@@ -1003,7 +1003,7 @@ def dashboard(bk: OB):
     row("DSO (days: AR / NPR x days-in-month)",
         lambda i: f"=IF('P&L'!{mlet(i)}{P['npr']}=0,0,'Cash Flow & Runway'!{mlet(i)}{CF['ar']}/'P&L'!{mlet(i)}{P['npr']}*{A['days_mo']})", S.FMT_NUM1)
     row("Ending cash", lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['cash']}", key="cash")
-    row("UNFUNDED NEED (additional capital required this month)",
+    row("Additional funding requirement (this month)",
         lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['unfunded']}", bold=True)
     row("Deferred owner comp balance",
         lambda i: f"='Staffing'!{mlet(i)}{ST['defer_bal']}")
