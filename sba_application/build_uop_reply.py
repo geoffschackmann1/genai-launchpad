@@ -147,7 +147,7 @@ def lease_summary():
         "subordination/agreement. Landlord contact is Fair Investments (Bob Garrett) - the relationship is warm.",
         "4. HISTORIC-PROPERTY DEFAULT TRIGGER: any action costing the property its Texas Historic Designation is a "
         "lease default. Operationally fine for an office, but flag to insurance and staff.",
-        "5. RENT MATCHES THE MODEL: ~$2,143/mo all-in is consistent with the rent line in the Rev 3.00 proforma and the "
+        "5. RENT MATCHES THE MODEL: ~$2,143/mo all-in is consistent with the rent line in the Rev 4.10 proforma and the "
         "working-capital draw schedule - no reconciliation needed.",
     ]:
         _p(doc, x, size=10)

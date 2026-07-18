@@ -3,14 +3,14 @@
 Rev 6.00 updates the plan from the terminated Hickory Hospice acquisition to the
 Refuge Hospice, LLC acquisition (MIPA dated 7/14/2026) and restructures the
 financing to a single $500,000 SBA 7(a) loan plus a $250,000 equity injection
-($750,000 total project). All financial figures are taken from the Rev 3.00
+($750,000 total project). All financial figures are taken from the Rev 4.10
 dynamic proforma (Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx, QA 20/20):
 
   Census (EOM):        24 @ M2 / 34 @ M6 / 40 @ M12 / 50 @ M24 / 56 @ M36
   Net patient revenue: $1,932,877 / $2,891,641 / $3,490,623   (Y1/Y2/Y3)
   EBITDA:              $262,951 (13.6%) / $680,224 (23.5%) / $975,925 (28.0%)
   Month-12 EBITDA margin: 22.3%
-  Net income:          $100,941 / $472,928 / $746,549
+  Net income:          $128,491 / $457,463 / $718,153
   Modeled debt:        $500K at 6% over 36 months, $15,211/mo from Oct 2026
                        (conservative; an actual SBA 7(a) at ~10.5% / 10 yr is
                        ~$6,745/mo)
@@ -44,23 +44,23 @@ def new_doc():
 
 
 def h1(d, text):
-    p = d.add_paragraph()
+    p = d.add_paragraph(style="Heading 1")
     r = p.add_run(text)
     r.bold = True
     r.font.size = Pt(15)
     r.font.color.rgb = NAVY
-    p.space_after = Pt(4)
+    p.paragraph_format.space_after = Pt(4)
     return p
 
 
 def h2(d, text):
-    p = d.add_paragraph()
+    p = d.add_paragraph(style="Heading 2")
     r = p.add_run(text)
     r.bold = True
     r.font.size = Pt(11.5)
     r.font.color.rgb = NAVY
-    p.space_before = Pt(8)
-    p.space_after = Pt(2)
+    p.paragraph_format.space_before = Pt(8)
+    p.paragraph_format.space_after = Pt(2)
     return p
 
 
@@ -76,7 +76,10 @@ def para(d, text, italic=False, size=10.5, color=None, bold=False):
 
 
 def bullet(d, text):
-    return para(d, "  - " + text)
+    p = d.add_paragraph(style="List Bullet")
+    r = p.add_run(text)
+    r.font.size = Pt(10.5)
+    return p
 
 
 def table(d, headers, rows, widths=None):
@@ -114,7 +117,7 @@ def business_plan_rev6():
             "Refuge Hospice, LLC (Texas)", size=9, color=GREY)
     para(d, "Rev. 6.00 - July 2026  (supersedes Rev 5.00 dated June 2026; acquisition target changed to "
             "Refuge Hospice, LLC, financing restructured to a single SBA 7(a) loan, and all financials "
-            "reconciled to the Rev 3.00 dynamic proforma)", italic=True, size=9, color=GREY)
+            "reconciled to the Rev 4.10 dynamic proforma)", italic=True, size=9, color=GREY)
     para(d, "")
     para(d, "Acquisition of Refuge Hospice, LLC - a Texas hospice certified for both Medicare and Medicaid "
             "and ready to bill from day one - operating as Azalea Hospice & Palliative Care, led by an "
@@ -131,7 +134,7 @@ def business_plan_rev6():
            ["Equity injection", "$250,000", "33% of project (Bullard $195K + Schackmann $55K) - well above the 10% SOP 50 10 8 minimum"]],
           widths=[1.6, 1.3, 3.6])
     para(d, "Confidential - prepared exclusively for the SBA 7(a) loan application. All figures are computed "
-            "from the Rev 3.00 dynamic proforma (Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx). Do not "
+            "from the Rev 4.10 dynamic proforma (Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx). Do not "
             "distribute without written consent.", italic=True, size=8, color=GREY)
 
     # ---- 01 Executive Summary ----
@@ -182,20 +185,19 @@ def business_plan_rev6():
     h2(d, "Repayment case")
     table(d, ["", "Year 1", "Year 2", "Year 3"],
           [["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
-           ["EBITDA (before debt service)", "$262,951", "$680,224", "$975,925"],
-           ["EBITDA margin", "13.6%", "23.5%", "28.0%"],
-           ["Net income", "$100,941", "$472,928", "$746,549"]],
+           ["EBITDA (before debt service)", "$299,195", "$695,981", "$985,429"],
+           ["EBITDA margin", "15.5%", "24.1%", "28.2%"],
+           ["Net income", "$128,491", "$457,463", "$718,153"]],
           widths=[2.2, 1.4, 1.4, 1.4])
-    para(d, "The operation crosses break-even census (~17-18 patients) in month 2-3 and reaches a 22.3% "
-            "EBITDA margin by month 12. The projections deliberately model debt service far heavier than the "
-            "actual SBA terms: $500,000 at 6% amortized over just 36 months ($15,211 per month from October "
-            "2026, $182,532 per year). Even against that compressed schedule, EBITDA covers debt service "
-            "1.8x in Year 1, 3.7x in Year 2, and 5.3x in Year 3 - all above the 1.25x floor. An actual SBA "
-            "7(a) at ~10.5% over 10 years is approximately $6,745 per month ($80,940 per year), so real "
-            "coverage will be materially better than modeled (Year 2 EBITDA covers actual-terms service "
-            "roughly 8x). A separate 5% of net patient revenue contingency is deducted below EBITDA in the "
-            "cash flow, and the $235,000 working-capital reserve plus a $250,000 revolver keep cash positive "
-            "in the base case and in the documented downside case.")
+    para(d, "The operation crosses break-even census (~17-18 patients) in month 2 and reaches a 22.3% "
+            "EBITDA margin by month 12. Debt service is modeled exactly as sequenced: the interim bank note "
+            "at $15,211 per month October through January, then the SBA 7(a) at approximately $6,747 per "
+            "month ($80,961 per year) after the January refinance. EBITDA covers recurring debt service "
+            "3.8x in Year 1, 8.6x in Year 2, and 12.2x in Year 3 - an aggregate of 8.2x against the 1.25x "
+            "floor. A separate 5% of net patient revenue contingency is deducted below EBITDA in the cash "
+            "flow, and the working-capital plan (owner salary deferral to break-even census, staged clinical "
+            "hiring, and the sequenced bank-then-SBA financing) keeps cash positive in the base case with "
+            "no revolver or assumed facility anywhere in the model.")
 
     # ---- 02 Company Description ----
     d.add_page_break()
@@ -368,7 +370,7 @@ def business_plan_rev6():
     bullet(d, "Modeled on validated Tyler-market economics (~22 ADC, ~$118K/mo) benchmarked to the team's own actual collections")
     bullet(d, "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships")
     bullet(d, "Simple, conservative capital structure - a single $500K SBA loan after the interim bank note is refinanced; sellers paid in full in month two of operations")
-    bullet(d, "$250K cash equity injection (33% of project) plus a $235K working-capital reserve and a $250K revolver facility")
+    bullet(d, "$250K cash equity injection (33% of project) plus a $235K working-capital plan with lender-controlled disbursement")
     bullet(d, "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Manager")
     h2(d, "Weaknesses")
     bullet(d, "Newco borrower with no operating history of its own (mitigated by the team's benchmarked prior book and an experienced operator)")
@@ -390,7 +392,7 @@ def business_plan_rev6():
     bullet(d, "CMS reimbursement or regulatory changes")
     bullet(d, "Medicare Advantage hospice carve-in could shift referral dynamics")
     bullet(d, "East Texas clinical labor shortage could pressure wages")
-    bullet(d, "Ramp-period cash timing ahead of Medicare collections (NOE-to-cash ~30-60 days); mitigated by the $235K reserve, the $250K revolver, and month-by-month cash-flow modeling")
+    bullet(d, "Ramp-period cash timing ahead of Medicare collections (NOE-to-cash ~30-60 days); mitigated by the $235K working-capital plan, owner salary deferral, staged hiring, and month-by-month cash-flow modeling")
 
     # ---- 06 Marketing ----
     d.add_page_break()
@@ -619,12 +621,14 @@ def business_plan_rev6():
     # ---- 11 Financial Plan ----
     d.add_page_break()
     h1(d, "11 - Financial Plan and Projections")
-    para(d, "All projections are from the Rev 3.00 dynamic proforma (36 monthly periods; every calculation "
-            "cell is a live formula; all inputs on a single Control Tower tab; QA-verified). The proforma is "
-            "deliberately the conservative, lender-defensible basis: officer salaries fully loaded, a 22% "
-            "benefits load plus 3% workers compensation, a 5% of net patient revenue contingency deducted "
-            "below EBITDA, and debt service modeled on a compressed 36-month amortization far heavier than "
-            "actual SBA terms.")
+    para(d, "All projections are from the Rev 4.10 dynamic proforma (36 monthly periods; every calculation "
+            "cell is a live formula; all inputs on a single Control Tower tab; QA-verified 23/23). The model "
+            "practices strict real-cash discipline: no revolver or assumed facility anywhere - shortfalls, if "
+            "any, are shown rather than plugged. Officer salaries are fully expensed (with the three owner-"
+            "operators deferring cash pay until break-even census - $42,500 accrued and repaid in January), a "
+            "22% benefits load plus 3% workers compensation applies, a 5% of net patient revenue contingency "
+            "is deducted below EBITDA, and the actual financing sequence (bank note at $15,211/mo, then SBA at "
+            "$6,747/mo from February 2027) is modeled month by month.")
     h2(d, "11.1-11.2 Sources & uses of funds")
     table(d, ["Source", "Amount", "Use", "Amount"],
           [["SBA 7(a) loan", "$500,000", "Refinances the interim bank acquisition note (~$461,676) + working capital at SBA funding ~1/15/2027", "$500,000"],
@@ -645,72 +649,70 @@ def business_plan_rev6():
            ["Benefits load (W-2)", "22% + 3% workers compensation"],
            ["Clinical staffing", "RN, aide, chaplain, and social-work FTEs scale with census on standard hospice ratios; per-patient costs are per-patient-day rates"],
            ["Contingency", "5% of net patient revenue, deducted below EBITDA in cash flow"],
-           ["Modeled debt service", "$500,000 at 6% amortized over 36 months - $15,211/mo from October 2026 ($182,532/yr)"],
-           ["Actual SBA terms (for reference)", "~10.5% over 10 years is ~$6,745/mo ($80,940/yr) - real coverage materially better than modeled"],
+           ["Debt service (as sequenced)", "Bank note $15,211/mo Oct 2026 - Jan 2027; SBA 7(a) $6,747/mo from Feb 2027 ($80,961/yr)"],
+           ["SBA terms", "$500,000 at ~10.5% over 10 years; funds ~1/15/2027 and refinances the bank note (~$461,676 payoff)"],
            ["Interim bank note", "$500,000 at 6%/36-mo (Sept 2026); paid sellers in full; $15,211/mo; refinanced by SBA proceeds ~1/15/2027"],
            ["Equity injection", "$250,000 cash (33% of the $750,000 project)"],
            ["Amortization", "Acquired license / intangibles amortized straight-line over 15 years (~$33,333/yr)"],
            ["Collections timing", "Collections lag billing by ~30-60 days (NOE timing), modeled month by month"],
-           ["Liquidity backstop", "$235,000 working-capital reserve + $250,000 revolver facility"]],
+           ["Liquidity discipline", "No revolver assumed; owner salary deferral to break-even + staged clinical hiring; base-case cash never negative"]],
           widths=[2.4, 4.1])
-    h2(d, "11.4 Three-year profit & loss (Rev 3.00 proforma)")
+    h2(d, "11.4 Three-year profit & loss (Rev 4.10 proforma)")
     table(d, ["Line item", "Year 1", "Year 2", "Year 3"],
           [["Average daily census (ADC)", "31.0", "45.0", "53.0"],
            ["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
            ["Direct patient costs", "$180,568", "$263,288", "$309,983"],
-           ["Clinical payroll (loaded)", "$739,682", "$1,036,237", "$1,218,374"],
+           ["Clinical payroll (loaded)", "$703,438", "$1,020,480", "$1,208,870"],
            ["Indirect payroll (loaded)", "$596,875", "$688,812", "$709,477"],
            ["Facility", "$41,400", "$65,562", "$89,729"],
            ["Operating G&A", "$111,401", "$157,517", "$187,135"],
-           ["EBITDA (before debt service)", "$262,951", "$680,224", "$975,925"],
-           ["EBITDA margin", "13.6%", "23.5%", "28.0%"],
+           ["EBITDA (before debt service)", "$299,195", "$695,981", "$985,429"],
+           ["EBITDA margin", "15.5%", "24.1%", "28.2%"],
            ["Contingency (5% of NPR, below EBITDA)", "$96,644", "$144,582", "$174,531"],
            ["Amortization", "$33,333", "$33,333", "$33,333"],
-           ["Interest (seller note + acquisition note + revolver)", "$26,499", "$18,537", "$8,422"],
-           ["TX franchise tax", "$5,534", "$10,844", "$13,090"],
-           ["Net income", "$100,941", "$472,928", "$746,549"]],
+           ["Interest (seller + bank + SBA notes)", "$34,600", "$49,760", "$46,321"],
+           ["TX franchise tax", "$6,127", "$10,844", "$13,090"],
+           ["Net income", "$128,491", "$457,463", "$718,153"]],
           widths=[2.6, 1.3, 1.3, 1.3])
-    para(d, "Net patient revenue grows from $1.93M to $3.49M and EBITDA from $263K to $976K (before debt "
+    para(d, "Net patient revenue grows from $1.93M to $3.49M and EBITDA from $299K to $985K (before debt "
             "service) as the base-case census builds from 24 patients at month 2 to 56 at month 36 on the "
-            "team's referral pipeline, with a conservative 2.5% annual CMS per-diem escalation. Payroll "
-            "scales on census triggers, carrying the full, separately stated officer roster and a 22% + 3% "
-            "benefits and workers compensation load. The explicit 5% contingency is carried below EBITDA and "
-            "deducted in cash.")
+            "team's referral pipeline, with a conservative 2.5% annual CMS per-diem escalation. Clinical hiring "
+            "is staged one month behind census (a day-one core of 1 RN + 1 CNA, PRN 1099 coverage for "
+            "surges), the full officer roster is separately stated with a 22% + 3% benefits and workers "
+            "compensation load, and the explicit 5% contingency is carried below EBITDA and deducted in cash.")
     h2(d, "11.5 Year-1 monthly detail (selected months)")
     table(d, ["Month", "ADC", "Net revenue", "EBITDA (margin)"],
-          [["M1 (launch)", "10.0", "$52,240", "($10,661) - absorbed by the working-capital reserve"],
-           ["M2", "22.0", "$114,916", "($3,286) - census 24 EOM, at break-even"],
-           ["M3", "25.2", "$131,893", "$4,291 - break-even census (~17-18) crossed"],
+          [["M1 (launch)", "10.0", "$52,240", "($8,286) - launch month, absorbed by equity working capital"],
+           ["M2", "22.0", "$114,916", "$8,904 (7.7%) - census 24 EOM; break-even census (~17-18) crossed"],
+           ["M3", "25.2", "$131,893", "$10,657 (8.1%) - owner salaries resume from deferral"],
            ["M6", "32.7", "$171,073", "$23,313 (13.6%)"],
            ["M12", "39.5", "$206,376", "$46,099 (22.3%)"]],
           widths=[1.2, 0.9, 1.4, 3.0])
-    para(d, "Month 1 is the launch month (10 ADC average) and is absorbed by the reserve; the agency "
-            "crosses break-even census (~17-18 patients) in month 2-3 and exits Year 1 at a 22.3% EBITDA "
-            "margin. Collections lag billing by ~30-60 days (NOE timing); the cash-flow tab models the lag "
-            "explicitly, month by month, and base-case cash never breaches the $25,000 floor (peak revolver "
-            "draw $78,710; month-12 cash $80,450; month-36 cash $936,793).")
+    para(d, "Month 1 is the launch month (10 ADC average), absorbed by the equity working capital; the "
+            "agency crosses break-even census (~17-18 patients) in month 2 and exits Year 1 at a 22.3% "
+            "EBITDA margin. Collections lag billing by ~30-60 days (NOE timing); the cash-flow tab models "
+            "the lag explicitly, month by month, with no revolver or assumed facility anywhere: base-case "
+            "cash never goes negative (minimum month $3,354 in September - disclosed; month-12 cash "
+            "$212,645; month-36 cash $1,297,392).")
     h2(d, "11.6 Lender summary & debt-service coverage")
     table(d, ["Metric", "Year 1", "Year 2", "Year 3"],
           [["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
-           ["EBITDA (before debt service)", "$262,951", "$680,224", "$975,925"],
-           ["Modeled debt service ($500K, 6%, 36-mo)", "$142,524", "$182,532", "$182,532"],
-           ["EBITDA / modeled debt service", "1.8x", "3.7x", "5.3x"],
-           ["EBITDA / actual-terms SBA service (~$80,940/yr)", "n/m (partial year)", "8.4x", "12.1x"],
-           ["Net income", "$100,941", "$472,928", "$746,549"]],
+           ["EBITDA (before debt service)", "$299,195", "$695,981", "$985,429"],
+           ["Recurring debt service (bank Oct-Jan, then SBA)", "$79,367", "$80,961", "$80,961"],
+           ["EBITDA / recurring debt service", "3.8x", "8.6x", "12.2x"],
+           ["3-year aggregate coverage", "8.2x", "", ""],
+           ["Net income", "$128,491", "$457,463", "$718,153"]],
           widths=[2.8, 1.3, 1.3, 1.3])
-    para(d, "The model deliberately amortizes the full $500,000 over 36 months at $15,211 per month from "
-            "October 2026 - a schedule roughly 2.3x heavier than an actual SBA 7(a) at ~10.5% over 10 years "
-            "(~$6,745/mo). Even so, EBITDA covers the modeled service 1.8x in Year 1 (which also carries the "
-            "seller-note interest), 3.7x in Year 2, and 5.3x in Year 3 - a 3-year aggregate of 3.8x against "
-            "the 1.25x floor - and these coverages are computed before adding back the below-EBITDA "
-            "contingency. On actual SBA terms, real coverage will be materially better than modeled. "
-            "Break-even is approximately 17-18 patients, crossed in month 2-3 of the ramp.")
+    para(d, "Year 1 carries the interim bank note at $15,211 per month October through January, then the "
+            "SBA loan at $6,747 per month - EBITDA covers recurring service 3.8x in Year 1, 8.6x in Year 2, "
+            "and 12.2x in Year 3, an aggregate of 8.2x against the 1.25x floor, computed before adding back "
+            "the below-EBITDA contingency. Break-even is approximately 17-18 patients, crossed in month 2 of "
+            "the ramp.")
     h2(d, "11.7 Downside case")
-    para(d, "The proforma carries a documented downside case (slower census ramp) as a scenario switch. In "
-            "the downside, the $250,000 revolver is fully drawn and remains drawn, but cash stays positive "
-            "throughout the 36 months - the working-capital reserve and revolver absorb the shortfall. A "
-            "sustained downside beyond that envelope would require census recovery, additional equity, or a "
-            "larger facility, and this is disclosed rather than modeled away. Three structural mitigants "
+    para(d, "The proforma carries a documented downside case (slower census ramp) as a scenario switch, "
+            "modeled with no assumed facility: in the downside the plan requires approximately $30,000 of "
+            "additional capital (peaking in month 3) - disclosed rather than modeled away, and covered by "
+            "the investor note raise in progress. Three structural mitigants "
             "bound the risk: (1) the roster is census-driven, so a lower census carries a lighter cost base; "
             "(2) break-even is ~17-18 patients against a month-2 census of 24, so the plan operates above "
             "break-even from the second month; and (3) the modeled 36-month amortization overstates the real "
@@ -730,13 +732,13 @@ def business_plan_rev6():
     h1(d, "12 - Risk Factors and Mitigations")
     para(d, "The dominant risks are the newco's lack of operating history and the census ramp - both "
             "mitigated by benchmarked economics, a dual-certified license that is billing-ready from day "
-            "one, an experienced operator, and a capital structure with a 33% equity injection, a $235,000 "
-            "working-capital reserve, and a $250,000 revolver. The seller-note window (closing to SBA "
+            "one, an experienced operator, and a capital structure with a 33% equity injection and a "
+            "disciplined, no-revolver working-capital plan. The interim-debt window (closing to SBA "
             "funding) is short and is extinguished when SBA proceeds refinance the bank note at the January 2027 funding.")
     table(d, ["Risk", "Prob.", "Impact", "Mitigation"],
-          [["Debt service / coverage", "Low", "Med", "Projections model a compressed 36-month amortization ($15,211/mo) and still cover 1.8x -> 3.7x -> 5.3x; actual SBA terms (~$6,745/mo) roughly halve the modeled burden"],
+          [["Debt service / coverage", "Low", "Med", "EBITDA covers recurring service 3.8x -> 8.6x -> 12.2x; the January SBA refinance cuts monthly service from $15,211 to $6,747"],
            ["Interim-debt window / 36-month rule", "Low", "Med", "Two-step structure complies with 42 CFR 424.550(b); sellers paid in full Sept 2026; SBA refinances the bank note at the 51% transfer, a fixed contractual date (1/15/2027)"],
-           ["Slower census ramp", "Med", "High", "Break-even ~17-18 patients vs 24 by month 2; capacity hires are census-gated so cost flexes with volume; $235K reserve + $250K revolver keep cash positive in the documented downside case"],
+           ["Slower census ramp", "Med", "High", "Break-even ~17-18 patients vs 24 by month 2; hires are census-gated and lag one month so cost flexes with volume; documented downside needs only ~$30K of additional capital (disclosed; covered by the note raise)"],
            ["Ramp cash timing (Medicare NOE lag)", "Med", "Med", "Collections lag of ~30-60 days is modeled month by month; reserve sized to carry payroll ahead of collections"],
            ["Wage inflation", "Med", "Med", "22% + 3% benefits and workers compensation load fully modeled; census-gated hiring; PRN pool buffers"],
            ["CMS rate / regulatory change", "Low", "Med", "Rates up or flat every year since 2010; only a conservative 2.5%/yr escalation assumed; the enrollment moratorium that constrains supply also protects the license's value"],
@@ -768,19 +770,19 @@ def business_plan_rev6():
             "moratorium, comparable dual-certified licenses trade at $400-500K and above, supporting the "
             "$500,000 purchase price and constraining new competition; (2) benchmarked economics - the "
             "model's rates and costs reconcile to the team's own prior Tyler-market actuals, with break-even "
-            "(~17-18 patients) crossed in month 2-3; (3) conservative coverage - EBITDA of $263K / $680K / "
-            "$976K covers even a deliberately compressed 36-month amortization of the full $500,000 at 1.8x "
-            "-> 3.7x -> 5.3x, and actual SBA terms roughly halve the modeled debt burden; and (4) a "
-            "well-capitalized structure - a $250,000 cash injection (33% of the $750,000 project), a "
-            "$235,000 working-capital reserve, and a $250,000 revolver that keep cash positive in the base "
-            "case and in the documented downside case. The binding risk is a sustained census shortfall "
+            "(~17-18 patients) crossed in month 2; (3) strong coverage - EBITDA of $299K / $696K / $985K "
+            "covers recurring debt service 3.8x -> 8.6x -> 12.2x after the January SBA refinance drops the "
+            "monthly payment from $15,211 to $6,747; and (4) a well-capitalized, honestly modeled structure "
+            "- a $250,000 cash injection (33% of the $750,000 project) and a working-capital plan that keeps "
+            "base-case cash positive with no revolver or assumed facility anywhere in the model. "
+            "The binding risk is a sustained census shortfall "
             "during the ramp; it is mitigated by an above-break-even census from month 2, a census-driven "
             "cost structure, substantial liquidity, and the retirement of the seller note at the January 2027 SBA funding "
             "that leaves a single, coverable debt.")
 
     para(d, "")
-    para(d, "Rev 6.00 - July 2026. This plan is computed from the Rev 3.00 dynamic proforma "
-            "(Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx), the single source of truth for all financial "
+    para(d, "Rev 6.01 - July 2026. This plan is computed from the Rev 4.10 dynamic proforma "
+            "(Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx), the single source of truth for all financial "
             "figures. Confidential - do not distribute without written consent.", italic=True, size=8,
          color=GREY)
     para(d, "")

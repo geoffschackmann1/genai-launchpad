@@ -173,10 +173,10 @@ def checklist_memo():
         ("Target tax returns - 3 years", "REQUEST FROM SELLERS", "Refuge Hospice, LLC returns (2023, 2024, 2025) - company was certified 1/2024, so all applicable years."),
         ("Company debt schedule", "ATTACHED (filled form)", "Single item: the $375K seller note (terms per MIPA). Copy of the seller note/MIPA to accompany it."),
         ("Aged AR / AP", "REQUEST FROM SELLERS", "Refuge is ready-to-bill with minimal operations - listing may legitimately be near-zero; get it in writing."),
-        ("LOI / contract for sale", "ATTACHED", "MIPA Rev 1.00 (7/15/2026, redline in negotiation): $500K; $125K down ~8/1 (49%); $375K @ 6%, $31,250/mo from 9/1; ~$258,489.46 final 1/15/2027; prepayable without penalty."),
+        ("LOI / contract for sale", "ATTACHED", "MIPA Rev 1.00 (7/15/2026): $500K; $125K down ~8/1 (49%); $375K @ 6% carried by sellers, prepayable without penalty. Sellers are paid IN FULL Sept 2026 by the interim bank note - four months ahead of the MIPA schedule."),
         ("STARTUPS / CHOW", "", ""),
         ("Business plan (editable Word)", "DRAFTED - UPDATE PENDING", "Rev 5.00 exists but is written around the prior Hickory target; Refuge addendum attached now, full rewrite to follow."),
-        ("2-yr P&L projections, Y1 monthly, written assumptions", "ATTACHED", "Rev 3.00 dynamic proforma (36 monthly periods, QA 20/20) + assumptions narrative. Officer salaries split out: Administrator $150K, DON $120K, Community Liaison $120K, Office Mgr $60K."),
+        ("2-yr P&L projections, Y1 monthly, written assumptions", "ATTACHED", "Rev 4.10 dynamic proforma (36 monthly periods, QA 23/23) + assumptions narrative. Officer salaries split out: Administrator $150K, DON $120K, Community Liaison $120K, Office Mgr $60K."),
         ("OTHER", "", ""),
         ("Lease / LOI for premises", "GEOFF TO PROVIDE", "Office lease or LOI, loan-term with options."),
         ("Sources of cash injection - 2 months statements", "PARTIAL", "Bullard tranche 1 ($100K) wire confirmed 5/7/2026; need Bullard statements (30+ days pre-wire), remaining $95K wire, Geoff's $55K source statements."),
@@ -277,11 +277,11 @@ def refuge_addendum():
          "bank) pays the sellers in full in September - four months early. The requested SBA loan funds at the 51% "
          "transfer (~1/15/2027) and refinances the bank note: a clean bank-debt refinance at the 100% ownership date, "
          "no seller guaranties involved."),
-        ("Financial projections", "All projections in this package are from the Rev 3.00 dynamic proforma (36 monthly periods): "
-         "census reaching 24 patients by month 2, 34 by month 6, and 40 by month 12; EBITDA $263K year 1 (13.6%), $680K year 2 "
-         "(23.5%), $976K year 3 (28.0%), before debt service; working-capital reserve and revolver keep cash positive in the "
-         "downside case. Officer salaries are separately stated (Administrator $150K, Director of Nursing $120K, Community "
-         "Liaison $120K, Office Manager $60K)."),
+        ("Financial projections", "All projections in this package are from the Rev 4.10 dynamic proforma (36 monthly periods, QA 23/23): "
+         "census reaching 24 patients by month 2, 34 by month 6, and 40 by month 12; EBITDA $299K year 1 (15.5%), $696K year 2 "
+         "(24.1%), $985K year 3 (28.2%), before debt service. The model assumes no revolver or invented capital: base-case cash "
+         "never goes negative, and after the January SBA refinance the company carries a single $6,747/month payment. Officer "
+         "salaries are separately stated (Administrator $150K, Director of Nursing $120K, Community Liaison $120K, Office Manager $60K)."),
         ("What has NOT changed", "The operating team, the Tyler/Smith County market, the dba (Azalea Hospice & Palliative Care), "
          "the entity (Tyler Hospice Hold, LLC, a Wyoming LLC with an S-corp election), the cap table (Schackmann 39.9% / "
          "Bullard 19.5% / three operators 13.3% each / 0.7% reserved), and the equity injection ($250,000 cash)."),
@@ -318,9 +318,10 @@ def assumptions_narrative():
          "in full ($15,211/month October-December); the SBA 7(a) funds ~1/15/2027 and refinances the bank note (~$461,676 "
          "payoff), leaving a single $6,747/month payment (10.5%/10-year) from February. Owner salaries defer until "
          "break-even census ($42,500 accrued, repaid January); clinical hiring lags census one month with PRN coverage."),
-        ("Results on these assumptions", "EBITDA $263K year 1 (13.6% margin), $680K year 2 (23.5%), $976K year 3 (28.0%), "
-         "before debt service; month-12 EBITDA margin 22.3%. Break-even census ~17-18 patients, crossed in month 2-3. "
-         "A documented downside case (slower ramp) stays cash-positive using the working-capital reserve and a revolver."),
+        ("Results on these assumptions", "EBITDA $299K year 1 (15.5% margin), $696K year 2 (24.1%), $985K year 3 (28.2%), "
+         "before debt service; month-12 EBITDA margin 22.3%. Break-even census ~17-18 patients, crossed in month 2. The model "
+         "carries no revolver or assumed facility: base-case cash never goes negative (minimum month $3,354, disclosed), and the "
+         "documented slow-census downside needs ~$30K of additional capital - shown honestly, not plugged."),
     ]:
         _h(doc, h, level=1)
         _p(doc, body)

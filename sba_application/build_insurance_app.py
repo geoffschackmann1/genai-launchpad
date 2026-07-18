@@ -21,7 +21,7 @@ TEXT = {
     "1": "Refuge Hospice, LLC dba Azalea Hospice & Palliative Care (parent: Tyler Hospice Hold, LLC)",
     "2": "13387 Hwy 69 N, Tyler, TX 75706",
     "3": "azaleahospice.com",
-    "4": "[confirm - est. 2022/2023]; CMS certified 1/8/2024",
+    "4": "Est. 2023 (confirming); CCN 1/8/24",
     "5": "92-1541610",
     "13": "100% of membership interests being acquired by Tyler Hospice Hold, LLC (WY): 49% on ~8/1/2026, remaining 51% on 1/15/2027 per the CMS 36-month rule (42 CFR 424.550(b)). Operations under Tyler Hospice Hold management from 8/1/2026.",
     "21": "70",   # patient's home
