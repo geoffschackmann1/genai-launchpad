@@ -4,25 +4,19 @@
 Three generations of models now live in this repo. They intentionally differ; this note says
 which to use for which purpose, and why their numbers don't match.
 
-## 1. `Azalea_Hospice_Proforma_Rev3.10_DYNAMIC.xlsx`  ← AUTHORITATIVE (planning / investor / SBA)
-Built by `build_proforma_v3.py`; QA `qa_proforma_v3.py` (24/24). **Rev 3.10 (2026-07-16): BASE CASE
-is now the JANUARY TAKEOUT** per the executed MIPA (7/14/2026) — $31,250/mo Sep–Dec (equity-funded),
-~$258,489.46 balloon retired by the SBA/bank note at the 51% transfer 1/15/2027, modeled at 6%/36
-($7,957/mo from Feb). The Sept $500K/6%/36 refi is the UPSIDE toggle (refi_on=1) — a September SBA
-close would require seller guaranties under partial-CHOW rules. Base peak revolver $182,753;
-**downside (slow census) now needs a ~$375K facility vs the $250K base commitment — disclosed gap**
-(mitigants: census recovery, owner deferral, September takeout).
-- **Basis:** granular COA P&L (account codes), post-audit costs (benefits **22%**, workers comp
-  **3%**, leadership at Control-Tower salaries: Silas $150K, Dana $120K, Brad $120K, Rhonda $60K),
-  CMS rate build (high/low RHC split, ~$172 blended net), monthly ×36.
-- **Census:** EOM **24 @M2 / 34 @M6 / 40 @M12** → 50 @M24 → 56 @M36 (user spec 7/8).
-- **Debt base:** $500K / 6% / 36-mo note funds Sept ($15,211/mo); seller terms + SBA as toggles.
-- **PE conventions:** revolver balancing facility ($250K), Checks tab (master flag), KPI
-  Dashboard (TTM DSCR + covenant headroom, DSO, cap cushion), scenario switch, S&U, EBITDA bridge,
-  zero hardcodes (scanned).
-- **Headlines:** EBITDA Y1 $263K (13.6%) / Y2 $680K (23.5%) / Y3 $976K (28.0%); M12 margin 22.3%;
-  base peak revolver $78.7K; **downside case maxes the $250K revolver and stays drawn** (needs
-  census recovery / equity / larger facility — disclosed).
+## 1. `Azalea_Hospice_Proforma_Rev4.00_DYNAMIC.xlsx`  ← AUTHORITATIVE (real-cash discipline)
+Built by `build_proforma_v3.py`; QA `qa_proforma_v3.py` (20/20). **Rev 4.00 (2026-07-16):
+NO revolver / no invented capital.** BASE = Sept bank refi $500K/6%/36 (confirmed Bullard
+bank relationship) pays seller $375K; owner deferral (Silas/Dana/Brad accrue to break-even
+ADC 18, repaid M7; $42.5K accrued); 1-mo clinical hire lag with day-1 core 1 RN + 1 CNA;
+shortfalls SHOWN as UNFUNDED NEED. Headlines:
+- **BASE: additional capital required $0** — never negative; min cash $3,354 (tight!, M3);
+  M36 cash $998K. EBITDA Y1 $299K (15.5%) / Y2 $696K / Y3 $985K (hire lag lifts Y1 vs 3.10).
+- **NO-BANK-REFI scenario: raise $111,823** (seller carried to Jan balloon per MIPA).
+- **DOWNSIDE (slow census): raise $170,930** (first negative M3; stays impaired) — this is
+  the honest raise target if census risk is real: **~$175K**.
+Toggles: refi_on (bank refi), seller_defer (installments roll to balloon), note_amt
+(investor notes 10% IO qtrly — default $0, set only when checks clear), sba_on.
 
 ## 2. `Azalea_Refuge_Operating_Model.xlsx`  ← weekly cash operations (Jul–Sep window)
 Built by `build_operating_model.py`; QA `qa_operating_model.py` (15/15).

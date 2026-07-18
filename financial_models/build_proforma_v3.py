@@ -1,4 +1,9 @@
-"""AZALEA HOSPICE PROFORMA - REVISION 3.10 DYNAMIC (January-takeout base case).
+"""AZALEA HOSPICE PROFORMA - REVISION 4.00 DYNAMIC (real-cash discipline).
+
+Rev 4.00 (2026-07-16): NO revolver / no invented capital. Base = Sept bank refi
+($500K/6%/36 via the confirmed Bullard bank relationship); owner deferral to
+break-even; 1-mo clinical hire lag with day-1 core (1 RN + 1 CNA); shortfalls
+SHOWN as UNFUNDED NEED (the number to raise), never plugged.
 
 Clean rebuild of the Rev 2.00 SBA budget per its own Handoff Brief (build order:
 Control Tower -> Census Waterfall -> Revenue -> Staffing -> Operating Budget ->
@@ -89,7 +94,7 @@ def control_tower(bk: OB):
     item("balloon_mo", "Balloon month (36-month rule / January)", 7, S.FMT_INT)
     item("bref_rate", "Balloon takeout note rate (APR)", 0.06, S.FMT_PCT, "BASE CASE: SBA/bank funds the Jan balloon; modeled at the conservative 6%/36 basis")
     item("bref_term", "Balloon takeout note term (months)", 36, S.FMT_INT)
-    item("refi_on", "SEPT-REFI TOGGLE (1 = $500K/6%/36 funds Sept - UPSIDE)", 0, S.FMT_INT, "BASE = 0: seller carried to Jan balloon per MIPA (partial-CHOW guaranty rules); 1 = September takeout upside")
+    item("refi_on", "BANK-REFI TOGGLE (1 = $500K/6%/36 funds Sept - BASE)", 1, S.FMT_INT, "BASE = 1: Bullard-relationship bank refi (confirmed) pays seller Sept; 0 = seller carried to Jan balloon per MIPA")
     item("refi_mo", "Full-refi funding month", 3, S.FMT_INT, "3 = September")
     item("refi_amt", "Full-refi amount", 500000.0, S.FMT_CUR)
     item("refi_rate", "Full-refi rate (APR)", 0.06, S.FMT_PCT)
@@ -215,10 +220,18 @@ def control_tower(bk: OB):
             bk.lbl(ws, r, f"starts month {start}", c=4, italic=True)
         r += 1
 
-    sec("OTHER")
-    item("floor", "Minimum-cash floor (revolver draws to hold this)", 25000.0, S.FMT_CUR)
-    item("rev_limit", "Working-capital revolver commitment", 250000.0, S.FMT_CUR, "balancing facility - PE convention: cash never goes negative")
-    item("rev_rate", "Revolver rate (APR)", 0.105, S.FMT_PCT)
+    sec("REAL-CASH DISCIPLINE (no revolver / no invented capital - shortfalls are SHOWN)")
+    item("defer_on", "OWNER-DEFERRAL TOGGLE (1 = Silas/Dana/Brad defer to break-even)", 1, S.FMT_INT, "wages accrue on P&L; cash paid once prior-month ADC >= threshold; accrual repaid at repay month")
+    item("be_adc", "Deferral release: prior-month ADC threshold", 18.0, S.FMT_NUM1, "~break-even census")
+    item("defer_repay_mo", "Deferred-comp repayment month", 7, S.FMT_INT, "7 = January (post-collections catch-up)")
+    item("hire_lag", "CLINICAL HIRE LAG (1 = staff to prior-month census)", 1, S.FMT_INT, "PRN 1099 supplement covers the gap at per-visit rates")
+    item("rn_core", "Day-1 core RN FTE (floor)", 1.0, S.FMT_NUM2)
+    item("cna_core", "Day-1 core CNA FTE (floor)", 1.0, S.FMT_NUM2)
+    item("seller_defer", "SELLER-DEFERRAL CONTINGENCY (1 = installments roll to Jan balloon)", 0, S.FMT_INT, "documented fallback - NOT base")
+    item("note_amt", "Investor notes raised (10% IO qtrly, 3-yr) - REAL ONLY", 0.0, S.FMT_CUR, "0 = none assumed; set only when checks clear")
+    item("note_mo", "Investor notes landing month", 4, S.FMT_INT)
+    item("note_rate", "Investor note rate (APR, interest-only quarterly)", 0.10, S.FMT_PCT)
+    item("floor", "Cash warning threshold (reporting/formatting only)", 25000.0, S.FMT_CUR, "no facility behind it - display only")
     item("tx_tax", "TX franchise/margin tax (% of NPR if profitable)", 0.00375, S.FMT_PCT2)
     item("cap_limit", "Medicare aggregate cap / beneficiary (FY2026)", 33900.0, S.FMT_CUR, "monitor on Medicare CAP logic")
     return ws
@@ -311,15 +324,21 @@ def staffing(bk: OB):
     hr = bk.mheader(ws, r); r = hr
     padj = f"(1+{A['pay_adj']})"
 
-    bk.section(ws, r, "CLINICAL IDG - EMPLOYED (Acct 4000; FTE = census/caseload in 0.5 steps)"); r += 1
+    bk.section(ws, r, "CLINICAL IDG - EMPLOYED (Acct 4000; FTE = LAGGED census/caseload in 0.5 steps, with day-1 core floors)"); r += 1
     fte_rows = {}
+    # staffing census: prior-month ADC when hire_lag=1 (month 1 lags to 0 -> core floors only)
+    adclag = lambda i: (f"IF({A['hire_lag']}=1,{('0' if i == 0 else adcref(i - 1))},{adcref(i)})")
     for key, label, salkey, casekey in CLIN:
         bk.lbl(ws, r, f"{label} - FTE")
         for i in range(NM):
             if key == "oc":
                 f = f"=MAX({A['oc_fte_min']},ROUNDUP({adcref(i)}/60*2,0)/2)"
+            elif key == "rn":
+                f = f"=MAX({A['rn_core']},ROUNDUP({adclag(i)}/{A[casekey]}*2,0)/2)"
+            elif key == "cna":
+                f = f"=MAX({A['cna_core']},ROUNDUP({adclag(i)}/{A[casekey]}*2,0)/2)"
             else:
-                f = f"=ROUNDUP({adcref(i)}/{A[casekey]}*2,0)/2"
+                f = f"=ROUNDUP({adclag(i)}/{A[casekey]}*2,0)/2"
             bk.fml(ws, r, MC0 + i, f, S.FMT_NUM2)
         fte_rows[key] = r; R[key + "_fte"] = r; r += 1
         bk.lbl(ws, r, f"{label} - wages")
@@ -412,6 +431,31 @@ def staffing(bk: OB):
                f"={c}{R['clin_w2']}+{c}{R['ind_w2']}+{c}{R['clin_ben']}+{c}{R['clin_wc']}+{c}{R['ind_ben']}+{c}{R['ind_wc']}",
                S.FMT_CUR)
     R["payroll_cash"] = r; r += 1
+
+    bk.section(ws, r, "OWNER DEFERRAL (Silas/Dana/Brad wages accrue until prior-month ADC >= threshold; expense unchanged)"); r += 1
+    bk.lbl(ws, r, "Deferral active this month (1 = accruing, not paying)")
+    for i in range(NM):
+        prior_adc = "0" if i == 0 else adcref(i - 1)
+        bk.fml(ws, r, MC0 + i,
+               f"=IF(AND({A['defer_on']}=1,{prior_adc}<{A['be_adc']},{i+1}<{A['defer_repay_mo']}),1,0)", S.FMT_INT)
+    R["defer_flag"] = r; r += 1
+    bk.lbl(ws, r, "Owner wages deferred (accrued, not paid)")
+    for i in range(NM):
+        c = mlet(i)
+        bk.fml(ws, r, MC0 + i,
+               f"={c}{R['defer_flag']}*({c}{R['silas']}+{c}{R['dana']}+{c}{R['brad']})", S.FMT_CUR)
+    R["defer_amt"] = r; r += 1
+    bk.lbl(ws, r, "Deferred-comp repayment (cash out at repay month)")
+    for i in range(NM):
+        bk.fml(ws, r, MC0 + i,
+               f"=IF({i+1}={A['defer_repay_mo']},SUM($C${R['defer_amt']}:{mlet(i)}{R['defer_amt']}),0)", S.FMT_CUR)
+    R["defer_repay"] = r; r += 1
+    bk.lbl(ws, r, "Deferred-comp balance (end)", bold=True)
+    for i in range(NM):
+        bk.fml(ws, r, MC0 + i,
+               f"=SUM($C${R['defer_amt']}:{mlet(i)}{R['defer_amt']})-SUM($C${R['defer_repay']}:{mlet(i)}{R['defer_repay']})",
+               S.FMT_CUR, bold=True)
+    R["defer_bal"] = r; r += 1
     return ws
 
 
@@ -594,7 +638,7 @@ def debt_and_cash(bk: OB):
     for i in range(NM):
         f = (f"=IF({mlet(i)}{R['s_beg']}<=0,0,"
              f"IF(AND({A['refi_on']}=1,{i+1}={A['refi_mo']}),{mlet(i)}{R['s_beg']},"
-             f"IF(AND({i+1}>={A['s_first']},{i+1}<={A['s_last']}),{A['s_pmt']},"
+             f"IF(AND({i+1}>={A['s_first']},{i+1}<={A['s_last']}),{A['s_pmt']}*(1-{A['seller_defer']}),"
              f"IF({i+1}={A['balloon_mo']},{mlet(i)}{R['s_beg']},0))))")
         bk.fml(ws, r, MC0 + i, f, S.FMT_CUR)
     R["s_prin"] = r; r += 1
@@ -637,23 +681,34 @@ def debt_and_cash(bk: OB):
             bk.fml(ws, r, MC0 + i, f"={prev}*{rate}/12*({mlet(i)}{R[key+'_pmt']}>0)", S.FMT_CUR)
         R[key + "_int"] = r; r += 1
 
+    bk.section(ws, r, "INVESTOR NOTES (10% interest-only quarterly, 3-yr balloon; REAL money only - default $0)"); r += 1
+    bk.lbl(ws, r, "Notes balance (end)")
+    for i in range(NM):
+        bk.fml(ws, r, MC0 + i, f"=IF({i+1}>={A['note_mo']},{A['note_amt']},0)", S.FMT_CUR)
+    R["note_bal"] = r; r += 1
+    bk.lbl(ws, r, "Note interest paid (quarterly)")
+    for i in range(NM):
+        bk.fml(ws, r, MC0 + i,
+               f"=IF(AND({i+1}>{A['note_mo']},MOD({i+1}-{A['note_mo']},3)=0),{A['note_amt']}*{A['note_rate']}/4,0)",
+               S.FMT_CUR)
+    R["note_int"] = r; r += 1
+
     # ---- precompute row layout so earlier rows can reference later ones ----
     r0 = r
     L = {}
     seq = ["_sec_ni", "pretax", "tax", "ni", "_sec_cash", "cin", "cpay", "cdpc", "cga",
-           "ctax", "csell", "cfin", "rev_int", "cbefore", "rev_draw", "rev_repay",
-           "rev_bal", "cash", "dscr", "mincash"]
+           "ctax", "csell", "cfin", "cash", "unfunded", "dscr", "mincash", "peakneed"]
     for k in seq:
         L[k] = r0; r0 += 1
     R.update({k: v for k, v in L.items() if not k.startswith("_sec")})
 
-    bk.section(ws, L["_sec_ni"], "NET INCOME (after interest, revolver interest & TX margin tax)")
+    bk.section(ws, L["_sec_ni"], "NET INCOME (after interest & TX margin tax)")
     bk.lbl(ws, L["pretax"], "Pre-tax income")
     for i in range(NM):
         c = mlet(i)
         bk.fml(ws, L["pretax"], MC0 + i,
                f"='P&L'!{c}{P['ebit']}-'P&L'!{c}{P['cont']}-{c}{R['s_int']}-{c}{R['bref_int']}"
-               f"-{c}{R['refi_int']}-{c}{R['sba_int']}-{c}{L['rev_int']}", S.FMT_CUR)
+               f"-{c}{R['refi_int']}-{c}{R['sba_int']}-{c}{R['note_int']}", S.FMT_CUR)
     bk.lbl(ws, L["tax"], "TX margin tax")
     for i in range(NM):
         bk.fml(ws, L["tax"], MC0 + i,
@@ -662,15 +717,16 @@ def debt_and_cash(bk: OB):
     for i in range(NM):
         bk.fml(ws, L["ni"], MC0 + i, f"={mlet(i)}{L['pretax']}-{mlet(i)}{L['tax']}", S.FMT_CUR, bold=True)
 
-    bk.section(ws, L["_sec_cash"], "CASH (direct method; revolver is the balancing facility)")
+    bk.section(ws, L["_sec_cash"], "CASH (direct method; NO revolver - shortfalls are shown, not plugged)")
     bk.lbl(ws, L["cin"], "Cash collections")
     for i in range(NM):
         bk.fml(ws, L["cin"], MC0 + i, f"={mlet(i)}{R['coll']}", S.FMT_CUR, link=True)
-    bk.lbl(ws, L["cpay"], "Payroll + contract labor (in month)")
+    bk.lbl(ws, L["cpay"], "Payroll + contract labor (net of owner deferral / incl. repayment)")
     for i in range(NM):
         c = mlet(i)
         bk.fml(ws, L["cpay"], MC0 + i,
-               f"=-'Staffing'!{c}{ST['payroll_cash']}-'Staffing'!{c}{ST['chap']}-'Staffing'!{c}{ST['medd']}"
+               f"=-'Staffing'!{c}{ST['payroll_cash']}+'Staffing'!{c}{ST['defer_amt']}-'Staffing'!{c}{ST['defer_repay']}"
+               f"-'Staffing'!{c}{ST['chap']}-'Staffing'!{c}{ST['medd']}"
                f"-'Staffing'!{c}{ST['prn_tot']}", S.FMT_CUR)
     bk.lbl(ws, L["cdpc"], "Direct patient care (net-30: prior month)")
     for i in range(NM):
@@ -689,47 +745,27 @@ def debt_and_cash(bk: OB):
     for i in range(NM):
         down = f"-{A['down']}" if i == 0 else ""
         bk.fml(ws, L["csell"], MC0 + i, f"=-{mlet(i)}{R['s_prin']}-{mlet(i)}{R['s_intpaid']}{down}", S.FMT_CUR)
-    bk.lbl(ws, L["cfin"], "Financing proceeds - payments (balloon refi / full refi / SBA)")
+    bk.lbl(ws, L["cfin"], "Financing proceeds - payments (balloon refi / bank refi / SBA / notes)")
     for i in range(NM):
         f = (f"=IF(AND({A['refi_on']}=0,{i+1}={A['balloon_mo']}),{bref},0)"
              f"+IF(AND({A['refi_on']}=1,{i+1}={A['refi_mo']}),{A['refi_amt']},0)"
              f"+IF(AND({A['sba_on']}=1,{i+1}={A['sba_mo']}),{A['sba_amt']},0)"
-             f"-{mlet(i)}{R['bref_pmt']}-{mlet(i)}{R['refi_pmt']}-{mlet(i)}{R['sba_pmt']}")
+             f"+IF({i+1}={A['note_mo']},{A['note_amt']},0)"
+             f"-{mlet(i)}{R['bref_pmt']}-{mlet(i)}{R['refi_pmt']}-{mlet(i)}{R['sba_pmt']}-{mlet(i)}{R['note_int']}")
         bk.fml(ws, L["cfin"], MC0 + i, f, S.FMT_CUR)
-    bk.lbl(ws, L["rev_int"], "Revolver interest (on prior-month balance)")
-    for i in range(NM):
-        prev = f"{mlet(i-1)}{L['rev_bal']}" if i else "0"
-        bk.fml(ws, L["rev_int"], MC0 + i, f"={prev}*{A['rev_rate']}/12", S.FMT_CUR)
-    bk.lbl(ws, L["cbefore"], "Cash before revolver")
+    bk.lbl(ws, L["cash"], "ENDING CASH (may go NEGATIVE - that is the point)", bold=True)
     for i in range(NM):
         prev = f"{mlet(i-1)}{L['cash']}" if i else f"{A['cash0']}-{A['startup']}"
         c = mlet(i)
-        bk.fml(ws, L["cbefore"], MC0 + i,
-               f"={prev}+{c}{L['cin']}+{c}{L['cpay']}+{c}{L['cdpc']}+{c}{L['cga']}+{c}{L['ctax']}"
-               f"+{c}{L['csell']}+{c}{L['cfin']}-{c}{L['rev_int']}", S.FMT_CUR)
-    bk.lbl(ws, L["rev_draw"], "Revolver draw (to hold minimum cash)")
-    for i in range(NM):
-        prev = f"{mlet(i-1)}{L['rev_bal']}" if i else "0"
-        bk.fml(ws, L["rev_draw"], MC0 + i,
-               f"=MIN(MAX(0,{A['floor']}-{mlet(i)}{L['cbefore']}),{A['rev_limit']}-{prev})", S.FMT_CUR)
-    bk.lbl(ws, L["rev_repay"], "Revolver repayment (surplus above minimum cash)")
-    for i in range(NM):
-        prev = f"{mlet(i-1)}{L['rev_bal']}" if i else "0"
-        bk.fml(ws, L["rev_repay"], MC0 + i,
-               f"=MIN({prev},MAX(0,{mlet(i)}{L['cbefore']}-{A['floor']}))", S.FMT_CUR)
-    bk.lbl(ws, L["rev_bal"], "Revolver balance (end)")
-    for i in range(NM):
-        prev = f"{mlet(i-1)}{L['rev_bal']}" if i else "0"
-        c = mlet(i)
-        bk.fml(ws, L["rev_bal"], MC0 + i, f"={prev}+{c}{L['rev_draw']}-{c}{L['rev_repay']}", S.FMT_CUR)
-    bk.lbl(ws, L["cash"], "ENDING CASH", bold=True)
-    for i in range(NM):
-        c = mlet(i)
         bk.fml(ws, L["cash"], MC0 + i,
-               f"={c}{L['cbefore']}+{c}{L['rev_draw']}-{c}{L['rev_repay']}", S.FMT_CUR, bold=True,
+               f"={prev}+{c}{L['cin']}+{c}{L['cpay']}+{c}{L['cdpc']}+{c}{L['cga']}+{c}{L['ctax']}"
+               f"+{c}{L['csell']}+{c}{L['cfin']}", S.FMT_CUR, bold=True,
                fill=S.fill(S.LIGHTBLUE))
     ws.conditional_formatting.add(f"C{L['cash']}:AL{L['cash']}", CellIsRule(operator="lessThan",
-        formula=[bk.addr["floor"]], fill=S.fill("F4CCCC")))
+        formula=["0"], fill=S.fill("F4CCCC")))
+    bk.lbl(ws, L["unfunded"], "UNFUNDED NEED (cash below $0 - additional capital required)", bold=True)
+    for i in range(NM):
+        bk.fml(ws, L["unfunded"], MC0 + i, f"=MAX(0,-{mlet(i)}{L['cash']})", S.FMT_CUR, bold=True)
     bk.lbl(ws, L["dscr"], "DSCR (EBITDA / recurring debt service)")
     for i in range(NM):
         c = mlet(i)
@@ -738,6 +774,9 @@ def debt_and_cash(bk: OB):
         bk.fml(ws, L["dscr"], MC0 + i, f"=IF({ds}>0,'P&L'!{c}{P['ebitda']}/{ds},\"-\")", S.FMT_MULT)
     bk.lbl(ws, L["mincash"], "Minimum cash (36 months)", bold=True)
     bk.fml(ws, L["mincash"], 2, f"=MIN(C{L['cash']}:AL{L['cash']})", S.FMT_CUR, bold=True)
+    bk.lbl(ws, L["peakneed"], "PEAK ADDITIONAL CAPITAL REQUIRED (raise this much, or $0 = fully funded)", bold=True)
+    bk.fml(ws, L["peakneed"], 2, f"=MAX(C{L['unfunded']}:AL{L['unfunded']})", S.FMT_CUR, bold=True,
+           fill=S.fill(S.LIGHTBLUE))
     return ws
 
 
@@ -770,11 +809,14 @@ def balance_sheet(bk: OB):
                    f"+SUM('{cf}'!$C${CF['s_int']}:{mlet(i)}{CF['s_int']})"
                    f"-SUM('{cf}'!$C${CF['s_intpaid']}:{mlet(i)}{CF['s_intpaid']})"), "sn")
     row("Balloon refi payable", lambda i: f"='{cf}'!{mlet(i)}{CF['bref_bal']}", "bref")
-    row("Full refi payable", lambda i: f"='{cf}'!{mlet(i)}{CF['refi_bal']}", "refi")
+    row("Bank refi payable", lambda i: f"='{cf}'!{mlet(i)}{CF['refi_bal']}", "refi")
     row("SBA loan payable", lambda i: f"='{cf}'!{mlet(i)}{CF['sba_bal']}", "sba")
-    row("Revolver payable", lambda i: f"='{cf}'!{mlet(i)}{CF['rev_bal']}", "rev")
+    row("Investor notes payable", lambda i: f"='{cf}'!{mlet(i)}{CF['note_bal']}", "note")
+    ST_ = bk.rows["Staffing"]
+    row("Deferred owner compensation", lambda i: f"='Staffing'!{mlet(i)}{ST_['defer_bal']}", "defc")
     row("TOTAL LIABILITIES",
-        lambda i: f"={mlet(i)}{R['ap']}+{mlet(i)}{R['sn']}+{mlet(i)}{R['bref']}+{mlet(i)}{R['refi']}+{mlet(i)}{R['sba']}+{mlet(i)}{R['rev']}",
+        lambda i: (f"={mlet(i)}{R['ap']}+{mlet(i)}{R['sn']}+{mlet(i)}{R['bref']}+{mlet(i)}{R['refi']}"
+                   f"+{mlet(i)}{R['sba']}+{mlet(i)}{R['note']}+{mlet(i)}{R['defc']}"),
         "liab", bold=True)
     row("Contributed capital", lambda i: f"={A['cash0']}", "equity")
     row("Retained earnings (cum. net income - startup spend)",
@@ -876,28 +918,36 @@ def checks(bk: OB):
         for i in range(NM):
             bk.fml(ws, r, MC0 + i, f_tmpl(i), S.FMT_NUM2)
         bk.rows["Checks"][key] = r; r += 1
+    ST_ = bk.rows["Staffing"]
     crow("BS out of balance (abs > $0.01 -> 1)",
          lambda i: f"=IF(ABS('Balance Sheet'!{mlet(i)}{B['check']})>0.01,1,0)", "bs")
-    crow("Cash below zero (-> 1)",
-         lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['cash']}<-0.01,1,0)", "neg")
-    crow("Revolver over commitment (-> 1)",
-         lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['rev_bal']}>{A['rev_limit']}+0.01,1,0)", "revlim")
-    crow("Revolver drawn while cash above floor (+$1 tol) (-> 1)",
-         lambda i: (f"=IF(AND('Cash Flow & Runway'!{mlet(i)}{CF['rev_bal']}>0.01,"
-                    f"'Cash Flow & Runway'!{mlet(i)}{CF['cash']}>{A['floor']}+1),1,0)"), "revcash")
     crow("Seller balance negative (-> 1)",
          lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['s_end']}<-0.01,1,0)", "sneg")
+    crow("Cash below zero (VIABILITY - reported, not integrity)",
+         lambda i: f"=IF('Cash Flow & Runway'!{mlet(i)}{CF['cash']}<-0.01,1,0)", "neg")
     r += 1
     bk.lbl(ws, r, "Collections conservation: cum collected + AR - cum NPR (should be 0)", bold=True)
     bk.fml(ws, r, 2, (f"=SUM('Cash Flow & Runway'!C{CF['coll']}:AL{CF['coll']})"
                       f"+'Cash Flow & Runway'!AL{CF['ar']}"
                       f"-SUM('Cash Flow & Runway'!C{CF['earned']}:AL{CF['earned']})"), S.FMT_CUR, bold=True)
     cons = r; r += 1
-    bk.lbl(ws, r, "MASTER CHECK (0 = OK)", bold=True)
+    bk.lbl(ws, r, "Deferral conservation: cum accrued - cum repaid - end balance (should be 0)", bold=True)
+    bk.fml(ws, r, 2, (f"=SUM('Staffing'!C{ST_['defer_amt']}:AL{ST_['defer_amt']})"
+                      f"-SUM('Staffing'!C{ST_['defer_repay']}:AL{ST_['defer_repay']})"
+                      f"-'Staffing'!AL{ST_['defer_bal']}"), S.FMT_CUR, bold=True)
+    dcons = r; r += 1
+    bk.lbl(ws, r, "MASTER INTEGRITY CHECK (0 = OK; cash viability reported separately)", bold=True)
     rows = bk.rows["Checks"]
-    parts = "+".join(f"SUM(C{rows[k]}:AL{rows[k]})" for k in ("bs", "neg", "revlim", "revcash", "sneg"))
-    bk.fml(ws, r, 2, f"={parts}+IF(ABS(B{cons})>1,1,0)", S.FMT_NUM, bold=True, fill=S.fill(S.LIGHTBLUE))
-    bk.rows["Checks"]["master"] = r
+    parts = "+".join(f"SUM(C{rows[k]}:AL{rows[k]})" for k in ("bs", "sneg"))
+    bk.fml(ws, r, 2, f"={parts}+IF(ABS(B{cons})>1,1,0)+IF(ABS(B{dcons})>1,1,0)", S.FMT_NUM, bold=True,
+           fill=S.fill(S.LIGHTBLUE))
+    bk.rows["Checks"]["master"] = r; r += 1
+    bk.lbl(ws, r, "MONTHS WITH CASH BELOW ZERO (viability count)", bold=True)
+    bk.fml(ws, r, 2, f"=SUM(C{rows['neg']}:AL{rows['neg']})", S.FMT_NUM, bold=True)
+    bk.rows["Checks"]["negmonths"] = r; r += 1
+    bk.lbl(ws, r, "PEAK ADDITIONAL CAPITAL REQUIRED", bold=True)
+    bk.fml(ws, r, 2, f"='Cash Flow & Runway'!B{CF['peakneed']}", S.FMT_CUR, bold=True, fill=S.fill(S.LIGHTBLUE))
+    bk.rows["Checks"]["peakneed"] = r
     return ws
 
 
@@ -941,9 +991,10 @@ def dashboard(bk: OB):
     row("DSO (days: AR / NPR x days-in-month)",
         lambda i: f"=IF('P&L'!{mlet(i)}{P['npr']}=0,0,'Cash Flow & Runway'!{mlet(i)}{CF['ar']}/'P&L'!{mlet(i)}{P['npr']}*{A['days_mo']})", S.FMT_NUM1)
     row("Ending cash", lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['cash']}", key="cash")
-    row("Revolver balance", lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['rev_bal']}")
-    row("TOTAL LIQUIDITY (cash + undrawn revolver)",
-        lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['cash']}+{A['rev_limit']}-'Cash Flow & Runway'!{mlet(i)}{CF['rev_bal']}", bold=True)
+    row("UNFUNDED NEED (additional capital required this month)",
+        lambda i: f"='Cash Flow & Runway'!{mlet(i)}{CF['unfunded']}", bold=True)
+    row("Deferred owner comp balance",
+        lambda i: f"='Staffing'!{mlet(i)}{ST['defer_bal']}")
     row("Days cash on hand (vs monthly opex)",
         lambda i: (f"=IF(('Staffing'!{mlet(i)}{ST['payroll_cash']}+'Operating Budget'!{mlet(i)}{OB_['dpc']}"
                    f"+'Operating Budget'!{mlet(i)}{OB_['fac']}+'Operating Budget'!{mlet(i)}{OB_['ga']})=0,0,"
@@ -1031,7 +1082,7 @@ def build():
     dashboard(bk)
     summary(bk)
     avb(bk)
-    out = "financial_models/output/Azalea_Hospice_Proforma_Rev3.10_DYNAMIC.xlsx"
+    out = "financial_models/output/Azalea_Hospice_Proforma_Rev4.00_DYNAMIC.xlsx"
     bk.wb.save(out)
     import json
     with open("financial_models/output/proforma_v3_rowmap.json", "w") as f:
