@@ -123,7 +123,7 @@ def business_plan_rev6():
     para(d, "")
     h2(d, "Headline metrics")
     table(d, ["Metric", "Value", "Detail"],
-          [["SBA loan request", "$500,000", "Single SBA 7(a) loan - funds ~1/15/2027 at the 51% transfer, retiring the seller balloon (~$258,489) and funding ramp working capital"],
+          [["SBA loan request", "$500,000", "Single SBA 7(a) loan - funds ~1/15/2027 at the 51% transfer, refinancing the interim bank note (~$461,676 payoff) and funding ramp working capital"],
            ["Purchase price", "$500,000", "Refuge Hospice, LLC - dual Medicare + Medicaid certification (CMS CCN effective 1/8/2024); MIPA dated 7/14/2026"],
            ["Total project", "$750,000", "$500K SBA loan + $250K cash equity injection"],
            ["Year-1 EBITDA", "$262,951", "13.6% margin, before debt service - growing to $975,925 (28.0%) by Year 3; month-12 margin 22.3%"],
@@ -146,16 +146,16 @@ def business_plan_rev6():
             "steps to comply with the Medicare 36-month rule at 42 CFR 424.550(b): 49% of the membership "
             "interests transfer at closing (approximately August 1, 2026) against a $125,000 down payment, "
             "and the remaining 51% transfer on January 15, 2027, the first date past the 36-month mark from "
-            "initial certification. The $375,000 balance is seller-financed at 6% interest ($31,250 per month "
-            "beginning September 1, 2026, with a final payment of approximately $258,489 on January 15, 2027) "
-            "and is prepayable without penalty. SBA loan proceeds retire the seller balloon at the 51% transfer on January 15, 2027 "
+            "initial certification. The $375,000 balance is paid IN FULL in September 2026 by an interim bank note "
+            "($500,000, 6%, 36-month, through a Bullard-relationship Texas bank) - four months earlier than the "
+            "MIPA requires. SBA loan proceeds refinance that bank note at the 51% transfer on January 15, 2027 "
             "2026, converting short-term seller financing into permanent SBA financing before the ramp "
             "deepens. The loan is paired with a $250,000 cash equity injection for a total project of "
-            "$750,000 (a 33% injection). Once the seller balance is retired, the business carries a single "
+            "$750,000 (a 33% injection). Once the bank note is refinanced, the business carries a single "
             "debt: the SBA loan.")
     h2(d, "Use of funds")
     table(d, ["Use", "Amount", "Detail"],
-          [["Acquisition of Refuge Hospice, LLC", "$500,000", "100% of membership interests in two steps per 42 CFR 424.550(b); $125,000 down at closing, $375,000 seller balance carried per the MIPA schedule; balloon (~$258,489) retired by SBA proceeds at the 51% transfer (~1/15/2027)"],
+          [["Acquisition of Refuge Hospice, LLC", "$500,000", "100% of membership interests in two steps per 42 CFR 424.550(b); $125,000 down at closing; sellers paid in full Sept 2026 by an interim bank note; bank note refinanced by SBA proceeds at the 51% transfer (~1/15/2027)"],
            ["Closing and startup costs", "$15,000", "Legal, licensure filings, EMR setup, initial supplies"],
            ["Working-capital reserve", "$235,000", "Funds ramp payroll ahead of the Medicare payment lag (NOE-to-cash ~30-60 days)"],
            ["Total uses", "$750,000", "Funded by SBA $500K + equity $250K"]],
@@ -231,7 +231,7 @@ def business_plan_rev6():
             "the balance follows on a committed schedule. Because he holds less than 20% and exercises no "
             "operational control, no SBA personal guaranty is required of him (13 CFR 120.160). There is no "
             "companion bank loan: the prior dual-debt structure has been superseded, and after the SBA "
-            "proceeds retire the seller balloon at the January 2027 funding the business carries a single debt. The "
+            "proceeds refinance the interim bank note at the January 2027 funding the business carries a single debt. The "
             "SBA 7(a) loan is guaranteed by Geoff Schackmann (personal guaranty, controlling Manager and "
             "sole 20%+ owner - direct individual 39.9% owner) and by Refuge Hospice, LLC (corporate guaranty "
             "plus a lien on its assets and receivables, as the operating subsidiary).")
@@ -367,14 +367,14 @@ def business_plan_rev6():
     bullet(d, "Scarce license: the Texas Medicaid enrollment freeze and the CMS nationwide enrollment moratorium (effective 5/13/2026, naming Texas) block new entrants; comparable licenses trade at $400-500K+")
     bullet(d, "Modeled on validated Tyler-market economics (~22 ADC, ~$118K/mo) benchmarked to the team's own actual collections")
     bullet(d, "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships")
-    bullet(d, "Simple, conservative capital structure - a single $500K SBA loan after the seller balance retires; projections model a compressed 36-month amortization and still cover")
+    bullet(d, "Simple, conservative capital structure - a single $500K SBA loan after the interim bank note is refinanced; sellers paid in full in month two of operations")
     bullet(d, "$250K cash equity injection (33% of project) plus a $235K working-capital reserve and a $250K revolver facility")
     bullet(d, "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Manager")
     h2(d, "Weaknesses")
     bullet(d, "Newco borrower with no operating history of its own (mitigated by the team's benchmarked prior book and an experienced operator)")
     bullet(d, "Refuge has minimal current operations - census must be built from the team's referral relationships during ramp")
     bullet(d, "Single-office, single-market concentration")
-    bullet(d, "Seller-note window (August 2026 to SBA funding) concentrates payments early; mitigated by the $31,250/mo schedule, prepayment without penalty, and the SBA takeout at the January 2027 funding (September takeout is an upside if a lender can paper the partial-change-of-ownership guaranty rules)")
+    bullet(d, "Interim-debt window (September 2026 to SBA funding) carries $15,211/mo bank-note service; mitigated by the working-capital plan, owner salary deferral to break-even census, and the January 2027 SBA refinance that drops service to $6,747/mo")
     bullet(d, "Sensitivity to a sustained census shortfall (see Section 11.7)")
     bullet(d, "Manager's attention is split across other interests during launch")
     h2(d, "Opportunities")
@@ -577,9 +577,9 @@ def business_plan_rev6():
             "within 36 months of a hospice's initial Medicare certification, the purchase is structured in "
             "two steps: 49% of the membership interests transfer at closing (approximately August 1, 2026) "
             "against a $125,000 down payment, and the remaining 51% transfer on January 15, 2027 - the first "
-            "date past the 36-month mark. The $375,000 balance carries 6% interest, payable $31,250 per "
-            "month beginning September 1, 2026 with a final payment of approximately $258,489.46 on January "
-            "15, 2027, and is prepayable without penalty. The requested SBA loan retires the seller balance "
+            "date past the 36-month mark. The sellers are paid in full in September 2026 by an interim bank note "
+            "($500,000 at 6% over 36 months, via a Bullard-relationship Texas bank). The requested SBA loan "
+            "refinances that bank note "
             "at the 51% transfer on January 15, 2027, funded by the SBA loan. Azalea files the applicable CMS-855A ownership-change updates and moves "
             "banking, EMR, and insurance into the new ownership structure at each step.")
     h2(d, "10.2 Prior target (history)")
@@ -608,7 +608,7 @@ def business_plan_rev6():
     table(d, ["Window", "Phase", "Key activities"],
           [["Through July 2026", "Equity injection", "Full $250,000 on deposit: Bullard $195,000 ($100K wired 5/7/2026) + Schackmann $55,000"],
            ["~August 1, 2026", "Closing - step 1 (49%)", "49% of Refuge membership interests transfer; $125,000 down payment; banking, EMR, and insurance stand-up; staff credentialing"],
-           ["January 2027", "SBA funding, 51% transfer & seller payoff", "SBA loan funds concurrent with the 51% transfer (100% ownership); ~$258,489 balloon retired; working-capital reserve in place"],
+           ["January 2027", "SBA funding, 51% transfer & bank-note refinance", "SBA loan funds concurrent with the 51% transfer (100% ownership); interim bank note (~$461,676) refinanced; debt service drops to $6,747/mo"],
            ["Months 1-6", "BD ramp", "Woodard-led weekly referral cadence; census 24 by month 2, 34 by month 6; AR normalizes to ~45-day Medicare cycle"],
            ["January 15, 2027", "Closing - step 2 (51%)", "Remaining 51% transfers on the first date past the 36-month mark (42 CFR 424.550(b)); CMS-855A ownership updates"],
            ["Months 7-12+", "Growth", "Census to 40 by month 12; capacity hires triggered by census thresholds; coverage rising"]],
@@ -627,12 +627,12 @@ def business_plan_rev6():
             "actual SBA terms.")
     h2(d, "11.1-11.2 Sources & uses of funds")
     table(d, ["Source", "Amount", "Use", "Amount"],
-          [["SBA 7(a) loan", "$500,000", "Acquisition of Refuge Hospice, LLC ($125K down + seller installments + balloon retired at SBA funding ~1/15/2027)", "$500,000"],
+          [["SBA 7(a) loan", "$500,000", "Refinances the interim bank acquisition note (~$461,676) + working capital at SBA funding ~1/15/2027", "$500,000"],
            ["Cash equity injection (Bullard $195K + Schackmann $55K)", "$250,000", "Closing and startup costs", "$15,000"],
            ["", "", "Working-capital reserve", "$235,000"],
            ["Total sources", "$750,000", "Total uses", "$750,000"]],
           widths=[2.2, 0.9, 2.5, 0.9])
-    para(d, "The equity injection is 33% of the $750,000 project. The seller balance is retired by SBA "
+    para(d, "The equity injection is 33% of the $750,000 project. The interim bank note is refinanced by SBA "
             "proceeds at the January 2027 funding, so the going-forward balance sheet carries a single debt.")
     h2(d, "11.3 Key assumptions")
     table(d, ["Assumption", "Value"],
@@ -647,7 +647,7 @@ def business_plan_rev6():
            ["Contingency", "5% of net patient revenue, deducted below EBITDA in cash flow"],
            ["Modeled debt service", "$500,000 at 6% amortized over 36 months - $15,211/mo from October 2026 ($182,532/yr)"],
            ["Actual SBA terms (for reference)", "~10.5% over 10 years is ~$6,745/mo ($80,940/yr) - real coverage materially better than modeled"],
-           ["Seller note (pre-payoff)", "$375,000 at 6%; $31,250/mo from 9/1/2026; balloon ~$258,489.46 retired by SBA proceeds ~1/15/2027; prepayable without penalty"],
+           ["Interim bank note", "$500,000 at 6%/36-mo (Sept 2026); paid sellers in full; $15,211/mo; refinanced by SBA proceeds ~1/15/2027"],
            ["Equity injection", "$250,000 cash (33% of the $750,000 project)"],
            ["Amortization", "Acquired license / intangibles amortized straight-line over 15 years (~$33,333/yr)"],
            ["Collections timing", "Collections lag billing by ~30-60 days (NOE timing), modeled month by month"],
@@ -732,10 +732,10 @@ def business_plan_rev6():
             "mitigated by benchmarked economics, a dual-certified license that is billing-ready from day "
             "one, an experienced operator, and a capital structure with a 33% equity injection, a $235,000 "
             "working-capital reserve, and a $250,000 revolver. The seller-note window (closing to SBA "
-            "funding) is short and is extinguished when SBA proceeds retire the balloon at the January 2027 funding.")
+            "funding) is short and is extinguished when SBA proceeds refinance the bank note at the January 2027 funding.")
     table(d, ["Risk", "Prob.", "Impact", "Mitigation"],
           [["Debt service / coverage", "Low", "Med", "Projections model a compressed 36-month amortization ($15,211/mo) and still cover 1.8x -> 3.7x -> 5.3x; actual SBA terms (~$6,745/mo) roughly halve the modeled burden"],
-           ["Seller-note window / 36-month rule", "Low", "Med", "Two-step structure complies with 42 CFR 424.550(b); note is prepayable without penalty; SBA proceeds retire the ~$258K balloon at the 51% transfer, a fixed contractual date (1/15/2027)"],
+           ["Interim-debt window / 36-month rule", "Low", "Med", "Two-step structure complies with 42 CFR 424.550(b); sellers paid in full Sept 2026; SBA refinances the bank note at the 51% transfer, a fixed contractual date (1/15/2027)"],
            ["Slower census ramp", "Med", "High", "Break-even ~17-18 patients vs 24 by month 2; capacity hires are census-gated so cost flexes with volume; $235K reserve + $250K revolver keep cash positive in the documented downside case"],
            ["Ramp cash timing (Medicare NOE lag)", "Med", "Med", "Collections lag of ~30-60 days is modeled month by month; reserve sized to carry payroll ahead of collections"],
            ["Wage inflation", "Med", "Med", "22% + 3% benefits and workers compensation load fully modeled; census-gated hiring; PRN pool buffers"],
@@ -752,7 +752,7 @@ def business_plan_rev6():
     table(d, ["Window", "Milestone", "Verification"],
           [["Through July 2026", "Full $250K equity injection on deposit (Bullard $195K + Schackmann $55K)", "Bank statements + source-of-funds documentation"],
            ["~August 1, 2026", "Close step 1: 49% of Refuge interests; $125K down", "Executed MIPA + closing statement"],
-           ["January 2027", "SBA loan funds at 51% transfer; ~$258K balloon retired", "Payoff letter + loan statements"],
+           ["January 2027", "SBA loan funds at 51% transfer; bank note (~$462K) refinanced", "Payoff letter + loan statements"],
            ["Months 1-3", "CMS-855A ownership updates filed; team seated; EMR live; census 24 by month 2", "855A receipts + payroll + census reports"],
            ["Months 4-6", "BD ramp; census 34 by month 6; AR normalizes to ~45-day cycle", "CRM report + AR aging < 45 days"],
            ["January 15, 2027", "Close step 2: remaining 51% transfers (past the 36-month mark)", "Assignment of interests + CMS filings"],

@@ -1,4 +1,8 @@
-"""AZALEA HOSPICE PROFORMA - REVISION 4.00 DYNAMIC (real-cash discipline).
+"""AZALEA HOSPICE PROFORMA - REVISION 4.10 DYNAMIC (real-cash discipline + Path A).
+
+Rev 4.10: BASE adds the SBA 7(a) $500K funding January (51% transfer) and
+REFINANCING the bank note (~$454K remaining) - debt service drops from
+$15,211/mo to ~$6,747/mo (10.5%/10yr).
 
 Rev 4.00 (2026-07-16): NO revolver / no invented capital. Base = Sept bank refi
 ($500K/6%/36 via the confirmed Bullard bank relationship); owner deferral to
@@ -99,11 +103,11 @@ def control_tower(bk: OB):
     item("refi_amt", "Full-refi amount", 500000.0, S.FMT_CUR)
     item("refi_rate", "Full-refi rate (APR)", 0.06, S.FMT_PCT)
     item("refi_term", "Full-refi term (months)", 36, S.FMT_INT)
-    item("sba_on", "SBA TOGGLE (1 = SBA 7(a) funds)", 0, S.FMT_INT)
-    item("sba_mo", "SBA funding month", 3, S.FMT_INT)
-    item("sba_amt", "SBA amount", 450000.0, S.FMT_CUR)
+    item("sba_on", "SBA TOGGLE (1 = SBA 7(a) funds & REFINANCES the bank note) - BASE", 1, S.FMT_INT, "SBA proceeds pay off the bank-refi balance at funding month")
+    item("sba_mo", "SBA funding month", 7, S.FMT_INT, "7 = January (51% transfer / 42 CFR 424.550(b) date)")
+    item("sba_amt", "SBA amount", 500000.0, S.FMT_CUR)
     item("sba_rate", "SBA rate (APR)", 0.105, S.FMT_PCT)
-    item("sba_term", "SBA term (months)", 180, S.FMT_INT)
+    item("sba_term", "SBA term (months)", 120, S.FMT_INT, "10-year 7(a); ~$6,747/mo at 10.5%")
     item("amort_yrs", "License intangible amortization (yrs, Acct 7200)", 15, S.FMT_INT)
     item("chow_mo", "CHOW / go-live month (amortization starts)", 1, S.FMT_INT)
 
@@ -656,23 +660,29 @@ def debt_and_cash(bk: OB):
     bk.section(ws, r, "DEBT - BALLOON REFI (auto when full-refi OFF) / FULL REFI / SBA (toggles)"); r += 1
     bk.lbl(ws, r, "Balloon refi amount")
     bk.fml(ws, r, 2,
-           f"=IF({A['refi_on']}=1,0,SUMPRODUCT(($C${R['_hdr']}:$AL${R['_hdr']}={A['balloon_mo']})"
+           f"=IF(OR({A['refi_on']}=1,{A['sba_on']}=1),0,SUMPRODUCT(($C${R['_hdr']}:$AL${R['_hdr']}={A['balloon_mo']})"
            f"*($C${R['s_prin']}:$AL${R['s_prin']}+$C${R['s_intpaid']}:$AL${R['s_intpaid']})))", S.FMT_CUR)
     bref = f"$B${r}"; R["bref_amt"] = r; r += 1
-    specs = [("bref", "Balloon refi", bref, A["bref_rate"], A["bref_term"], f"{A['balloon_mo']}", f"{A['refi_on']}=0"),
+    specs = [("bref", "Balloon refi", bref, A["bref_rate"], A["bref_term"], f"{A['balloon_mo']}", f"AND({A['refi_on']}=0,{A['sba_on']}=0)"),
              ("refi", "Full refi", A["refi_amt"], A["refi_rate"], A["refi_term"], f"{A['refi_mo']}", f"{A['refi_on']}=1"),
              ("sba", "SBA 7(a)", A["sba_amt"], A["sba_rate"], A["sba_term"], f"{A['sba_mo']}", f"{A['sba_on']}=1")]
     for key, label, amt, rate, term, fmo, cond in specs:
+        # the bank refi ("refi") is retired by SBA proceeds at the SBA funding month (Path A)
         bk.lbl(ws, r, f"{label} - payment (P&I)")
         for i in range(NM):
-            f = (f"=IF(AND({cond},{i+1}>{fmo},{i+1}<={fmo}+{term}),-PMT({rate}/12,{term},{amt}),0)")
+            guard = f",NOT(AND({A['sba_on']}=1,{i+1}>={A['sba_mo']}))" if key == "refi" else ""
+            f = (f"=IF(AND({cond},{i+1}>{fmo},{i+1}<={fmo}+{term}{guard}),-PMT({rate}/12,{term},{amt}),0)")
             bk.fml(ws, r, MC0 + i, f, S.FMT_CUR)
         R[key + "_pmt"] = r; r += 1
-        bk.lbl(ws, r, f"{label} - balance (end)")
+        bk.lbl(ws, r, f"{label} - balance (end)" + (" [retired by SBA at funding]" if key == "refi" else ""))
         for i in range(NM):
             prev = f"{mlet(i-1)}{r}" if i else "0"
-            f = (f"=IF(NOT({cond}),0,IF({i+1}<{fmo},0,IF({i+1}={fmo},{amt},"
-                 f"MAX(0,{prev}*(1+{rate}/12)-{mlet(i)}{R[key+'_pmt']}))))")
+            core = (f"IF(NOT({cond}),0,IF({i+1}<{fmo},0,IF({i+1}={fmo},{amt},"
+                    f"MAX(0,{prev}*(1+{rate}/12)-{mlet(i)}{R[key+'_pmt']}))))")
+            if key == "refi":
+                f = f"=IF(AND({A['sba_on']}=1,{i+1}>={A['sba_mo']}),0,{core})"
+            else:
+                f = "=" + core
             bk.fml(ws, r, MC0 + i, f, S.FMT_CUR)
         R[key + "_bal"] = r; r += 1
         bk.lbl(ws, r, f"{label} - interest")
@@ -747,9 +757,11 @@ def debt_and_cash(bk: OB):
         bk.fml(ws, L["csell"], MC0 + i, f"=-{mlet(i)}{R['s_prin']}-{mlet(i)}{R['s_intpaid']}{down}", S.FMT_CUR)
     bk.lbl(ws, L["cfin"], "Financing proceeds - payments (balloon refi / bank refi / SBA / notes)")
     for i in range(NM):
+        prev_refi = f"{mlet(i-1)}{R['refi_bal']}" if i else "0"
         f = (f"=IF(AND({A['refi_on']}=0,{i+1}={A['balloon_mo']}),{bref},0)"
              f"+IF(AND({A['refi_on']}=1,{i+1}={A['refi_mo']}),{A['refi_amt']},0)"
              f"+IF(AND({A['sba_on']}=1,{i+1}={A['sba_mo']}),{A['sba_amt']},0)"
+             f"-IF(AND({A['sba_on']}=1,{A['refi_on']}=1,{i+1}={A['sba_mo']}),{prev_refi},0)"
              f"+IF({i+1}={A['note_mo']},{A['note_amt']},0)"
              f"-{mlet(i)}{R['bref_pmt']}-{mlet(i)}{R['refi_pmt']}-{mlet(i)}{R['sba_pmt']}-{mlet(i)}{R['note_int']}")
         bk.fml(ws, L["cfin"], MC0 + i, f, S.FMT_CUR)
@@ -1082,7 +1094,7 @@ def build():
     dashboard(bk)
     summary(bk)
     avb(bk)
-    out = "financial_models/output/Azalea_Hospice_Proforma_Rev4.00_DYNAMIC.xlsx"
+    out = "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx"
     bk.wb.save(out)
     import json
     with open("financial_models/output/proforma_v3_rowmap.json", "w") as f:

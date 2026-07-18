@@ -4,17 +4,19 @@
 Three generations of models now live in this repo. They intentionally differ; this note says
 which to use for which purpose, and why their numbers don't match.
 
-## 1. `Azalea_Hospice_Proforma_Rev4.00_DYNAMIC.xlsx`  ← AUTHORITATIVE (real-cash discipline)
+## 1. `Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx`  ← AUTHORITATIVE (real-cash + Path A)
 Built by `build_proforma_v3.py`; QA `qa_proforma_v3.py` (20/20). **Rev 4.00 (2026-07-16):
 NO revolver / no invented capital.** BASE = Sept bank refi $500K/6%/36 (confirmed Bullard
 bank relationship) pays seller $375K; owner deferral (Silas/Dana/Brad accrue to break-even
 ADC 18, repaid M7; $42.5K accrued); 1-mo clinical hire lag with day-1 core 1 RN + 1 CNA;
 shortfalls SHOWN as UNFUNDED NEED. Headlines:
+**Rev 4.10 adds Path A:** SBA 7(a) $500K funds January (51% transfer) and REFINANCES the
+bank note (~$461,676 payoff; ~$38K surplus to cash); debt service drops $15,211 → $6,747/mo.
 - **BASE: additional capital required $0** — never negative; min cash $3,354 (tight!, M3);
-  M36 cash $998K. EBITDA Y1 $299K (15.5%) / Y2 $696K / Y3 $985K (hire lag lifts Y1 vs 3.10).
-- **NO-BANK-REFI scenario: raise $111,823** (seller carried to Jan balloon per MIPA).
-- **DOWNSIDE (slow census): raise $170,930** (first negative M3; stays impaired) — this is
-  the honest raise target if census risk is real: **~$175K**.
+  M36 cash $1,297,392. EBITDA Y1 $299K (15.5%) / Y2 $696K / Y3 $985K.
+- **NO-BANK-REFI (SBA covers the Jan balloon): raise $82,328.**
+- **DOWNSIDE (slow census): raise $30,254** (first negative M3) — the Jan SBA refi rescues
+  the downside. Honest raise target for full coverage: **~$85K**; comfort target ~$100K.
 Toggles: refi_on (bank refi), seller_defer (installments roll to balloon), note_amt
 (investor notes 10% IO qtrly — default $0, set only when checks clear), sba_on.
 

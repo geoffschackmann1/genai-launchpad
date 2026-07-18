@@ -1,6 +1,6 @@
 """John Hart SBA 7(a) checklist response - Refuge structure (locked 2026-07-16).
 
-Structure: SBA 7(a) $500,000 (funds ~1/15/2027 at the 51% transfer - seller balloon takeout + working
+Structure: SBA 7(a) $500,000 (funds ~1/15/2027 at the 51% transfer - refinances the interim bank note + working
 capital) + $250,000 equity injection (Bullard $195K / Schackmann $55K) = $750,000 project.
 Target: Refuge Hospice, LLC (TX), CCN effective 1/8/2024, Medicare + Medicaid.
 Seller terms per MIPA Rev 1.00 (7/15/2026): $500K price; $125K down ~8/1/2026 (49%);
@@ -92,7 +92,7 @@ def company_profile():
 
 def use_of_proceeds():
     v = {
-        "BusinessPurchase": "$500,000",
+        "BusinessPurchase": "$500,000 (seller paid in full Sept 2026 via interim bank note)",
         "WorkingCapital": "$235,000",
         "ClosingCosts": "$15,000",
         "TotalProjectCost": "$750,000",
@@ -100,12 +100,12 @@ def use_of_proceeds():
         "LoanAmount": "$500,000",
         "Description": "Acquisition of 100% of Refuge Hospice, LLC (TX), Medicare-certified (CCN eff. 1/8/2024) and Medicaid-enrolled,",
         "Description1": "operating as Azalea Hospice & Palliative Care (Tyler, TX). Seller terms per MIPA: $125,000 down ~8/1/2026 (49%);",
-        "Description2": "$375,000 balance at 6% - $31,250/mo from 9/1/2026, ~$258,489 final payment 1/15/2027 (42 CFR 424.550(b) 36-mo rule);",
-        "Description3": "note prepayable without penalty. SBA proceeds retire the seller balloon (~$258,489) at the 51% transfer 1/15/2027;",
+        "Description2": "seller balance paid IN FULL Sept 2026 by an interim bank note ($500K, 6%, 36-mo, Bullard-relationship TX bank);",
+        "Description3": "SBA proceeds REFINANCE the bank note (~$461,676 payoff) at the 51% transfer 1/15/2027 (42 CFR 424.550(b) date);",
         "Description4": "remainder funds ramp working capital. Injection: J. Bullard $195,000 ($100K wired 5/7/2026) + G. Schackmann $55,000.",
         "Benefits": "Converts short-term seller financing into permanent SBA financing, freeing cash during the census ramp; funds working",
         "Benefits1": "capital through the Medicare payment lag so the agency reaches ~40 patients/day by month 12; creates ~30 East Texas",
-        "Benefits2": "healthcare jobs by year 2. Projected EBITDA $263K year 1 / $680K year 2 (before debt service).",
+        "Benefits2": "healthcare jobs by year 2. Projected EBITDA $299K year 1 / $696K year 2 (before debt service, Rev 4.10).",
     }
     fill_pdf(SRC + "3_Use_of_Funds_FORM.pdf", OUT + "3 Use of Proceeds FILLED.pdf", v)
 
@@ -113,18 +113,18 @@ def use_of_proceeds():
 def debt_schedule():
     v = {
         "BorrowerNameDS": "Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care)",
-        "AsOfDate": "at close ~8/1/2026",
-        "LenderDS1": "Sellers of Refuge Hospice, LLC (A. Resendiz & D. Hendrix), payments to DHJR, LP as agent",
-        "Date1": "8/1/2026",
-        "Purpose1": "Seller financing - acquisition of Refuge Hospice, LLC membership interests",
-        "OriginalAmt1": "$375,000",
-        "Balance1": "$375,000",
+        "AsOfDate": "as of SBA closing 1/2027",
+        "LenderDS1": "Interim bank acquisition note - Bullard-relationship Texas bank (name TBD at term sheet)",
+        "Date1": "Sept 2026",
+        "Purpose1": "Paid sellers of Refuge Hospice, LLC in full (acquisition); to be refinanced by SBA 7(a)",
+        "OriginalAmt1": "$500,000",
+        "Balance1": "~$461,676 at SBA closing",
         "Rate1": "6.00%",
-        "Payment1": "$31,250/mo",
-        "Security1": "Unsecured seller note; prepayable without penalty; balloon ~$258,489.46 due 1/15/2027, retired by the SBA 7(a) loan at the 51% transfer",
-        "OriginalAmtTotal": "$375,000",
-        "CurrentBalanceTotal": "$375,000",
-        "TotalPayment": "$31,250",
+        "Payment1": "$15,211/mo",
+        "Security1": "Business assets + Bullard guaranty (bank terms TBD); REFINANCED by the SBA 7(a) loan at the 51% transfer 1/15/2027",
+        "OriginalAmtTotal": "$500,000",
+        "CurrentBalanceTotal": "~$461,676",
+        "TotalPayment": "$15,211",
         "GovtAgency1": "None (no PPP, EIDL, or other government financing - company or affiliates)",
     }
     fill_pdf(SRC + "5_Business_Debt_Schedule_FORM.pdf", OUT + "5 Business Debt Schedule FILLED.pdf", v)
@@ -149,7 +149,8 @@ def checklist_memo():
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("SBA 7(a) Checklist - Item-by-Item Status", 0)
     _p(doc, "Borrower: Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care) | EIN 41-4966640 | 7/16/2026", bold=True)
-    _p(doc, "Request: $500,000 SBA 7(a) - funds ~1/15/2027 at the 51% transfer, retiring the seller balloon (~$258,489) + working capital. "
+    _p(doc, "Request: $500,000 SBA 7(a) - funds ~1/15/2027 at the 51% transfer, REFINANCING the interim bank acquisition note "
+            "(~$461,676 payoff; the bank note pays the sellers in full in September) + working capital. "
             "Equity injection $250,000 (33% of the $750,000 project): James Bullard $195,000 (first $100K wired 5/7/2026) "
             "+ Geoff Schackmann $55,000.")
 
@@ -235,7 +236,8 @@ def cover_email():
         "and ready to bill day one. Purchase agreement is in final negotiation at $500,000.",
         "The ask is simpler than before. One SBA 7(a) loan of $500,000. No more piggyback bank loan. "
         "Seller is financing the balance short term ($125K down, $31,250 a month from September, balance in January, 6%, "
-        "prepayable without penalty) and the SBA loan funds in January at the 51% transfer, paying the balloon plus working capital for the ramp. "
+        "prepayable without penalty). A bank note through Jim Bullard's Texas bank relationship pays the sellers in full in "
+        "September, and the SBA loan funds in January at the 51% transfer, refinancing that bank note plus working capital. "
         "Equity injection is $250,000 cash, a third of the $750,000 project - Jim Bullard $195K (first $100K already wired) "
         "and $55K from me.",
         "Attached: the filled Company Profile, Use of Proceeds, and Business Debt Schedule from your checklist, an "
@@ -271,9 +273,10 @@ def refuge_addendum():
         ("Transaction structure (42 CFR 424.550(b))", "Because Medicare bars a change of majority ownership within 36 months of "
          "initial certification, the purchase transfers 49% at closing (~8/1/2026, $125,000 down) and the remaining 51% on "
          "1/15/2027 - the first date past the 36-month mark. The $375,000 balance carries 6% interest, $31,250/month from "
-         "9/1/2026, final payment ~$258,489.46 on 1/15/2027, prepayable without penalty. The requested SBA loan funds at the "
-         "51% transfer (~1/15/2027) and retires the seller balloon; September funding is an upside if a lender can paper "
-         "the partial-change-of-ownership guaranty rules."),
+         "9/1/2026, prepayable without penalty. An interim bank note ($500K, 6%, 36-month, via a Bullard-relationship Texas "
+         "bank) pays the sellers in full in September - four months early. The requested SBA loan funds at the 51% "
+         "transfer (~1/15/2027) and refinances the bank note: a clean bank-debt refinance at the 100% ownership date, "
+         "no seller guaranties involved."),
         ("Financial projections", "All projections in this package are from the Rev 3.00 dynamic proforma (36 monthly periods): "
          "census reaching 24 patients by month 2, 34 by month 6, and 40 by month 12; EBITDA $263K year 1 (13.6%), $680K year 2 "
          "(23.5%), $976K year 3 (28.0%), before debt service; working-capital reserve and revolver keep cash positive in the "
@@ -311,10 +314,10 @@ def assumptions_narrative():
         ("Clinical staffing", "Nursing, aide, chaplain, and social-work FTEs scale with census on standard hospice "
          "staffing ratios; per-patient costs (pharmacy, DME, supplies) are per-patient-day rates from the line-item budget."),
         ("Contingency", "5% of net patient revenue is deducted below EBITDA as an explicit contingency in cash flow."),
-        ("Debt service", "Base case per the executed MIPA: seller installments of $31,250/month September-December (equity-funded), "
-         "then the ~$258,489 balloon retired at SBA funding ~1/15/2027, modeled conservatively as a 36-month note "
-         "($7,957/month from February). An actual SBA 7(a) at ~10.5% over 10 years is ~$6,747/month on the full $500,000, "
-         "so real coverage exceeds the model either way."),
+        ("Debt service", "Base case (Rev 4.10): the interim bank note ($500,000 at 6%/36-month) funds September and pays the sellers "
+         "in full ($15,211/month October-December); the SBA 7(a) funds ~1/15/2027 and refinances the bank note (~$461,676 "
+         "payoff), leaving a single $6,747/month payment (10.5%/10-year) from February. Owner salaries defer until "
+         "break-even census ($42,500 accrued, repaid January); clinical hiring lags census one month with PRN coverage."),
         ("Results on these assumptions", "EBITDA $263K year 1 (13.6% margin), $680K year 2 (23.5%), $976K year 3 (28.0%), "
          "before debt service; month-12 EBITDA margin 22.3%. Break-even census ~17-18 patients, crossed in month 2-3. "
          "A documented downside case (slower ramp) stays cash-positive using the working-capital reserve and a revolver."),
@@ -336,6 +339,6 @@ if __name__ == "__main__":
     refuge_addendum()
     assumptions_narrative()
     import shutil
-    shutil.copy("financial_models/output/Azalea_Hospice_Proforma_Rev3.10_DYNAMIC.xlsx",
-                OUT + "7 Financial Projections Rev3.10.xlsx")
-    print("wrote", OUT + "7 Financial Projections Rev3.10.xlsx")
+    shutil.copy("financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx",
+                OUT + "7 Financial Projections Rev4.10.xlsx")
+    print("wrote", OUT + "7 Financial Projections Rev4.10.xlsx")

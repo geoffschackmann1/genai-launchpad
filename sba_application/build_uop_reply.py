@@ -44,33 +44,32 @@ def reply_email():
         "BULLET: Target: Refuge Hospice, LLC ($500K, Medicare + Medicaid, CMS certified 1/8/2024) replaces the prior "
         "Medicare only license at $300K. Purchase agreement signed 7/14, structured 49% at closing and 51% in January "
         "per the CMS 36 month rule.",
-        "BULLET: Loan ask simplified to ONE SBA 7(a) loan of $500,000. The piggyback bank loan is gone. The seller "
-        "carries $375K at 6% ($31,250 a month from September), and the SBA loan funds in January at the 51% transfer, "
-        "paying the ~$258K balloon plus ramp working capital. January is the base case on purpose: funding at the 100% "
-        "transfer avoids the seller guaranty rules that come with lending into a partial change of ownership. If one of "
-        "your lenders can fund September anyway, the note is prepayable without penalty and we save four installments. "
-        "On the interim line: base case peak need is about $183K, and the slow census downside needs up to $375K of "
-        "availability, so I want to size the LOC conversation accordingly rather than have it surface in underwriting.",
+        "BULLET: The financing sequence got stronger. An interim bank note through Jim Bullard's Texas bank "
+        "relationship ($500K, 6%, 36 months) funds in September and pays the sellers in full, four months early. "
+        "The SBA loan then funds in January at the 51% transfer and refinances that bank note (payoff about $462K) "
+        "plus working capital. That makes your file a clean bank-debt refinance at the 100% ownership date: no "
+        "seller note to refinance, no seller guaranty questions, and debt service drops from $15,211 to $6,747 a month.",
         "BULLET: Working capital reserve cut from $672K to $235K. John, this is your 6/3 note answered: the license "
-        "bills immediately and the seller carries the acquisition until takeout, so the reserve is a bridge, not a "
-        "parking lot. The attached workbook breaks the $235K into components with a month by month draw schedule, "
-        "and I'm fine with the bank controlling disbursements against census milestones. Until the loan funds in "
-        "January we bridge on equity plus the interim line.",
-        "BULLET: Equity injection is now $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K "
-        "(first $100K wired in May) plus $55K from me.",
+        "bills immediately and the bank note carries the acquisition until the SBA refinance, so the reserve is a "
+        "bridge, not a parking lot. The attached workbook breaks the $235K into components with a monthly draw schedule, "
+        "and I'm fine with the bank controlling disbursements against census milestones. The equity plus the bank "
+        "note surplus carry us to January; in the base case the model's cash never goes negative.",
+        "BULLET: Equity injection is $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K (first "
+        "$100K wired in May) plus $55K from me. It funds the $125K license down payment and the ramp, and the attached "
+        "workbook now has a dollar-for-dollar Equity Injection Trace tab so the injection documentation is ready made.",
         "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "
         "options. One housekeeping item: the tenant on the lease is Hickory Hospice, LLC, the entity from the "
         "earlier deal, and it will be assigned to the correct operating entity before closing. The landlord "
         "relationship is friendly.",
         "WHAT'S ATTACHED (11 files):",
-        "BULLET: 1. UOP Azalea Refuge Rev1.00.xlsx - your structure sheet redone: loan structure, the $235K working "
-        "capital components with the month by month draw schedule, and the seller note timeline.",
+        "BULLET: 1. UOP Azalea Refuge Rev2.00.xlsx - your structure sheet redone: loan structure, the $235K working "
+        "capital components with the draw schedule, the financing timeline, and the equity injection trace.",
         "BULLET: 2. 2 Company Profile FILLED.pdf - your form, filled.",
         "BULLET: 3. 3 Use of Proceeds FILLED.pdf - your form, filled.",
         "BULLET: 4. 5 Business Debt Schedule FILLED.pdf - seller note on it, per Mary's note.",
         "BULLET: 5. 1 Checklist STATUS RESPONSE.docx - item by item status on your whole checklist, plus answers to "
         "the ten COVID questions.",
-        "BULLET: 6. 7 Financial Projections Rev3.10.xlsx - monthly for 36 months, officer salaries split out.",
+        "BULLET: 6. 7 Financial Projections Rev4.10.xlsx - monthly for 36 months, officer salaries split out.",
         "BULLET: 7. 6 Projection Assumptions Narrative.docx - the written assumptions behind the numbers.",
         "BULLET: 8. Azalea SBA Business Plan Rev6.00.docx - the full updated plan in editable Word, rewritten for "
         "Refuge.",

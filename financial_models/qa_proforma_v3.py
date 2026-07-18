@@ -1,4 +1,4 @@
-"""QA for the Rev 4.00 dynamic proforma (real-cash discipline).
+"""QA for the Rev 4.10 dynamic proforma (real-cash discipline + Path A SBA refi).
 
   1. 0 formula errors
   2. BS check = 0 all 36 months (no plugs; incl. deferred comp + notes payable)
@@ -19,7 +19,7 @@ import formulas
 import openpyxl
 from openpyxl.utils import get_column_letter as gcl
 
-XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev4.00_DYNAMIC.xlsx"
+XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx"
 ROWMAP = "financial_models/output/proforma_v3_rowmap.json"
 PASS = FAIL = 0
 def chk(name, ok, detail=""):
@@ -64,10 +64,15 @@ def main():
         v = num(g("Census Waterfall", f"{gcl(2+mo)}{CN['eom']}"))
         chk(f"census EOM M{mo} = {tgt}", abs(v - tgt) < 0.1, f"({v:.1f})")
 
-    # BASE = September bank refi
+    # BASE = September bank refi -> SBA refinances it in January (Path A)
     chk("BASE: seller paid off Sept ($375K)", abs(num(g("Cash Flow & Runway", f"E{CF['s_prin']}")) - 375000) < 1)
     chk("BASE: no January balloon", abs(num(g("Cash Flow & Runway", f"I{CF['s_prin']}"))) < 1)
-    chk("BASE: bank refi $15,211/mo from Oct", abs(num(g("Cash Flow & Runway", f"F{CF['refi_pmt']}")) - 15210.97) < 1)
+    chk("BASE: bank refi $15,211/mo Oct-Dec", abs(num(g("Cash Flow & Runway", f"F{CF['refi_pmt']}")) - 15210.97) < 1)
+    chk("BASE: bank note retired at SBA funding (Jan bal = 0)", abs(num(g("Cash Flow & Runway", f"I{CF['refi_bal']}"))) < 0.01)
+    dec_bal = num(g("Cash Flow & Runway", f"H{CF['refi_bal']}"))
+    print(f"     info: bank-note payoff at SBA funding ~${dec_bal:,.0f} | SBA surplus to cash ~${500000-dec_bal:,.0f}")
+    chk("BASE: no bank payment in/after Jan", abs(num(g("Cash Flow & Runway", f"I{CF['refi_pmt']}"))) < 0.01)
+    chk("BASE: SBA ~$6,746.75/mo from Feb", abs(num(g("Cash Flow & Runway", f"J{CF['sba_pmt']}")) - 6746.75) < 1)
 
     # deferral
     ST = R["Staffing"]
