@@ -169,17 +169,22 @@ def reply_followup_720():
         "Thanks for the quick turnaround, and for shopping this to your other lenders too - the more shots on "
         "goal the better. Makes sense that we're under the $1M promotional threshold; I appreciate you working "
         "your lender for the best terms anyway.",
-        "On your first question: this should be underwritten as a change of ownership, not a pure startup. "
-        "The borrower, Tyler Hospice Hold, LLC, is new, but the asset we're buying, Refuge Hospice, LLC, has "
-        "been operating and billing Medicare since its CMS certification on 1/8/2024, so there's real operating "
-        "history at the target level, just not at the buyer level. That's the framing in the business plan "
-        "addendum too. Our equity injection is $250,000 on a $750,000 project, 33 percent, so we're well above "
-        "the minimum either way this gets classified - that shouldn't be a swing factor.",
-        "On the second question: yes, we're already after the sellers for Refuge's three years of tax returns "
-        "and current financials, since the license has been certified and billing since January 2024. I'll push "
-        "on that this week and get it to you and Mary as soon as it lands. I also understand a third party "
-        "valuation will be required on an acquisition like this - I'll hold off ordering one until we know which "
-        "lender is running with it, since I know each bank has its own approved list.",
+        "On your first question, I want to be straight with you rather than let you find this out later: "
+        "Refuge Hospice, LLC has been CMS certified since 1/8/2024, so it technically has three years of "
+        "entity financials, but it's been run as a license-only operation, not an active clinical program. "
+        "The tax returns and financials will show close to zero - there's no meaningful patient revenue to "
+        "point to for repayment history. So while the CMS side of this is a change of ownership (the 49/51 "
+        "transfer under the 36-month rule), from a repayment-ability standpoint I think it has to be "
+        "underwritten like a startup: the case rests on our projections and the team's own prior track record "
+        "in this market, not on Refuge's historical numbers. Our equity injection is $250,000 on a $750,000 "
+        "project, 33 percent, well above the startup threshold, so that side of it is covered. Let me know how "
+        "you and your lenders want to treat it once you've seen the financials - happy to adjust the file "
+        "either way.",
+        "On the second question: yes, we'll get you what exists - three years of returns and financials for "
+        "Refuge - but I want to set expectations now that they won't show much, for the reason above. I also "
+        "understand a third party valuation will be required on an acquisition like this - I'll hold off "
+        "ordering one until we know which lender is running with it, since I know each bank has its own "
+        "approved list.",
         "On the lease, I don't know yet whether the landlord will go to a full ten years including options - "
         "current lease is 24 months plus two 12-month options, so we're short. Good to hear the renewal doesn't "
         "need a stipulated rate and can sit at the landlord's discretion; that gives me a much easier ask. I'll "
