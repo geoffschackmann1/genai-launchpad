@@ -148,7 +148,7 @@ def _p(doc, text, bold=False):
 
 def checklist_memo():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("SBA 7(a) Checklist - Item-by-Item Status", 0)
     _p(doc, "Borrower: Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care) | EIN 41-4966640 | 7/16/2026", bold=True)
@@ -229,7 +229,7 @@ def checklist_memo():
 
 def cover_email():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(11)
     doc.add_heading("Draft email to John Hart", 0)
     _p(doc, "To: john.hart@sourcefundingtexas.com | From: gs@h-care.us | Subject: Azalea Hospice - updated SBA package", bold=True)
@@ -263,7 +263,7 @@ def cover_email():
 
 def refuge_addendum():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Business Plan Addendum - Target Change to Refuge Hospice, LLC", 0)
     _p(doc, "Tyler Hospice Hold, LLC | 7/16/2026 | Supplements Business Plan Rev 5.00 pending full revision", bold=True)
@@ -301,7 +301,7 @@ def refuge_addendum():
 
 def assumptions_narrative():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Projection Assumptions Narrative", 0)
     _p(doc, "Accompanies Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx (36 monthly periods; every calculation "

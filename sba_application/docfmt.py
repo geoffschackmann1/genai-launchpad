@@ -1,8 +1,9 @@
 """Shared professional-formatting finisher for package documents.
 
-finalize(doc, title): 1-inch margins, footer (title | Confidential | Page X of Y
-with live PAGE/NUMPAGES fields), keep-with-next on headings, repeating table
-header rows across page breaks.
+finalize(doc, title): fonts (Aptos body / Aptos Display headings), 1-inch
+margins, footer (title | Confidential | Page X of Y with live PAGE/NUMPAGES
+fields), keep-with-next on headings, repeating table header rows across
+page breaks.
 """
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -10,6 +11,20 @@ from docx.shared import Inches, Pt
 
 
 XML_SPACE = "{http://www.w3.org/XML/1998/namespace}space"
+
+FONT_BODY = "Aptos"
+FONT_DISPLAY = "Aptos Display"
+
+
+def apply_fonts(doc, body=FONT_BODY, display=FONT_DISPLAY):
+    """Modern Office default pairing: Aptos Display for headings/titles, Aptos for body/lists/tables."""
+    styles = doc.styles
+    for name in ("Normal", "List Bullet", "List Number", "List Paragraph", "Body Text", "No Spacing"):
+        if name in styles:
+            styles[name].font.name = body
+    for name in ("Title", "Subtitle", "Heading 1", "Heading 2", "Heading 3", "Heading 4"):
+        if name in styles:
+            styles[name].font.name = display
 
 
 def _field(paragraph, instr):
@@ -47,6 +62,7 @@ def toc(doc, levels="1-2"):
 
 
 def finalize(doc, title):
+    apply_fonts(doc)
     for sec in doc.sections:
         sec.left_margin = sec.right_margin = Inches(1)
         sec.top_margin = Inches(0.9)

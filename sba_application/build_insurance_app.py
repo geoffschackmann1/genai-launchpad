@@ -229,7 +229,7 @@ def _p(doc, text, bold=False):
 
 def email():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(11)
     doc.add_heading("Draft reply - Todd Plummer (insurance quote)", 0)
     _p(doc, "To: Todd Plummer | From: gs@h-care.us | Re: Insurance quote - Azalea Hospice", bold=True)
@@ -239,53 +239,71 @@ def email():
         "below. Quick context so the quote lands right: we are acquiring Refuge Hospice, LLC, a Texas licensed "
         "Medicare and Medicaid hospice, and operating it as Azalea Hospice & Palliative Care out of Tyler. We take "
         "over operations August 1, so that is the effective date we need.",
-        "BUSINESS INFORMATION:",
-        "Full legal name: Refuge Hospice, LLC dba Azalea Hospice & Palliative Care. Parent company is Tyler "
+        "Full legal name is Refuge Hospice, LLC dba Azalea Hospice & Palliative Care. Parent company is Tyler "
         "Hospice Hold, LLC (Wyoming), which acquires 49% on August 1 and the remaining 51% on January 15, 2027 "
-        "under the CMS 36 month ownership rule. Operations are under our management from August 1.",
-        "Owners (of Tyler Hospice Hold, LLC): Geoff Schackmann 39.9%, James Bullard 19.5%, Silas Shelton 13.3%, "
-        "Dana Davenport 13.3%, Bradley Woodard 13.3%, reserved pool 0.7%.",
-        "FEIN: 92-1541610 (Refuge Hospice, LLC).",
-        "Year established: confirming the LLC formation year with the sellers; CMS certified 1/8/2024, CHAP "
-        "accredited through 1/8/2027.",
-        "Estimated annual gross revenues: $1,933,000 (first 12 months projection; census ramps from ~12 to 40 "
-        "patients over the year).",
-        "Number of employees: about 12 at August 1, growing to 18 to 20 by month 12.",
-        "Estimated annual payroll: $972,000 (W2, first 12 months, from the staffing model). Contracted 1099s on top "
-        "of that: physician medical director (~$48K/yr), PRN nurses and aides (~$30K/yr), and a PRN chaplain.",
-        "WORKERS COMP - ANNUAL PAYROLL BY CLASS (first 12 months):",
-        "BULLET: Registered Nurses (case managers, on-call): $276,667",
-        "BULLET: Hospice Aides / CNAs: $148,000",
-        "BULLET: Medical Social Worker: $70,000",
-        "BULLET: Clinical leadership, RNs (Director of Nursing, ADON/Intake): $170,000",
-        "BULLET: Clerical / administrative (Executive Director, Volunteer & Bereavement Coordinator): $187,500",
-        "BULLET: Outside marketing / community liaison (Director of Sales): $120,000",
-        "BULLET: Total: $972,167",
-        "A few things to flag so there are no surprises:",
-        "BULLET: Care is delivered in patients' homes, nursing facilities and ALFs. Our offices are administrative "
-        "only, no patient care on premises. The Tyler office is a leased single story historic house (1,607 sq ft), "
-        "so the fire safety answers reflect that: smoke detectors, marked exits, extinguishers and posted evacuation "
-        "yes; no sprinkler system or emergency generator. Tell me if that needs anything.",
-        "BULLET: The license's current service area is Texas Region 8 (San Antonio and surrounding counties). We are "
-        "relocating the primary service area to East Texas (Tyler/Smith County). Please make sure the policy "
-        "territory covers both during the transition.",
-        "BULLET: Staff drive their own vehicles to patient homes, so we need hired and non-owned auto. No patient "
-        "transport, ever.",
-        "BULLET: Clean history: no prior claims, no prior professional liability policies for this operation, "
-        "nothing pending. We will want the retro date set at policy inception.",
-        "BULLET: We will need the landlord (Fair Investments, Ltd.) as additional insured on the GL per the lease, "
-        "and our SBA lender will need certificates with lender's loss payee wording once the loan closes.",
-        "The numbers are first year projections for a ramping startup, so happy to true up at audit. What else do "
-        "you need from me to get quotes moving? I would like coverage bound by August 1.",
+        "under the CMS 36 month ownership rule, with operations under our management from August 1. Owners of "
+        "Tyler Hospice Hold: Geoff Schackmann 39.9%, James Bullard 19.5%, Silas Shelton 13.3%, Dana Davenport "
+        "13.3%, Bradley Woodard 13.3%, and a reserved 0.7% pool.",
+        "FEIN is 92-1541610 for Refuge Hospice, LLC. I'm still confirming the year the LLC was established with "
+        "the sellers - the license itself was CMS certified 1/8/2024 and is CHAP accredited through 1/8/2027.",
+        "Estimated annual gross revenue is $1,933,000 for the first 12 months as census ramps from about 12 "
+        "patients up to 40 over the year. Headcount starts around 12 at launch and grows to 18-20 by month 12. "
+        "Estimated annual W2 payroll for the first 12 months is $972,167, straight from the staffing model. On "
+        "top of that we'll have contracted 1099s - a physician medical director (about $48K/yr), PRN nurses and "
+        "aides (about $30K/yr), and a PRN chaplain.",
+        "Here's the workers comp payroll breakdown by class for the first 12 months:",
+    ]:
+        _p(doc, para)
+
+    t = doc.add_table(rows=1, cols=2)
+    t.style = "Light Grid Accent 1"
+    for i, htxt in enumerate(["Class", "Annual payroll"]):
+        c = t.rows[0].cells[i]
+        c.text = ""
+        r = c.paragraphs[0].add_run(htxt)
+        r.bold = True
+        r.font.size = Pt(10)
+    for cls, amt in [
+        ("Registered nurses (case managers, on-call)", "$276,667"),
+        ("Hospice aides / CNAs", "$148,000"),
+        ("Medical social worker", "$70,000"),
+        ("Clinical leadership - RNs (Director of Nursing, ADON/Intake)", "$170,000"),
+        ("Clerical / administrative (Executive Director, Volunteer & Bereavement Coordinator)", "$187,500"),
+        ("Outside marketing / community liaison (Director of Sales)", "$120,000"),
+        ("Total", "$972,167"),
+    ]:
+        cells = t.add_row().cells
+        cells[0].text = ""
+        r0 = cells[0].paragraphs[0].add_run(cls)
+        r0.font.size = Pt(10)
+        cells[1].text = ""
+        r1 = cells[1].paragraphs[0].add_run(amt)
+        r1.font.size = Pt(10)
+        if cls == "Total":
+            r0.bold = True
+            r1.bold = True
+
+    for para in [
+        "A few things worth flagging so there are no surprises. Care is delivered in patients' homes, nursing "
+        "facilities and assisted living facilities - the office itself is administrative only, with no patient "
+        "care on premises. The Tyler office is a leased single story historic house (1,607 sq ft), so the fire "
+        "safety answers reflect that: smoke detectors, marked exits, extinguishers, and posted evacuation "
+        "procedures are all in place, but there's no sprinkler system or emergency generator. Let me know if that "
+        "needs anything on your end.",
+        "The license's current service area is Texas Region 8 (San Antonio and the surrounding counties), and "
+        "we're relocating the primary service area to East Texas (Tyler / Smith County), so please make sure the "
+        "policy territory covers both during the transition. Staff drive their own vehicles to patient homes, so "
+        "we'll need hired and non-owned auto coverage - there's no patient transport involved. History is clean: "
+        "no prior claims and no prior professional liability policies for this operation, so we'd want the retro "
+        "date set at policy inception. We'll also need the landlord, Fair Investments, Ltd., named as additional "
+        "insured on the GL per the lease, and once the SBA loan closes our lender will need certificates with "
+        "lender's loss payee wording.",
+        "These numbers are first year projections for a ramping startup, so happy to true them up at audit. What "
+        "else do you need from me to get quotes moving? I'd like coverage bound by August 1.",
         "Thanks,",
         "Geoff",
     ]:
-        if para.startswith("BULLET: "):
-            p = doc.add_paragraph(style="List Bullet")
-            r = p.add_run(para[8:])
-            r.font.size = Pt(11)
-        else:
-            _p(doc, para, bold=para.endswith(":") and para.isupper() is False and (para.startswith(("BUSINESS", "WORKERS"))))
+        _p(doc, para)
     docfmt.finalize(doc, "Azalea Hospice - Insurance Application Reply")
     path = OUT + "Reply Email Todd Plummer DRAFT.docx"
     doc.save(path)

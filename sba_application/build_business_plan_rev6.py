@@ -41,7 +41,7 @@ OUT = "03_business_plan/Azalea SBA Business Plan Rev6.00.docx"
 def new_doc():
     d = Document()
     st = d.styles["Normal"]
-    st.font.name = "Calibri"
+    st.font.name = "Aptos"
     st.font.size = Pt(10.5)
     return d
 

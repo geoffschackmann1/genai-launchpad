@@ -150,7 +150,11 @@ def formatting_audit():
         if em: issues.append("em dash")
         if dbl > 2: issues.append(f"double spaces x{dbl}")
         if not styled: issues.append("unstyled table")
-        if d.styles["Normal"].font.name != "Calibri": issues.append("Normal font not Calibri")
+        if d.styles["Normal"].font.name != "Aptos": issues.append("Normal font not Aptos")
+        for hname in ("Title", "Heading 1", "Heading 2"):
+            if hname in d.styles and any(p.style.name == hname for p in d.paragraphs):
+                if d.styles[hname].font.name != "Aptos Display":
+                    issues.append(f"{hname} font not Aptos Display")
         check("format", name, not issues, "; ".join(issues))
     # plan-specific: TOC field + heading count
     d = Document(PLAN)
@@ -172,7 +176,7 @@ def formatting_audit():
 
 def write_report():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Package Audit Report", 0)
     p = doc.add_paragraph()

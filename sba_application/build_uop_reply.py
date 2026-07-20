@@ -28,7 +28,7 @@ def _h(doc, text):
 
 def reply_email():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(11)
     doc.add_heading("Draft reply - SBA Follow up & Questions thread", 0)
     _p(doc, "To: John Hart; Mary Brownmiller | From: gs@h-care.us | Re: SBA Follow up & Questions", bold=True)
@@ -44,42 +44,37 @@ def reply_email():
         "enrollments in May, so dual certified licenses are scarce and trade at a premium. More importantly for the "
         "credit, Medicaid certification adds nursing facility room and board billing, which widens the referral base "
         "and directly increases revenue over a Medicare only license. Better asset, better collateral, better top line.",
-        "WHAT'S CHANGED since my last package:",
-        "BULLET: Target: Refuge Hospice, LLC ($500K, Medicare + Medicaid, CMS certified 1/8/2024) replaces the prior "
-        "Medicare only license at $300K. Purchase agreement signed 7/14, structured 49% at closing and 51% in January "
-        "per the CMS 36 month rule.",
-        "BULLET: The financing sequence got stronger. An interim bank note through Jim Bullard's Texas bank "
+        "A few things changed since I last wrote. Refuge Hospice, LLC ($500K, Medicare and Medicaid, CMS certified "
+        "1/8/2024) replaces the prior Medicare only license at $300K - the purchase agreement was signed 7/14, "
+        "structured 49% at closing and 51% in January under the CMS 36 month rule.",
+        "The financing sequence also got stronger. An interim bank note through Jim Bullard's Texas bank "
         "relationship ($500K, 6%, 36 months) funds in September and pays the sellers in full, four months early. "
         "The SBA loan then funds in January at the 51% transfer and refinances that bank note (payoff about $462K) "
         "plus working capital. That makes your file a clean bank-debt refinance at the 100% ownership date: no "
         "seller note to refinance, no seller guaranty questions, and debt service drops from $15,211 to $6,747 a month.",
-        "BULLET: Working capital reserve cut from $672K to $235K. John, this is your 6/3 note answered: the license "
-        "bills immediately and the bank note carries the acquisition until the SBA refinance, so the reserve is a "
-        "bridge, not a parking lot. The attached workbook breaks the $235K into components with a monthly draw schedule, "
-        "and I'm fine with the bank controlling disbursements against census milestones. The equity plus the bank "
-        "note surplus carry us to January; in the base case the model's cash never goes negative.",
-        "BULLET: Equity injection is $250,000 cash, a full third of the $750,000 project. Jim Bullard $195K (first "
-        "$100K wired in May) plus $55K from me. It funds the $125K license down payment and the ramp, and the attached "
-        "workbook now has a dollar-for-dollar Equity Injection Trace tab so the injection documentation is ready made.",
-        "BULLET: Office lease is signed. Fully executed 6/29 for our Tyler location, 24 months plus two 12 month "
-        "options. One housekeeping item: the tenant on the lease is Hickory Hospice, LLC, the entity from the "
-        "earlier deal, and it will be assigned to the correct operating entity before closing. The landlord "
-        "relationship is friendly.",
-        "WHAT'S ATTACHED (11 files):",
-        "BULLET: 1. UOP Azalea Refuge Rev2.00.xlsx - your structure sheet redone: loan structure, the $235K working "
-        "capital components with the draw schedule, the financing timeline, and the equity injection trace.",
-        "BULLET: 2. 2 Company Profile FILLED.pdf - your form, filled.",
-        "BULLET: 3. 3 Use of Proceeds FILLED.pdf - your form, filled.",
-        "BULLET: 4. 5 Business Debt Schedule FILLED.pdf - seller note on it, per Mary's note.",
-        "BULLET: 5. 1 Checklist STATUS RESPONSE.docx - item by item status on your whole checklist, plus answers to "
+        "Working capital came down from $672K to $235K, which answers the note from 6/3: the license bills "
+        "immediately and the bank note carries the acquisition until the SBA refinance, so the reserve only has to "
+        "bridge the ramp rather than fund the purchase. The attached workbook breaks the $235K into components with "
+        "a monthly draw schedule, and I'm fine with the bank controlling disbursements against census milestones. "
+        "Equity injection is $250,000 cash, a third of the $750,000 project - Jim Bullard's $195K (the first $100K "
+        "wired in May) plus $55K from me. It funds the license down payment and the ramp, and the workbook now has "
+        "a line-by-line equity injection trace so the documentation is ready made.",
+        "The office lease is signed as well - fully executed 6/29 for our Tyler location, 24 months plus two "
+        "12 month options. One housekeeping item: the tenant on the lease is Hickory Hospice, LLC, the entity "
+        "from the earlier deal, so we'll assign or amend it to the correct operating entity before closing. The "
+        "landlord relationship is friendly, so I don't expect that to be a problem.",
+        "Here's what I'm sending along:",
+        "BULLET: UOP Azalea Refuge Rev2.00.xlsx - the structure sheet redone: loan structure, the $235K working "
+        "capital detail with the draw schedule, the financing timeline, and the equity injection trace.",
+        "BULLET: 2 Company Profile FILLED.pdf and 3 Use of Proceeds FILLED.pdf - your forms, filled out.",
+        "BULLET: 5 Business Debt Schedule FILLED.pdf - the bank note is on it, per Mary's note.",
+        "BULLET: 1 Checklist STATUS RESPONSE.docx - item by item status on the whole checklist, plus answers to "
         "the ten COVID questions.",
-        "BULLET: 6. 7 Financial Projections Rev4.10.xlsx - monthly for 36 months, officer salaries split out.",
-        "BULLET: 7. 6 Projection Assumptions Narrative.docx - the written assumptions behind the numbers.",
-        "BULLET: 8. Azalea SBA Business Plan Rev6.00.docx - the full updated plan in editable Word, rewritten for "
-        "Refuge.",
-        "BULLET: 9. 4 Business Plan ADDENDUM Refuge.docx - one page summary of the target change for quick reads.",
-        "BULLET: 10. 10 Executed Lease Gary House 6.29.26.pdf - fully executed office lease.",
-        "BULLET: 11. The signed Refuge purchase agreement (MIPA).",
+        "BULLET: 7 Financial Projections Rev4.10.xlsx - monthly for 36 months, officer salaries split out.",
+        "BULLET: 6 Projection Assumptions Narrative.docx - the written assumptions behind the numbers.",
+        "BULLET: Azalea SBA Business Plan Rev6.00.docx - the full updated plan in editable Word, rewritten for "
+        "Refuge, plus 4 Business Plan ADDENDUM Refuge.docx as a one page summary if you want the quick version.",
+        "BULLET: 10 Executed Lease Gary House 6.29.26.pdf, and the signed Refuge purchase agreement (MIPA).",
         "Coming separately through your secure upload: my 2022, 2023 and 2024 personal returns, then the personal "
         "financial statement, personal history form, cash flow statement, credit report and driver license as I "
         "finish them this week.",
@@ -96,7 +91,7 @@ def reply_email():
             r = p.add_run(para[8:])
             r.font.size = Pt(11)
         else:
-            _p(doc, para, bold=para.startswith(("WHAT'S CHANGED", "WHAT'S ATTACHED")))
+            _p(doc, para)
     path = OUT + "8 Reply Email John Mary DRAFT.docx"
     docfmt.finalize(doc, "Azalea Hospice - Reply to SourceFunding")
     doc.save(path)
@@ -105,7 +100,7 @@ def reply_email():
 
 def lease_summary():
     doc = Document()
-    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.name = "Aptos"
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Executed Office Lease - Summary & Flags", 0)
     _p(doc, "Gary House / fully executed 6/29/2026 (DocuSign) | reviewed 7/16/2026", bold=True)
