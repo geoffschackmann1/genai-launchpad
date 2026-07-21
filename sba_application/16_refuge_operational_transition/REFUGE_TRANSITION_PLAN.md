@@ -1,5 +1,11 @@
 # Refuge Hospice Operational Transition - Plan for New Session
 
+> **Superseded by `refuge-operating-plan.md` in this folder (7/21/2026).** That
+> document has the sellers' agreed action items, owners/dependencies/deadlines working
+> backward from the July 31 admission, verified regulatory research on the CMS
+> moratorium and de-facto-control risk, and a private deal-protection section. This
+> file remains as the original category-level checklist it was built from.
+
 Compiled 7/20/2026. Purpose: seed a new, focused Claude Code session on getting
 operational control of Refuge Hospice, LLC now that the sellers (Angel Resendiz /
 Dennis Hendrix, DHJR Limited Partnership) have agreed to hand over full operational
