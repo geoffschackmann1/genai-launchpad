@@ -13,18 +13,18 @@ control ahead of the formal ownership transfer.
 
 ## Deal facts to carry over
 - Target: Refuge Hospice, LLC (TX). Buyer: Tyler Hospice Hold, LLC (WY).
-- CCN/PTAN A9167, PECOS active, CHAP accredited 1/8/2024-1/8/2027, CLIA 45D2282700,
+- CCN/PTAN A91679, PECOS active, CHAP accredited 1/8/2024-1/8/2027, CLIA 45D2282700,
   HHSC Medicaid Contract No. HHS000004700408.
 - Ownership structure: 49% transfers at closing (~8/1/2026), remaining 51% transfers
   1/15/2027 - the first date past the CMS 36-month post-certification rule
   (42 CFR 424.550(b)), which expires 1/8/2027. This structure exists specifically so
   the majority-ownership change does NOT trigger a change-of-ownership requiring a
   new CCN.
-- Purchase price $500,000: $125,000 down, $31,250/mo Sept-Dec 2026, ~$258,489 final
+- Purchase price $500,000: $125,000 down, $31,250/mo Sept-Dec 2026, ~$258,489.46 final
   payment 1/15/2027, 6% interest, security interest + personal guaranty.
 - Current state per the sellers (7/2/2026): "the agency is clean, zero pts no staff."
   No financials/tax returns provided yet.
-- Flag: CMS PTAN reactivation approval letter dated 3/23/2026 - not continuously
+- Flag: CMS PTAN reactivation approval letter dated 3/20/2026 - not continuously
   billing-active since the 1/8/2024 CCN date. Reason not yet confirmed.
 - Full source detail: `sba_application/15_valuation_2026-07-20/Refuge Hospice -
   Preliminary Information for FMV Evaluation.docx`.
@@ -58,7 +58,7 @@ from counsel before the new session starts executing on the checklist below.
       Authorized/Delegated Official today.
 - [ ] File 855A Change of Information to add Geoff/designated staff as
       authorized/delegated official (pending counsel confirmation above).
-- [ ] Palmetto GBA EDI Enrollment Agreement under PTAN A9167 so your biller can
+- [ ] Palmetto GBA EDI Enrollment Agreement under PTAN A91679 so your biller can
       submit claims (confirm exact biller name/company - referenced as "Miller"
       in conversation, needs the full legal name for the form).
 - [ ] CMS-588 EFT enrollment, tied to the new Refuge Hospice LLC bank account.

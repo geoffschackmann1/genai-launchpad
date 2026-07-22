@@ -7,7 +7,7 @@ to CMS that the reactivated billing number stays active before it expires in Sep
 which also protects the sellers from having to redo reactivation.
 
 **Deal snapshot:** Tyler Hospice Hold, LLC (buyer) is acquiring Refuge Hospice, LLC
-(San Antonio, TX, NPI 1174237572, CCN/PTAN A9167), from Jorge Resendiz and Dennis
+(San Antonio, TX, NPI 1174237572, CCN/PTAN A91679), from Jorge Resendiz and Dennis
 Hendrix (DHJR Limited Partnership), to operate as Azalea Hospice (Tyler, TX / Smith
 County). The MIPA is drafted but **not yet signed**. CMS's nationwide hospice
 enrollment moratorium (effective 5/13/2026) is in effect, and Refuge's CCN (certified
@@ -172,7 +172,7 @@ operations under Refuge's license, the MIPA (or a side letter) should lock down:
   finding that triggers extra scrutiny of the pending CHOW).
 
 ### 3.2 Concession to request: tie the final payment to CHOW approval, not a fixed date
-Currently the final payment (~$258,489) is anchored to 1/15/2027, immediately after the
+Currently the final payment (~$258,489.46) is anchored to 1/15/2027, immediately after the
 36-month window closes. Given that both the moratorium and the underlying CHOW approval
 process introduce real timing uncertainty outside Geoff's control, request that the
 final payment instead be **tied to the date CMS/HHSC formally approve the change of

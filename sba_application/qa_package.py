@@ -19,6 +19,8 @@ from pypdf import PdfReader  # noqa: E402
 PKG = "sba_application/13_checklist_response_2026-07-16/"
 PLAN = "sba_application/03_business_plan/Azalea SBA Business Plan Rev6.00.docx"
 INS = "sba_application/14_insurance_2026-07-16/"
+VAL = "sba_application/15_valuation_2026-07-20/"
+XPLAN = "sba_application/16_refuge_operational_transition/"
 
 RESULTS = []
 
@@ -77,9 +79,18 @@ REQUIRED_XLSX = {
         ["Working-capital policy", "ADDITIONAL FUNDING REQUIREMENT", "Revision 4.10", "AZALEA HOSPICE"],
 }
 STALE = ["$262,951", "$680,224", "$975,925", "$100,941", "$472,928", "$746,549",
-         "$258,489", "$78,710", "$936,793", "$924,000", "$142,524", "$182,532",
+         "$78,710", "$936,793", "$924,000", "$142,524", "$182,532",
          "Rev 3.00", "Rev 3.10", "Rev3.00", "Rev3.10", "$183K", "$375K facility",
-         "retire the seller balloon", "seller balloon"]
+         "retire the seller balloon", "seller balloon", "3/23/2026", "3/23/26"]
+# CCN/PTAN is A91679 (confirmed via the Palmetto GBA reactivation letter and CMS
+# confirmation email, both dated 3/20/2026); the bare "A9167" is a stale, truncated
+# form. Regex (not plain substring) since "A9167" is itself a prefix of "A91679".
+BAD_PTAN = re.compile(r"A9167(?!9)")
+# The verified-correct final payment is $258,489.46; a bare "$258,489" (no cents) is
+# the stale, imprecise form. Regex (not plain substring) since "$258,489" is itself a
+# prefix of "$258,489.46" - a plain substring entry would always false-flag the
+# correct figure too.
+BAD_FINAL_PAYMENT = re.compile(r"\$258,489(?!\.46)")
 
 
 def content_audit():
@@ -98,15 +109,24 @@ def content_audit():
               f"missing {missing}" if missing else "")
 
     print("== CONTENT: stale blacklist ==")
-    targets = [p for p in sorted(glob.glob(PKG + "*.docx")) if "AUDIT REPORT" not in p] + [PLAN] + sorted(glob.glob(INS + "*.docx"))
+    targets = ([p for p in sorted(glob.glob(PKG + "*.docx")) if "AUDIT REPORT" not in p] + [PLAN]
+               + sorted(glob.glob(INS + "*.docx")) + sorted(glob.glob(VAL + "*.docx"))
+               + sorted(glob.glob(XPLAN + "*.md")))
     for path in targets:
-        _, t = doc_text(path)
+        if path.endswith(".md"):
+            t = open(path, encoding="utf-8").read()
+        else:
+            _, t = doc_text(path)
         hits = [ph for ph in STALE if ph.lower() in t.lower()]
         # live-revolver scan (allow only negated phrasings)
         for m in re.finditer(r"revolver", t.lower()):
             ctx = t.lower()[max(0, m.start() - 25):m.end() + 15]
             if not any(k in ctx for k in ("no revolver", "no-revolver", "revolver or assumed", "revolver assumed")):
                 hits.append("LIVE revolver")
+        if BAD_PTAN.search(t):
+            hits.append("bad PTAN (bare A9167, should be A91679)")
+        if BAD_FINAL_PAYMENT.search(t):
+            hits.append("imprecise final payment (should be $258,489.46)")
         check("stale", os.path.basename(path), not hits, str(hits) if hits else "")
     for path in sorted(glob.glob(PKG + "*FILLED.pdf")):
         t = pdf_field_text(path)

@@ -2,7 +2,7 @@
 
 **Borrower:** Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care), a Wyoming LLC
 foreign-qualified in Texas | EIN 41-4966640
-**Target/operating co:** Refuge Hospice, LLC (San Antonio, TX) | NPI 1174237572 | CCN/PTAN A9167
+**Target/operating co:** Refuge Hospice, LLC (San Antonio, TX) | NPI 1174237572 | CCN/PTAN A91679
 | being acquired via a phased change of ownership (CHOW)
 **Sellers:** Jorge Resendiz and Dennis Hendrix, through DHJR Limited Partnership
 **Loan:** $500,000 SBA 7(a) (Rev 4.10) | **Project:** $750,000 | **Equity:** $250,000 (33%)
@@ -49,10 +49,10 @@ foreign-qualified in Texas | EIN 41-4966640
 
 ## License and regulatory snapshot
 
-- CCN/PTAN A9167, NPI 1174237572, PECOS enrollment active.
+- CCN/PTAN A91679, NPI 1174237572, PECOS enrollment active.
 - CHAP accredited 1/8/2024 - 1/8/2027; CLIA #45D2282700.
 - Texas HHSC Medicaid Contract No. HHS000004700408.
-- **PTAN reactivation:** CMS approval letter dated 3/23/2026 confirms the billing number was
+- **PTAN reactivation:** CMS approval letter dated 3/20/2026 confirms the billing number was
   reactivated after a deactivation period; reactivation expires **September 2026** absent proof
   of active billing (drives the interim operating plan's July-admission timeline).
 - **CMS hospice enrollment moratorium** in effect nationwide since 5/13/2026 (initial 6-month

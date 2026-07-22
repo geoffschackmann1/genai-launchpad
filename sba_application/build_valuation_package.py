@@ -3,7 +3,7 @@
 Compiled from the Gmail thread history with the sellers (Jorge Resendiz / Dennis Hendrix,
 DHJR Limited Partnership dba the Refuge Hospice ownership group) and Jim Bullard, plus
 the executed MIPA. Two things flagged prominently for accuracy: (1) the CMS PTAN went
-through a deactivation/reactivation cycle (approval dated 3/23/2026) rather than
+through a deactivation/reactivation cycle (approval dated 3/20/2026) rather than
 continuous billing since the 1/8/2024 CCN date; (2) no financials or tax returns have
 been provided by the sellers as of this package - the three years that exist are
 expected to show minimal revenue, consistent with a license-only operation.
@@ -101,7 +101,7 @@ def info_package():
                           "Comal, DeWitt, Dimmit, Edwards, Frio, Gillespie, Goliad, Gonzales, "
                           "Guadalupe, Jackson, Karnes, Kendall, Kerr, Kinney, La Salle, Lavaca, "
                           "Maverick, Medina, Real, Uvalde, Val Verde, Victoria, Wilson, Zavala"),
-        ("CMS Certification Number (CCN/PTAN)", "A9167"),
+        ("CMS Certification Number (CCN/PTAN)", "A91679"),
         ("PECOS enrollment status", "Active"),
         ("CHAP accreditation", "Effective 1/8/2024 - expires 1/8/2027"),
         ("CLIA number", "45D2282700, effective 5/23/2025 - expires 5/23/2027"),
@@ -114,7 +114,7 @@ def info_package():
 
     h1(d, "3. Flag - PTAN deactivation and reactivation")
     para(d, "On 7/3/2026 the sellers provided a CMS reactivation approval letter and confirmation "
-            "email, both dated 3/23/2026, described as \"official confirmation from CMS ... for the "
+            "email, both dated 3/20/2026, described as \"official confirmation from CMS ... for the "
             "reactivation of our PTAN and billing privileges.\" This indicates the PTAN was not "
             "continuously active for Medicare billing between the 1/8/2024 certification date and the "
             "March 2026 reactivation - it was reactivated only a few months before this sale process "
@@ -145,7 +145,7 @@ def info_package():
         ("Down payment", "$125,000 at closing (~8/1/2026), concurrent with the 49% transfer"),
         ("Installments", "$31,250/month, September 2026 through December 2026"),
         ("Interest rate", "6% per annum on the unpaid balance from day one"),
-        ("Final payment", "Approximately $258,489 due 1/15/2027, the first date past the 36-month rule, "
+        ("Final payment", "Approximately $258,489.46 due 1/15/2027, the first date past the 36-month rule, "
                           "concurrent with the remaining 51% transfer"),
         ("Security", "Sellers hold a security interest in the company and a personal guaranty from the "
                      "buyer until paid in full; prepayable at any time without penalty"),
@@ -167,7 +167,7 @@ def info_package():
     h1(d, "7. What we can provide on request")
     for item in [
         "The Membership Interest Purchase Agreement (current redline) and related transaction documents",
-        "The sellers' CCN/PTAN reactivation letter and CMS confirmation email (3/23/2026)",
+        "The sellers' CCN/PTAN reactivation letter and CMS confirmation email (3/20/2026)",
         "The CHAP accreditation certificate",
         "The Medicaid HHSC contract documentation",
         "Sellers' financial statements and tax returns, once received",

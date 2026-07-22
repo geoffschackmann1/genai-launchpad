@@ -1,7 +1,7 @@
 # Azalea Hospice — SBA 7(a) Application — File Index
 
 **Borrower:** Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care) · EIN 41-4966640
-**Target/operating co:** Refuge Hospice, LLC (San Antonio, TX) · NPI 1174237572 · CCN/PTAN A9167
+**Target/operating co:** Refuge Hospice, LLC (San Antonio, TX) · NPI 1174237572 · CCN/PTAN A91679
 · being acquired via a phased change of ownership (CHOW)
 **Loan:** $500,000 SBA 7(a) (Rev 4.10) · **Project:** $750,000 · **Equity:** $250,000 (33%)
 **Lender contact:** John Hart (SourceFunding)
