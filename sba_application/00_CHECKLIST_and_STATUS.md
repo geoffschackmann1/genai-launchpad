@@ -1,153 +1,123 @@
 # Azalea Hospice — SBA 7(a) Application — Master Tracker
 
-> **STRUCTURE SUPERSEDED 2026-07-16 — see `13_checklist_response_2026-07-16/`.** Hickory failed its
-> site survey; the target is now **Refuge Hospice, LLC** (TX, CCN eff. 1/8/2024, Medicare+Medicaid,
-> $500K per MIPA Rev 1.00). New request: **single SBA 7(a) $500,000** (retires the $375K seller
-> balance Sept 2026 + working capital) + **$250,000 equity** (Bullard $195K + Schackmann $55K) =
-> $750,000 project. The $300K piggyback bank loan is gone. Projections basis: Rev 3.00 proforma.
-> The structure block below is retained for history only.
+**Borrower:** Tyler Hospice Hold, LLC (dba Azalea Hospice & Palliative Care), a Wyoming LLC
+foreign-qualified in Texas | EIN 41-4966640
+**Target/operating co:** Refuge Hospice, LLC (San Antonio, TX) | NPI 1174237572 | CCN/PTAN A9167
+| being acquired via a phased change of ownership (CHOW)
+**Sellers:** Jorge Resendiz and Dennis Hendrix, through DHJR Limited Partnership
+**Loan:** $500,000 SBA 7(a) (Rev 4.10) | **Project:** $750,000 | **Equity:** $250,000 (33%)
+**Lender contact:** John Hart (SourceFunding)
 
-**Borrower:** Tyler Hospice Hold LLC (dba Azalea Hospice & Palliative Care) | EIN 41-4966640
-**Lender contact:** John Hart (SourceFunding) | **SBA loan request (superseded):** $450,000 SBA 7(a) + $300,000 subordinate bank acquisition loan | **Total project:** $945,000
-
-This folder is the single home for the whole application. Each numbered subfolder holds one
-deliverable. `00_source_forms/` holds the blank forms exactly as the lender provided them.
+> Start with **`13_checklist_response_2026-07-16/`** for the current lender submission package,
+> **`15_valuation_2026-07-20/`** for the FMV valuation package sent to William at healthfmv.com,
+> and **`16_refuge_operational_transition/refuge-operating-plan.md`** for the interim
+> operating plan covering the period before the formal CHOW closes.
+> Legend: **READY** = drafted/complete · **PRE-FILL** = mostly done, add personal data ·
+> **NEEDS YOU** = borrower must provide · **PROVIDED** = source doc on file · **REF** = reference only.
 
 ---
 
-## Current structure (authoritative)
+## Current structure (authoritative — Rev 4.10)
 
-- **Startup change of ownership (CHOW)** — Tyler Hospice Hold LLC (a **Wyoming** LLC, EIN 41-4966640,
-  foreign-qualified in Texas) acquires 100% of Hickory Hospice LLC (a Texas LLC), an established Medicare-certified
-  agency (billing-ready day one) that retains its Medicare provider number via the CHOW and operates as Azalea.
-  No current operating affiliate (VistaRiver interest sold Aug 2025; passive note only).
-- **Sources:** SBA $450,000 (47.6%) + bank acquisition loan $300,000 (31.7%) + equity $195,000 (20.6%) = **$945,000**.
-- **SBA 7(a):** $450,000, 15-yr term, ~10.5% rate. Funds **startup + working capital only** (NOT the acquisition).
-- **Bank acquisition loan:** $300,000 at 6%, 3-yr amortization, from a bank James Bullard uses; **Bullard personally
-  guarantees it**; **subordinate to the SBA loan** (intercreditor/subordination agreement + SBA approval — "piggyback").
-  Funds the $300,000 purchase of 100% of Hickory's membership interests. Retires after Year 3.
-- **Uses:** $300,000 Hickory acquisition (bank loan) + $63,000 startup + $15,000 equipment + $567,000 working-capital reserve = $945,000.
-- **Equity injection:** $195,000 cash from **James Bullard** for a **19.5%** passive minority interest
-  ($100K wired 5/7/2026; $95K committed by 7/31/2026). **$180,000 designated as the SBA equity injection; $15,000 additional WC.**
-  Under 20% → no SBA PG, no PFS, source-of-funds verification only (Bullard guarantees only the bank loan).
-  20.6% injection is above the 10% SOP 50 10 8 minimum.
-- **Cap table:** Geoff Schackmann (individual) 39.9% / Bullard 19.5% / Shelton-Davenport-Woodard 13.3% each / reserved 0.7% = 100%.
-- **Ownership:** Geoff Schackmann owns the 39.9% interest **directly, as an individual**, and is the **Manager**
-  (no Adeline & Lilah holding layer). The 39.9% is **Arizona community property**; spouse **Mary Elizabeth Burcham**
-  holds a **~19.95% community-property interest** (under 20%, passive, non-managing) and signs a **spousal /
-  community-property consent** only (on the OA and on Geoff's personal guaranty) — no PFS, no guaranty.
-- **Tax:** the Company **elects S-corporation tax treatment under IRC §1361 (IRS Form 2553)** — NOT a partnership.
-  Files **Form 1120-S**, single class of stock, pro-rata distributions. Hickory Hospice LLC is a **disregarded
-  entity (or QSub)** of the S-corp. CPA item: Form 2553 not yet filed; with a 3/18/2026 formation the on-time
-  window was ~6/1/2026, so the CPA may need **Rev. Proc. 2013-30** late-election relief.
-- **SBA loan guarantors:** Geoff Schackmann (personal guaranty, controlling Manager / sole 20%+ owner —
-  **direct individual 39.9% owner**); Hickory Hospice LLC (corporate guaranty
-  + lien on its assets/receivables, as operating subsidiary). Mary Elizabeth Burcham (spouse, ~19.95%
-  community-property interest, passive) signs spousal / community-property consent only. Bullard guarantees only
-  the separate bank acquisition loan.
-- **Combined debt service (Yrs 1-3) $169,211/yr** = SBA $59,692 ($4,974/mo) + bank $109,519 ($9,127/mo) = $14,101/mo.
-  After Year 3, SBA only (~$59,692/yr). Per-year interest — SBA: $46,633/$45,325/$43,757; bank: $15,441/$9,638/$3,478.
-- **Coverage (combined debt):** DSCR Y1 1.79x / Y2 4.02x / Y3 5.95x; global 3-yr 3.92x (floor 1.25x). Min cash trough $444,962; LOC never drawn.
-- **Financials (current model):** EBITDA $302,522 / $679,524 / $1,007,520; Net income $199,308 / $574,951 / $903,362.
+- **Acquisition:** $500,000 purchase price for 100% of Refuge Hospice, LLC's membership
+  interests, structured in two steps to respect the CMS 36-month rule (Refuge's CCN was
+  certified 1/8/2024, so the window closes 1/8/2027): **49%** transfers at closing
+  (~8/1/2026), the remaining **51%** transfers **1/15/2027**, the first date past that window.
+- **Payment structure:** $125,000 down at closing; $31,250/month September-December 2026;
+  a final payment of approximately $258,489 due 1/15/2027; 6% interest on the unpaid balance;
+  security interest plus personal guaranty; prepayable at any time without penalty.
+- **Financing sequence (Path A):** an interim bank note of $500,000 at 6%, 36-month
+  amortization (via Jim Bullard's Texas bank relationship) funds in September 2026 and pays
+  off the seller balance. The SBA 7(a) loan — $500,000 at ~10.5%, 10-year term — funds and
+  refinances that bank note in January 2027, concurrent with the 51% ownership transfer.
+- **No revolver / assumed facility.** The financial model carries real-cash discipline: if
+  projected cash goes negative it's reported as an explicit "additional funding requirement,"
+  never plugged with a fictional credit line.
+- **Equity injection:** $250,000 total — 33% of the $750,000 project, well above SBA's 10%
+  minimum. James Bullard $100,000 (wired 5/7/2026) + $95,000 (pending); Geoff Schackmann
+  $55,000 (pending).
+- **Cap table (Tyler Hospice Hold, LLC — unchanged across the target switch from Hickory to
+  Refuge):** Geoff Schackmann 39.9% (held directly as an individual, Manager) / James Bullard
+  19.5% / Silas Shelton, Dana Davenport, Bradley Woodard 13.3% each / reserved pool 0.7%.
+  **Operating-agreement documents in `08_entity_documents/` still reference Hickory Hospice as
+  the operating subsidiary and need to be reconciled to Refuge Hospice, LLC before execution —
+  see Open Items below.**
+- **Financials (Rev 4.10 proforma):** EBITDA $299,195 / $695,981 / $985,429 (Years 1-3); net
+  income $128,491 / $457,463 / $718,153; EBITDA margin ~15.5% ramping to 22.3% blended Year 1,
+  24.1% Year 2, 28.2% Year 3; debt-service coverage 3.8x / 8.6x / 12.2x (8.2x aggregate); minimum
+  projected cash $3,354; month-36 cash $1,297,392.
+
+## License and regulatory snapshot
+
+- CCN/PTAN A9167, NPI 1174237572, PECOS enrollment active.
+- CHAP accredited 1/8/2024 - 1/8/2027; CLIA #45D2282700.
+- Texas HHSC Medicaid Contract No. HHS000004700408.
+- **PTAN reactivation:** CMS approval letter dated 3/23/2026 confirms the billing number was
+  reactivated after a deactivation period; reactivation expires **September 2026** absent proof
+  of active billing (drives the interim operating plan's July-admission timeline).
+- **CMS hospice enrollment moratorium** in effect nationwide since 5/13/2026 (initial 6-month
+  term). Blocks new Medicare enrollments and majority-ownership changes that fall inside the
+  36-month window; does not appear to block the 1/15/2027 transfer, which lands outside that
+  window — recheck with counsel closer to year-end.
+- **Interim operating arrangement:** sellers agreed on a 7/21/2026 call to let Geoff operate
+  under Refuge's license via a management arrangement ahead of the formal CHOW. Full critical
+  path (admit a patient by 7/31 → submit a claim in August → receive payment in September) is
+  in `16_refuge_operational_transition/refuge-operating-plan.md`, which also flags the
+  de-facto-control-before-CHOW-approval risk as the item requiring counsel sign-off first.
 
 ---
 
 ## Status at a glance
 
 | # | Item | Status | Where it lives |
-|---|------|--------|----------------|
-| 1 | SBA 7(a) Loan Checklist (master) | reference | `00_source_forms/1_*` |
-| 2 | Company Profile | **DRAFTED** — needs personal IDs | `01_company_profile/Company_Profile_DRAFT.docx` |
-| 2a | SBA Form 1919 — Borrower Information | **PRE-FILLED** — principals answer Section II | `01_company_profile/SBA_Form_1919_*` |
-| 3 | Use of Funds / Use of Proceeds | **DRAFTED** (from model) | `02_use_of_funds/` |
-| 3a | Equity Injection & SBA Structure memo | **DRAFTED** (SOP 50 10 8) | `02_use_of_funds/` |
-| 4 | Business Plan (editable Word, current) | **Rev 5.00 DRAFTED** | `03_business_plan/Azalea_SBA_Business_Plan_Rev5.00.docx` |
-| 4a | Reconciliation / Break-even memo | **DRAFTED** | `03_business_plan/` |
-| 5 | Business Debt Schedule | **DRAFTED** (no pre-close debt) | `04_business_debt_schedule/` |
-| 6 | Personal History Form (SBA 912) | needs you (personal) | guide in `05_*`; resumes in `06_*` |
-| 7 | Personal Financial Statement (SBA 413) | **PRE-FILLED worksheet** — add values | `05_personal_financial_statement/SBA_Form_413_*` |
-| 7a | Personal Cash Flow | **PRE-FILL** — add values | `07_personal_cash_flow/` |
-| 8 | Management Resumes (4) | **DRAFTED** — needs personal fields | `06_personal_history_resume/` |
-| 9 | Lender Credit Memo (exec summary) | **DRAFTED** | `11_lender_credit_memo/` |
-| 9a | DSCR Sensitivity / Stress Test | **DRAFTED** | `11_lender_credit_memo/` |
-| 9b | Cover Letter + Anticipated Q&A | **DRAFTED** | `11_lender_credit_memo/` |
-| 9c | Closing checklist + Insurance requirements | **DRAFTED** | `11_lender_credit_memo/` |
-| — | Financial Model (3 workbooks) | **COMPLETE** (engine-built, QA-clean) | `09_financial_model/` |
-| — | **Amended & Restated OA (holdco) + single-member OA (Hickory)** | **DRAFTED - operative; needs signatures** | `08_entity_documents/*AMENDED_and_RESTATED*`, `*SINGLE_MEMBER*` |
-| — | OA v7 (as provided) + Reconciliation Memo + interim Amendment No. 1 | **SUPERSEDED by the A&R OA** (retained for reference) | `08_entity_documents/` |
-| — | Bullard Subscription / Attestation / Source-of-Funds | **DRAFTED** | `08_entity_documents/`, `10_*/equity_injection_evidence/` |
-| — | Affiliate / Size-Standard memo | **DRAFTED** | `01_company_profile/` |
-| — | PFS support — VistaRiver MIPA + note | **PROVIDED** (8/15/2025) | `10_*/personal_financial_statement_support/` |
-| — | Equity injection — Tranche 1 ($100K) wire | **CONFIRMED** (5/7/2026) | `10_*/equity_injection_evidence/` |
-| — | Submission Cover Sheet + TOC; Readiness checklist | **DRAFTED** | root |
+|---|------|--------|-----------------|
+| 1 | Lender checklist response (PDFs + memos) | **DRAFTED** | `13_checklist_response_2026-07-16/` |
+| 2 | Use of Proceeds workbook (John Hart's template format) | **DRAFTED** | `13_checklist_response_2026-07-16/UOP Azalea Refuge Rev2.00.xlsx` |
+| 3 | Business Plan (Rev 6.00, current) | **DRAFTED** | `03_business_plan/Azalea SBA Business Plan Rev6.00.docx` |
+| 4 | Financial model (Rev 4.10 proforma, 23/23 QA) | **COMPLETE** | `financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx` |
+| 5 | Package audit harness (content + formatting, 40/40) | **COMPLETE** | `sba_application/qa_package.py` |
+| 6 | Insurance application (PL/GL) + reply to Todd Plummer | **DRAFTED** | `14_insurance_2026-07-16/` |
+| 7 | Workers' comp underwriting answers (BerkleyNet / Pie) | **SENT** | reply thread, not filed |
+| 8 | Refuge FMV valuation package for William (healthfmv.com) | **DRAFTED / DELIVERED** | `15_valuation_2026-07-20/` |
+| 9 | Interim operating plan (pre-CHOW critical path) | **DRAFTED / DELIVERED** | `16_refuge_operational_transition/refuge-operating-plan.md` |
+| 10 | Investor raise package ($500K raise) | **DRAFTED** | `12_investor_raise/` |
+| 11 | Operating agreements (holdco A&R + single-member opco) | **NEEDS RECONCILIATION** — still name Hickory Hospice | `08_entity_documents/` |
+| 12 | Personal forms (413 PFS, 912, cash flow, resumes) | **PRE-FILL** — Hickory-era drafts, values still apply to Geoff personally | `05_*`, `06_*`, `07_*` |
+| — | Lease (Tyler office, 13387 Hwy 69 N) | **EXECUTED** — reviewed for tenant-entity/term flags | `10_supporting_documents/office_lease/` |
 
 ---
 
-## Still needed from you (genuine borrower-personal items)
+## Open items
 
-1. **Personal IDs / data for Geoff (sole 20%+ owner, guarantor):** SSN, DOB, place of birth, residential
-   address, citizenship; 3 years personal tax returns (all schedules, W-2s/1099s); credit report; driver license.
-2. **Geoff PFS values (Form 413 pre-fill is started):** asset/liability dollar values + supporting statements;
-   VistaRiver note ledger/recent statement showing it is current.
-3. **Personal cash flow values** (pre-fill is started).
-4. **Company contacts:** CPA, attorney, insurance agent; office zip + phone; web address.
-5. **Entity docs:** WY formation certificate + EIN confirmation letter; **execute the Amended & Restated OA (holdco)
-   and the single-member OA for Hickory** (cap table 39.9/19.5/13.3×3/0.7 with **Geoff holding the 39.9% directly
-   as an individual**; **S-corp tax election under IRC §1361 / Form 2553**; full-13.3%-forfeitable
-   vesting, SBA carve-outs, Hickory corporate guaranty). These supersede the as-provided OA v7 (60/25/4.9).
-   CPA item: Form 2553 not yet filed — Rev. Proc. 2013-30 late-election relief may be needed (formation 3/18/2026).
-6. **Transaction docs:** Hickory MIPA is on file (Rev 2.00); confirm final signed version + office lease/LOI (loan-term).
-   **Amend the MIPA so the Buyer is "Tyler Hospice Hold, LLC, a Wyoming limited liability company"** (Rev 2.00 names a Texas LLC).
-   **Bank acquisition-loan package:** term sheet/commitment, note, security agreement; intercreditor/subordination
-   agreement (subordinate to SBA) + SBA approval; Bullard's personal guaranty of the bank loan.
-7. **Equity-injection verification:** Tranche 1 ($100K, 5/7/2026, JIM BULLARD → Mercury ****1275) confirmed.
-   Still needed: (a) Bullard's bank/brokerage statements in his name covering 30+ days before each wire;
-   (b) the remaining $95K wire when it lands; (c) final Mercury statement showing the full $195K on deposit.
-8. **Borrower-entity name/state:** the MIPA names "Tyler Hospice Hold, LLC (Texas)"; SBA/OA use the Wyoming
-   entity. Reconcile to one entity/name/state before signing (open item B2).
-
-Full detail in `INFORMATION_NEEDED_FROM_YOU.docx`. Personal-form how-to in `05_*/HOW_TO_COMPLETE_personal_forms.docx`.
+1. **Reconcile the operating agreements to Refuge Hospice, LLC.** `08_entity_documents/`
+   still contains the Amended & Restated holdco OA and a single-member OA drafted for
+   "Hickory Hospice LLC" as the operating subsidiary. The cap table and holdco structure carry
+   over unchanged (see above), but every reference to Hickory as the acquired entity needs to
+   become Refuge Hospice, LLC, and — per the interim operating plan — a management services
+   agreement needs drafting for the pre-CHOW period, reviewed by healthcare regulatory counsel.
+2. **MIPA still unsigned.** Terms are settled (see Current structure above) but nothing is
+   executed. Lock the protections listed in `16_refuge_operational_transition/refuge-operating-plan.md`
+   §3 before operating under the sellers' license.
+3. **855A / DDE / TULIP sequencing** for the interim operating period — see the operating plan's
+   critical-path table; gated on counsel sign-off first.
+4. **CPA / S-corp election (Form 2553)** — the Company elects S-corp treatment under IRC §1361;
+   confirm filing status with the CPA (this item predates the Hickory-to-Refuge switch and still
+   applies unchanged).
+5. **Personal items from Geoff** (unchanged by the target switch): SSN/DOB/citizenship/tax
+   returns/credit report for the SBA 912/413 forms; PFS dollar values; personal cash-flow values.
 
 ---
 
-## Decisions locked
+## Historical note — Hickory Hospice (abandoned target, retained for reference only)
 
-- **PFS + tax returns: Geoff Schackmann only** (sole 20%+ owner/guarantor — direct individual 39.9% owner).
-- **Ownership of the 39.9%:** Geoff Schackmann holds it **directly, as an individual** (no Adeline & Lilah holding
-  layer), and is the Manager. The interest is **Arizona community property**; spouse Mary Elizabeth Burcham =
-  ~19.95% community-property interest, passive, under 20% → spousal / community-property consent only, no PFS/guaranty.
-- **Tax: S corporation.** The Company elects S-corp treatment under IRC §1361 (Form 2553); files Form 1120-S, single
-  class of stock, pro-rata distributions. Hickory is a disregarded entity/QSub. NOT a partnership. CPA item:
-  Form 2553 not yet filed (on-time window ~6/1/2026 vs 3/18/2026 formation) → may need Rev. Proc. 2013-30 relief.
-- **Equity injection:** $195,000 cash from James Bullard for **19.5%** passive interest (no convertible note;
-  Form 155 framing dropped). Phased $100K (received 5/7/2026) + $95K (by 7/31/2026). $180K designated as the SBA
-  equity injection; $15K additional WC. SBA loan is $450K (startup + working capital only).
-- **Acquisition financed by a subordinate bank term loan** — $300K at 6%, 3-yr amort., from a bank Bullard uses,
-  personally guaranteed by Bullard and subordinate to the SBA loan (piggyback). Funds the Hickory purchase; retires
-  after Year 3. Dual-debt structure → combined Yrs 1-3 debt service $169,211/yr, DSCR 1.79x/4.02x/5.95x.
-- **Closing timing:** SBA close/disbursement AFTER the final equity tranche so the full $195K is on deposit.
-- **Operator vesting & buy-back (A&R OA, Article V):** Shelton, Davenport, Woodard (13.3% each) vest on a **dual trigger** — 4-year time schedule with a 1-year cliff **AND** performance milestones (Breakeven / 3 / 12 consecutive profitable months), lesser-of governs. Unvested forfeited at $0 on departure; **Company call right** over vested units — **FMV** for a good-leaver (no-cause termination, death, disability, retirement), **lower of cost or FMV** (~$0) for a bad-leaver (resignation before full vest, or for-cause), paid via an SBA-subordinated note.
-- **Structure:** startup CHOW (not expansion) — no current operating affiliate to anchor an expansion or co-guarantee.
-- **Bullard stays passive under 20% (no PG).** If a specific lender requires a second guarantor, revisit with Bullard.
-
----
-
-## Open items to resolve with John Hart / counsel
-
-- **Piggyback financing approval.** Secure the $300K bank acquisition loan (term sheet/commitment), the
-  intercreditor/subordination agreement subordinating it to the SBA loan, and SBA-lender approval of the piggyback
-  structure. Confirm Bullard's personal guaranty of the bank loan.
-- **Lender fit at 20.6% injection.** Above SBA's 10% floor. Combined-debt DSCR is tighter in ramp years (1.79x Y1)
-  because the bank loan is front-loaded on a 3-yr amort.; the $567K reserve keeps the LOC undrawn (min cash ~$445K).
-- **Borrower entity RESOLVED:** Tyler Hospice Hold, LLC, a **Wyoming** LLC (EIN 41-4966640), foreign-qualified in TX.
-  The Hickory MIPA (Rev. 2.00) must be amended so the Buyer is "Tyler Hospice Hold, LLC, a Wyoming limited liability company" (B2). Confirm exact name vs WY Certificate of Formation.
-- **Execute the Amended & Restated OA (holdco) + single-member OA (Hickory)** so the cap table/tax/structure match the application (B3); these supersede the interim Amendment No. 1.
-- **S-corp election (Form 2553) — CPA item.** The Company elects S-corp treatment under IRC §1361. Form 2553 is not
-  yet filed; with a 3/18/2026 formation the on-time election window was ~6/1/2026, so the CPA likely needs
-  **Rev. Proc. 2013-30** late-election relief. Confirm CPA is engaged and the election (or relief request) is filed.
-- **NAICS confirmation** for hospice (621610 used; confirm with lender).
-
-History of superseded structures (for reference only): the package previously modeled $1.05M with a $300K
-seller note (combined DSCR), then $500K SBA / $250K equity / Bullard 19.9% / 33% injection. Both are superseded
-by the current structure above. The two `*_AS_PROVIDED.docx` OA files intentionally retain their original
-(pre-amendment) figures; the Investor/Operations workbooks and all generated documents are on the current structure.
+The application originally targeted **Hickory Hospice, LLC**, a different Texas hospice license,
+with a $945,000 project ($450K SBA + $300K subordinate bank loan + $195K equity at 19.5%
+Bullard-only injection). Hickory failed its site survey and the target changed to **Refuge
+Hospice, LLC** as of 7/16/2026. None of the Hickory-specific deal terms, financing structure, or
+dollar figures apply to the current application. Files that still carry the Hickory name
+(`08_entity_documents/Hickory_Hospice_LLC_SINGLE_MEMBER_OA.docx`,
+`10_supporting_documents/purchase_agreement_seller_note/` Hickory MIPA and lease drafts) are left
+in place as historical record but are not part of the active package — do not send them to the
+lender. No reference to an entity named "Avant Hospice" was found anywhere in this repository;
+if that name refers to something else, flag it and it can be tracked down and addressed
+separately.
