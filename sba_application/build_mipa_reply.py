@@ -65,11 +65,13 @@ def email_to_blaise():
 
     _p(d, "Still need an answer from you:", bold=True)
     for t in [
-        "Closing date. “On or about” reopens the exact timing risk the January 15, 2027 date was "
-        "meant to close off. A closing even a few days early falls back inside the 36 month window under "
-        "42 CFR §424.550(b), and the current enrollment moratorium makes that worse, not better. I'd "
-        "rather have a hard floor: “not before January 15, 2027.” Let me know if there's a reason "
-        "you need the flexibility to close earlier.",
+        "Closing date. I see the “no earlier than thirty-six (36) months after the Company's CMS "
+        "Certification” qualifier stays in, which protects the regulatory floor, so we're aligned on the "
+        "substance. The remaining wrinkle is that “on or about January 15” leaves a window between "
+        "January 8 and January 15 where the final payment figure of $258,489.46 no longer matches, since "
+        "that number is computed to January 15 exactly. Simplest fix is “not before January 15, 2027.” "
+        "If you want the flexibility to close in that one week window instead, the final payment needs to "
+        "be restated as a formula rather than a fixed number. Either works for me, just pick one.",
         "Default rate. We're aligned on the 5 day cure, but I haven't heard back on bringing the Note's "
         "default rate down from 15% to 10%. Can we close that out too?",
         "Interim operating covenants (Section 5.03). Good to know Refuge is member managed, I'll draft "
@@ -87,8 +89,8 @@ def email_to_blaise():
         "Section 1.09, Payment Deferral for Regulatory Payment Events. Gives me the ability to defer a "
         "payment if Medicare payment is delayed by a provisional period of enhanced oversight, prepayment "
         "review, or additional documentation requests. Capped at 12 months total, interest keeps accruing, "
-        "no default triggered. Given Palmetto's 3/20/26 reactivation letter, this is a real risk, not a "
-        "hypothetical one.",
+        "no default triggered. Given Palmetto's March 2026 reactivation letter, this is a real risk, not "
+        "a hypothetical one.",
         "Security agreement consolidation (Section 1.07). One joint security agreement with both Sellers, "
         "deletion of Section 2.3, and the Section 3.3-3.4 fix so the timing reflects that I don't hold the "
         "interest until Closing.",
