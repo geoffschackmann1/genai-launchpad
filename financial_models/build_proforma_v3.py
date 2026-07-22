@@ -842,26 +842,85 @@ def balance_sheet(bk: OB):
 # =====================================================================
 def summary(bk: OB):
     ws = bk.sheet("3-Year Summary", tab="BF8F00")
-    bk.title(ws, "3-YEAR SUMMARY - annual rollup with per-year and global (3-year) debt-service coverage.")
+    bk.title(ws, "3-YEAR SUMMARY - annual rollup with full P&L detail, year-end balance sheet, and "
+                 "per-year and global (3-year) debt-service coverage. Built for lender financial-spread tools.")
     ws.column_dimensions["A"].width = 44
     for c in "BCDE":
         ws.column_dimensions[c].width = 15
-    P = bk.rows["P&L"]; CF = bk.rows["Cash Flow & Runway"]; A = bk.addr
+    P = bk.rows["P&L"]; CF = bk.rows["Cash Flow & Runway"]; BS = bk.rows["Balance Sheet"]
+    CW = bk.rows["Census Waterfall"]; A = bk.addr
     r = 4
     for j, h in enumerate(["", "Year 1", "Year 2", "Year 3"]):
         bk._set(ws, r, 1 + j, h, S.f_label(bold=True), None, S.fill(S.GREYHDR), S.CENTER, S.BORDER_THIN)
     r += 1
     yrs = [("C", "N"), ("O", "Z"), ("AA", "AL")]
+
     def row(label, sheet, srow, key=None, bold=False, fmt=S.FMT_CUR):
         nonlocal r
         bk.lbl(ws, r, label, bold=bold)
         for j, (c0, c1) in enumerate(yrs):
             bk.fml(ws, r, 2 + j, f"=SUM('{sheet}'!{c0}{srow}:{c1}{srow})", fmt, bold=bold)
         if key: bk.rows["3-Year Summary"][key] = r
+        rr = r; r += 1
+        return rr
+
+    def row_avg(label, sheet, srow, fmt=S.FMT_NUM1):
+        nonlocal r
+        bk.lbl(ws, r, label)
+        for j, (c0, c1) in enumerate(yrs):
+            bk.fml(ws, r, 2 + j, f"=AVERAGE('{sheet}'!{c0}{srow}:{c1}{srow})", fmt)
         r += 1
-    row("Net patient revenue", "P&L", P["npr"], "npr", bold=True)
-    row("EBITDA", "P&L", P["ebitda"], "ebitda", bold=True)
+
+    def row_point(label, sheet, srow, key=None, bold=False, fmt=S.FMT_CUR):
+        nonlocal r
+        bk.lbl(ws, r, label, bold=bold)
+        for j, (c0, c1) in enumerate(yrs):
+            bk.fml(ws, r, 2 + j, f"='{sheet}'!{c1}{srow}", fmt, bold=bold)
+        if key: bk.rows["3-Year Summary"][key] = r
+        r += 1
+
+    def row_ratio(label, num_row, den_row, bold=False):
+        nonlocal r
+        bk.lbl(ws, r, label, bold=bold)
+        for j in range(3):
+            col = gcl(2 + j)
+            bk.fml(ws, r, 2 + j, f"=IF({col}{den_row}=0,\"-\",{col}{num_row}/{col}{den_row})", S.FMT_PCT, bold=bold)
+        r += 1
+
+    bk.lbl(ws, r, "OPERATING RESULTS (annual)", bold=True); r += 1
+    row_avg("Average daily census (year average)", "Census Waterfall", CW["adc"])
+    row("Gross patient revenue", "P&L", P["gross"])
+    row("Deductions & billing fees", "P&L", P["fee"])
+    npr_row = row("Net patient revenue", "P&L", P["npr"], "npr", bold=True)
+    row("Direct patient care costs", "P&L", P["dpc"])
+    row("Clinical labor & benefits", "P&L", P["clin"])
+    row("Total cost of services", "P&L", P["cos"])
+    gp_row = row("Gross profit", "P&L", P["gp"], bold=True)
+    row_ratio("Gross margin %", gp_row, npr_row)
+    row("Indirect / administrative labor", "P&L", P["ind"])
+    row("Facility costs", "P&L", P["fac"])
+    row("G&A - other", "P&L", P["ga"])
+    row("Depreciation & amortization", "P&L", P["amort"])
+    row("Total operating expenses", "P&L", P["opex"])
+    row("EBIT", "P&L", P["ebit"])
+    ebitda_row = row("EBITDA", "P&L", P["ebitda"], "ebitda", bold=True)
+    row_ratio("EBITDA margin %", ebitda_row, npr_row, bold=True)
+    row("Contingency provision (below EBITDA, non-GAAP buffer)", "P&L", P["cont"])
     row("Net income", "Cash Flow & Runway", CF["ni"], "ni")
+
+    r += 1
+    bk.lbl(ws, r, "YEAR-END BALANCE SHEET (snapshot)", bold=True); r += 1
+    row_point("Cash", "Balance Sheet", BS["cash"])
+    row_point("Accounts receivable", "Balance Sheet", BS["ar"])
+    row_point("Total assets", "Balance Sheet", BS["assets"], bold=True)
+    row_point("Total liabilities", "Balance Sheet", BS["liab"])
+    bk.lbl(ws, r, "Total equity", bold=True)
+    for j, (c0, c1) in enumerate(yrs):
+        bk.fml(ws, r, 2 + j, f"='Balance Sheet'!{c1}{BS['equity']}+'Balance Sheet'!{c1}{BS['re']}",
+               S.FMT_CUR, bold=True)
+    r += 1
+
+    r += 1
     bk.lbl(ws, r, "Debt service (P&I, all notes)")
     for j, (c0, c1) in enumerate(yrs):
         cf = "Cash Flow & Runway"
@@ -873,10 +932,10 @@ def summary(bk: OB):
     bk.lbl(ws, r, "DSCR (per year)", bold=True)
     for j in range(3):
         col = gcl(2 + j)
-        bk.fml(ws, r, 2 + j, f"=IF({col}{ds_row}=0,\"-\",{col}6/{col}{ds_row})", S.FMT_MULT, bold=True)
+        bk.fml(ws, r, 2 + j, f"=IF({col}{ds_row}=0,\"-\",{col}{ebitda_row}/{col}{ds_row})", S.FMT_MULT, bold=True)
     r += 2
     bk.lbl(ws, r, "GLOBAL 3-YEAR DSCR (operative SBA test)", bold=True)
-    bk.fml(ws, r, 2, f"=SUM(B6:D6)/SUM(B{ds_row}:D{ds_row})", S.FMT_MULT, bold=True, fill=S.fill(S.LIGHTBLUE))
+    bk.fml(ws, r, 2, f"=SUM(B{ebitda_row}:D{ebitda_row})/SUM(B{ds_row}:D{ds_row})", S.FMT_MULT, bold=True, fill=S.fill(S.LIGHTBLUE))
     r += 1
     bk.lbl(ws, r, "Minimum cash across 36 months", bold=True)
     bk.fml(ws, r, 2, f"='Cash Flow & Runway'!B{CF['mincash']}", S.FMT_CUR, bold=True)

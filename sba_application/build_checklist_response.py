@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))
 import docfmt
 
 from docx import Document
+from docx.enum.text import WD_COLOR_INDEX
 from docx.shared import Pt, RGBColor
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
@@ -324,6 +325,15 @@ def assumptions_narrative():
          "in full ($15,211/month October-December); the SBA 7(a) funds ~1/15/2027 and refinances the bank note (~$461,676 "
          "payoff), leaving a single $6,747/month payment (10.5%/10-year) from February. Owner salaries defer until "
          "break-even census ($42,500 accrued, repaid January); clinical hiring lags census one month with PRN coverage."),
+        ("Business Debt Schedule - detail", "The Business Debt Schedule form carries a single line because there is only one "
+         "piece of existing/interim debt in the structure: the interim bank note, a $500,000 acquisition note funded in "
+         "September 2026 by a bank relationship Jim Bullard holds in Texas, at 6.00% with a 36-month amortization and a "
+         "$15,211 monthly payment. It funds the seller payoff in full - this is what the model calls the 'seller refi.' "
+         "The balance shown on the form (~$461,676) is the note's projected balance as of 1/15/2027, the date the SBA 7(a) "
+         "is scheduled to fund and refinance it. Collateral is the business assets, and the note is expressly structured to "
+         "be repaid by the SBA loan - it is not intended to remain outstanding alongside the SBA debt. The SBA loan itself "
+         "does not appear as a line on this form because it is the loan being applied for, not existing debt; once it funds "
+         "and retires the bank note, the business carries a single $6,747/month SBA payment going forward with no other debt."),
         ("Results on these assumptions", "EBITDA $299K year 1 (15.5% margin), $696K year 2 (24.1%), $985K year 3 (28.2%), "
          "before debt service; month-12 EBITDA margin 22.3%. Break-even census ~17-18 patients, crossed in month 2. The model "
          "carries no revolver or assumed facility: base-case cash never goes negative (minimum month $3,354, disclosed), and the "
@@ -337,6 +347,121 @@ def assumptions_narrative():
     print("wrote", path)
 
 
+def reply_financing_and_checklist():
+    """Reply to John's 7/20 1:58pm email: the SBA-funding-timing/license-transfer question,
+    the Bullard ownership-percentage flag, and his 11 numbered checklist items."""
+    doc = Document()
+    doc.styles["Normal"].font.name = "Aptos"
+    doc.styles["Normal"].font.size = Pt(11)
+    doc.add_heading("Draft reply - John Hart (financing timing + checklist items)", 0)
+    p = doc.add_paragraph()
+    r = p.add_run("To: John Hart | Cc: Mary Brownmiller | From: Geoff Schackmann | "
+                   "Re: RE: Azalea Hospice SBA Funding Request")
+    r.bold = True
+    r.font.size = Pt(11)
+
+    for para in [
+        "John,",
+        "Thanks for the close read, and for catching the timing question - that's exactly the kind of thing "
+        "I'd rather get right now than at closing.",
+    ]:
+        _p(doc, para)
+
+    _h(doc, "On SBA funding vs. the license transfer", level=1)
+    for para in [
+        "You're right that SBA won't fund until the license is under the borrower's name, and that's actually "
+        "built into how we sequenced this. The interim bank note funds the acquisition in September while Tyler "
+        "Hospice Hold only holds 49% - that's private financing, not SBA money, so it doesn't run into that rule. "
+        "The SBA loan is scheduled to fund on 1/15/2027, the same date the remaining 51% transfers and Tyler "
+        "Hospice Hold reaches full ownership of Refuge. So the SBA proceeds don't move until the license is fully "
+        "in the borrower's name.",
+        "One honest caveat: there's a difference between the ownership transfer itself (which happens that day "
+        "under the purchase agreement) and CMS formally updating its own enrollment records to reflect it. Since "
+        "this transfer lands after the 36-month post-certification window closes, it should qualify for a "
+        "standard change-of-ownership notification rather than a full new-enrollment application, so any "
+        "processing lag should be short - but I don't want to promise you zero gap without your read on it. How "
+        "do your lenders typically handle that window on a hospice CHOW - do they need to see CMS's approval in "
+        "hand before they'll fund, or is the executed transfer enough?",
+    ]:
+        _p(doc, para)
+
+    _h(doc, "One flag on ownership percentage", level=1)
+    _p(doc, "Your note assumes both James and I are at 20% or more, so items 6-8 would apply to both of us. Per "
+             "our cap table James is at 19.5%, just under that threshold - which is also why he's been treated as "
+             "a passive investor (source-of-funds documentation, no personal guaranty, no full PFS) rather than a "
+             "20%+ owner. Let me know if you still want the full personal package from him anyway for the file, "
+             "but wanted to flag the percentage before it goes further.")
+
+    _h(doc, "Your checklist items", level=1)
+    items = [
+        ("1. Annual totals in the projections", "Done. The financial projections workbook now has a fuller "
+         "3-Year Summary tab - annual revenue, cost, EBITDA, and net income buildup for each of the three years, "
+         "plus a year-end balance sheet snapshot, not just the three headline numbers it had before. Attached."),
+        ("2. Written narrative assumptions", "Attached - the assumptions narrative walks through census, revenue, "
+         "officer salaries, staffing, debt service, and results in prose, not just tables."),
+        ("3. Checklist items highlighted in yellow", "Attached, with one thing to flag: I highlighted every "
+         "section that applies to this deal (all loans, all individuals, existing business/acquisition, "
+         "startup/change-of-ownership) but left Land Purchase/Construction, Franchise, and the COVID section "
+         "unhighlighted since none of those apply here - no land purchase, no franchise, and we have no PPP/EIDL "
+         "or other stimulus financing. Flag it if you read any of those as relevant and I'll revisit."),
+        ("4. Joint PFS", "In progress - my wife's information will be included per the community-property "
+         "structure already on file."),
+        ("5. Affiliate businesses", "On my side, the one affiliate item is a passive note from the VistaRiver "
+         "sale (already disclosed as PFS support). Checking with James on his side and will report back."),
+        ("6. Personal cash flow", "In progress."),
+        ("7. Management resume", "The business plan has full bios for me and the other principals - happy to "
+         "pull those into the standalone resume format if you'd rather have them separate."),
+        ("8. Proof of US citizenship", "Gathering passports now for the owners this applies to."),
+        ("9. More detail on the business debt schedule", "Added - the assumptions narrative now includes a "
+         "dedicated section walking through why the debt schedule form carries a single line (the interim bank "
+         "note), what the balance shown represents, and how it gets retired by the SBA loan."),
+        ("10. Proof of source of cash injection", "James's $100K wire is already documented; gathering the "
+         "supporting bank/brokerage statements now, and will send the same for the remaining tranches as they "
+         "land."),
+        ("11. 2025 tax return extension", "Will send a copy if the return isn't filed by the time we get back to "
+         "you on the rest."),
+    ]
+    for label, body in items:
+        pp = doc.add_paragraph()
+        rl = pp.add_run(label + " ")
+        rl.bold = True
+        rl.font.size = Pt(11)
+        rb = pp.add_run(body)
+        rb.font.size = Pt(11)
+
+    for para in [
+        "Attached: updated financial projections (with annual totals), the assumptions narrative (with the new "
+        "debt schedule section), and your checklist with the applicable items highlighted.",
+        "Let me know your thoughts on the CMS timing question above whenever you get a chance, and I'll keep "
+        "working the personal items in parallel.",
+        "Talk soon,",
+    ]:
+        _p(doc, para)
+    _p(doc, "Geoff Schackmann", bold=True)
+
+    docfmt.finalize(doc, "Azalea Hospice - Reply to John Hart (Financing Timing + Checklist)")
+    path = OUT + "12 Reply to John Hart - Financing Timing and Checklist DRAFT.docx"
+    doc.save(path)
+    print("wrote", path)
+
+
+def highlight_checklist():
+    """Yellow-highlight every checklist item that applies to this transaction on John's own
+    7(a) checklist doc, so the reply shows at a glance what's in scope. Skips the sections that
+    don't apply here: Land purchase/construction (no land/construction in this deal), Franchise
+    documents (not a franchise), and the COVID section (no PPP/EIDL/stimulus financing involved).
+    """
+    d = Document(SRC + "1_SBA_7a_Loan_Checklist_JohnHart_2026-05-19.docx")
+    applicable = set(range(1, 7)) | set(range(7, 14)) | set(range(14, 20)) | set(range(20, 26)) | set(range(30, 37))
+    for i, p in enumerate(d.paragraphs):
+        if i in applicable:
+            for r in p.runs:
+                r.font.highlight_color = WD_COLOR_INDEX.YELLOW
+    path = OUT + "1a SBA 7a Checklist HIGHLIGHTED.docx"
+    d.save(path)
+    print("wrote", path)
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     company_profile()
@@ -346,6 +471,8 @@ if __name__ == "__main__":
     cover_email()
     refuge_addendum()
     assumptions_narrative()
+    highlight_checklist()
+    reply_financing_and_checklist()
     import shutil
     shutil.copy("financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx",
                 OUT + "7 Financial Projections Rev4.10.xlsx")

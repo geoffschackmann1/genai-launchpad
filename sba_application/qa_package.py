@@ -132,7 +132,8 @@ def content_audit():
 
 def formatting_audit():
     print("== FORMATTING: documents ==")
-    targets = [p for p in sorted(glob.glob(PKG + "*.docx")) if "AUDIT REPORT" not in p] + [PLAN] + sorted(glob.glob(INS + "*.docx"))
+    targets = [p for p in sorted(glob.glob(PKG + "*.docx"))
+               if "AUDIT REPORT" not in p and "HIGHLIGHTED" not in p] + [PLAN] + sorted(glob.glob(INS + "*.docx"))
     for path in targets:
         d, t = doc_text(path)
         name = os.path.basename(path)
