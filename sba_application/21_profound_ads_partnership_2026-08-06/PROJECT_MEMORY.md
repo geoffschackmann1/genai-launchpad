@@ -53,6 +53,7 @@ The two working memoranda and the 21-slide strategy deck were rerun through visu
 - The $7,500 fee, September 1 target, 12-month term, cost reimbursement without markup, $25,000 cash option, and $50,000 convertible-note option reconcile across the package.
 - Data-table header rows are tagged. Remaining accessibility notices relate only to layout tables used for the draft badge and entity diagram.
 - All memorandum headings now use explicit formatting rather than inherited Word theme colors: Heading 1 is 12-point bold black Times New Roman, and Heading 2 is 10.5-point bold black Times New Roman. This specifically corrects Sections 7.1 and 10.1 and prevents Word from displaying either heading in blue.
+- The entity-structure appendix in both memoranda uses a centered vertical ownership diagram: Tyler Hospice Hold, LLC at the top, a downward “100% ownership” connector, and the future Tyler operating company/intended Azalea Hospice DBA below.
 - All three Office packages passed compressed-file integrity testing.
 
 The machine-readable results are retained in `full_package_qa_report.json` and `memo_format_qa_report.json` in this directory.
