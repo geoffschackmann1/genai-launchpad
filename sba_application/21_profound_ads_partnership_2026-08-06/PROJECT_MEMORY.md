@@ -26,6 +26,8 @@ Profound must remain the actual licensed, certified, and enrolled provider of re
 
 Tyler Hospice Hold, LLC is the holding company. It is intended to own 100% of a Tyler operating company that is to be formed. The intended operating-company DBA is Azalea Hospice. The operating-company acquisition candidate has been identified and is in diligence, but the transaction is not complete.
 
+**Proposed Tyler ADS address:** 13387 North Highway 69, Tyler, Texas.
+
 ## Operational and regulatory position
 
 - No Medicare patient should be admitted to or served from the Tyler ADS until the required state, Medicare, MAC, accreditation, payer, staffing, vendor, banking, claims, and operational conditions are confirmed in writing.

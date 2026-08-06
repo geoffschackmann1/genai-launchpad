@@ -14,6 +14,7 @@
       "matrix_numbered": true,
       "appendix_labeled": true,
       "entity_terms_present": true,
+      "tyler_address_present": true,
       "business_terms": {
         "fee_7500": true,
         "september_1": true,
@@ -118,6 +119,7 @@
       "matrix_numbered": true,
       "appendix_labeled": true,
       "entity_terms_present": true,
+      "tyler_address_present": true,
       "business_terms": {
         "fee_7500": true,
         "september_1": true,
@@ -212,7 +214,7 @@
       "opens": true,
       "forbidden_refs": [],
       "fonts": {
-        "Times New Roman": 136
+        "Times New Roman": 138
       },
       "footer_matches_file_family": true,
       "comments_absent": true,
@@ -222,6 +224,7 @@
       "matrix_numbered": true,
       "appendix_labeled": true,
       "entity_terms_present": true,
+      "tyler_address_present": true,
       "business_terms": {
         "fee_7500": true,
         "september_1": true,
@@ -288,7 +291,7 @@
       "opens": true,
       "forbidden_refs": [],
       "fonts": {
-        "Times New Roman": 136
+        "Times New Roman": 138
       },
       "footer_matches_file_family": true,
       "comments_absent": true,
@@ -298,6 +301,7 @@
       "matrix_numbered": true,
       "appendix_labeled": true,
       "entity_terms_present": true,
+      "tyler_address_present": true,
       "business_terms": {
         "fee_7500": true,
         "september_1": true,
@@ -376,6 +380,7 @@
       "note_50000": true
     },
     "matrix_labels_clean": true,
-    "entity_label": true
+    "entity_label": true,
+    "tyler_address_present": true
   }
 }
