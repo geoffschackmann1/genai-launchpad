@@ -50,9 +50,10 @@ The two working memoranda and the 21-slide strategy deck were rerun through visu
 - Prohibited legacy-company and prior-counterparty references were removed.
 - The $7,500 fee, September 1 target, 12-month term, cost reimbursement without markup, $25,000 cash option, and $50,000 convertible-note option reconcile across the package.
 - Data-table header rows are tagged. Remaining accessibility notices relate only to layout tables used for the draft badge and entity diagram.
+- All memorandum headings now use explicit formatting rather than inherited Word theme colors: Heading 1 is 12-point bold black Times New Roman, and Heading 2 is 10.5-point bold black Times New Roman. This specifically corrects Sections 7.1 and 10.1 and prevents Word from displaying either heading in blue.
 - All three Office packages passed compressed-file integrity testing.
 
-The machine-readable results are retained in `full_package_qa_report.json` in this directory.
+The machine-readable results are retained in `full_package_qa_report.json` and `memo_format_qa_report.json` in this directory.
 
 ## Files in the approved working package
 
@@ -60,6 +61,7 @@ The machine-readable results are retained in `full_package_qa_report.json` in th
 - `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx`
 - `Profound ADS Partnership Working Session - Revision 1.00 - 081026.pptx`
 - `full_package_qa_report.json`
+- `memo_format_qa_report.json`
 
 ## Drafting rules for future revisions
 
