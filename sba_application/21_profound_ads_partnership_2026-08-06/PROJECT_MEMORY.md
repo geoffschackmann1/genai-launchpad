@@ -1,7 +1,7 @@
 # Profound–Azalea Tyler ADS Working Package — Project Memory
 
 **Last updated:** August 6, 2026  
-**Package status:** Working documents approved for discussion after full QA  
+**Package status:** Working documents and print-ready memoranda approved after full QA  
 **Next meeting:** August 10, 2026, 1:00–5:00 p.m. Central Time, Austin area
 
 ## Current transaction status
@@ -45,7 +45,7 @@ The working session should end with a signed non-binding framework, named owners
 
 The two working memoranda and the 21-slide strategy deck were rerun through visual, structural, content-consistency, accessibility, overflow, source-note, and compressed-package integrity checks on August 6, 2026.
 
-- All 14 memo pages and all 21 slides were visually reviewed.
+- All 15 memo pages and all 21 slides were visually reviewed.
 - The presentation has no detected slide overflow or empty placeholders.
 - Every slide contains a source block in its notes.
 - The files contain no comments or tracked changes.
@@ -56,16 +56,22 @@ The two working memoranda and the 21-slide strategy deck were rerun through visu
 - The entity-structure appendix in both memoranda uses a centered vertical ownership diagram: Tyler Hospice Hold, LLC at the top, a downward “100% ownership” connector, and the future Tyler operating company/intended Azalea Hospice DBA below.
 - Counsel Appendix A and Appendix B each occupy a separate dedicated page. The financial-advisor memorandum’s Appendix A also occupies its own dedicated page.
 - All three Office packages passed compressed-file integrity testing.
+- Print preflight confirmed US Letter page size, consistent margins, widow/orphan control, non-splitting table rows, no blank pages, tagged and unencrypted PDFs, and embedded fonts.
+- The financial-advisor memorandum is six pages after removal of an unintended blank second page caused by a forced section break. The counsel memorandum remains nine pages.
+- Native print-ready PDFs were generated and visually checked in both color and grayscale.
 
-The machine-readable results are retained in `full_package_qa_report.json` and `memo_format_qa_report.json` in this directory.
+The machine-readable results are retained in `full_package_qa_report.json`, `memo_format_qa_report.json`, and `memo_print_qa_report.json` in this directory.
 
 ## Files in the approved working package
 
 - `Profound Counsel Memorandum - Working Draft Revision 1.00 - 080626.docx`
+- `Profound Counsel Memorandum - Working Draft Revision 1.00 - 080626 - Print Ready.pdf`
 - `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx`
+- `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626 - Print Ready.pdf`
 - `Profound ADS Partnership Working Session - Revision 1.00 - 081026.pptx`
 - `full_package_qa_report.json`
 - `memo_format_qa_report.json`
+- `memo_print_qa_report.json`
 
 ## Drafting rules for future revisions
 
