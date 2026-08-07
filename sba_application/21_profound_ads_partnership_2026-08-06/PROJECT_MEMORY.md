@@ -1,7 +1,7 @@
 # Profound–Azalea Tyler ADS Working Package — Project Memory
 
-**Last updated:** August 6, 2026  
-**Package status:** Working documents, print-ready memoranda, and aligned Revision 1.10 strategy deck approved after full QA  
+**Last updated:** August 7, 2026  
+**Package status:** Working documents, print-ready memoranda, and aligned Revision 1.20 strategy deck approved after full QA  
 **Next meeting:** August 10, 2026, 1:00–5:00 p.m. Central Time, Austin area
 
 ## Current transaction status
@@ -19,7 +19,9 @@ Profound must remain the actual licensed, certified, and enrolled provider of re
 - Direct and incremental Profound costs: reimbursed at actual cost without markup.
 - Profound capital obligation: none.
 - Tyler startup, payroll, operating costs, losses, and required reserves: funded by Azalea/Tyler Hospice Hold.
+- Initial prefunding reserve: $125,000, representing two payroll cycles plus approximately 30 days of non-payroll operating costs at roughly 22 ADC; recalculated monthly and replenished as census and costs change.
 - Transition consideration: Patrick elects either a $25,000 cash payment or a $50,000 convertible note, subject to definitive terms and advisor review.
+- Transition election and final outside decision date: August 24, 2026, if the framework is not completed during the August 10 working session.
 - No exclusivity covenant is included in the current working framework.
 
 ## Entity structure used in the working documents
@@ -41,9 +43,13 @@ Tyler Hospice Hold, LLC is the holding company. It is intended to own 100% of a 
 
 The working session should end with a signed non-binding framework, completed decision record, named owners, confirmed commercial terms, advisor response dates, and a dated implementation plan. Launch remains conditioned on documented approvals and operational readiness.
 
-## Strategy deck Revision 1.10
+Patrick is expected to sign for the applicable Profound contracting entity, subject to confirmation of the exact legal entity and his authority. Geoff Schackmann signs for Tyler Hospice Hold, LLC unless the Tyler operating company is formed and properly authorizes him before execution. “Azalea Hospice” remains the intended DBA and is not presently the signing entity.
 
-The August 10 working-session deck was reconciled to both working memoranda on August 7, 2026. Revision 1.10 contains 24 slides and makes the intended meeting outcome explicit: sign the non-binding framework before adjournment, record every open issue with an owner and deadline, and begin implementation subject to written approvals.
+Patrick has not yet identified Profound's counsel. Azalea has not retained counsel. The deck therefore labels Profound counsel as TBD and states that Azalea will engage counsel if required rather than implying that either advisor relationship is already in place.
+
+## Strategy deck Revision 1.20
+
+The August 10 working-session deck was reconciled to both working memoranda and the August 7 management decisions. Revision 1.20 contains 24 slides and makes the intended meeting outcome explicit: sign the non-binding framework before adjournment, or record every remaining issue and reach a firm go/no-go decision no later than August 24, 2026.
 
 Material deck updates include:
 
@@ -52,6 +58,10 @@ Material deck updates include:
 - The distinction between a non-binding framework and an expressly binding implementation provision or short implementation letter for the September 1 payment.
 - Reconciled cash waterfall, ten-business-day close timing, beneficiary-choice and claims-runout protections, and written readiness-certificate requirement.
 - New working slides for the live decision record, first ten business days, and advisor routing/response dates.
+- Patrick/Profound and Geoff/Tyler Hospice Hold signatory capacities, subject to confirming Profound's exact contracting entity and authority.
+- A $125,000 initial prefunding reserve, rounded from approximately $121,000 in the current Profound base-case model at approximately 22 ADC, with monthly recalculation and replenishment.
+- Profound counsel and Patrick's financial advisor shown as not yet named; Azalea counsel shown as not retained.
+- Patrick's August 11 vacation and an August 24 outside decision deadline reflected in the action plan.
 
 The deck passed full visual review, overflow testing, template-fidelity review, speaker-note/source-block verification, compressed-package integrity testing, and legacy-reference sanitization. Results are retained in `deck_alignment_qa_report.json`.
 
@@ -84,6 +94,7 @@ The machine-readable results are retained in `full_package_qa_report.json`, `mem
 - `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626 - Print Ready.pdf`
 - `Profound ADS Partnership Working Session - Revision 1.00 - 081026.pptx`
 - `Profound ADS Partnership Working Session - Revision 1.10 - 081026.pptx`
+- `Profound ADS Partnership Working Session - Revision 1.20 - 081026.pptx`
 - `full_package_qa_report.json`
 - `memo_format_qa_report.json`
 - `memo_print_qa_report.json`
