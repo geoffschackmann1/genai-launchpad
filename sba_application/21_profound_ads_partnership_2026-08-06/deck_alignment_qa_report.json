@@ -1,0 +1,31 @@
+{
+  "qa_date": "2026-08-07",
+  "deck": "Profound ADS Partnership Working Session - Revision 1.10 - 081026.pptx",
+  "status": "passed",
+  "slide_count": 24,
+  "visual_review": "Every final slide inspected at full size",
+  "overflow_test": "passed",
+  "template_fidelity": "passed with zero issues",
+  "compressed_package_integrity": "passed",
+  "speaker_notes": {
+    "slides_with_notes": 24,
+    "slides_with_sources_blocks": 24
+  },
+  "memo_reconciliation": {
+    "entity_structure_and_diligence": "passed",
+    "committed_capital_and_no_bank_debt_assumption": "passed",
+    "binding_payment_instrument_distinction": "passed",
+    "cash_waterfall_and_close_timing": "passed",
+    "beneficiary_choice_and_claims_runout": "passed",
+    "written_launch_readiness_gate": "passed",
+    "signed_framework_meeting_objective": "passed"
+  },
+  "new_working_slides": [
+    "Meeting decision record",
+    "First ten business days action plan",
+    "Advisor routing and response dates"
+  ],
+  "sanitization": {
+    "legacy_company_references_absent": true
+  }
+}

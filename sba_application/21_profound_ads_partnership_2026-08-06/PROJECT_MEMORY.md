@@ -1,7 +1,7 @@
 # Profound–Azalea Tyler ADS Working Package — Project Memory
 
 **Last updated:** August 6, 2026  
-**Package status:** Working documents and print-ready memoranda approved after full QA  
+**Package status:** Working documents, print-ready memoranda, and aligned Revision 1.10 strategy deck approved after full QA  
 **Next meeting:** August 10, 2026, 1:00–5:00 p.m. Central Time, Austin area
 
 ## Current transaction status
@@ -39,7 +39,21 @@ Tyler Hospice Hold, LLC is the holding company. It is intended to own 100% of a 
 
 ## August 10 meeting objective
 
-The working session should end with a signed non-binding framework, named owners, confirmed commercial terms, an advisor-review path, and a dated implementation plan. Launch remains conditioned on documented approvals and operational readiness.
+The working session should end with a signed non-binding framework, completed decision record, named owners, confirmed commercial terms, advisor response dates, and a dated implementation plan. Launch remains conditioned on documented approvals and operational readiness.
+
+## Strategy deck Revision 1.10
+
+The August 10 working-session deck was reconciled to both working memoranda on August 7, 2026. Revision 1.10 contains 24 slides and makes the intended meeting outcome explicit: sign the non-binding framework before adjournment, record every open issue with an owner and deadline, and begin implementation subject to written approvals.
+
+Material deck updates include:
+
+- Entity and diligence status for Tyler Hospice Hold, LLC and the future Tyler operating company/intended Azalea Hospice DBA.
+- $250,000 committed equity, approximately $20,000 spent, approximately $230,000 available, and no bank debt assumed for launch.
+- The distinction between a non-binding framework and an expressly binding implementation provision or short implementation letter for the September 1 payment.
+- Reconciled cash waterfall, ten-business-day close timing, beneficiary-choice and claims-runout protections, and written readiness-certificate requirement.
+- New working slides for the live decision record, first ten business days, and advisor routing/response dates.
+
+The deck passed full visual review, overflow testing, template-fidelity review, speaker-note/source-block verification, compressed-package integrity testing, and legacy-reference sanitization. Results are retained in `deck_alignment_qa_report.json`.
 
 ## QA record
 
@@ -69,9 +83,11 @@ The machine-readable results are retained in `full_package_qa_report.json`, `mem
 - `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx`
 - `Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626 - Print Ready.pdf`
 - `Profound ADS Partnership Working Session - Revision 1.00 - 081026.pptx`
+- `Profound ADS Partnership Working Session - Revision 1.10 - 081026.pptx`
 - `full_package_qa_report.json`
 - `memo_format_qa_report.json`
 - `memo_print_qa_report.json`
+- `deck_alignment_qa_report.json`
 
 ## Drafting rules for future revisions
 
