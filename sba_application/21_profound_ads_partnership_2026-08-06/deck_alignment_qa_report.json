@@ -1,6 +1,6 @@
 {
   "qa_date": "2026-08-07",
-  "deck": "Profound ADS Partnership Working Session - Revision 1.20 - 081026.pptx",
+  "deck": "Profound ADS Partnership Working Session - Revision 1.30 - 081026.pptx",
   "status": "passed",
   "slide_count": 24,
   "visual_review": "Every final slide inspected at full size",
@@ -22,7 +22,9 @@
     "signatory_capacity": "passed",
     "august_24_outside_decision_date": "passed",
     "advisor_identity_status": "passed",
-    "prefunding_reserve": "$125,000 opening reserve; model-derived estimate rounded from approximately $121,000 at approximately 22 ADC"
+    "prefunding_reserve": "$125,000 proposed opening reserve; recalculated monthly",
+    "rev520_operating_expenses": "Month 1 $32,897.55; Month 2 $36,447.75",
+    "rev520_operating_cash_use": "Month 1 $45,572.55; Month 2 $54,987.72; shown in notes and kept distinct from P&L operating expenses"
   },
   "new_working_slides": [
     "Meeting decision record",

@@ -1,7 +1,7 @@
 # Profound–Azalea Tyler ADS Working Package — Project Memory
 
 **Last updated:** August 7, 2026  
-**Package status:** Working documents, print-ready memoranda, and aligned Revision 1.20 strategy deck approved after full QA  
+**Package status:** Working documents, print-ready memoranda, and aligned Revision 1.30 strategy deck approved after full QA  
 **Next meeting:** August 10, 2026, 1:00–5:00 p.m. Central Time, Austin area
 
 ## Current transaction status
@@ -47,9 +47,9 @@ Patrick is expected to sign for the applicable Profound contracting entity, subj
 
 Patrick has not yet identified Profound's counsel. Azalea has not retained counsel. The deck therefore labels Profound counsel as TBD and states that Azalea will engage counsel if required rather than implying that either advisor relationship is already in place.
 
-## Strategy deck Revision 1.20
+## Strategy deck Revision 1.30
 
-The August 10 working-session deck was reconciled to both working memoranda and the August 7 management decisions. Revision 1.20 contains 24 slides and makes the intended meeting outcome explicit: sign the non-binding framework before adjournment, or record every remaining issue and reach a firm go/no-go decision no later than August 24, 2026.
+The August 10 working-session deck was reconciled to both working memoranda, the August 7 management decisions, and `Azalea Hospice Proforma - Rev 5.20 - 080626.xlsx`. Revision 1.30 contains 24 slides and makes the intended meeting outcome explicit: sign the non-binding framework before adjournment, or record every remaining issue and reach a firm go/no-go decision no later than August 24, 2026.
 
 Material deck updates include:
 
@@ -62,6 +62,8 @@ Material deck updates include:
 - A $125,000 initial prefunding reserve, rounded from approximately $121,000 in the current Profound base-case model at approximately 22 ADC, with monthly recalculation and replenishment.
 - Profound counsel and Patrick's financial advisor shown as not yet named; Azalea counsel shown as not retained.
 - Patrick's August 11 vacation and an August 24 outside decision deadline reflected in the action plan.
+- Rev 5.20 P&L operating expenses referenced on the funding slide: Month 1 $32,897.55 and Month 2 $36,447.75, displayed as $32,898 and $36,448.
+- Rev 5.20 operating cash use is separately documented in the slide notes: Month 1 $45,572.55 and Month 2 $54,987.72 before capital, tax, and financing. These figures are not mislabeled as P&L operating expenses.
 
 The deck passed full visual review, overflow testing, template-fidelity review, speaker-note/source-block verification, compressed-package integrity testing, and legacy-reference sanitization. Results are retained in `deck_alignment_qa_report.json`.
 
@@ -95,6 +97,7 @@ The machine-readable results are retained in `full_package_qa_report.json`, `mem
 - `Profound ADS Partnership Working Session - Revision 1.00 - 081026.pptx`
 - `Profound ADS Partnership Working Session - Revision 1.10 - 081026.pptx`
 - `Profound ADS Partnership Working Session - Revision 1.20 - 081026.pptx`
+- `Profound ADS Partnership Working Session - Revision 1.30 - 081026.pptx`
 - `full_package_qa_report.json`
 - `memo_format_qa_report.json`
 - `memo_print_qa_report.json`
