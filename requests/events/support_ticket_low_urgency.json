@@ -1,0 +1,8 @@
+{
+  "ticket_id": "TKT-20240526-002",
+  "subject": "How do I export my data to CSV?",
+  "body": "Hi, I was wondering if there's a way to export my dashboard data to CSV format. I've looked through the documentation but couldn't find the option. Thanks!",
+  "customer_name": "Mark Chen",
+  "customer_email": "mark.chen@example.com",
+  "product": "Analytics Dashboard"
+}
