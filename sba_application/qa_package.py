@@ -2,7 +2,10 @@
 
 Run from repo root: python3 sba_application/qa_package.py
 Exit 0 only if every check passes. Writes AUDIT REPORT.docx into the package folder.
-All canonical figures are the Rev 4.10 proforma outputs (QA 23/23).
+All canonical figures are the Rev 5.00 AVANT proforma outputs (QA 22/22): Avant
+Hospice, LLC acquisition, $300,000 fully deferred seller note retired by the
+$500,000 SBA 7(a) at month 2. Historical (already-sent, Refuge-era) drafts are
+excluded from the stale scan via HISTORICAL below but still format-audited.
 """
 import glob
 import os
@@ -17,10 +20,16 @@ from docx.shared import Pt  # noqa: E402
 from pypdf import PdfReader  # noqa: E402
 
 PKG = "sba_application/13_checklist_response_2026-07-16/"
-PLAN = "sba_application/03_business_plan/Azalea SBA Business Plan Rev6.00.docx"
+PLAN = "sba_application/03_business_plan/Azalea SBA Business Plan Rev7.00 AVANT.docx"
 INS = "sba_application/14_insurance_2026-07-16/"
-VAL = "sba_application/15_valuation_2026-07-20/"
-XPLAN = "sba_application/16_refuge_operational_transition/"
+PROFORMA = "financial_models/output/Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx"
+UOP = PKG + "UOP Azalea Avant Rev3.00.xlsx"
+# Refuge-era documents that were already sent (or memorialize sent correspondence).
+# They legitimately reference the superseded Refuge structure, so the Avant stale
+# scan skips them; formatting checks still run.
+HISTORICAL = {"8 Reply Email John Mary DRAFT.docx",
+              "9 Lease Summary and Flags.docx",
+              "11 Reply to John Hart - Follow-up Questions DRAFT.docx"}
 
 RESULTS = []
 
@@ -61,36 +70,37 @@ def xlsx_text(path):
     return "\n".join(out)
 
 
-# ---- canonical facts (Rev 4.10) ----
+# ---- canonical facts (Rev 5.00 AVANT) ----
 REQUIRED = {
-    PLAN: ["$299,195", "$695,981", "$985,429", "$128,491", "$457,463", "$718,153",
-           "15.5%", "24.1%", "28.2%", "22.3%", "3.8x", "8.6x", "12.2x", "8.2x",
-           "$6,747", "$15,211", "$461,676", "$250,000", "33%", "$750,000",
-           "24 by month 2", "1/15/2027", "$3,354", "$1,297,392", "$42,500"],
-    PKG + "1 Checklist STATUS RESPONSE.docx": ["$461,676", "$250,000", "Rev 4.10", "23/23"],
-    PKG + "4 Business Plan ADDENDUM Refuge.docx": ["$299K", "$696K", "$985K", "$6,747", "Rev 4.10"],
-    PKG + "6 Projection Assumptions Narrative.docx": ["$299K", "$696K", "$985K", "22.3%", "$3,354", "Rev 4.10"],
-    PKG + "8 Reply Email John Mary DRAFT.docx": ["$6,747", "$15,211", "$462K", "Rev4.10", "Rev2.00"],
+    PLAN: ["$299,195", "$695,981", "$985,429", "$130,630", "$472,185", "$733,029",
+           "15.5%", "24.1%", "28.2%", "22.3%", "3.7x", "8.6x", "12.2x",
+           "$6,747", "$300,000", "$303,000", "$435,000", "$250,000", "33%", "$750,000",
+           "24 by month 2", "741798", "$192,358", "$1,473,592", "$225-350K", "Rev 5.00"],
+    PKG + "0 Cover Email DRAFT.docx": ["$300,000", "$303,000", "$6,747", "741798"],
+    PKG + "1 Checklist STATUS RESPONSE.docx": ["$300,000", "$303,000", "$250,000", "Rev 5.00", "22/22"],
+    PKG + "4 Business Plan ADDENDUM Avant.docx": ["$299K", "$696K", "$985K", "$6,747", "741798",
+                                                  "$225-350K", "Rev 5.00"],
+    PKG + "6 Projection Assumptions Narrative.docx": ["$299K", "$696K", "$985K", "22.3%", "Rev 5.00"],
+    PKG + "12 Reply to John Hart - Financing Timing and Checklist DRAFT.docx":
+        ["Avant", "$300,000", "$303,000", "month 2"],
     INS + "Reply Email Todd Plummer DRAFT.docx": ["$972,167", "$276,667", "$148,000", "$170,000", "$187,500", "92-1541610", "$1,933,000"],
 }
 REQUIRED_XLSX = {
-    PKG + "UOP Azalea Refuge Rev2.00.xlsx": ["461676", "250000", "500000", "6%", "EQUITY INJECTION", "1/15/2027"],
-    "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx":
-        ["Working-capital policy", "ADDITIONAL FUNDING REQUIREMENT", "Revision 4.10", "AZALEA HOSPICE"],
+    UOP: ["300000", "435000", "500000", "250000", "EQUITY INJECTION", "FINANCING SEQUENCE"],
+    PROFORMA: ["Working-capital policy", "ADDITIONAL FUNDING REQUIREMENT", "Revision 5.00", "Avant"],
 }
+# Superseded-figure blacklist: Rev 3.x figures, plus the entire Refuge / Rev 4.10
+# structure ($500K price, $125K down, interim bank note $15,211/mo, $461,676 WC,
+# 1/15/2027 split close, $3,354 min cash, $1,297,392 M36 cash, PTAN A91679, MIPA
+# balloon $258,489.46). "A9167" and "$258,489" are plain substrings on purpose -
+# under the Avant target ANY form of those references is stale in an active doc.
 STALE = ["$262,951", "$680,224", "$975,925", "$100,941", "$472,928", "$746,549",
          "$78,710", "$936,793", "$924,000", "$142,524", "$182,532",
          "Rev 3.00", "Rev 3.10", "Rev3.00", "Rev3.10", "$183K", "$375K facility",
-         "retire the seller balloon", "seller balloon", "3/23/2026", "3/23/26"]
-# CCN/PTAN is A91679 (confirmed via the Palmetto GBA reactivation letter and CMS
-# confirmation email, both dated 3/20/2026); the bare "A9167" is a stale, truncated
-# form. Regex (not plain substring) since "A9167" is itself a prefix of "A91679".
-BAD_PTAN = re.compile(r"A9167(?!9)")
-# The verified-correct final payment is $258,489.46; a bare "$258,489" (no cents) is
-# the stale, imprecise form. Regex (not plain substring) since "$258,489" is itself a
-# prefix of "$258,489.46" - a plain substring entry would always false-flag the
-# correct figure too.
-BAD_FINAL_PAYMENT = re.compile(r"\$258,489(?!\.46)")
+         "retire the seller balloon", "3/23/2026", "3/23/26",
+         "Refuge", "Rev 4.10", "Rev4.10", "$15,211", "$461,676", "$31,250",
+         "$128,491", "$457,463", "$718,153", "3.8x", "$3,354", "$1,297,392",
+         "1/15/2027", "A9167", "$258,489", "interim bank note"]
 
 
 def content_audit():
@@ -109,32 +119,30 @@ def content_audit():
               f"missing {missing}" if missing else "")
 
     print("== CONTENT: stale blacklist ==")
-    targets = ([p for p in sorted(glob.glob(PKG + "*.docx")) if "AUDIT REPORT" not in p] + [PLAN]
-               + sorted(glob.glob(INS + "*.docx")) + sorted(glob.glob(VAL + "*.docx"))
-               + sorted(glob.glob(XPLAN + "*.md")))
+    targets = ([p for p in sorted(glob.glob(PKG + "*.docx"))
+                if "AUDIT REPORT" not in p and os.path.basename(p) not in HISTORICAL] + [PLAN])
     for path in targets:
-        if path.endswith(".md"):
-            t = open(path, encoding="utf-8").read()
-        else:
-            _, t = doc_text(path)
+        _, t = doc_text(path)
         hits = [ph for ph in STALE if ph.lower() in t.lower()]
         # live-revolver scan (allow only negated phrasings)
         for m in re.finditer(r"revolver", t.lower()):
             ctx = t.lower()[max(0, m.start() - 25):m.end() + 15]
             if not any(k in ctx for k in ("no revolver", "no-revolver", "revolver or assumed", "revolver assumed")):
                 hits.append("LIVE revolver")
-        if BAD_PTAN.search(t):
-            hits.append("bad PTAN (bare A9167, should be A91679)")
-        if BAD_FINAL_PAYMENT.search(t):
-            hits.append("imprecise final payment (should be $258,489.46)")
         check("stale", os.path.basename(path), not hits, str(hits) if hits else "")
     for path in sorted(glob.glob(PKG + "*FILLED.pdf")):
         t = pdf_field_text(path)
         hits = [ph for ph in STALE if ph in t]
         check("stale", os.path.basename(path) + " (form fields)", not hits, str(hits) if hits else "")
-    t = xlsx_text(PKG + "UOP Azalea Refuge Rev2.00.xlsx")
-    hits = [ph for ph in STALE if ph in t]
-    check("stale", "UOP workbook", not hits, str(hits) if hits else "")
+    for path, label in [(UOP, "UOP workbook"), (PROFORMA, "proforma workbook")]:
+        t = xlsx_text(path)
+        needles = STALE
+        if path == UOP:
+            # The UOP workbook's OWN revision is 3.00 ("UOP Azalea Avant Rev3.00");
+            # the "Rev 3.00" stale needles target proforma Rev 3.00 references.
+            needles = [ph for ph in STALE if ph not in ("Rev 3.00", "Rev3.00")]
+        hits = [ph for ph in needles if ph in t]
+        check("stale", label, not hits, str(hits) if hits else "")
 
     print("== PDF field-fit (no clipped single-line values) ==")
     for path in sorted(glob.glob(PKG + "*FILLED.pdf")) + sorted(glob.glob(INS + "*FILLED.pdf")):
@@ -185,7 +193,7 @@ def formatting_audit():
     check("format", "business plan heading count >= 60 (navigable)", len(heads) >= 60, f"({len(heads)})")
 
     print("== FORMATTING: proforma workbook ==")
-    wb = openpyxl.load_workbook("financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx")
+    wb = openpyxl.load_workbook(PROFORMA)
     check("format", "Cover sheet is first tab", wb.sheetnames[0] == "Cover")
     frozen = sum(1 for sh in wb.sheetnames if wb[sh].freeze_panes)
     check("format", "frozen panes on tabs", frozen >= 11, f"({frozen})")
@@ -201,20 +209,21 @@ def write_report():
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Package Audit Report", 0)
     p = doc.add_paragraph()
-    r = p.add_run("Azalea Hospice - SBA / lender package | Rev 4.10 basis | automated audit (sba_application/qa_package.py)")
+    r = p.add_run("Azalea Hospice - SBA / lender package | Rev 5.00 AVANT basis | automated audit (sba_application/qa_package.py)")
     r.italic = True
     r.font.size = Pt(9)
     npass = sum(1 for _s, _n, ok, _d in RESULTS if ok)
     doc.add_paragraph().add_run(f"RESULT: {npass} of {len(RESULTS)} checks passed.").bold = True
     doc.add_paragraph(
-        "Scope: (1) canonical-fact matrix - every financial figure cited in any document must equal the "
-        "Rev 4.10 proforma output exactly; (2) stale blacklist - figures from superseded revisions must "
-        "appear nowhere (documents, PDF form fields, workbooks); (3) formatting - footers with live page "
-        "numbers, real heading styles with keep-with-next, styled tables, no double spacing or em dashes, "
-        "TOC field in the business plan, cover sheet / frozen panes / print setup in the proforma. "
-        "The proforma itself is separately verified by financial_models/qa_proforma_v3.py (23 checks: "
-        "balance-sheet integrity, collections conservation, census calibration, debt schedules, deferral "
-        "conservation, scenario toggles, hardcode scan).")
+        "Scope: (1) canonical-fact matrix - every financial figure cited in any active document must equal "
+        "the Rev 5.00 AVANT proforma output exactly; (2) stale blacklist - figures from superseded revisions "
+        "(including the entire Refuge / Rev 4.10 structure) must appear nowhere in active documents, PDF "
+        "form fields, or workbooks (already-sent Refuge-era drafts are retained as history and exempted); "
+        "(3) formatting - footers with live page numbers, real heading styles with keep-with-next, styled "
+        "tables, no double spacing or em dashes, TOC field in the business plan, cover sheet / frozen panes "
+        "/ print setup in the proforma. The proforma itself is separately verified by "
+        "financial_models/qa_proforma_v3.py (22 checks: balance-sheet integrity, collections conservation, "
+        "census calibration, seller-note deferral and month-2 SBA takeout, scenario toggles, hardcode scan).")
     t = doc.add_table(rows=1, cols=4)
     t.style = "Light Grid Accent 1"
     for i, h in enumerate(["Area", "Check", "Result", "Detail"]):

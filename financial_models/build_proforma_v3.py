@@ -1,6 +1,9 @@
-"""AZALEA HOSPICE PROFORMA - REVISION 4.10 DYNAMIC (real-cash discipline + Path A).
+"""AZALEA HOSPICE PROFORMA - REVISION 5.00 DYNAMIC (AVANT - seller-carried to SBA takeout).
 
-Rev 4.10: BASE adds the SBA 7(a) $500K funding January (51% transfer) and
+Rev 5.00 (2026-08-14): AVANT target - $300K seller-carried at 6% with all payments
+deferred to the SBA takeout at month 2 (license transfers 100% at CHOW); no interim
+bank note; PPEO hold base 2 months, downside 4.
+Rev 4.10: BASE added the SBA 7(a) $500K funding January (51% transfer) and
 REFINANCING the bank note (~$454K remaining) - debt service drops from
 $15,211/mo to ~$6,747/mo (10.5%/10yr).
 
@@ -86,25 +89,25 @@ def control_tower(bk: OB):
         nonlocal r
         bk.section(ws, r, t, span=4); r += 1
 
-    sec("COMPANY & DEAL  (current Refuge structure)")
+    sec("COMPANY & DEAL  (current Avant structure)")
     item("cash0", "Starting capital on deposit (equity)", 250000.0, S.FMT_CUR, "Jim Bullard $195K + owner $55K")
     item("startup", "Pre-opening / startup spend from capital", 0.0, S.FMT_CUR, "0 = funded elsewhere")
-    item("price", "Refuge license purchase price (100% membership CHOW)", 500000.0, S.FMT_CUR, "Acct 1980 intangible")
-    item("down", "Down payment at closing (Month 1)", 125000.0, S.FMT_CUR)
-    item("s_pmt", "Seller monthly payment (MIPA 7/14/2026)", 31250.0, S.FMT_CUR, "$31,250/mo Sep-Dec per executed MIPA")
+    item("price", "Avant license purchase price (100% membership CHOW)", 300000.0, S.FMT_CUR, "Acct 1980 intangible")
+    item("down", "Down payment at closing (none - seller carries in full to SBA takeout)", 0.0, S.FMT_CUR)
+    item("s_pmt", "Seller monthly payment (none scheduled - all deferred until PPEO clears)", 0.0, S.FMT_CUR, "Avant terms: no payments before PPEO clearance; SBA takeout retires the note")
     item("s_first", "First seller payment month", 3, S.FMT_INT, "3 = September")
     item("s_last", "Last seller payment month", 6, S.FMT_INT, "6 = December")
     item("s_rate", "Seller note simple interest (APR)", 0.06, S.FMT_PCT)
-    item("balloon_mo", "Balloon month (36-month rule / January)", 7, S.FMT_INT)
+    item("balloon_mo", "Seller note takeout month (SBA funds; license transfers 100% at CHOW)", 2, S.FMT_INT)
     item("bref_rate", "Balloon takeout note rate (APR)", 0.06, S.FMT_PCT, "BASE CASE: SBA/bank funds the Jan balloon; modeled at the conservative 6%/36 basis")
     item("bref_term", "Balloon takeout note term (months)", 36, S.FMT_INT)
-    item("refi_on", "INTERIM BANK NOTE (1 = $500K/6%/36 funds Sept - base case)", 1, S.FMT_INT, "Base case: interim bank note retires the seller balance in September; 0 = seller carried to the January balloon per the MIPA")
+    item("refi_on", "INTERIM BANK NOTE (0 = none - Avant seller carries at 6% to SBA takeout)", 0, S.FMT_INT, "No bank note in the Avant structure; the seller note is retired directly by the SBA loan")
     item("refi_mo", "Full-refi funding month", 3, S.FMT_INT, "3 = September")
     item("refi_amt", "Full-refi amount", 500000.0, S.FMT_CUR)
     item("refi_rate", "Full-refi rate (APR)", 0.06, S.FMT_PCT)
     item("refi_term", "Full-refi term (months)", 36, S.FMT_INT)
     item("sba_on", "SBA 7(a) LOAN (1 = funds and refinances the bank note - base case)", 1, S.FMT_INT, "SBA proceeds retire the bank-note balance at the funding month")
-    item("sba_mo", "SBA funding month", 7, S.FMT_INT, "7 = January (51% transfer / 42 CFR 424.550(b) date)")
+    item("sba_mo", "SBA funding month", 2, S.FMT_INT, "License is 100% in borrower name at CHOW, so SBA can fund at month 2")
     item("sba_amt", "SBA amount", 500000.0, S.FMT_CUR)
     item("sba_rate", "SBA rate (APR)", 0.105, S.FMT_PCT)
     item("sba_term", "SBA term (months)", 120, S.FMT_INT, "10-year 7(a); ~$6,747/mo at 10.5%")
@@ -122,7 +125,7 @@ def control_tower(bk: OB):
     bk.lbl(ws, r, "Downside", c=3, bold=True); bk.lbl(ws, r, "Upside", c=4, bold=True); r += 1
     for key, label, vals, fmt in [("cap", "Census capture", (1.0, 0.85, 1.1), S.FMT_PCT),
                                   ("padj", "Payroll adjustment", (0.0, 0.10, 0.0), S.FMT_PCT),
-                                  ("hld", "CHOW hold (months)", (1, 2, 0), S.FMT_INT)]:
+                                  ("hld", "CHOW hold (months)", (2, 4, 0), S.FMT_INT)]:
         bk.lbl(ws, r, f"  {label}")
         for j, v in enumerate(vals):
             bk.inp(ws, r, 2 + j, v, fmt, key=f"{key}{j+1}")
@@ -1153,7 +1156,7 @@ def build():
     dashboard(bk)
     summary(bk)
     avb(bk)
-    out = "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx"
+    out = "financial_models/output/Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx"
     bk.wb.save(out)
     import json
     with open("financial_models/output/proforma_v3_rowmap.json", "w") as f:

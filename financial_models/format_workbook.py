@@ -1,4 +1,4 @@
-"""Presentation polish for the Rev 4.10 proforma - run AFTER build, BEFORE QA.
+"""Presentation polish for the Rev 5.00 (Avant) proforma - run AFTER build, BEFORE QA.
 
 Adds: Cover sheet (linked headline metrics, tab directory), frozen panes on all
 monthly tabs, print setup (landscape, fit-to-width, repeated title rows, footer),
@@ -10,7 +10,7 @@ import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter as gcl
 
-XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx"
+XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx"
 ROWMAP = "financial_models/output/proforma_v3_rowmap.json"
 
 NAVY = "1F3B5C"
@@ -43,8 +43,8 @@ def cover(wb, R):
         return c
 
     put("B2", "AZALEA HOSPICE & PALLIATIVE CARE", 22, bold=True, color=GREEN)
-    put("B3", "Refuge Hospice, LLC Acquisition - Financial Proforma", 14, color=NAVY)
-    put("B4", "Revision 4.10  |  July 2026  |  Tyler Hospice Hold, LLC (EIN 41-4966640)", 10, italic=True, color=GREY)
+    put("B3", "Avant Hospice, LLC Acquisition - Financial Proforma", 14, color=NAVY)
+    put("B4", "Revision 5.00 (Avant)  |  August 2026  |  Tyler Hospice Hold, LLC (EIN 41-4966640)", 10, italic=True, color=GREY)
     put("B6", "Prepared for the SBA 7(a) application (SourceFunding / The Brownmiller Group) and company planning.", 9, italic=True, color=GREY)
     put("B7", "36 monthly periods (Jul-2026 to Jun-2029). Every calculated cell is a live formula; all inputs on the Control Tower.", 9, italic=True, color=GREY)
     put("B8", "Working-capital policy: the model assumes no revolving credit facility. Any cash shortfall is presented", 9, bold=True)
@@ -84,11 +84,11 @@ def cover(wb, R):
     ws[f"B{r}"].fill = FILL; ws[f"C{r}"].fill = FILL
     r += 1
     for line in [
-        "Aug 2026 - Equity ($250,000: J. Bullard $195K + G. Schackmann $55K) funds the $125,000 license down payment (49%)",
-        "Sep 2026 - Interim bank note ($500,000, 6%, 36-mo) pays the sellers in full; surplus to working capital",
-        "Oct-Dec  - Bank note service of $15,211/month; management salary deferral until break-even census (repaid January)",
-        "Jan 2027 - SBA 7(a) $500,000 funds at the 51% transfer (42 CFR 424.550(b)) and refinances the bank note",
-        "Feb 2027 - Single SBA payment of $6,747/month (10.5%, 10-year); recurring coverage 3.8x / 8.6x / 12.2x",
+        "Sep 2026 - CHOW closes; 100% of Avant Hospice, LLC transfers; equity ($250,000: J. Bullard $195K + G. Schackmann $55K) funds the operating ramp - no down payment; seller carries the full $300,000 at 6%",
+        "Month 2 - SBA 7(a) $500,000 funds (license already 100% in borrower name) and retires the seller note in full (~$303,000 incl. accrued interest); surplus to working capital",
+        "Ramp     - Management salary deferral until break-even census; prepayment review (PPEO) hold on first claims modeled at 2 months base / 4 downside",
+        "Month 3+ - Single SBA payment of ~$6,747/month (10.5%, 10-year); no other debt",
+        "Coverage - Annual EBITDA covers recurring debt service 3.7x / 8.6x / 12.2x (Y1 / Y2 / Y3)",
     ]:
         put(f"B{r}", line, 9.5)
         r += 1
@@ -130,7 +130,7 @@ def polish(wb, R):
         ws.page_setup.fitToWidth = 1
         ws.page_setup.fitToHeight = 0
         ws.sheet_properties.pageSetUpPr.fitToPage = True
-        ws.oddFooter.left.text = "Azalea Hospice - Proforma Rev 4.10"
+        ws.oddFooter.left.text = "Azalea Hospice - Proforma Rev 5.00 (Avant)"
         ws.oddFooter.left.size = 8
         ws.oddFooter.center.text = "Confidential"
         ws.oddFooter.center.size = 8

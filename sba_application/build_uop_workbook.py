@@ -1,17 +1,17 @@
-"""UOP workbook for John Hart / Mary Brownmiller - Path A structure (Rev 4.10 basis).
+"""UOP workbook for John Hart / Mary Brownmiller - Avant structure (Rev 5.00 basis).
 
-Story: equity $250K funds the $125K license down payment + ramp working capital;
-Jim Bullard's bank note ($500K/6%/36) funds September and pays the sellers $375K;
-the SBA 7(a) $500K funds ~1/15/2027 (at the 51% transfer) and REFINANCES the bank
-note (~$461,676 payoff), dropping debt service from $15,211/mo to ~$6,747/mo.
+Story: equity $250K funds the operating ramp (no down payment - fully deferred seller note);
+Avant seller (Kimberly Carlisle) carries the full $300K at 6% simple with all payments deferred;
+the SBA 7(a) $500K funds month 2 (license 100% in borrower name at CHOW) and retires the seller
+SBA funds month 2 and retires the seller note (~$303,000 incl. accrued interest); single $6,747/mo payment after.
 The $250K equity is the SBA injection (33% of the $750K project), traced
 dollar-for-dollar on the Equity Injection Trace tab.
-Output: sba_application/13_checklist_response_2026-07-16/UOP Azalea Refuge Rev2.00.xlsx
+Output: sba_application/13_checklist_response_2026-07-16/UOP Azalea Avant Rev3.00.xlsx
 """
 import openpyxl
 from openpyxl.styles import Border, Font, PatternFill, Side
 
-OUT = "sba_application/13_checklist_response_2026-07-16/UOP Azalea Refuge Rev2.00.xlsx"
+OUT = "sba_application/13_checklist_response_2026-07-16/UOP Azalea Avant Rev3.00.xlsx"
 
 H = Font(bold=True, size=12, color="1F3B2D")
 B = Font(bold=True)
@@ -37,13 +37,13 @@ def tab_structure(wb):
     for col in "BCDEF": ws.column_dimensions[col].width = 15
 
     sty(ws, "A1", "PROPOSED SBA 7(a) LOAN STRUCTURE - AZALEA HOSPICE & PALLIATIVE CARE", H)
-    sty(ws, "A2", "Tyler Hospice Hold, LLC (EIN 41-4966640) | Refuge Hospice acquisition | Rev 2.00 basis: Rev 4.10 proforma | 7/16/2026", IT)
+    sty(ws, "A2", "Tyler Hospice Hold, LLC (EIN 41-4966640) | Avant Hospice acquisition | Rev 3.00 basis: Rev 5.00 AVANT proforma | 8/14/2026", IT)
 
     sty(ws, "A4", "OVERALL PROJECT (all phases)", B, fill=FILL)
-    sty(ws, "A5", "Refuge Hospice, LLC license purchase price")
-    sty(ws, "B5", 500000, fmt=MONEY)
-    sty(ws, "A6", "Working capital (ramp payroll ahead of Medicare collections)")
-    sty(ws, "B6", 235000, fmt=MONEY)
+    sty(ws, "A5", "Avant Hospice, LLC license purchase price")
+    sty(ws, "B5", 300000, fmt=MONEY)
+    sty(ws, "A6", "Working capital (ramp payroll ahead of Medicare collections + prepayment review)")
+    sty(ws, "B6", 435000, fmt=MONEY)
     sty(ws, "A7", "Soft costs (SBA packaging, guaranty fee, legal/closing)")
     sty(ws, "B7", 15000, fmt=MONEY)
     sty(ws, "A8", "TOTAL PROJECT", B); sty(ws, "B8", "=B5+B6+B7", fmt=MONEY).font = B
@@ -58,20 +58,20 @@ def tab_structure(wb):
 
     sty(ws, "A13", "FINANCING SEQUENCE (how the project is funded through SBA closing)", B, fill=FILL)
     for r, (a, b) in enumerate([
-        ("~8/1/2026 - Equity pays license down payment (49% interest transfers)", "$125,000"),
-        ("Aug-Dec - Equity balance funds ramp working capital", "$125,000"),
-        ("Sept 2026 - Interim bank note (Bullard-relationship TX bank, $500K, 6%, 36-mo) pays sellers in full", "$375,000 + interest"),
-        ("Sept 2026 - Bank note surplus to working capital", "~$123,000"),
-        ("Oct-Dec - Bank note service (interim)", "$15,211/mo"),
-        ("1/15/2027 - SBA 7(a) funds at the 51% transfer; REFINANCES the bank note", "~$461,676 payoff"),
-        ("1/15/2027 - SBA surplus: soft costs + additional working capital", "~$38,324"),
-        ("From Feb 2027 - single SBA debt service", "$6,747/mo"),
+        ("CHOW close - 100% of membership interests transfer; NO down payment", "$0 at close"),
+        ("From close - Equity ($250,000) funds the operating ramp", "$250,000"),
+        ("Months 1-2 - Seller carries the full balance at 6% simple; nothing due", "$300,000 carried"),
+        ("Month 2 - SBA 7(a) funds (license already 100% in borrower name)", "$500,000"),
+        ("Month 2 - SBA retires the seller note (principal + accrued interest)", "~$303,000 payoff"),
+        ("Month 2 - SBA surplus: soft costs + additional working capital", "~$197,000"),
+        ("From month 3 - single SBA debt service", "$6,747/mo"),
+        ("Fallback if SBA slips - seller deferral continues until prepayment review clears", "no payments due"),
     ], start=14):
         sty(ws, f"A{r}", a); sty(ws, f"B{r}", b)
 
-    sty(ws, "A23", "USE OF SBA PROCEEDS (at January closing)", B, fill=FILL)
-    sty(ws, "A24", "Refinance interim bank acquisition note (payoff incl. accrued interest)")
-    sty(ws, "B24", 461676, fmt=MONEY)
+    sty(ws, "A23", "USE OF SBA PROCEEDS (at month-2 funding)", B, fill=FILL)
+    sty(ws, "A24", "Retire seller acquisition note (payoff incl. accrued interest)")
+    sty(ws, "B24", 303000, fmt=MONEY)
     sty(ws, "A25", "SBA soft costs (packaging $2,500 + guaranty fee est. + legal)")
     sty(ws, "B25", 15000, fmt=MONEY)
     sty(ws, "A26", "Additional working capital")
@@ -79,10 +79,10 @@ def tab_structure(wb):
     sty(ws, "A27", "Guaranty fee est.: 75% x $500K x 1.7% =")
     sty(ws, "B27", "=ROUND(500000*0.75*0.017,0)", fmt=MONEY)
     sty(ws, "A28", "TOTAL SBA LOAN", B); sty(ws, "B28", 500000, fmt=MONEY).font = B
-    sty(ws, "A29", "Why this refinance is SBA-clean: the bank note funded the business acquisition;", IT)
-    sty(ws, "A30", "SBA funds at the 100% ownership transfer (42 CFR 424.550(b) date), so no seller guaranties apply.", IT)
+    sty(ws, "A29", "Why this is SBA-clean: 100% of the membership interests transfer at CHOW close, so the", IT)
+    sty(ws, "A30", "license is fully in the borrower name BEFORE SBA funds - no split closing, no waiting period.", IT)
 
-    sty(ws, "A32", "PROPOSED SBA TERMS & COVERAGE (EBITDA per Rev 4.10 proforma, pre-debt-service)", B, fill=FILL)
+    sty(ws, "A32", "PROPOSED SBA TERMS & COVERAGE (EBITDA per Rev 5.00 AVANT proforma, pre-debt-service)", B, fill=FILL)
     sty(ws, "A33", "Rate (est. Prime + spread; lender to confirm)"); sty(ws, "B33", 0.105, fmt="0.00%")
     sty(ws, "A34", "Term (years)"); sty(ws, "B34", 10)
     sty(ws, "A35", "Monthly payment"); sty(ws, "B35", "=-PMT(B33/12,B34*12,B28)", fmt=MONEY)
@@ -93,8 +93,8 @@ def tab_structure(wb):
         sty(ws, f"A{r}", yrl); sty(ws, f"B{r}", e, fmt=MONEY)
         sty(ws, f"C{r}", "=$B$36", fmt=MONEY)
         sty(ws, f"D{r}", f"=B{r}/C{r}", fmt="0.00x")
-    sty(ws, "A42", "Interim-period note: Oct-Dec debt service is the bank note at $15,211/mo, fully covered", IT)
-    sty(ws, "A43", "by operations + working capital per the monthly proforma (cash never goes negative in base).", IT)
+    sty(ws, "A42", "Interim-period note: no debt service at all until SBA funds (seller payments fully deferred);", IT)
+    sty(ws, "A43", "base-case cash never goes negative (minimum month ~$192K per the monthly proforma).", IT)
 
 
 def tab_wc(wb):
@@ -106,8 +106,8 @@ def tab_wc(wb):
     sty(ws, "A1", "WORKING CAPITAL - COMPONENTS & MONTHLY DRAW TIMELINE", H)
     sty(ws, "A2", "Responds to SourceFunding note of 6/3 (break WC into components with a draw timeline). Borrower "
                   "consents to lender-controlled disbursement tied to census milestones.", IT)
-    sty(ws, "A3", "Funding sequence: equity ($125K after the down payment) covers Aug-Sep; the bank-note surplus "
-                  "(~$123K) covers Oct-Dec; the SBA surplus (~$23K net of soft costs) tops up at January closing. "
+    sty(ws, "A3", "Funding sequence: equity ($250K, no down payment) covers the early ramp; the SBA surplus "
+                  "(~$182K net of soft costs) lands at month 2. "
                   "Base case cash never goes negative (min month ~$3.4K - tight, disclosed).", IT)
 
     labels = ["Aug-26", "Sep-26", "Oct-26", "Nov-26", "Dec-26", "Jan-27",
@@ -150,12 +150,12 @@ def tab_wc(wb):
     sty(ws, f"A{r}", "Notes:", B)
     for note in [
         "Amounts are the projected monthly cash-flow SHORTFALL (operating costs less collections), not gross costs;",
-        "gross costs and collections are in the attached Rev 4.10 proforma (36 monthly periods, formula-driven).",
+        "gross costs and collections are in the attached Rev 5.00 AVANT proforma (36 monthly periods, formula-driven).",
         "Draws taper to zero by month 9-10 as Medicare collections catch and pass payroll.",
         "Owner-deferral lever: the three owner-operators defer salary until break-even census (~18, crossed month 2-3);",
         "$42,500 accrues and is repaid in January - modeled explicitly on the proforma's Staffing tab.",
-        "Prior structure carried a $672,000 reserve; this plan needs $235,000 because the license bills day one,",
-        "equity covers the down payment, and the bank note (then SBA) covers the acquisition.",
+        "The $435,000 reserve is deliberately large (58% of project): the target has never billed Medicare, so",
+        "first claims enter prepayment review - the reserve carries payroll through that window (base 2 mo / downside 4).",
     ]:
         sty(ws, f"A{r+1}", note, Font(size=9)); r += 1
     sty(ws, "A24", "WORKING CAPITAL TOTAL", B, fill=FILL)
@@ -167,27 +167,26 @@ def tab_timeline(wb):
     ws.column_dimensions["A"].width = 40
     for col in "BCDEF": ws.column_dimensions[col].width = 17
 
-    sty(ws, "A1", "SELLER PAYOFF & DEBT SEQUENCE (per MIPA 7/14/2026 + Path A refinance)", H)
-    sty(ws, "A2", "Seller note prepayable without penalty | payments to DHJR, LP as sellers' agent", IT)
+    sty(ws, "A1", "SELLER PAYOFF & DEBT SEQUENCE (Avant - deferred seller note, SBA takeout)", H)
+    sty(ws, "A2", "Seller note prepayable without penalty | seller: Kimberly Carlisle, sole member", IT)
     sty(ws, "A4", "Event", B, fill=FILL); sty(ws, "B4", "Date", B, fill=FILL)
     sty(ws, "C4", "Amount", B, fill=FILL); sty(ws, "D4", "Funded by", B, fill=FILL)
     events = [
-        ("License down payment (49% transfers)", "~8/1/2026", 125000, "Equity injection"),
-        ("Seller balance paid IN FULL (principal)", "Sept 2026", 375000, "Interim bank note ($500K/6%/36)"),
-        ("Seller accrued interest at payoff", "Sept 2026", "=ROUND(375000*0.06/12*2,0)", "Interim bank note"),
-        ("Bank note service (interim)", "Oct-Dec 2026", "15,211/mo", "Operations"),
-        ("Bank note REFINANCED by SBA 7(a) (payoff)", "1/15/2027", 461676, "SBA loan proceeds"),
-        ("Remaining 51% of membership interests transfer", "1/15/2027", "-", "36 months after CCN date 1/8/2024"),
-        ("Single SBA debt service thereafter", "Feb 2027 on", "6,747/mo", "Operations"),
+        ("CHOW close - 100% of membership interests transfer", "At CHOW approval", "-", "No cash due at close"),
+        ("Seller carries full balance (6% simple, all payments deferred)", "Months 1-2", 300000, "Seller financing"),
+        ("Seller note RETIRED by SBA 7(a) (principal + accrued interest)", "Month 2", "=ROUND(300000*(1+0.06/12*2),0)", "SBA loan proceeds"),
+        ("SBA surplus to soft costs + working capital", "Month 2", "=500000-303000", "SBA loan proceeds"),
+        ("Single SBA debt service thereafter", "Month 3 on", "6,747/mo", "Operations"),
+        ("Fallback if SBA slips: deferral continues until prepayment review clears", "-", "-", "Seller terms"),
     ]
     for i, (ev, dt, amt, src) in enumerate(events):
         r = 5 + i
         sty(ws, f"A{r}", ev); sty(ws, f"B{r}", dt)
         sty(ws, f"C{r}", amt, fmt=MONEY if isinstance(amt, (int, float)) or str(amt).startswith("=") else None)
         sty(ws, f"D{r}", src)
-    sty(ws, "A13", "Sellers are paid in full in September - four months earlier than the MIPA requires. The SBA")
-    sty(ws, "A14", "loan then refinances BANK debt (not seller debt) at the 100% ownership transfer, which avoids")
-    sty(ws, "A15", "the seller-guaranty rules on partial changes of ownership and simplifies lender placement.")
+    sty(ws, "A13", "The seller is paid in full at SBA funding (month 2) - and owes nothing before that. Because")
+    sty(ws, "A14", "100% of ownership transfers at CHOW close, SBA funds AFTER the license is fully in the")
+    sty(ws, "A15", "borrower name - no partial-change-of-ownership seller-guaranty complications, simple placement.")
 
 
 def tab_injection(wb):
@@ -205,12 +204,12 @@ def tab_injection(wb):
     sty(ws, "A7", "Geoff Schackmann - owner cash (date TBD - must land & be documented)"); sty(ws, "B7", 55000, fmt=MONEY)
     sty(ws, "A8", "TOTAL EQUITY SOURCES", B); sty(ws, "B8", "=SUM(B5:B7)", fmt=MONEY).font = B
 
-    sty(ws, "A10", "USES (traced to the Rev 4.10 monthly cash flow)", B, fill=FILL)
-    sty(ws, "A11", "License down payment at closing (~8/1/2026; MIPA receipt = documentation)"); sty(ws, "B11", 125000, fmt=MONEY)
-    sty(ws, "A12", "Ramp working capital Aug-Dec (payroll, rent, patient care ahead of collections)"); sty(ws, "B12", "=B8-B11", fmt=MONEY)
+    sty(ws, "A10", "USES (traced to the Rev 5.00 AVANT monthly cash flow)", B, fill=FILL)
+    sty(ws, "A11", "License down payment (none - seller note fully deferred)"); sty(ws, "B11", 0, fmt=MONEY)
+    sty(ws, "A12", "Ramp working capital (payroll, rent, patient care ahead of collections + prepayment review)"); sty(ws, "B12", "=B8-B11", fmt=MONEY)
     sty(ws, "A13", "TOTAL USES (all INSIDE the project)", B); sty(ws, "B13", "=B11+B12", fmt=MONEY).font = B
 
-    sty(ws, "A15", "SBA INJECTION TEST (at January closing)", B, fill=FILL)
+    sty(ws, "A15", "SBA INJECTION TEST (at month-2 funding)", B, fill=FILL)
     sty(ws, "A16", "Total project cost"); sty(ws, "B16", 750000, fmt=MONEY)
     sty(ws, "A17", "Equity injected (all documented, all spent in-project)"); sty(ws, "B17", "=B8", fmt=MONEY)
     sty(ws, "A18", "Injection %", B); sty(ws, "B18", "=B17/B16", fmt=PCT).font = B
@@ -222,8 +221,8 @@ def tab_injection(wb):
         "1. Bullard wire 1: wire confirmation 5/7/2026 (ON FILE) + Bullard bank statement covering 30+ days prior",
         "2. Bullard wire 2: wire confirmation + 30-day-prior source statement (PENDING - must complete before SBA close)",
         "3. Schackmann $55K: deposit evidence + source statement (PENDING)",
-        "4. Mercury account statements showing funds on deposit and the $125K down-payment disbursement",
-        "5. MIPA + settlement receipt for the $125,000 down payment",
+        "4. Mercury account statements showing funds on deposit and working-capital disbursements",
+        "5. Executed Avant MIPA / payment-confirmation schedule (no down payment to document)",
         "6. Monthly operating statements tying the working-capital spend to the project",
     ], start=23):
         sty(ws, f"A{i}", x, Font(size=9))

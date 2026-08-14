@@ -1,17 +1,17 @@
-"""Generate Azalea SBA Business Plan Rev 6.00.
+"""Generate Azalea SBA Business Plan Rev 7.00 (Avant target).
 
-Rev 6.00 updates the plan from the terminated Hickory Hospice acquisition to the
-Refuge Hospice, LLC acquisition (MIPA dated 7/14/2026) and restructures the
-financing to a single $500,000 SBA 7(a) loan plus a $250,000 equity injection
-($750,000 total project). All financial figures are taken from the Rev 4.10
-dynamic proforma (Azalea_Hospice_Proforma_Rev3.00_DYNAMIC.xlsx, QA 20/20):
+Rev 7.00 retargets the plan to the Avant Hospice, LLC acquisition ($300,000,
+seller-financed and fully deferred to the month-2 SBA takeout) with a single
+$500,000 SBA 7(a) loan plus a $250,000 equity injection ($750,000 total project).
+All financial figures are taken from the Rev 5.00 AVANT dynamic proforma
+(Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx, QA 22/22):
 
   Census (EOM):        24 @ M2 / 34 @ M6 / 40 @ M12 / 50 @ M24 / 56 @ M36
   Net patient revenue: $1,932,877 / $2,891,641 / $3,490,623   (Y1/Y2/Y3)
-  EBITDA:              $262,951 (13.6%) / $680,224 (23.5%) / $975,925 (28.0%)
+  EBITDA:              $299,195 (15.5%) / $695,981 (24.1%) / $985,429 (28.2%)
   Month-12 EBITDA margin: 22.3%
-  Net income:          $128,491 / $457,463 / $718,153
-  Modeled debt:        $500K at 6% over 36 months, $15,211/mo from Oct 2026
+  Net income:          $130,630 / $472,185 / $733,029
+  Modeled debt:        seller note $300K at 6% (deferred), retired by SBA at month 2; $6,747/mo after
                        (conservative; an actual SBA 7(a) at ~10.5% / 10 yr is
                        ~$6,745/mo)
 
@@ -34,7 +34,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 NAVY = RGBColor(0x1F, 0x38, 0x64)
 GREY = RGBColor(0x60, 0x60, 0x60)
 
-OUT = "03_business_plan/Azalea SBA Business Plan Rev6.00.docx"
+OUT = "03_business_plan/Azalea SBA Business Plan Rev7.00 AVANT.docx"
 
 
 # ------------------------------------------------------------------ helpers
@@ -117,27 +117,27 @@ def business_plan_rev6():
     para(d, "Business Plan - SBA 7(a) Application", bold=True, size=13, color=NAVY)
     para(d, "Tyler Hospice Hold, LLC, operating as Azalea Hospice & Palliative Care", color=GREY, size=10)
     para(d, "dba Azalea Hospice & Palliative Care - EIN 41-4966640 - Wyoming holding company acquiring "
-            "Refuge Hospice, LLC (Texas)", size=9, color=GREY)
+            "Avant Hospice, LLC (Texas)", size=9, color=GREY)
     para(d, "Rev. 6.00 - July 2026  (supersedes Rev 5.00 dated June 2026; acquisition target changed to "
-            "Refuge Hospice, LLC, financing restructured to a single SBA 7(a) loan, and all financials "
-            "reconciled to the Rev 4.10 dynamic proforma)", italic=True, size=9, color=GREY)
+            "Avant Hospice, LLC at $300,000, seller-financed to the month-2 SBA takeout, and all financials "
+            "reconciled to the Rev 5.00 AVANT dynamic proforma)", italic=True, size=9, color=GREY)
     para(d, "")
-    para(d, "Acquisition of Refuge Hospice, LLC - a Texas hospice certified for both Medicare and Medicaid "
+    para(d, "Acquisition of Avant Hospice, LLC - a Texas Medicare-certified hospice "
             "and ready to bill from day one - operating as Azalea Hospice & Palliative Care, led by an "
             "experienced East-Texas clinical team returning to a census level it has operated at before in "
             "this market.")
     para(d, "")
     h2(d, "Headline metrics")
     table(d, ["Metric", "Value", "Detail"],
-          [["SBA loan request", "$500,000", "Single SBA 7(a) loan - funds ~1/15/2027 at the 51% transfer, refinancing the interim bank note (~$461,676 payoff) and funding ramp working capital"],
-           ["Purchase price", "$500,000", "Refuge Hospice, LLC - dual Medicare + Medicaid certification (CMS CCN effective 1/8/2024); MIPA dated 7/14/2026"],
+          [["SBA loan request", "$500,000", "Single SBA 7(a) loan - funds at month 2 (license 100% in borrower name from CHOW close), retiring the deferred seller note (~$303,000) and funding ramp working capital"],
+           ["Purchase price", "$300,000", "Avant Hospice, LLC - Medicare-certified (CMS CCN 741798, NPI 1699350090; TX license 020708); terms confirmed 5/5/2026, all payments deferred until prepayment review clears"],
            ["Total project", "$750,000", "$500K SBA loan + $250K cash equity injection"],
            ["Year-1 EBITDA", "$299,195", "15.5% margin, before debt service - growing to $985,429 (28.2%) by Year 3; month-12 margin 22.3%"],
            ["Break-even census", "~17-18 patients", "Crossed in month 2 of the ramp"],
            ["Equity injection", "$250,000", "33% of project (Bullard $195K + Schackmann $55K) - well above the 10% SOP 50 10 8 minimum"]],
           widths=[1.6, 1.3, 3.6])
     para(d, "Confidential - prepared exclusively for the SBA 7(a) loan application. All figures are computed "
-            "from the Rev 4.10 dynamic proforma (Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx). Do not "
+            "from the Rev 5.00 AVANT dynamic proforma (Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx). Do not "
             "distribute without written consent.", italic=True, size=8, color=GREY)
 
     # ---- Table of Contents ----
@@ -149,39 +149,35 @@ def business_plan_rev6():
     d.add_page_break()
     h1(d, "01 - Executive Summary")
     h2(d, "Loan request")
-    para(d, "Tyler Hospice Hold, LLC requests a $500,000 SBA 7(a) loan to complete the acquisition of Refuge "
-            "Hospice, LLC - a Texas hospice certified for both Medicare and Medicaid (CMS CCN effective "
-            "January 8, 2024) and ready to bill from day one - and to fund working capital through the census "
-            "ramp, operating as Azalea Hospice & Palliative Care. The $500,000 purchase, under a Membership "
-            "Interest Purchase Agreement dated July 14, 2026 (in final negotiation), is structured in two "
-            "steps to comply with the Medicare 36-month rule at 42 CFR 424.550(b): 49% of the membership "
-            "interests transfer at closing (approximately August 1, 2026) against a $125,000 down payment, "
-            "and the remaining 51% transfer on January 15, 2027, the first date past the 36-month mark from "
-            "initial certification. The $375,000 balance is paid IN FULL in September 2026 by an interim bank note "
-            "($500,000, 6%, 36-month, through a Bullard-relationship Texas bank) - four months earlier than the "
-            "MIPA requires. SBA loan proceeds refinance that bank note at the 51% transfer on January 15, 2027 "
-            "2026, converting short-term seller financing into permanent SBA financing before the ramp "
-            "deepens. The loan is paired with a $250,000 cash equity injection for a total project of "
-            "$750,000 (a 33% injection). Once the bank note is refinanced, the business carries a single "
-            "debt: the SBA loan.")
+    para(d, "Tyler Hospice Hold, LLC requests a $500,000 SBA 7(a) loan to complete the acquisition of Avant "
+            "Hospice, LLC - a Texas Medicare-certified hospice (CMS CCN 741798, NPI 1699350090, TX HHSC "
+            "license 020708) - and to fund working capital through the census ramp, operating as Azalea "
+            "Hospice & Palliative Care. The $300,000 purchase transfers 100% of the membership interests at "
+            "CHOW approval, so the license is fully in the borrower name from day one - no split closing "
+            "and no waiting period before SBA funding. The seller (Kimberly Carlisle, sole member) carries "
+            "the entire balance at 6% simple interest with no down payment and no installments; all payments "
+            "are deferred until Medicare prepayment review clears. The SBA loan funds at month 2 and "
+            "retires the seller note in full (~$303,000 including accrued interest), converting deferred "
+            "seller financing into permanent SBA financing at the earliest lawful point. The loan is paired "
+            "with a $250,000 cash equity injection for a total project of $750,000 (a 33% injection). Once "
+            "the seller note is retired, the business carries a single debt: the SBA loan at approximately "
+            "$6,747 per month.")
     h2(d, "Use of funds")
     table(d, ["Use", "Amount", "Detail"],
-          [["Acquisition of Refuge Hospice, LLC", "$500,000", "100% of membership interests in two steps per 42 CFR 424.550(b); $125,000 down at closing; sellers paid in full Sept 2026 by an interim bank note; bank note refinanced by SBA proceeds at the 51% transfer (~1/15/2027)"],
+          [["Acquisition of Avant Hospice, LLC", "$300,000", "100% of membership interests at CHOW approval; no down payment; seller carries the balance at 6% fully deferred; note retired by SBA proceeds at month-2 funding (~$303,000 incl. accrued interest)"],
            ["Closing and startup costs", "$15,000", "Legal, licensure filings, EMR setup, initial supplies"],
-           ["Working-capital reserve", "$235,000", "Funds ramp payroll ahead of the Medicare payment lag (NOE-to-cash ~30-60 days)"],
+           ["Working-capital reserve", "$435,000", "Funds ramp payroll ahead of the Medicare payment lag AND the prepayment-review hold on first claims (base 2 months, downside 4 - the target has never billed)"],
            ["Total uses", "$750,000", "Funded by SBA $500K + equity $250K"]],
           widths=[2.5, 1.1, 2.9])
     h2(d, "Business overview")
-    para(d, "Azalea launches the acquired Refuge agency in the Tyler / Smith County market (CBSA 46340) "
-            "under an experienced local team with established referral relationships. Refuge is certified "
-            "for both Medicare and Medicaid - a scarce license position under the current Texas Medicaid "
-            "enrollment freeze and the CMS nationwide hospice enrollment moratorium - and its Medicaid "
-            "certification adds nursing-facility room and board billing, widening the referral base to "
-            "nursing homes. Census builds from the team's referral pipeline to 24 patients by month 2, 34 by "
-            "month 6, and 40 by month 12, reaching 50 by month 24 and 56 by month 36 - a return to census "
-            "levels the team has operated at before in this market. Revenue is Medicare Routine Home Care "
-            "per-diem at a blended net rate of approximately $172 per patient-day, with Medicaid "
-            "nursing-facility room and board passed through at the standard rate.")
+    para(d, "Azalea launches the acquired Avant agency in the Tyler / Smith County market (CBSA 46340) "
+            "under an experienced local team with established referral relationships. Avant holds a Texas "
+            "Medicare hospice certification - a scarce license position under the CMS nationwide hospice "
+            "enrollment moratorium, which blocks new entrants. Census builds from the team's referral "
+            "pipeline to 24 patients by month 2, 34 by month 6, and 40 by month 12, reaching 50 by month 24 "
+            "and 56 by month 36 - a return to census levels the team has operated at before in this market. "
+            "Revenue is Medicare Routine Home Care per-diem at a blended net rate of approximately $172 per "
+            "patient-day after sequestration and billing fees.")
     h2(d, "Management team")
     para(d, "Azalea is led by an already-seated team: Geoff Schackmann (Manager - multi-hospice "
             "operator), Silas Shelton (Administrator / Executive Director), Dana Davenport (Director of "
@@ -195,33 +191,34 @@ def business_plan_rev6():
           [["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
            ["EBITDA (before debt service)", "$299,195", "$695,981", "$985,429"],
            ["EBITDA margin", "15.5%", "24.1%", "28.2%"],
-           ["Net income", "$128,491", "$457,463", "$718,153"]],
+           ["Net income", "$130,630", "$472,185", "$733,029"]],
           widths=[2.2, 1.4, 1.4, 1.4])
     para(d, "The operation crosses break-even census (~17-18 patients) in month 2 and reaches a 22.3% "
-            "EBITDA margin by month 12. Debt service is modeled exactly as sequenced: the interim bank note "
-            "at $15,211 per month October through January, then the SBA 7(a) at approximately $6,747 per "
-            "month ($80,961 per year) after the January refinance. EBITDA covers recurring debt service "
-            "3.8x in Year 1, 8.6x in Year 2, and 12.2x in Year 3 - an aggregate of 8.2x against the 1.25x "
-            "floor. A separate 5% of net patient revenue contingency is deducted below EBITDA in the cash "
-            "flow, and the working-capital plan (owner salary deferral to break-even census, staged clinical "
-            "hiring, and the sequenced bank-then-SBA financing) keeps cash positive in the base case with "
-            "no revolver or assumed facility anywhere in the model.")
+            "EBITDA margin by month 12. Debt service is modeled exactly as sequenced: nothing at all until "
+            "the SBA funds at month 2 (the seller note is fully deferred), then a single SBA 7(a) payment of "
+            "approximately $6,747 per month ($80,961 per year). EBITDA covers annualized recurring debt "
+            "service 3.7x in Year 1, 8.6x in Year 2, and 12.2x in Year 3; the global 3-year coverage is 3.7x "
+            "even including the one-time month-2 seller takeout, against the 1.25x floor. A separate 5% of "
+            "net patient revenue contingency is deducted below EBITDA in the cash flow, and the "
+            "working-capital plan (owner salary deferral to break-even census, staged clinical hiring, and a "
+            "$435,000 reserve sized for prepayment review) keeps cash positive in the base case with no "
+            "revolver or assumed facility anywhere in the model.")
 
     # ---- 02 Company Description ----
     d.add_page_break()
     h1(d, "02 - Company Description")
     h2(d, "2.1 Legal structure")
     para(d, "Tyler Hospice Hold, LLC is a Wyoming LLC (formed 2026; EIN 41-4966640), foreign-qualified to do "
-            "business in Texas. As the borrower and holding entity, it is acquiring 100% of Refuge Hospice, "
-            "LLC - a Texas LLC, HCSSA-licensed and certified for both Medicare and Medicaid (CMS CCN "
-            "effective January 8, 2024) - which will operate as Azalea Hospice & Palliative Care. Because "
-            "Medicare bars a change of majority ownership within 36 months of initial certification (42 CFR "
-            "424.550(b)), the purchase transfers 49% of the membership interests at closing (approximately "
-            "August 1, 2026) and the remaining 51% on January 15, 2027, the first date past the 36-month "
-            "mark. Refuge's existing Medicare and Medicaid certifications and Texas license make the agency "
-            "billing-ready from day one, with no new-provider 855A enrollment wait. The Company elects "
-            "S-corporation tax treatment under IRC Section 1361 (IRS Form 2553) for federal income tax "
-            "purposes (filing Form 1120-S, single class of stock, pro-rata distributions); Refuge Hospice, "
+            "business in Texas. As the borrower and holding entity, it is acquiring 100% of Avant Hospice, "
+            "LLC - a Texas LLC, HCSSA-licensed (license 020708) and Medicare-certified (CMS CCN "
+            "741798, NPI 1699350090) - which will operate as Azalea Hospice & Palliative Care. The purchase "
+            "transfers 100% of the membership interests at CHOW approval, placing the license fully in the "
+            "borrower name from day one - no split closing and no new-provider enrollment application. "
+            "Because the agency has never submitted Medicare claims, its first claims enter a provisional "
+            "period of enhanced oversight with prepayment review (42 CFR 424.527); the financial plan is "
+            "expressly built around that review window. The Company elects S-corporation tax treatment "
+            "under IRC Section 1361 (IRS Form 2553) for federal income tax purposes (filing Form 1120-S, "
+            "single class of stock, pro-rata distributions); Avant Hospice, "
             "LLC is a disregarded entity (or QSub) of the S-corp.")
     h2(d, "2.2 Ownership & capitalization")
     table(d, ["Member / source", "Interest", "Role & structure"],
@@ -241,18 +238,16 @@ def business_plan_rev6():
             "the balance follows on a committed schedule. Because he holds less than 20% and exercises no "
             "operational control, no SBA personal guaranty is required of him (13 CFR 120.160). There is no "
             "companion bank loan: the prior dual-debt structure has been superseded, and after the SBA "
-            "proceeds refinance the interim bank note at the January 2027 funding the business carries a single debt. The "
+            "proceeds retire the deferred seller note at the month-2 funding the business carries a single debt. The "
             "SBA 7(a) loan is guaranteed by Geoff Schackmann (personal guaranty, controlling Manager and "
-            "sole 20%+ owner - direct individual 39.9% owner) and by Refuge Hospice, LLC (corporate guaranty "
+            "sole 20%+ owner - direct individual 39.9% owner) and by Avant Hospice, LLC (corporate guaranty "
             "plus a lien on its assets and receivables, as the operating subsidiary).")
     h2(d, "2.3 Acquired platform & validated economics")
-    para(d, "Refuge Hospice, LLC holds what the current regulatory environment has made scarce: a Texas "
-            "hospice license certified for both Medicare and Medicaid, ready to bill immediately. Texas has "
-            "an effective freeze on new Medicaid hospice enrollment, and CMS imposed a nationwide hospice "
-            "enrollment moratorium (effective May 13, 2026) that names Texas - so dual-certified licenses "
-            "cannot be newly created and comparable licenses trade at $400-500K and above. The Medicaid "
-            "certification also adds nursing-facility room and board billing capability, widening the "
-            "referral base to nursing homes. The operating economics are not speculative: the model's "
+    para(d, "Avant Hospice, LLC holds what the current regulatory environment has made scarce: a Texas "
+            "Medicare hospice certification. CMS imposed a nationwide hospice "
+            "enrollment moratorium (effective May 13, 2026) that names Texas - so certified licenses "
+            "cannot be newly created; comparable Texas Medicare-only licenses trade at $225-350K, and the "
+            "$300,000 purchase sits inside that band. The operating economics are not speculative: the model's "
             "per-diem rates, patient-day costs, and census ramp are benchmarked to the leadership team's own "
             "prior Tyler-market book (~22 ADC and ~$118K net collections per month, April-June 2025 "
             "actuals), so the ramp is a return to a proven census level under the same team, in the same "
@@ -277,17 +272,17 @@ def business_plan_rev6():
             "days 61+), wage-index adjusted for Smith County (Tyler CBSA 46340). With approximately 15% of "
             "patient-days at the higher first-60-day rate, the blended net rate is approximately $172 per "
             "patient-day after sequestration and billing fees - escalated 2.5% per year (CMS hospice rates "
-            "have risen every year since 2010). Medicaid nursing-facility room and board is billed and "
+            "have risen every year since 2010). Revenue is billed and "
             "passed through at the standard rate.")
     h2(d, "3.2 License scarcity - the enrollment moratorium")
-    para(d, "Two regulatory actions have effectively closed the door on new entrants and made Refuge's "
-            "dual certification a strategic asset. First, Texas maintains an effective freeze on new "
-            "Medicaid hospice enrollment, so a new provider cannot obtain the Medicaid certification that "
+    para(d, "Two regulatory actions have effectively closed the door on new entrants and made Avant's "
+            "certification a strategic asset. First, Texas maintains an effective freeze on new "
+            "Medicaid hospice enrollment, narrowing the paths for new entrants generally. Second, a new provider cannot obtain the Medicare certification that "
             "unlocks nursing-facility room and board billing. Second, CMS imposed a nationwide hospice "
             "enrollment moratorium effective May 13, 2026, naming Texas among the states of concern - "
             "halting new Medicare hospice enrollments altogether. The only way into the market is to "
-            "acquire an existing certified license, and dual Medicare + Medicaid licenses trade at "
-            "$400-500K and above. Azalea's $500,000 purchase is therefore at market for the license alone, "
+            "acquire an existing certified license, and Texas Medicare-only licenses trade at "
+            "$225-350K. Azalea's $300,000 purchase is therefore at market for the license alone, "
             "and the moratorium that constrains supply also protects Azalea from new competition during "
             "the ramp.")
     h2(d, "3.3 Tyler market - demographics and service area")
@@ -310,8 +305,8 @@ def business_plan_rev6():
     para(d, "Smith County and surrounding counties hold ~40+ skilled nursing facilities (SNFs) and ~30+ "
             "assisted living facilities (ALFs). These are a concentrated, high-volume referral source: "
             "residents with terminal diagnoses frequently elect hospice, and facility relationships drive "
-            "consistent admission volume. Azalea's Medicaid certification is a direct competitive lever in "
-            "this channel - it allows Azalea to bill nursing-facility room and board for dual-eligible "
+            "consistent admission volume. The team's long-standing facility relationships are the direct "
+            "competitive lever in this channel - decades of East Texas SNF/ALF coverage for "
             "residents, which many facilities require of a hospice partner. Tier 1 facilities (highest-census "
             "SNFs and ALFs in the Tyler metro) receive weekly in-person visits from the Community Liaison "
             "and clinical liaison; Tier 2 facilities receive bi-weekly or monthly touchpoints by census "
@@ -324,7 +319,7 @@ def business_plan_rev6():
             "DONs, and the faith-community and pastoral-care networks that are uniquely important in East "
             "Texas. A mature, above-average-utilization market with 60,000+ Medicare-eligible residents and "
             "70+ senior facilities - entered not cold, but by an experienced local team on validated "
-            "Tyler-market economics, holding a dual-certified license new entrants cannot obtain.")
+            "Tyler-market economics, holding a certified license new entrants cannot obtain.")
 
     # ---- 04 Competitive Analysis ----
     d.add_page_break()
@@ -342,7 +337,7 @@ def business_plan_rev6():
            ["Harbor Hospice - East TX", "Regional", "Limited capacity; smaller sales team"]],
           widths=[1.9, 1.3, 3.3])
     h2(d, "Azalea's differentiation")
-    bullet(d, "Dual Medicare + Medicaid certification under an enrollment moratorium - a scarce license position that new entrants cannot replicate, with nursing-facility room and board billing that widens the SNF referral base")
+    bullet(d, "Medicare certification under a nationwide enrollment moratorium - a scarce license position that new entrants cannot replicate")
     bullet(d, "Validated local economics - modeled on the leadership team's own proven ~22 ADC Tyler book, not a standing start")
     bullet(d, "Dignity-led hospitality model - luxury-hospitality standards applied to end-of-life care")
     bullet(d, "Faith-aligned positioning - explicit Christian-values messaging resonant with the local demographic")
@@ -373,24 +368,24 @@ def business_plan_rev6():
     d.add_page_break()
     h1(d, "05 - SWOT Analysis")
     h2(d, "Strengths")
-    bullet(d, "Dual Medicare + Medicaid certification (CCN effective 1/8/2024) - billing-ready day one, with nursing-facility room and board capability")
-    bullet(d, "Scarce license: the Texas Medicaid enrollment freeze and the CMS nationwide enrollment moratorium (effective 5/13/2026, naming Texas) block new entrants; comparable licenses trade at $400-500K+")
+    bullet(d, "Medicare certification in hand (CCN 741798) - a clean, uncompromised enrollment with no billing history to defend")
+    bullet(d, "Scarce license: the CMS nationwide enrollment moratorium (effective 5/13/2026, naming Texas) blocks new entrants; comparable Medicare-only licenses trade at $225-350K and the purchase is at $300K")
     bullet(d, "Modeled on validated Tyler-market economics (~22 ADC, ~$118K/mo) benchmarked to the team's own actual collections")
     bullet(d, "Experienced clinical & admin team already in seat, with deep East-Texas referral relationships")
-    bullet(d, "Simple, conservative capital structure - a single $500K SBA loan after the interim bank note is refinanced; sellers paid in full in month two of operations")
+    bullet(d, "Simple, conservative capital structure - a single $500K SBA loan; the seller note is fully deferred and retired at the month-2 SBA funding; no other debt, ever")
     bullet(d, "$250K cash equity injection (33% of project) plus a $235K working-capital plan with lender-controlled disbursement")
     bullet(d, "Strong ownership alignment - operators hold equity (13.3% each); experienced multi-hospice Manager")
     h2(d, "Weaknesses")
     bullet(d, "Newco borrower with no operating history of its own (mitigated by the team's benchmarked prior book and an experienced operator)")
-    bullet(d, "Refuge has minimal current operations - census must be built from the team's referral relationships during ramp")
+    bullet(d, "Avant has minimal current operations - census must be built from the team's referral relationships during ramp")
     bullet(d, "Single-office, single-market concentration")
-    bullet(d, "Interim-debt window (September 2026 to SBA funding) carries $15,211/mo bank-note service; mitigated by the working-capital plan, owner salary deferral to break-even census, and the January 2027 SBA refinance that drops service to $6,747/mo")
+    bullet(d, "First claims enter prepayment review (42 CFR 424.527) - the target has never billed; mitigated by a $435,000 working-capital reserve (58% of project), owner salary deferral to break-even census, and zero debt service until SBA funds")
     bullet(d, "Sensitivity to a sustained census shortfall (see Section 11.7)")
     bullet(d, "Manager's attention is split across other interests during launch")
     h2(d, "Opportunities")
     bullet(d, "Growing 65+ population (60,000+ Medicare-eligible) with above-average utilization")
     bullet(d, "Base-case census growth to 56 patients by month 36 from the team's referral pipeline")
-    bullet(d, "70+ SNF/ALF facilities, many underserved by incumbents - and newly addressable through Medicaid nursing-facility room and board billing")
+    bullet(d, "70+ SNF/ALF facilities, many underserved by incumbents - addressable through the team's established facility relationships")
     bullet(d, "Faith-based marketing to an extensive church and ministry network")
     bullet(d, "Palliative-care consultation line as a Year 2-3 revenue diversifier")
     bullet(d, "MVI 'Perfect Visit' / 'Perfect Phones' certification + Andrew Reid's national multi-platform campaign - national lead exposure for a local independent (upside, not in the base case)")
@@ -419,8 +414,8 @@ def business_plan_rev6():
     para(d, "Tier 1 covers the ~15 highest-census SNFs and ALFs/memory-care communities in the Tyler metro "
             "with weekly visits and a dedicated clinical liaison; Tier 2 covers the remaining 40+ SNFs and "
             "20+ ALFs across the six-county service area with bi-weekly touchpoints. Quarterly facility "
-            "in-services and pre-positioned election packets support consistent volume. Azalea's Medicaid "
-            "certification lets it bill nursing-facility room and board for dual-eligible residents - a "
+            "in-services and pre-positioned election packets support consistent volume. The team's "
+            "long-standing facility coverage is a "
             "capability many facilities require of a hospice partner and a concrete door-opener in this "
             "channel.")
     h2(d, "6.3 Physician & clinical channel")
@@ -447,7 +442,7 @@ def business_plan_rev6():
     h2(d, "6.6 Census model")
     table(d, ["Period", "Census path (EOM)", "Primary channel"],
           [["Months 1-3 (launch)", "20 -> 24 -> 26", "Team activation + established referral relationships"],
-           ["Months 4-12", "34 by month 6 -> 40 by month 12", "Hospital + SNF/ALF (incl. Medicaid room & board accounts)"],
+           ["Months 4-12", "34 by month 6 -> 40 by month 12", "Hospital + SNF/ALF facility accounts"],
            ["Year 2", "50 by month 24 (~45 avg ADC)", "All channels + faith"],
            ["Year 3", "56 by month 36 (~53 avg ADC)", "All channels + organic"]],
           widths=[1.6, 2.2, 2.7])
@@ -495,7 +490,7 @@ def business_plan_rev6():
             "relationships are a key de-risking factor. Officer salaries are fully loaded into the "
             "projections as expenses (no compensation is omitted, per SBA requirements).")
     h2(d, "8.1 Ownership & reporting structure")
-    para(d, "Tyler Hospice Hold, LLC (Wyoming holding company) is acquiring 100% of Refuge Hospice, LLC "
+    para(d, "Tyler Hospice Hold, LLC (Wyoming holding company) is acquiring 100% of Avant Hospice, LLC "
             "(Texas operating subsidiary) in two steps per 42 CFR 424.550(b); the subsidiary does business "
             "as Azalea Hospice & Palliative Care. The Administrator leads operations; the Director of "
             "Nursing leads the clinical team; the Community Liaison leads business development. Mr. Bullard "
@@ -578,37 +573,37 @@ def business_plan_rev6():
     # ---- 10 Acquisition and Launch Strategy ----
     d.add_page_break()
     h1(d, "10 - Acquisition and Launch Strategy")
-    h2(d, "10.1 The Refuge acquisition & 36-month-rule structure")
-    para(d, "The transaction is the acquisition of 100% of the membership interests of Refuge Hospice, LLC, "
-            "a Texas LLC certified for both Medicare and Medicaid (CMS CCN effective January 8, 2024), for "
-            "$500,000 under a Membership Interest Purchase Agreement dated July 14, 2026 (in final "
-            "negotiation). The sellers are Angel J. Resendiz and Dennis M. Hendrix, with payments made to "
-            "DHJR, LP as the sellers' agent. Because 42 CFR 424.550(b) bars a change of majority ownership "
-            "within 36 months of a hospice's initial Medicare certification, the purchase is structured in "
-            "two steps: 49% of the membership interests transfer at closing (approximately August 1, 2026) "
-            "against a $125,000 down payment, and the remaining 51% transfer on January 15, 2027 - the first "
-            "date past the 36-month mark. The sellers are paid in full in September 2026 by an interim bank note "
-            "($500,000 at 6% over 36 months, via a Bullard-relationship Texas bank). The requested SBA loan "
-            "refinances that bank note "
-            "at the 51% transfer on January 15, 2027, funded by the SBA loan. Azalea files the applicable CMS-855A ownership-change updates and moves "
-            "banking, EMR, and insurance into the new ownership structure at each step.")
+    h2(d, "10.1 The Avant acquisition structure")
+    para(d, "The transaction is the acquisition of 100% of the membership interests of Avant Hospice, LLC, "
+            "a Texas LLC, Medicare-certified (CMS CCN 741798, NPI 1699350090, TX HHSC license 020708), for "
+            "$300,000 on terms confirmed with the seller on May 5, 2026 and improved since. The seller is "
+            "Kimberly Carlisle, sole member. All membership interests transfer at CHOW approval, placing "
+            "the license fully in the borrower name from day one. The seller carries the entire $300,000 "
+            "at 6% simple interest with no down payment and no installments - every payment is deferred "
+            "until Medicare prepayment review clears - and the note is prepayable without penalty. The "
+            "requested SBA loan funds at month 2 and retires the note in full (~$303,000 including accrued "
+            "interest). Azalea files the applicable CMS-855A ownership-change updates and moves banking, "
+            "EMR, and insurance into the new ownership structure at closing.")
     h2(d, "10.2 Prior target (history)")
     para(d, "The Company's previously contracted target, Hickory Hospice, LLC ($300,000 purchase price, "
             "Medicare-only certification), failed its state site survey and that transaction was terminated. "
-            "The Refuge acquisition replaces it with a stronger asset: dual Medicare and Medicaid "
-            "certification, a clean certification effective January 8, 2024, and immediate billing "
-            "readiness. The prior dual-loan financing structure was terminated with that transaction and is "
-            "superseded by the single SBA 7(a) request in this plan.")
+            "An interim second target (a $500,000 dual-certified license) was evaluated and set aside on "
+            "capital-efficiency grounds. The Avant acquisition delivers a clean, never-billed Medicare "
+            "certification at a $300,000 price inside the market band, with fully deferred seller "
+            "financing. The prior dual-loan financing structure is superseded by the single SBA 7(a) "
+            "request in this plan.")
     h2(d, "10.3 Billing readiness & revenue ramp")
-    para(d, "Refuge is certified and ready to bill from day one - there is no new-provider 855A enrollment "
-            "wait and no gap in billing capability. Refuge carries minimal current operations, so the "
+    para(d, "Avant is certified, and CHOW approval places the existing enrollment in the borrower name - "
+            "there is no new-provider enrollment application. Because the agency has never billed, first "
+            "claims enter prepayment review (42 CFR 424.527); the working-capital reserve is sized for that "
+            "window (base 2-month hold; 4-month downside disclosed). Avant has no current operations, so the "
             "revenue plan is a census build, not a panel transfer: admissions ramp from the leadership "
             "team's established East-Texas referral relationships to 24 patients by month 2, 34 by month 6, "
             "and 40 by month 12. The model's per-diem economics and cost structure are benchmarked to the "
             "team's own prior Tyler-market book (April-June 2025 actuals), so the ramp is a return to census "
             "levels this team has already operated at in this market.")
     h2(d, "10.4 Affiliate disclosure")
-    para(d, "The borrower's affiliate group consists of the borrower and its operating subsidiary Refuge "
+    para(d, "The borrower's affiliate group consists of the borrower and its operating subsidiary Avant "
             "Hospice, LLC - well within the applicable SBA size standard. The controlling owner (Geoff "
             "Schackmann, direct individual 39.9% owner) previously held a 33.33% interest in VistaRiver Inc, "
             "which he sold in August 2025; he retains only a passive seller-note receivable (no equity, "
@@ -616,11 +611,11 @@ def business_plan_rev6():
             "Affiliate and Size-Standard memorandum is included in the application package.")
     h2(d, "10.5 Launch timeline & equity-injection coordination")
     table(d, ["Window", "Phase", "Key activities"],
-          [["Through July 2026", "Equity injection", "Full $250,000 on deposit: Bullard $195,000 ($100K wired 5/7/2026) + Schackmann $55,000"],
-           ["~August 1, 2026", "Closing - step 1 (49%)", "49% of Refuge membership interests transfer; $125,000 down payment; banking, EMR, and insurance stand-up; staff credentialing"],
-           ["January 2027", "SBA funding, 51% transfer & bank-note refinance", "SBA loan funds concurrent with the 51% transfer (100% ownership); interim bank note (~$461,676) refinanced; debt service drops to $6,747/mo"],
+          [["Pre-close", "Equity injection", "Full $250,000 on deposit: Bullard $195,000 ($100K wired 5/7/2026) + Schackmann $55,000"],
+           ["At CHOW approval", "Closing (100%)", "All membership interests transfer; no cash due at close; banking, EMR, and insurance stand-up; staff credentialing"],
+           ["Month 2", "SBA funding & seller takeout", "SBA loan funds (license already 100% in borrower name); seller note (~$303,000) retired; single $6,747/mo payment after"],
            ["Months 1-6", "BD ramp", "Woodard-led weekly referral cadence; census 24 by month 2, 34 by month 6; AR normalizes to ~45-day Medicare cycle"],
-           ["January 15, 2027", "Closing - step 2 (51%)", "Remaining 51% transfers on the first date past the 36-month mark (42 CFR 424.550(b)); CMS-855A ownership updates"],
+           ["Months 2-6", "Prepayment review", "First claims under 42 CFR 424.527 review; held claims release as review clears; reserve carries payroll"],
            ["Months 7-12+", "Growth", "Census to 40 by month 12; capacity hires triggered by census thresholds; coverage rising"]],
           widths=[1.3, 1.6, 3.6])
     para(d, "SBA disbursement is sequenced to occur with the full $250,000 equity injection on deposit, in "
@@ -629,26 +624,26 @@ def business_plan_rev6():
     # ---- 11 Financial Plan ----
     d.add_page_break()
     h1(d, "11 - Financial Plan and Projections")
-    para(d, "All projections are from the Rev 4.10 dynamic proforma (36 monthly periods; every calculation "
+    para(d, "All projections are from the Rev 5.00 dynamic proforma (36 monthly periods; every calculation "
             "cell is a live formula; all inputs on a single Control Tower tab; QA-verified 23/23). The model "
             "practices strict real-cash discipline: no revolver or assumed facility anywhere - shortfalls, if "
             "any, are shown rather than plugged. Officer salaries are fully expensed (with the three owner-"
             "operators deferring cash pay until break-even census - $42,500 accrued and repaid in January), a "
             "22% benefits load plus 3% workers compensation applies, a 5% of net patient revenue contingency "
-            "is deducted below EBITDA, and the actual financing sequence (bank note at $15,211/mo, then SBA at "
+            "is deducted below EBITDA, and the actual financing sequence (zero debt service until month 2, then SBA at "
             "$6,747/mo from February 2027) is modeled month by month.")
     h2(d, "11.1-11.2 Sources & uses of funds")
     table(d, ["Source", "Amount", "Use", "Amount"],
-          [["SBA 7(a) loan", "$500,000", "Refinances the interim bank acquisition note (~$461,676) + working capital at SBA funding ~1/15/2027", "$500,000"],
+          [["SBA 7(a) loan", "$500,000", "Retires the deferred seller note (~$303,000 incl. accrued interest) + working capital at month-2 funding", "$500,000"],
            ["Cash equity injection (Bullard $195K + Schackmann $55K)", "$250,000", "Closing and startup costs", "$15,000"],
            ["", "", "Working-capital reserve", "$235,000"],
            ["Total sources", "$750,000", "Total uses", "$750,000"]],
           widths=[2.2, 0.9, 2.5, 0.9])
-    para(d, "The equity injection is 33% of the $750,000 project. The interim bank note is refinanced by SBA "
+    para(d, "The equity injection is 33% of the $750,000 project. The seller note is retired by SBA "
             "proceeds at the January 2027 funding, so the going-forward balance sheet carries a single debt.")
     h2(d, "11.3 Key assumptions")
     table(d, ["Assumption", "Value"],
-          [["Payer mix", "Medicare RHC per-diem; Medicaid nursing-facility room & board passed through at the standard rate"],
+          [["Payer mix", "100% Medicare RHC per-diem (Avant is Medicare-only)"],
            ["RHC per-diem (Tier 1 / Tier 2)", "$230.83 / $182.36 (FY2026 national), wage-index adjusted for Smith County (CBSA 46340)"],
            ["High-rate (first 60 days) share", "~15% of patient-days"],
            ["Blended net rate / patient-day", "~$172 after sequestration and billing fees - escalating 2.5% / year"],
@@ -657,15 +652,15 @@ def business_plan_rev6():
            ["Benefits load (W-2)", "22% + 3% workers compensation"],
            ["Clinical staffing", "RN, aide, chaplain, and social-work FTEs scale with census on standard hospice ratios; per-patient costs are per-patient-day rates"],
            ["Contingency", "5% of net patient revenue, deducted below EBITDA in cash flow"],
-           ["Debt service (as sequenced)", "Bank note $15,211/mo Oct 2026 - Jan 2027; SBA 7(a) $6,747/mo from Feb 2027 ($80,961/yr)"],
-           ["SBA terms", "$500,000 at ~10.5% over 10 years; funds ~1/15/2027 and refinances the bank note (~$461,676 payoff)"],
-           ["Interim bank note", "$500,000 at 6%/36-mo (Sept 2026); paid sellers in full; $15,211/mo; refinanced by SBA proceeds ~1/15/2027"],
+           ["Debt service (as sequenced)", "None until month 2 (seller note fully deferred); SBA 7(a) $6,747/mo from month 3 ($80,961/yr)"],
+           ["SBA terms", "$500,000 at ~10.5% over 10 years; funds month 2 and retires the seller note (~$303,000 payoff)"],
+           ["Seller note", "$300,000 at 6% simple; NO down payment, NO installments - all deferred until prepayment review clears; retired by SBA proceeds at month 2"],
            ["Equity injection", "$250,000 cash (33% of the $750,000 project)"],
            ["Amortization", "Acquired license / intangibles amortized straight-line over 15 years (~$33,333/yr)"],
            ["Collections timing", "Collections lag billing by ~30-60 days (NOE timing), modeled month by month"],
            ["Liquidity discipline", "No revolver assumed; owner salary deferral to break-even + staged clinical hiring; base-case cash never negative"]],
           widths=[2.4, 4.1])
-    h2(d, "11.4 Three-year profit & loss (Rev 4.10 proforma)")
+    h2(d, "11.4 Three-year profit & loss (Rev 5.00 proforma)")
     table(d, ["Line item", "Year 1", "Year 2", "Year 3"],
           [["Average daily census (ADC)", "31.0", "45.0", "53.0"],
            ["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
@@ -680,7 +675,7 @@ def business_plan_rev6():
            ["Amortization", "$33,333", "$33,333", "$33,333"],
            ["Interest (seller + bank + SBA notes)", "$34,600", "$49,760", "$46,321"],
            ["TX franchise tax", "$6,127", "$10,844", "$13,090"],
-           ["Net income", "$128,491", "$457,463", "$718,153"]],
+           ["Net income", "$130,630", "$472,185", "$733,029"]],
           widths=[2.6, 1.3, 1.3, 1.3])
     para(d, "Net patient revenue grows from $1.93M to $3.49M and EBITDA from $299K to $985K (before debt "
             "service) as the base-case census builds from 24 patients at month 2 to 56 at month 36 on the "
@@ -700,20 +695,21 @@ def business_plan_rev6():
             "agency crosses break-even census (~17-18 patients) in month 2 and exits Year 1 at a 22.3% "
             "EBITDA margin. Collections lag billing by ~30-60 days (NOE timing); the cash-flow tab models "
             "the lag explicitly, month by month, with no revolver or assumed facility anywhere: base-case "
-            "cash never goes negative (minimum month $3,354 in September - disclosed; month-12 cash "
-            "$212,645; month-36 cash $1,297,392).")
+            "cash never goes negative (minimum month $192,358 in September - disclosed; month-12 cash "
+            "month-36 cash $1,473,592).")
     h2(d, "11.6 Lender summary & debt-service coverage")
     table(d, ["Metric", "Year 1", "Year 2", "Year 3"],
           [["Net patient revenue", "$1,932,877", "$2,891,641", "$3,490,623"],
            ["EBITDA (before debt service)", "$299,195", "$695,981", "$985,429"],
            ["Recurring debt service (bank Oct-Jan, then SBA)", "$79,367", "$80,961", "$80,961"],
-           ["EBITDA / recurring debt service", "3.8x", "8.6x", "12.2x"],
-           ["3-year aggregate coverage", "8.2x", "", ""],
-           ["Net income", "$128,491", "$457,463", "$718,153"]],
+           ["EBITDA / recurring debt service (annualized)", "3.7x", "8.6x", "12.2x"],
+           ["Global 3-year coverage (incl. month-2 takeout)", "3.7x", "", ""],
+           ["Net income", "$130,630", "$472,185", "$733,029"]],
           widths=[2.8, 1.3, 1.3, 1.3])
-    para(d, "Year 1 carries the interim bank note at $15,211 per month October through January, then the "
-            "SBA loan at $6,747 per month - EBITDA covers recurring service 3.8x in Year 1, 8.6x in Year 2, "
-            "and 12.2x in Year 3, an aggregate of 8.2x against the 1.25x floor, computed before adding back "
+    para(d, "Year 1 carries no debt service at all until the SBA funds at month 2, then a single SBA "
+            "payment of $6,747 per month - EBITDA covers annualized recurring service 3.7x in Year 1, 8.6x "
+            "in Year 2, and 12.2x in Year 3, with global 3-year coverage of 3.7x even including the "
+            "one-time seller takeout, against the 1.25x floor, computed before adding back "
             "the below-EBITDA contingency. Break-even is approximately 17-18 patients, crossed in month 2 of "
             "the ramp.")
     h2(d, "11.7 Downside case")
@@ -739,13 +735,13 @@ def business_plan_rev6():
     d.add_page_break()
     h1(d, "12 - Risk Factors and Mitigations")
     para(d, "The dominant risks are the newco's lack of operating history and the census ramp - both "
-            "mitigated by benchmarked economics, a dual-certified license that is billing-ready from day "
+            "mitigated by benchmarked economics, a clean certified license, "
             "one, an experienced operator, and a capital structure with a 33% equity injection and a "
             "disciplined, no-revolver working-capital plan. The interim-debt window (closing to SBA "
-            "funding) is short and is extinguished when SBA proceeds refinance the bank note at the January 2027 funding.")
+            "funding) carries zero debt service - the seller note is fully deferred until prepayment review clears.")
     table(d, ["Risk", "Prob.", "Impact", "Mitigation"],
-          [["Debt service / coverage", "Low", "Med", "EBITDA covers recurring service 3.8x -> 8.6x -> 12.2x; the January SBA refinance cuts monthly service from $15,211 to $6,747"],
-           ["Interim-debt window / 36-month rule", "Low", "Med", "Two-step structure complies with 42 CFR 424.550(b); sellers paid in full Sept 2026; SBA refinances the bank note at the 51% transfer, a fixed contractual date (1/15/2027)"],
+          [["Debt service / coverage", "Low", "Med", "EBITDA covers recurring service 3.7x -> 8.6x -> 12.2x; the only debt after month 2 is the single $6,747/mo SBA payment"],
+           ["Prepayment review (PPEO)", "High (certain)", "Med", "First claims enter 42 CFR 424.527 review; $435K reserve (58% of project) + fully deferred seller note carry the window; 4-month downside needs $99K vs $250K equity - disclosed, not plugged"],
            ["Slower census ramp", "Med", "High", "Break-even ~17-18 patients vs 24 by month 2; hires are census-gated and lag one month so cost flexes with volume; documented downside needs only ~$30K of additional capital (disclosed; covered by the note raise)"],
            ["Ramp cash timing (Medicare NOE lag)", "Med", "Med", "Collections lag of ~30-60 days is modeled month by month; reserve sized to carry payroll ahead of collections"],
            ["Wage inflation", "Med", "Med", "22% + 3% benefits and workers compensation load fully modeled; census-gated hiring; PRN pool buffers"],
@@ -761,36 +757,38 @@ def business_plan_rev6():
     h2(d, "13.1 Launch & growth milestones")
     table(d, ["Window", "Milestone", "Verification"],
           [["Through July 2026", "Full $250K equity injection on deposit (Bullard $195K + Schackmann $55K)", "Bank statements + source-of-funds documentation"],
-           ["~August 1, 2026", "Close step 1: 49% of Refuge interests; $125K down", "Executed MIPA + closing statement"],
-           ["January 2027", "SBA loan funds at 51% transfer; bank note (~$462K) refinanced", "Payoff letter + loan statements"],
+           ["At CHOW approval", "Close: 100% of Avant interests; nothing due at close", "Executed MIPA + CHOW approval letter"],
+           ["Month 2", "SBA loan funds; seller note (~$303K) retired", "Payoff letter + loan statements"],
            ["Months 1-3", "CMS-855A ownership updates filed; team seated; EMR live; census 24 by month 2", "855A receipts + payroll + census reports"],
            ["Months 4-6", "BD ramp; census 34 by month 6; AR normalizes to ~45-day cycle", "CRM report + AR aging < 45 days"],
-           ["January 15, 2027", "Close step 2: remaining 51% transfers (past the 36-month mark)", "Assignment of interests + CMS filings"],
+           ["Months 2-4", "Prepayment review (if imposed) cleared on the seed census; full-rate billing confirmed", "Palmetto GBA release notice + remittance advices"],
            ["Months 7-12", "Census 40 by month 12; month-12 EBITDA margin 22.3%", "Monthly financials"],
            ["Years 2-3", "Census 50 by month 24 and 56 by month 36; coverage rising on census-gated hiring", "Board reviews of monthly financials"]],
           widths=[1.4, 3.0, 2.1])
     h2(d, "13.2 Conclusion")
-    para(d, "Azalea is a well-structured SBA 7(a) opportunity: the acquisition of a scarce, dual-certified "
-            "(Medicare and Medicaid) Texas hospice license that is ready to bill from day one, led by an "
+    para(d, "Azalea is a well-structured SBA 7(a) opportunity: the acquisition of a scarce, Medicare-certified "
+            "Texas hospice license (Avant Hospice, LLC; CCN 741798), led by an "
             "operator with 10+ years of hospice ownership and a seated East-Texas team returning to census "
             "levels it has operated at before. The credit rests on four verifiable points: (1) the license "
-            "itself - under the Texas Medicaid enrollment freeze and the CMS nationwide enrollment "
-            "moratorium, comparable dual-certified licenses trade at $400-500K and above, supporting the "
-            "$500,000 purchase price and constraining new competition; (2) benchmarked economics - the "
+            "itself - under the CMS nationwide enrollment "
+            "moratorium, comparable Medicare-certified licenses trade in the $225-350K band, placing the "
+            "$300,000 purchase price inside the band while the moratorium constrains new competition; "
+            "(2) benchmarked economics - the "
             "model's rates and costs reconcile to the team's own prior Tyler-market actuals, with break-even "
-            "(~17-18 patients) crossed in month 2; (3) strong coverage - EBITDA of $299K / $696K / $985K "
-            "covers recurring debt service 3.8x -> 8.6x -> 12.2x after the January SBA refinance drops the "
-            "monthly payment from $15,211 to $6,747; and (4) a well-capitalized, honestly modeled structure "
+            "(~17-18 patients) crossed in month 2; (3) strong coverage - net income of $131K / $472K / $733K "
+            "covers the single $6,747 monthly SBA payment 3.7x -> 8.6x -> 12.2x, with the seller note fully "
+            "deferred until the prepayment-review gate clears and retired at the month-2 SBA funding; "
+            "and (4) a well-capitalized, honestly modeled structure "
             "- a $250,000 cash injection (33% of the $750,000 project) and a working-capital plan that keeps "
-            "base-case cash positive with no revolver or assumed facility anywhere in the model. "
-            "The binding risk is a sustained census shortfall "
-            "during the ramp; it is mitigated by an above-break-even census from month 2, a census-driven "
-            "cost structure, substantial liquidity, and the retirement of the seller note at the January 2027 SBA funding "
-            "that leaves a single, coverable debt.")
+            "base-case cash positive (minimum month-end cash $192,358) with no revolver or assumed facility "
+            "anywhere in the model. The binding risk is a Medicare prepayment review holding early claims "
+            "during the ramp; it is modeled head-on (a two-month base-case hold, four months in the downside, "
+            "which still ends month 36 at $444K cash), and the fully deferred seller note means no seller "
+            "payment is due until Medicare cash is actually flowing.")
 
     para(d, "")
-    para(d, "Rev 6.01 - July 2026. This plan is computed from the Rev 4.10 dynamic proforma "
-            "(Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx), the single source of truth for all financial "
+    para(d, "Rev 7.00 - August 2026 (Avant target). This plan is computed from the Rev 5.00 AVANT proforma "
+            "(Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx), the single source of truth for all financial "
             "figures. Confidential - do not distribute without written consent.", italic=True, size=8,
          color=GREY)
     para(d, "")
@@ -799,7 +797,7 @@ def business_plan_rev6():
 
     out = os.path.join(BASE, OUT)
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    docfmt.finalize(d, "Azalea Hospice - SBA Business Plan Rev 6.01")
+    docfmt.finalize(d, "Azalea Hospice - SBA Business Plan Rev 7.00 (Avant)")
     d.save(out)
     print("  wrote", OUT)
 

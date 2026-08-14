@@ -1,17 +1,17 @@
-"""QA for the Rev 4.10 dynamic proforma (real-cash discipline + Path A SBA refi).
+"""QA for the Rev 5.00 AVANT proforma (seller-carried at 6%, SBA takeout month 2).
 
   1. 0 formula errors
   2. BS check = 0 all 36 months (no plugs; incl. deferred comp + notes payable)
   3. Collections conservation
   4. Census: EOM M2=24, M6=34, M12=40
-  5. BASE = Sept bank refi ($500K/6%/36, confirmed relationship): seller paid off
-     Sept ($375K), no Jan balloon, $15,211/mo from Oct
+  5. BASE = Avant: $0 down, $0 installments, seller note ($300K, 6% simple)
+     retired in full by the SBA at month 2; single $6,747/mo SBA payment after
   6. Owner deferral: conservation (accrued = repaid + end bal); end balance 0 by M36;
      EBITDA UNCHANGED vs Rev 3.10 (accrual basis - deferral is cash timing only)
   7. NO revolver anywhere; UNFUNDED NEED reported honestly (base + downside):
      the peak is THE raise number, not a pass/fail
   8. Master INTEGRITY check = 0 (viability reported separately)
-  9. Toggle test (refi OFF): seller carried, Jan balloon $250K principal
+  9. Toggle test (SBA OFF): private balloon refi must size to the seller payoff
  10. Zero hardcoded constants >=100 in formulas outside Control Tower
 """
 import json, re, sys
@@ -19,7 +19,7 @@ import formulas
 import openpyxl
 from openpyxl.utils import get_column_letter as gcl
 
-XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev4.10_DYNAMIC.xlsx"
+XLSX = "financial_models/output/Azalea_Hospice_Proforma_Rev5.00_AVANT.xlsx"
 ROWMAP = "financial_models/output/proforma_v3_rowmap.json"
 PASS = FAIL = 0
 def chk(name, ok, detail=""):
@@ -64,15 +64,16 @@ def main():
         v = num(g("Census Waterfall", f"{gcl(2+mo)}{CN['eom']}"))
         chk(f"census EOM M{mo} = {tgt}", abs(v - tgt) < 0.1, f"({v:.1f})")
 
-    # BASE = September bank refi -> SBA refinances it in January (Path A)
-    chk("BASE: seller paid off Sept ($375K)", abs(num(g("Cash Flow & Runway", f"E{CF['s_prin']}")) - 375000) < 1)
-    chk("BASE: no January balloon", abs(num(g("Cash Flow & Runway", f"I{CF['s_prin']}"))) < 1)
-    chk("BASE: bank refi $15,211/mo Oct-Dec", abs(num(g("Cash Flow & Runway", f"F{CF['refi_pmt']}")) - 15210.97) < 1)
-    chk("BASE: bank note retired at SBA funding (Jan bal = 0)", abs(num(g("Cash Flow & Runway", f"I{CF['refi_bal']}"))) < 0.01)
-    dec_bal = num(g("Cash Flow & Runway", f"H{CF['refi_bal']}"))
-    print(f"     info: bank-note payoff at SBA funding ~${dec_bal:,.0f} | SBA surplus to cash ~${500000-dec_bal:,.0f}")
-    chk("BASE: no bank payment in/after Jan", abs(num(g("Cash Flow & Runway", f"I{CF['refi_pmt']}"))) < 0.01)
-    chk("BASE: SBA ~$6,746.75/mo from Feb", abs(num(g("Cash Flow & Runway", f"J{CF['sba_pmt']}")) - 6746.75) < 1)
+    # BASE (Avant): seller carries full $300K at 6%; SBA funds M2 and retires the note
+    chk("BASE: no down payment / no M1 seller principal", abs(num(g("Cash Flow & Runway", f"C{CF['s_prin']}"))) < 1)
+    chk("BASE: seller note retired in full at M2 ($300K principal)",
+        abs(num(g("Cash Flow & Runway", f"D{CF['s_prin']}")) - 300000) < 1)
+    ipaid = num(g("Cash Flow & Runway", f"D{CF['s_intpaid']}"))
+    chk("BASE: accrued seller interest paid at takeout (~$3,000)", 2500 <= ipaid <= 3500, f"(${ipaid:,.0f})")
+    chk("BASE: seller balance 0 from M2", abs(num(g("Cash Flow & Runway", f"D{CF['s_end']}"))) < 0.01)
+    chk("BASE: no bank note anywhere (refi bal M2 = 0)", abs(num(g("Cash Flow & Runway", f"D{CF['refi_bal']}"))) < 0.01)
+    print(f"     info: SBA $500,000 at M2 - seller takeout ${300000+ipaid:,.0f} | surplus to WC ~${500000-300000-ipaid:,.0f}")
+    chk("BASE: SBA ~$6,746.75/mo from M3", abs(num(g("Cash Flow & Runway", f"E{CF['sba_pmt']}")) - 6746.75) < 1)
 
     # deferral
     ST = R["Staffing"]
@@ -115,16 +116,16 @@ def main():
                     rev_refs += 1
     chk("no LIVE revolver references (\'no revolver\' banners excluded)", rev_refs == 0, f"({rev_refs})")
 
-    # toggle: refi OFF -> seller carried to Jan balloon
+    # toggle: SBA OFF -> seller carried, balloon machinery must fire at balloon_mo with private refi
     wb = openpyxl.load_workbook(XLSX)
     aws = wb["Control Tower"]
-    aws[addr["refi_on"].split("!")[1].replace("$", "")] = 0
-    tmp = "financial_models/output/_v4_off.xlsx"; wb.save(tmp)
+    aws[addr["sba_on"].split("!")[1].replace("$", "")] = 0
+    tmp = "financial_models/output/_v5_off.xlsx"; wb.save(tmp)
     _, g2 = evaluate(tmp)
-    chk("refi OFF: seller installments $31,250 Sep-Dec", abs(num(g2("Cash Flow & Runway", f"E{CF['s_prin']}")) - 31250) < 1)
-    chk("refi OFF: Jan balloon principal $250,000", abs(num(g2("Cash Flow & Runway", f"I{CF['s_prin']}")) - 250000) < 1)
+    bref = num(g2("Cash Flow & Runway", f"B{CF['bref_amt']}"))
+    chk("SBA OFF: private balloon refi sized to seller payoff (>= $300K)", bref >= 300000, f"(${bref:,.0f})")
     need2 = [num(g2("Cash Flow & Runway", f"{gcl(3+i)}{CF['unfunded']}")) for i in range(36)]
-    print(f"     >>> NO-BANK-REFI scenario: peak ADDITIONAL CAPITAL REQUIRED ${max(need2):,.0f}")
+    print(f"     >>> NO-SBA scenario: peak ADDITIONAL CAPITAL REQUIRED ${max(need2):,.0f}")
     import os; os.remove(tmp)
 
     # downside (case=2) on the base structure: report the honest raise number
