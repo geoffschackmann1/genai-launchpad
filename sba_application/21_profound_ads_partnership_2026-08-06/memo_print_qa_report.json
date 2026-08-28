@@ -1,0 +1,63 @@
+{
+  "qa_date": "2026-08-06",
+  "status": "passed",
+  "scope": [
+    "Profound Counsel Memorandum - Working Draft Revision 1.00 - 080626.docx",
+    "Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx"
+  ],
+  "shared_checks": {
+    "paper_size": "US Letter (8.5 x 11 inches)",
+    "margins_inches": {
+      "top": 0.9,
+      "right": 1.0,
+      "bottom": 0.85,
+      "left": 1.0
+    },
+    "body_font": "Times New Roman, 10.5 pt",
+    "widow_orphan_control": true,
+    "table_rows_prevented_from_splitting": true,
+    "tracked_changes_absent": true,
+    "comments_absent": true,
+    "docx_package_integrity": "passed",
+    "visual_color_review": "passed",
+    "visual_grayscale_review": "passed",
+    "pdf_tagged": true,
+    "pdf_encrypted": false,
+    "pdf_fonts_embedded": true,
+    "blank_pages_absent": true
+  },
+  "documents": {
+    "counsel": {
+      "docx_pages": 9,
+      "pdf_pages": 9,
+      "appendix_pages": {
+        "Appendix A": 8,
+        "Appendix B": 9
+      },
+      "accessibility_findings": {
+        "high": 0,
+        "medium": 2,
+        "low": 0,
+        "note": "The medium notices relate to intentional layout tables; data tables use header-row tagging."
+      },
+      "pdf_version": "1.7",
+      "pdf_file_size_bytes": 211618
+    },
+    "financial_advisor": {
+      "docx_pages": 6,
+      "pdf_pages": 6,
+      "appendix_pages": {
+        "Appendix A": 6
+      },
+      "accessibility_findings": {
+        "high": 0,
+        "medium": 2,
+        "low": 0,
+        "note": "The medium notices relate to intentional layout tables; data tables use header-row tagging."
+      },
+      "pdf_version": "1.7",
+      "pdf_file_size_bytes": 172333,
+      "pagination_correction": "Removed an unintended blank second page caused by a forced section page break."
+    }
+  }
+}

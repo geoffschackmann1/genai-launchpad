@@ -1,0 +1,43 @@
+{
+  "Profound Counsel Memorandum - Working Draft Revision 1.00 - 080626.docx": {
+    "page_count": 9,
+    "heading_count": 19,
+    "heading_outliers": [],
+    "entity_diagram": [
+      {
+        "rows": 3,
+        "columns": 1,
+        "vertical": true
+      }
+    ],
+    "visual_review": "passed",
+    "package_integrity": "passed",
+    "accessibility_high_findings": 0,
+    "accessibility_note": "Two medium notices relate only to intentional layout tables; data tables have tagged header rows.",
+    "appendix_pagination": {
+      "Appendix A": 8,
+      "Appendix B": 9,
+      "dedicated_single_pages": true
+    }
+  },
+  "Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx": {
+    "page_count": 6,
+    "heading_count": 12,
+    "heading_outliers": [],
+    "entity_diagram": [
+      {
+        "rows": 3,
+        "columns": 1,
+        "vertical": true
+      }
+    ],
+    "visual_review": "passed",
+    "package_integrity": "passed",
+    "accessibility_high_findings": 0,
+    "accessibility_note": "Two medium notices relate only to intentional layout tables; data tables have tagged header rows.",
+    "appendix_pagination": {
+      "Appendix A": 6,
+      "dedicated_single_page": true
+    }
+  }
+}

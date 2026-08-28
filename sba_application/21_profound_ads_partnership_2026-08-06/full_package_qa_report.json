@@ -1,0 +1,386 @@
+{
+  "documents": {
+    "Profound Counsel Memorandum - Revision 1.00 - 080626.docx": {
+      "opens": true,
+      "forbidden_refs": [],
+      "fonts": {
+        "Times New Roman": 173
+      },
+      "footer_matches_file_family": true,
+      "comments_absent": true,
+      "tracked_insertions_absent": true,
+      "tracked_deletions_absent": true,
+      "duplicate_running_header_absent": true,
+      "matrix_numbered": true,
+      "appendix_labeled": true,
+      "entity_terms_present": true,
+      "tyler_address_present": true,
+      "business_terms": {
+        "fee_7500": true,
+        "september_1": true,
+        "term_12_month": true,
+        "direct_cost_no_markup": true,
+        "cash_25000": true,
+        "note_50000": true
+      },
+      "heading_inventory": [
+        [
+          "Heading 1",
+          "1. Purpose and current status"
+        ],
+        [
+          "Heading 1",
+          "2. Proposed operating structure"
+        ],
+        [
+          "Heading 2",
+          "2.1 Profound’s role as provider of record"
+        ],
+        [
+          "Heading 2",
+          "2.2 Azalea’s role"
+        ],
+        [
+          "Heading 1",
+          "3. Staffing, employment, and payroll"
+        ],
+        [
+          "Heading 1",
+          "4. Compensation and funding"
+        ],
+        [
+          "Heading 2",
+          "4.1 Fixed fee and direct costs"
+        ],
+        [
+          "Heading 2",
+          "4.2 Transition consideration—Patrick’s election"
+        ],
+        [
+          "Heading 1",
+          "5. Clinical records, FireNote, and information governance"
+        ],
+        [
+          "Heading 1",
+          "6. DME Express and other vendors"
+        ],
+        [
+          "Heading 1",
+          "7. Enrollment, licensure, and launch conditions"
+        ],
+        [
+          "Heading 2",
+          "7.1 ADS go/no-go approval matrix"
+        ],
+        [
+          "Heading 1",
+          "8. Patient, billing, cash, and reconciliation controls"
+        ],
+        [
+          "Heading 1",
+          "9. Proposed document architecture"
+        ],
+        [
+          "Heading 1",
+          "10. Principal questions for counsel"
+        ],
+        [
+          "Heading 1",
+          "11. Working timeline and conditions"
+        ],
+        [
+          "Heading 1",
+          "12. Requested counsel response"
+        ],
+        [
+          "Heading 1",
+          "Appendix A. Selected primary authorities for counsel’s review"
+        ],
+        [
+          "Heading 1",
+          "Appendix B. Entity structure for drafting"
+        ]
+      ],
+      "tables": 3,
+      "sections": 1,
+      "footer": "Profound Counsel Memorandum – Revision 1.00 – 080626"
+    },
+    "Profound Counsel Memorandum - Working Draft Revision 1.00 - 080626.docx": {
+      "opens": true,
+      "forbidden_refs": [],
+      "fonts": {
+        "Times New Roman": 173
+      },
+      "footer_matches_file_family": true,
+      "comments_absent": true,
+      "tracked_insertions_absent": true,
+      "tracked_deletions_absent": true,
+      "duplicate_running_header_absent": true,
+      "matrix_numbered": true,
+      "appendix_labeled": true,
+      "entity_terms_present": true,
+      "tyler_address_present": true,
+      "business_terms": {
+        "fee_7500": true,
+        "september_1": true,
+        "term_12_month": true,
+        "direct_cost_no_markup": true,
+        "cash_25000": true,
+        "note_50000": true
+      },
+      "heading_inventory": [
+        [
+          "Heading 1",
+          "1. Purpose and current status"
+        ],
+        [
+          "Heading 1",
+          "2. Proposed operating structure"
+        ],
+        [
+          "Heading 2",
+          "2.1 Profound’s role as provider of record"
+        ],
+        [
+          "Heading 2",
+          "2.2 Azalea’s role"
+        ],
+        [
+          "Heading 1",
+          "3. Staffing, employment, and payroll"
+        ],
+        [
+          "Heading 1",
+          "4. Compensation and funding"
+        ],
+        [
+          "Heading 2",
+          "4.1 Fixed fee and direct costs"
+        ],
+        [
+          "Heading 2",
+          "4.2 Transition consideration—Patrick’s election"
+        ],
+        [
+          "Heading 1",
+          "5. Clinical records, FireNote, and information governance"
+        ],
+        [
+          "Heading 1",
+          "6. DME Express and other vendors"
+        ],
+        [
+          "Heading 1",
+          "7. Enrollment, licensure, and launch conditions"
+        ],
+        [
+          "Heading 2",
+          "7.1 ADS go/no-go approval matrix"
+        ],
+        [
+          "Heading 1",
+          "8. Patient, billing, cash, and reconciliation controls"
+        ],
+        [
+          "Heading 1",
+          "9. Proposed document architecture"
+        ],
+        [
+          "Heading 1",
+          "10. Principal questions for counsel"
+        ],
+        [
+          "Heading 1",
+          "11. Working timeline and conditions"
+        ],
+        [
+          "Heading 1",
+          "12. Requested counsel response"
+        ],
+        [
+          "Heading 1",
+          "Appendix A. Selected primary authorities for counsel’s review"
+        ],
+        [
+          "Heading 1",
+          "Appendix B. Entity structure for drafting"
+        ]
+      ],
+      "tables": 4,
+      "sections": 1,
+      "footer": "Profound Counsel Memorandum – Working Draft Revision 1.00 – 080626"
+    },
+    "Profound Financial Advisor Memorandum - Revision 1.00 - 080626.docx": {
+      "opens": true,
+      "forbidden_refs": [],
+      "fonts": {
+        "Times New Roman": 142
+      },
+      "footer_matches_file_family": true,
+      "comments_absent": true,
+      "tracked_insertions_absent": true,
+      "tracked_deletions_absent": true,
+      "duplicate_running_header_absent": true,
+      "matrix_numbered": true,
+      "appendix_labeled": true,
+      "entity_terms_present": true,
+      "tyler_address_present": true,
+      "business_terms": {
+        "fee_7500": true,
+        "september_1": true,
+        "term_12_month": true,
+        "direct_cost_no_markup": true,
+        "cash_25000": true,
+        "note_50000": true
+      },
+      "heading_inventory": [
+        [
+          "Heading 1",
+          "1. Executive framing"
+        ],
+        [
+          "Heading 1",
+          "2. Confirmed business terms for documentation"
+        ],
+        [
+          "Heading 1",
+          "3. Proposed funding and cash-control mechanics"
+        ],
+        [
+          "Heading 1",
+          "4. Employment and payroll control"
+        ],
+        [
+          "Heading 1",
+          "5. Financial reporting and transparency"
+        ],
+        [
+          "Heading 1",
+          "6. Risk allocation, reserves, and protection"
+        ],
+        [
+          "Heading 1",
+          "7. Proposed vendors requiring diligence"
+        ],
+        [
+          "Heading 1",
+          "8. Assumptions and open items"
+        ],
+        [
+          "Heading 1",
+          "9. Questions for Profound's financial advisor"
+        ],
+        [
+          "Heading 1",
+          "10. Recommended next steps"
+        ],
+        [
+          "Heading 2",
+          "10.1 Advisor confirmation requested"
+        ],
+        [
+          "Heading 1",
+          "Appendix A. Entity structure for drafting"
+        ]
+      ],
+      "tables": 5,
+      "sections": 1,
+      "footer": "Profound Financial Advisor Memorandum – Revision 1.00 – 080626"
+    },
+    "Profound Financial Advisor Memorandum - Working Draft Revision 1.00 - 080626.docx": {
+      "opens": true,
+      "forbidden_refs": [],
+      "fonts": {
+        "Times New Roman": 142
+      },
+      "footer_matches_file_family": true,
+      "comments_absent": true,
+      "tracked_insertions_absent": true,
+      "tracked_deletions_absent": true,
+      "duplicate_running_header_absent": true,
+      "matrix_numbered": true,
+      "appendix_labeled": true,
+      "entity_terms_present": true,
+      "tyler_address_present": true,
+      "business_terms": {
+        "fee_7500": true,
+        "september_1": true,
+        "term_12_month": true,
+        "direct_cost_no_markup": true,
+        "cash_25000": true,
+        "note_50000": true
+      },
+      "heading_inventory": [
+        [
+          "Heading 1",
+          "1. Executive framing"
+        ],
+        [
+          "Heading 1",
+          "2. Confirmed business terms for documentation"
+        ],
+        [
+          "Heading 1",
+          "3. Proposed funding and cash-control mechanics"
+        ],
+        [
+          "Heading 1",
+          "4. Employment and payroll control"
+        ],
+        [
+          "Heading 1",
+          "5. Financial reporting and transparency"
+        ],
+        [
+          "Heading 1",
+          "6. Risk allocation, reserves, and protection"
+        ],
+        [
+          "Heading 1",
+          "7. Proposed vendors requiring diligence"
+        ],
+        [
+          "Heading 1",
+          "8. Assumptions and open items"
+        ],
+        [
+          "Heading 1",
+          "9. Questions for Profound's financial advisor"
+        ],
+        [
+          "Heading 1",
+          "10. Recommended next steps"
+        ],
+        [
+          "Heading 2",
+          "10.1 Advisor confirmation requested"
+        ],
+        [
+          "Heading 1",
+          "Appendix A. Entity structure for drafting"
+        ]
+      ],
+      "tables": 6,
+      "sections": 1,
+      "footer": "Profound Financial Advisor Memorandum – Working Draft Revision 1.00 – 080626"
+    }
+  },
+  "presentation": {
+    "slides": 21,
+    "empty_placeholders": [],
+    "source_blocks": 21,
+    "forbidden_refs": [],
+    "appendices_A_to_D": true,
+    "business_terms": {
+      "fee_7500": true,
+      "september_1": true,
+      "term_12_month": true,
+      "direct_cost_no_markup": true,
+      "cash_25000": true,
+      "note_50000": true
+    },
+    "matrix_labels_clean": true,
+    "entity_label": true,
+    "tyler_address_present": true
+  }
+}
